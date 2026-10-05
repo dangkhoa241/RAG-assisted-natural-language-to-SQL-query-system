@@ -92,7 +92,24 @@ describe("App", () => {
   it("explains when the backend is unreachable", async () => {
     fetchMock.mockImplementationOnce(() => Promise.reject(new TypeError("Failed to fetch")));
     render(<App />);
-    expect(await screen.findByText(/Can't reach the server/)).toBeInTheDocument();
+    expect(await screen.findByText(/Can't reach the API server/)).toBeInTheDocument();
+  });
+
+  it("explains a bare proxy 502 (backend down behind Vite) the same way", async () => {
+    const proxy502 = () => Promise.resolve(new Response("", { status: 502 }));
+    fetchMock.mockImplementationOnce(proxy502).mockImplementationOnce(proxy502); // /api/config + /api/samples
+    render(<App />);
+    expect(await screen.findByText(/Can't reach the API server\. Is the backend running on port 8000\?/)).toBeInTheDocument();
+  });
+
+  it("still shows the backend's own JSON 502 message", async () => {
+    queryResponse = () => json({ error: { code: "llm_error", message: "The LLM call failed. Try again." } }, 502);
+    const user = userEvent.setup();
+    render(<App />);
+    await user.click(await screen.findByRole("radio", { name: /Retail orders/ }));
+    await user.selectOptions(screen.getByRole("combobox", { name: /Mode/ }), "llm");
+    await user.click(screen.getByRole("button", { name: "total revenue by region" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent("The LLM call failed. Try again.");
   });
 
   it("uploads a CSV, selects it and disables the glossary for it", async () => {

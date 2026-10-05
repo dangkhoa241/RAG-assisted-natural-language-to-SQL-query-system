@@ -13,12 +13,14 @@ export class ApiError extends Error {
   }
 }
 
+const UNREACHABLE = "Can't reach the API server. Is the backend running on port 8000?";
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   let res: Response;
   try {
     res = await fetch(path, init);
   } catch {
-    throw new ApiError("Can't reach the server. Is the backend running?", 0, "network_error");
+    throw new ApiError(UNREACHABLE, 0, "network_error");
   }
   let body: unknown = null;
   try {
@@ -28,6 +30,11 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   }
   if (!res.ok) {
     const err = (body as { error?: { code?: string; message?: string } } | null)?.error;
+    // The backend always answers with a JSON error body. A bare 502/503/504 comes from the proxy in
+    // front of it (Vite in development) and means the backend isn't reachable.
+    if (!err && [502, 503, 504].includes(res.status)) {
+      throw new ApiError(UNREACHABLE, res.status, "backend_unreachable");
+    }
     const retry = Number(res.headers.get("Retry-After"));
     throw new ApiError(
       err?.message ?? `The server returned an error (${res.status}).`,
