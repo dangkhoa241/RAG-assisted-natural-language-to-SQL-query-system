@@ -16,9 +16,14 @@ grounded in schema and example context retrieved with local embeddings.
 
 ## 📜 Project history
 
-This repo continues the original project, with its full commit history:
-[dangkhoa241/LLMs-powered-natural-language-query-system-for-healthcare](https://github.com/dangkhoa241/LLMs-powered-natural-language-query-system-for-healthcare).
-v2 adds retrieval-augmented SQL generation and a React front end. Earlier work is preserved in the history.
+This repo is v2 of the project. Its full commit history carries over from the earlier versions:
+
+1. **Original class project:** a healthcare-only NL-to-SQL system:
+   [dangkhoa241/LLMs-powered-natural-language-query-system-for-healthcare](https://github.com/dangkhoa241/LLMs-powered-natural-language-query-system-for-healthcare)
+2. **v1:** generalized to any CSV, with a Streamlit demo:
+   [dangkhoa241/ML-assisted-natural-language-to-SQL-query-system](https://github.com/dangkhoa241/ML-assisted-natural-language-to-SQL-query-system)
+
+v2 adds retrieval-augmented SQL generation and a React front end.
 
 ---
 
