@@ -12,6 +12,17 @@ grounded in schema and example context retrieved with local embeddings.
 
 **v1 pipeline:** User question → Intent classification → SQL generation → Query execution → Table → Chart
 
+<table>
+  <tr>
+    <td><img src="docs/screenshots/desktop-light.png" alt="Stage 4 React UI in light mode: average billing amount by insurance provider as a bar chart, with the result table, the SQL and the How it works panel" /></td>
+    <td><img src="docs/screenshots/desktop-dark.png" alt="Stage 4 React UI in dark mode: how many repeat customers, answered with glossary definitions and shown as a big-number card" /></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Light mode: zero-shot LLM answer, bar chart</sub></td>
+    <td align="center"><sub>Dark mode: glossary-assisted answer, number card</sub></td>
+  </tr>
+</table>
+
 ---
 
 ## 📜 Project history
@@ -894,6 +905,22 @@ When the daily budget is used up, `auto` answers with the rule-based generator (
 spacing unit is a CSS variable in [`frontend/src/styles/theme.css`](frontend/src/styles/theme.css).
 The eight chart series colors are a color-blind-checked categorical palette; keep their order if you
 swap hues.
+
+### Mobile
+
+The layout stacks into one column at phone width: dataset, question, results, then "How it works".
+The schema starts collapsed so the question box stays near the top.
+
+<table>
+  <tr>
+    <td><img src="docs/screenshots/phone-light.png" alt="Phone-width UI in light mode: online vs in-store revenue as a pie chart with a labelled legend" width="300" /></td>
+    <td><img src="docs/screenshots/phone-dark.png" alt="Phone-width UI in dark mode: admissions per year as a line chart" width="300" /></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Light: pie chart with legend</sub></td>
+    <td align="center"><sub>Dark: line chart</sub></td>
+  </tr>
+</table>
 
 ### Security
 
