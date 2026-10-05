@@ -16,3 +16,9 @@ torch
 transformers
 sentencepiece
 huggingface-hub
+
+# --- Retrieval-augmented text-to-SQL ---
+groq
+python-dotenv
+sentence-transformers
+faiss-cpu

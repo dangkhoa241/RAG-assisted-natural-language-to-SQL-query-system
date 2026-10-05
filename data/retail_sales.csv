@@ -1,0 +1,1001 @@
+Order ID,Order Date,Customer Name,Customer Segment,Customer Age,Region,Channel,Category,Product,Unit Price,Quantity,Discount,Revenue,Payment Method,Rating,Returned
+10001,2023-01-04,Aria Martin,Corporate,54,East,Online,Beauty,Hair Dryer,59.91,5,0.0,299.55,Debit Card,5,No
+10002,2023-01-04,Jack Scott,Corporate,71,North,In-Store,Beauty,Face Serum,48.98,4,0.0,195.92,Cash,5,No
+10003,2023-01-04,Ava Allen,Consumer,68,South,In-Store,Home & Kitchen,Coffee Maker,86.09,4,0.05,327.14,Cash,5,No
+10004,2023-01-05,Leah Wilson,Consumer,26,South,In-Store,Home & Kitchen,Knife Set,70.3,5,0.1,316.35,Debit Card,5,No
+10005,2023-01-05,Ruby Patel,Consumer,65,West,Online,Electronics,Smartwatch,204.03,3,0.1,550.88,PayPal,4,No
+10006,2023-01-06,Maya Chen,Consumer,31,North,In-Store,Home & Kitchen,Knife Set,67.71,4,0.15,230.21,Debit Card,3,No
+10007,2023-01-08,Noah Chen,Consumer,39,West,In-Store,Clothing,Denim Jacket,83.68,6,0.1,451.87,Credit Card,4,No
+10008,2023-01-09,Owen Chen,Consumer,75,South,Online,Electronics,Wireless Earbuds,83.47,2,0.1,150.25,Credit Card,3,No
+10009,2023-01-11,Ruby Young,Corporate,61,East,In-Store,Electronics,Smartwatch,210.83,7,0.05,1402.02,Debit Card,4,No
+10010,2023-01-12,Caleb Allen,Consumer,61,North,Online,Sports,Tennis Racket,127.25,6,0.1,687.15,Credit Card,4,No
+10011,2023-01-13,Nora Allen,Consumer,32,North,In-Store,Beauty,Perfume,73.23,6,0.1,395.44,Credit Card,4,No
+10012,2023-01-14,Nora Patel,Consumer,49,West,Online,Electronics,Laptop Stand,42.32,3,0.2,101.57,Credit Card,3,No
+10013,2023-01-14,Mason Patel,Consumer,70,East,Online,Electronics,Wireless Earbuds,79.75,8,0.0,638.0,PayPal,3,No
+10014,2023-01-14,Ava Walker,Consumer,27,West,Online,Clothing,Wool Sweater,69.14,3,0.05,197.05,Credit Card,3,No
+10015,2023-01-15,Ivy Young,Consumer,45,West,In-Store,Electronics,Wireless Earbuds,81.76,7,0.0,572.32,Credit Card,3,No
+10016,2023-01-17,Nora Hall,Corporate,19,East,Online,Electronics,Bluetooth Speaker,54.96,7,0.0,384.72,Credit Card,4,No
+10017,2023-01-18,Lucas Wright,Small Business,60,East,In-Store,Home & Kitchen,Throw Blanket,34.0,8,0.15,231.2,Credit Card,2,No
+10018,2023-01-19,Elena Lopez,Corporate,37,North,Online,Clothing,Wool Sweater,59.48,6,0.0,356.88,Debit Card,3,No
+10019,2023-01-20,Mia Smith,Consumer,62,West,Online,Clothing,Wool Sweater,64.74,8,0.05,492.02,Credit Card,3,No
+10020,2023-01-24,Aria Chen,Consumer,29,North,Online,Electronics,Wireless Earbuds,75.25,6,0.0,451.5,PayPal,5,No
+10021,2023-01-24,Caleb Lopez,Consumer,65,West,In-Store,Home & Kitchen,Air Fryer,101.69,4,0.05,386.42,Credit Card,3,No
+10022,2023-01-24,Jack Garcia,Consumer,69,East,Online,Clothing,Graphic Tee,19.86,8,0.0,158.88,Credit Card,2,No
+10023,2023-01-25,Maya Walker,Consumer,74,East,In-Store,Clothing,Graphic Tee,21.18,5,0.05,100.6,Credit Card,5,No
+10024,2023-01-25,Ava Martin,Consumer,47,West,Online,Clothing,Graphic Tee,22.04,7,0.2,123.42,Credit Card,4,Yes
+10025,2023-01-26,Maya Lee,Consumer,54,West,In-Store,Beauty,Lip Balm Pack,11.3,1,0.1,10.17,Credit Card,5,No
+10026,2023-01-28,Leah King,Consumer,47,West,In-Store,Electronics,Wireless Earbuds,77.46,2,0.1,139.43,Debit Card,3,No
+10027,2023-01-28,Caleb Clark,Small Business,37,East,Online,Sports,Tennis Racket,127.09,4,0.05,482.94,Credit Card,4,No
+10028,2023-01-29,Noah King,Consumer,53,West,Online,Clothing,Graphic Tee,23.48,8,0.0,187.84,Debit Card,4,No
+10029,2023-01-30,Owen Allen,Consumer,57,East,Online,Beauty,Perfume,75.89,4,0.1,273.2,PayPal,2,No
+10030,2023-01-30,Zoe Martin,Corporate,46,South,Online,Clothing,Graphic Tee,21.38,5,0.0,106.9,PayPal,5,No
+10031,2023-01-31,Leo Lee,Consumer,26,East,Online,Home & Kitchen,Coffee Maker,79.61,2,0.0,159.22,Credit Card,3,No
+10032,2023-01-31,Ava Wilson,Consumer,31,East,In-Store,Beauty,Face Serum,43.41,5,0.05,206.2,Credit Card,5,No
+10033,2023-01-31,Liam Chen,Consumer,44,North,Online,Home & Kitchen,Air Fryer,99.07,8,0.2,634.05,Credit Card,4,No
+10034,2023-02-01,Nora Young,Corporate,60,East,Online,Electronics,Laptop Stand,41.23,3,0.1,111.32,Debit Card,5,No
+10035,2023-02-01,Leah Lee,Corporate,42,South,Online,Electronics,Smartwatch,179.86,8,0.1,1294.99,Credit Card,3,No
+10036,2023-02-01,Henry Chen,Corporate,60,East,In-Store,Beauty,Hair Dryer,54.83,4,0.0,219.32,Debit Card,5,No
+10037,2023-02-02,Henry Walker,Consumer,53,North,Online,Electronics,Laptop Stand,40.35,5,0.1,181.58,PayPal,4,No
+10038,2023-02-02,Nora Martin,Consumer,70,East,Online,Clothing,Wool Sweater,62.58,5,0.0,312.9,Credit Card,4,No
+10039,2023-02-02,Mia Garcia,Small Business,40,East,Online,Beauty,Hair Dryer,56.52,7,0.05,375.86,Credit Card,3,No
+10040,2023-02-02,Maya Young,Consumer,46,South,Online,Electronics,Laptop Stand,38.43,1,0.05,36.51,Credit Card,3,No
+10041,2023-02-04,Owen Wilson,Consumer,24,West,Online,Electronics,Bluetooth Speaker,60.72,1,0.1,54.65,PayPal,5,No
+10042,2023-02-05,Jack Wright,Corporate,25,South,Online,Electronics,Wireless Earbuds,72.47,6,0.0,434.82,Credit Card,5,No
+10043,2023-02-06,Lucas King,Consumer,34,North,Online,Electronics,Wireless Earbuds,83.21,4,0.0,332.84,Debit Card,4,No
+10044,2023-02-06,Liam Garcia,Small Business,73,South,Online,Clothing,Denim Jacket,89.0,3,0.0,267.0,PayPal,5,No
+10045,2023-02-07,Leo Brown,Corporate,26,West,In-Store,Home & Kitchen,Throw Blanket,36.64,8,0.0,293.12,Debit Card,4,No
+10046,2023-02-08,Owen Walker,Consumer,18,North,Online,Clothing,Wool Sweater,66.39,6,0.1,358.51,PayPal,4,No
+10047,2023-02-08,Noah Kim,Consumer,64,West,Online,Electronics,Smartwatch,206.9,1,0.0,206.9,Credit Card,4,No
+10048,2023-02-10,Mason Allen,Consumer,27,West,Online,Sports,Yoga Mat,27.7,6,0.0,166.2,Credit Card,4,No
+10049,2023-02-10,Ava Walker,Corporate,18,North,Online,Sports,Dumbbell Set,94.01,5,0.05,446.55,Credit Card,4,No
+10050,2023-02-12,Zoe Scott,Consumer,59,South,In-Store,Home & Kitchen,Coffee Maker,78.45,5,0.0,392.25,Credit Card,5,No
+10051,2023-02-12,Ava Chen,Consumer,58,East,Online,Electronics,Bluetooth Speaker,60.8,2,0.1,109.44,Credit Card,4,No
+10052,2023-02-15,Henry Walker,Consumer,68,North,Online,Home & Kitchen,Air Fryer,115.32,1,0.0,115.32,PayPal,4,No
+10053,2023-02-16,Mason Lee,Corporate,64,East,Online,Home & Kitchen,Knife Set,68.46,4,0.0,273.84,Debit Card,3,No
+10054,2023-02-16,Ethan Walker,Consumer,72,East,Online,Clothing,Running Shoes,112.98,5,0.05,536.66,Debit Card,5,No
+10055,2023-02-18,Ruby Wright,Consumer,67,East,In-Store,Beauty,Hair Dryer,60.96,6,0.2,292.61,Debit Card,2,Yes
+10056,2023-02-19,Nora Chen,Small Business,52,West,Online,Clothing,Wool Sweater,70.64,3,0.0,211.92,Debit Card,5,No
+10057,2023-02-19,Liam Kim,Consumer,65,North,Online,Home & Kitchen,Air Fryer,118.99,2,0.0,237.98,Debit Card,4,No
+10058,2023-02-22,Ivy Allen,Corporate,34,East,Online,Electronics,Wireless Earbuds,86.75,6,0.0,520.5,Credit Card,4,No
+10059,2023-02-22,Elena Patel,Corporate,47,East,In-Store,Home & Kitchen,Coffee Maker,88.84,7,0.1,559.69,Credit Card,5,No
+10060,2023-02-22,Liam Clark,Consumer,19,South,Online,Sports,Dumbbell Set,101.17,6,0.2,485.62,PayPal,1,No
+10061,2023-02-22,Caleb Wright,Consumer,43,South,In-Store,Sports,Yoga Mat,28.73,2,0.0,57.46,Credit Card,3,No
+10062,2023-02-24,Leah Allen,Corporate,60,West,In-Store,Electronics,Bluetooth Speaker,60.45,5,0.0,302.25,Debit Card,4,No
+10063,2023-02-25,Ivy Walker,Corporate,59,West,Online,Beauty,Lip Balm Pack,11.06,8,0.0,88.48,Credit Card,4,Yes
+10064,2023-02-26,Leo Nguyen,Consumer,55,East,Online,Sports,Water Bottle,17.93,6,0.0,107.58,PayPal,4,No
+10065,2023-02-27,Ava Scott,Consumer,21,East,In-Store,Clothing,Denim Jacket,95.14,3,0.1,256.88,Credit Card,5,No
+10066,2023-02-27,Mia Wilson,Consumer,24,East,Online,Clothing,Denim Jacket,93.96,2,0.1,169.13,PayPal,5,No
+10067,2023-02-28,Leo Brown,Corporate,36,North,Online,Sports,Water Bottle,18.88,4,0.1,67.97,PayPal,1,No
+10068,2023-03-01,Henry Smith,Consumer,61,South,Online,Electronics,Wireless Earbuds,82.03,7,0.0,574.21,Credit Card,4,No
+10069,2023-03-02,Jack Garcia,Consumer,45,South,In-Store,Home & Kitchen,Air Fryer,110.55,3,0.0,331.65,Credit Card,4,No
+10070,2023-03-03,Leah Nguyen,Consumer,73,West,In-Store,Sports,Yoga Mat,31.14,8,0.2,199.3,Credit Card,4,No
+10071,2023-03-03,Leo Clark,Small Business,72,North,In-Store,Home & Kitchen,Air Fryer,110.09,5,0.0,550.45,Credit Card,4,No
+10072,2023-03-03,Ruby Chen,Consumer,28,East,Online,Beauty,Perfume,82.14,8,0.0,657.12,PayPal,4,No
+10073,2023-03-03,Leo Brown,Consumer,55,West,Online,Clothing,Denim Jacket,89.04,2,0.0,178.08,Debit Card,1,No
+10074,2023-03-03,Maya Allen,Small Business,52,East,In-Store,Clothing,Wool Sweater,59.36,7,0.1,373.97,Credit Card,3,No
+10075,2023-03-05,Liam Smith,Consumer,51,West,In-Store,Clothing,Running Shoes,128.42,2,0.05,244.0,Debit Card,4,No
+10076,2023-03-05,Leah Davis,Consumer,42,South,In-Store,Beauty,Face Serum,47.18,4,0.1,169.85,Debit Card,4,No
+10077,2023-03-06,Lucas Allen,Small Business,48,South,In-Store,Clothing,Running Shoes,121.87,2,0.1,219.37,Credit Card,4,No
+10078,2023-03-06,Lucas Allen,Consumer,53,West,In-Store,Home & Kitchen,Throw Blanket,35.53,8,0.1,255.82,Debit Card,4,No
+10079,2023-03-09,Mia Young,Consumer,36,West,In-Store,Clothing,Running Shoes,125.64,5,0.05,596.79,Debit Card,4,No
+10080,2023-03-09,Ruby Martin,Small Business,24,West,Online,Beauty,Hair Dryer,57.96,5,0.0,289.8,Debit Card,5,No
+10081,2023-03-10,Maya Patel,Corporate,51,East,Online,Beauty,Face Serum,44.73,1,0.0,44.73,PayPal,4,No
+10082,2023-03-10,Ava Chen,Consumer,70,North,Online,Electronics,Smartwatch,205.43,2,0.0,410.86,PayPal,4,No
+10083,2023-03-11,Caleb Young,Consumer,34,West,In-Store,Beauty,Hair Dryer,54.3,4,0.0,217.2,Credit Card,4,No
+10084,2023-03-12,Nora Hall,Corporate,35,North,In-Store,Home & Kitchen,Air Fryer,100.95,5,0.15,429.04,Cash,5,No
+10085,2023-03-13,Ruby Lee,Consumer,24,South,In-Store,Electronics,Smartwatch,213.22,1,0.1,191.9,Credit Card,4,No
+10086,2023-03-13,Noah King,Consumer,55,North,Online,Clothing,Denim Jacket,92.86,7,0.0,650.02,PayPal,5,No
+10087,2023-03-15,Liam Clark,Consumer,19,East,Online,Electronics,Bluetooth Speaker,58.34,5,0.05,277.12,Credit Card,1,No
+10088,2023-03-16,Noah Allen,Consumer,31,West,Online,Home & Kitchen,Knife Set,64.44,6,0.05,367.31,Credit Card,5,No
+10089,2023-03-16,Liam Wright,Consumer,30,East,Online,Electronics,Laptop Stand,41.83,1,0.05,39.74,Debit Card,3,No
+10090,2023-03-17,Ivy Patel,Consumer,28,East,Online,Clothing,Running Shoes,120.22,7,0.2,673.23,Credit Card,5,No
+10091,2023-03-19,Liam Garcia,Consumer,70,West,Online,Clothing,Running Shoes,116.98,2,0.0,233.96,PayPal,1,No
+10092,2023-03-19,Zoe Scott,Small Business,73,South,In-Store,Home & Kitchen,Knife Set,65.1,1,0.05,61.84,Cash,5,No
+10093,2023-03-21,Ivy Brown,Consumer,56,East,In-Store,Sports,Water Bottle,17.95,5,0.05,85.26,Cash,4,No
+10094,2023-03-25,Mason Davis,Consumer,32,West,Online,Beauty,Hair Dryer,58.15,8,0.2,372.16,Credit Card,4,No
+10095,2023-03-25,Henry Davis,Consumer,50,South,Online,Clothing,Graphic Tee,22.86,8,0.0,182.88,Debit Card,4,No
+10096,2023-03-26,Leah Allen,Consumer,73,West,Online,Home & Kitchen,Coffee Maker,81.9,8,0.05,622.44,PayPal,4,No
+10097,2023-03-26,Henry Nguyen,Consumer,55,South,Online,Electronics,Smartwatch,189.44,4,0.0,757.76,PayPal,3,No
+10098,2023-03-27,Ruby Wilson,Small Business,67,South,In-Store,Clothing,Wool Sweater,68.29,5,0.05,324.38,Cash,3,Yes
+10099,2023-03-30,Lucas Wilson,Consumer,59,West,Online,Beauty,Hair Dryer,59.74,4,0.2,191.17,Credit Card,4,No
+10100,2023-03-30,Owen Smith,Corporate,50,South,In-Store,Electronics,Smartwatch,216.02,8,0.1,1555.34,Credit Card,4,No
+10101,2023-03-30,Leah Davis,Corporate,69,East,Online,Beauty,Perfume,78.54,8,0.0,628.32,Credit Card,1,No
+10102,2023-03-30,Ava King,Small Business,50,East,Online,Home & Kitchen,Knife Set,67.75,2,0.2,108.4,Credit Card,3,No
+10103,2023-03-31,Maya Smith,Corporate,58,West,In-Store,Clothing,Denim Jacket,86.97,5,0.05,413.11,Debit Card,3,No
+10104,2023-04-03,Elena Brown,Consumer,19,East,In-Store,Sports,Water Bottle,19.76,3,0.05,56.32,Credit Card,3,No
+10105,2023-04-03,Noah Lee,Small Business,44,East,In-Store,Clothing,Graphic Tee,22.7,7,0.2,127.12,Debit Card,4,No
+10106,2023-04-03,Owen Martin,Consumer,62,West,Online,Beauty,Lip Balm Pack,12.8,2,0.05,24.32,Debit Card,5,No
+10107,2023-04-03,Leah Hall,Consumer,54,West,Online,Electronics,Bluetooth Speaker,61.75,4,0.0,247.0,PayPal,4,No
+10108,2023-04-05,Leah Lopez,Small Business,57,West,Online,Electronics,Bluetooth Speaker,54.57,6,0.0,327.42,Credit Card,5,No
+10109,2023-04-08,Owen Garcia,Consumer,62,North,In-Store,Sports,Yoga Mat,31.8,8,0.1,228.96,Cash,2,No
+10110,2023-04-09,Owen Chen,Corporate,51,South,In-Store,Clothing,Graphic Tee,20.43,8,0.0,163.44,Debit Card,4,No
+10111,2023-04-14,Ava Allen,Corporate,23,West,In-Store,Electronics,Wireless Earbuds,80.18,7,0.0,561.26,Debit Card,5,No
+10112,2023-04-14,Ivy Davis,Corporate,65,West,Online,Home & Kitchen,Air Fryer,115.78,8,0.0,926.24,Credit Card,5,No
+10113,2023-04-14,Leah Chen,Consumer,47,East,In-Store,Clothing,Graphic Tee,24.03,1,0.0,24.03,Credit Card,5,No
+10114,2023-04-14,Liam Hall,Small Business,45,North,Online,Home & Kitchen,Air Fryer,106.61,1,0.0,106.61,PayPal,4,Yes
+10115,2023-04-15,Leo Clark,Consumer,41,West,Online,Sports,Tennis Racket,147.07,4,0.0,588.28,Credit Card,5,No
+10116,2023-04-17,Maya Garcia,Consumer,40,North,In-Store,Sports,Water Bottle,17.95,7,0.05,119.37,Cash,2,No
+10117,2023-04-18,Liam Chen,Corporate,29,North,In-Store,Electronics,Wireless Earbuds,72.62,1,0.0,72.62,Credit Card,5,No
+10118,2023-04-18,Jack Wright,Small Business,60,South,In-Store,Home & Kitchen,Coffee Maker,77.99,5,0.0,389.95,Credit Card,5,No
+10119,2023-04-23,Maya Nguyen,Consumer,64,East,Online,Beauty,Face Serum,47.46,8,0.1,341.71,PayPal,5,No
+10120,2023-04-23,Mia Hall,Consumer,46,North,Online,Clothing,Wool Sweater,70.3,2,0.05,133.57,PayPal,4,No
+10121,2023-04-24,Maya Lopez,Corporate,24,East,In-Store,Sports,Dumbbell Set,103.31,4,0.1,371.92,Cash,2,No
+10122,2023-04-25,Aria Young,Consumer,53,South,Online,Electronics,Smartwatch,190.92,8,0.0,1527.36,Credit Card,3,Yes
+10123,2023-04-25,Mason Patel,Consumer,19,South,Online,Beauty,Face Serum,48.77,6,0.05,277.99,Credit Card,4,No
+10124,2023-04-25,Lucas Walker,Consumer,26,North,Online,Home & Kitchen,Throw Blanket,32.58,5,0.0,162.9,PayPal,3,No
+10125,2023-04-26,Nora King,Corporate,28,South,In-Store,Beauty,Hair Dryer,62.44,1,0.05,59.32,Debit Card,5,No
+10126,2023-04-26,Maya Smith,Corporate,29,West,In-Store,Sports,Water Bottle,18.73,1,0.0,18.73,Credit Card,2,No
+10127,2023-04-29,Mason Scott,Consumer,47,West,Online,Beauty,Lip Balm Pack,12.09,4,0.05,45.94,Credit Card,5,No
+10128,2023-04-29,Maya Garcia,Consumer,28,East,Online,Electronics,Laptop Stand,39.05,4,0.05,148.39,PayPal,4,No
+10129,2023-04-29,Henry Nguyen,Corporate,47,North,In-Store,Sports,Water Bottle,19.31,1,0.15,16.41,Credit Card,3,No
+10130,2023-04-29,Ethan Allen,Consumer,64,South,In-Store,Electronics,Smartwatch,214.96,6,0.05,1225.27,Cash,3,No
+10131,2023-04-30,Ava Martin,Consumer,67,North,Online,Clothing,Denim Jacket,93.84,8,0.0,750.72,Debit Card,4,No
+10132,2023-04-30,Ruby Nguyen,Consumer,75,East,In-Store,Clothing,Denim Jacket,85.0,7,0.1,535.5,Credit Card,4,No
+10133,2023-05-01,Ruby Walker,Consumer,65,West,In-Store,Home & Kitchen,Coffee Maker,79.85,3,0.0,239.55,Debit Card,3,No
+10134,2023-05-01,Owen Martin,Consumer,74,South,In-Store,Home & Kitchen,Air Fryer,111.61,2,0.1,200.9,Cash,3,No
+10135,2023-05-01,Mia Scott,Consumer,66,East,Online,Beauty,Hair Dryer,56.91,3,0.05,162.19,Credit Card,5,No
+10136,2023-05-02,Maya Scott,Consumer,50,West,Online,Electronics,Smartwatch,183.02,5,0.0,915.1,Credit Card,4,No
+10137,2023-05-03,Jack King,Corporate,22,North,In-Store,Electronics,Wireless Earbuds,83.33,7,0.1,524.98,Credit Card,4,No
+10138,2023-05-03,Owen Martin,Consumer,63,South,In-Store,Clothing,Running Shoes,108.52,1,0.0,108.52,Credit Card,5,No
+10139,2023-05-04,Owen Allen,Consumer,28,North,In-Store,Sports,Water Bottle,18.37,5,0.0,91.85,Credit Card,4,No
+10140,2023-05-05,Ava Young,Small Business,24,North,Online,Home & Kitchen,Coffee Maker,77.34,8,0.0,618.72,PayPal,5,No
+10141,2023-05-06,Ethan Brown,Consumer,47,East,Online,Home & Kitchen,Coffee Maker,91.91,5,0.05,436.57,Credit Card,3,No
+10142,2023-05-06,Elena Young,Small Business,37,West,In-Store,Sports,Dumbbell Set,104.39,1,0.05,99.17,Credit Card,3,No
+10143,2023-05-06,Mason Brown,Consumer,56,South,In-Store,Home & Kitchen,Coffee Maker,79.38,2,0.0,158.76,Cash,1,No
+10144,2023-05-07,Elena Davis,Corporate,72,West,Online,Clothing,Graphic Tee,23.16,8,0.05,176.02,Debit Card,3,No
+10145,2023-05-07,Aria Smith,Consumer,18,West,In-Store,Electronics,Smartwatch,185.89,5,0.2,743.56,Debit Card,2,Yes
+10146,2023-05-08,Nora Garcia,Small Business,35,East,Online,Clothing,Running Shoes,119.54,5,0.2,478.16,Credit Card,4,No
+10147,2023-05-08,Henry Martin,Small Business,67,North,In-Store,Beauty,Face Serum,48.4,5,0.1,217.8,Credit Card,4,No
+10148,2023-05-09,Noah Allen,Corporate,27,North,Online,Home & Kitchen,Throw Blanket,34.24,7,0.0,239.68,Credit Card,1,No
+10149,2023-05-10,Lucas Hall,Consumer,30,East,Online,Electronics,Smartwatch,214.94,4,0.05,816.77,Credit Card,5,No
+10150,2023-05-10,Ruby Patel,Corporate,43,North,In-Store,Clothing,Denim Jacket,97.66,6,0.1,527.36,Cash,5,No
+10151,2023-05-11,Owen Martin,Corporate,49,East,Online,Clothing,Wool Sweater,61.43,4,0.15,208.86,Credit Card,4,No
+10152,2023-05-14,Leah Lopez,Corporate,62,West,Online,Home & Kitchen,Knife Set,70.61,5,0.2,282.44,Credit Card,5,No
+10153,2023-05-14,Mia Kim,Corporate,62,North,Online,Home & Kitchen,Coffee Maker,84.7,3,0.0,254.1,Credit Card,4,No
+10154,2023-05-16,Lucas Chen,Consumer,75,West,Online,Beauty,Hair Dryer,58.23,4,0.0,232.92,Credit Card,3,No
+10155,2023-05-18,Maya Walker,Corporate,38,North,Online,Clothing,Graphic Tee,21.11,1,0.0,21.11,Credit Card,5,No
+10156,2023-05-19,Leo Wright,Consumer,19,North,Online,Clothing,Denim Jacket,80.99,2,0.1,145.78,Credit Card,5,No
+10157,2023-05-19,Liam Smith,Consumer,68,East,Online,Home & Kitchen,Knife Set,76.34,1,0.2,61.07,PayPal,2,Yes
+10158,2023-05-20,Liam Brown,Consumer,54,South,Online,Beauty,Perfume,67.62,3,0.05,192.72,PayPal,4,No
+10159,2023-05-21,Ivy Young,Consumer,55,South,In-Store,Sports,Tennis Racket,148.09,2,0.0,296.18,Credit Card,3,No
+10160,2023-05-22,Mia Wilson,Consumer,66,South,In-Store,Clothing,Wool Sweater,63.76,1,0.1,57.38,Credit Card,5,No
+10161,2023-05-22,Aria Chen,Small Business,34,South,Online,Sports,Yoga Mat,28.33,8,0.0,226.64,Credit Card,2,No
+10162,2023-05-23,Nora Allen,Consumer,65,South,Online,Clothing,Wool Sweater,67.18,3,0.05,191.46,Debit Card,5,No
+10163,2023-05-23,Elena Nguyen,Consumer,60,South,In-Store,Beauty,Perfume,78.52,6,0.0,471.12,Debit Card,3,No
+10164,2023-05-24,Zoe Wright,Consumer,71,North,Online,Clothing,Wool Sweater,64.89,6,0.0,389.34,Debit Card,4,No
+10165,2023-05-27,Lucas Brown,Consumer,43,West,Online,Electronics,Smartwatch,213.58,1,0.0,213.58,PayPal,4,Yes
+10166,2023-05-28,Lucas Allen,Consumer,55,South,Online,Sports,Water Bottle,18.26,5,0.0,91.3,Debit Card,5,No
+10167,2023-05-29,Aria Allen,Consumer,53,West,In-Store,Clothing,Wool Sweater,62.07,5,0.0,310.35,Cash,2,No
+10168,2023-05-29,Maya Allen,Consumer,67,West,Online,Sports,Tennis Racket,152.42,5,0.2,609.68,Credit Card,4,No
+10169,2023-05-30,Ivy Lee,Consumer,61,West,Online,Home & Kitchen,Coffee Maker,91.71,6,0.1,495.23,Credit Card,2,No
+10170,2023-06-01,Lucas Lee,Consumer,41,South,In-Store,Home & Kitchen,Knife Set,67.04,5,0.0,335.2,Cash,2,No
+10171,2023-06-01,Noah Nguyen,Consumer,60,North,Online,Electronics,Wireless Earbuds,72.77,7,0.2,407.51,Debit Card,3,No
+10172,2023-06-02,Ethan Davis,Corporate,52,North,Online,Sports,Water Bottle,18.11,8,0.0,144.88,Debit Card,3,No
+10173,2023-06-02,Henry Lee,Small Business,64,North,Online,Electronics,Smartwatch,186.65,6,0.0,1119.9,Credit Card,5,Yes
+10174,2023-06-02,Maya Brown,Consumer,49,North,Online,Beauty,Face Serum,47.38,7,0.15,281.91,Credit Card,4,No
+10175,2023-06-03,Mason Walker,Consumer,51,West,Online,Beauty,Perfume,73.24,4,0.2,234.37,Credit Card,3,No
+10176,2023-06-07,Owen Clark,Corporate,43,East,In-Store,Clothing,Denim Jacket,83.51,3,0.1,225.48,Credit Card,4,No
+10177,2023-06-08,Lucas Walker,Consumer,48,East,Online,Electronics,Bluetooth Speaker,54.07,8,0.0,432.56,Credit Card,2,No
+10178,2023-06-08,Maya King,Consumer,44,West,Online,Beauty,Lip Balm Pack,11.61,5,0.05,55.15,Credit Card,3,No
+10179,2023-06-09,Nora Lopez,Corporate,43,South,In-Store,Clothing,Wool Sweater,67.43,8,0.0,539.44,Cash,4,No
+10180,2023-06-09,Ava Lee,Consumer,59,South,In-Store,Electronics,Laptop Stand,40.59,8,0.0,324.72,Debit Card,4,Yes
+10181,2023-06-11,Ivy Nguyen,Consumer,61,South,In-Store,Clothing,Graphic Tee,19.9,4,0.15,67.66,Debit Card,4,No
+10182,2023-06-12,Ivy Hall,Consumer,26,West,Online,Electronics,Laptop Stand,40.29,3,0.0,120.87,Credit Card,5,No
+10183,2023-06-12,Aria Allen,Small Business,75,East,In-Store,Clothing,Running Shoes,125.96,2,0.0,251.92,Debit Card,5,No
+10184,2023-06-13,Ruby Walker,Consumer,66,North,Online,Home & Kitchen,Knife Set,73.0,6,0.0,438.0,Credit Card,5,No
+10185,2023-06-14,Liam Walker,Small Business,54,East,In-Store,Beauty,Hair Dryer,55.01,1,0.1,49.51,Debit Card,4,No
+10186,2023-06-14,Mason Clark,Corporate,59,North,Online,Sports,Yoga Mat,31.64,6,0.05,180.35,PayPal,5,No
+10187,2023-06-15,Henry Lopez,Corporate,47,West,Online,Electronics,Laptop Stand,37.15,3,0.0,111.45,Credit Card,3,No
+10188,2023-06-18,Ethan Hall,Consumer,29,East,In-Store,Clothing,Wool Sweater,58.62,6,0.0,351.72,Credit Card,5,No
+10189,2023-06-18,Ava Garcia,Corporate,35,West,In-Store,Clothing,Denim Jacket,81.71,3,0.2,196.1,Cash,3,No
+10190,2023-06-18,Noah Clark,Small Business,38,North,In-Store,Beauty,Hair Dryer,62.98,5,0.0,314.9,Cash,5,No
+10191,2023-06-18,Ethan Garcia,Consumer,63,South,In-Store,Electronics,Wireless Earbuds,83.86,8,0.0,670.88,Cash,1,No
+10192,2023-06-18,Ivy Young,Consumer,66,South,Online,Home & Kitchen,Coffee Maker,78.12,6,0.05,445.28,Credit Card,5,No
+10193,2023-06-18,Leah Martin,Consumer,54,North,Online,Beauty,Face Serum,41.4,1,0.0,41.4,Debit Card,4,No
+10194,2023-06-18,Ethan Lee,Consumer,42,South,In-Store,Clothing,Running Shoes,126.73,4,0.05,481.57,Credit Card,5,No
+10195,2023-06-19,Leah Patel,Consumer,18,South,Online,Clothing,Wool Sweater,61.55,5,0.0,307.75,Credit Card,4,No
+10196,2023-06-21,Lucas Davis,Consumer,67,North,Online,Home & Kitchen,Knife Set,76.48,8,0.0,611.84,Credit Card,5,No
+10197,2023-06-21,Ethan Walker,Small Business,50,West,In-Store,Clothing,Denim Jacket,86.09,5,0.1,387.4,Cash,5,No
+10198,2023-06-21,Aria Davis,Corporate,41,West,Online,Beauty,Hair Dryer,64.26,5,0.1,289.17,Credit Card,4,No
+10199,2023-06-24,Jack Young,Corporate,42,West,Online,Electronics,Smartwatch,216.61,3,0.0,649.83,PayPal,5,No
+10200,2023-06-25,Noah Smith,Consumer,75,East,Online,Electronics,Smartwatch,190.93,3,0.0,572.79,Credit Card,2,No
+10201,2023-06-25,Elena Chen,Consumer,59,East,Online,Electronics,Smartwatch,181.59,4,0.2,581.09,Credit Card,5,No
+10202,2023-06-26,Ava Garcia,Consumer,40,West,Online,Sports,Water Bottle,18.84,6,0.0,113.04,Credit Card,4,No
+10203,2023-06-26,Noah Young,Small Business,40,South,Online,Clothing,Running Shoes,118.17,7,0.0,827.19,PayPal,5,No
+10204,2023-06-26,Leah Chen,Consumer,75,East,In-Store,Beauty,Perfume,77.04,6,0.0,462.24,Debit Card,4,No
+10205,2023-06-28,Noah Young,Consumer,72,East,Online,Beauty,Perfume,70.85,2,0.0,141.7,Credit Card,4,No
+10206,2023-06-29,Ruby Hall,Corporate,40,South,Online,Beauty,Face Serum,41.44,8,0.0,331.52,Debit Card,4,No
+10207,2023-06-29,Nora Nguyen,Corporate,18,North,Online,Electronics,Laptop Stand,36.83,6,0.15,187.83,Credit Card,5,No
+10208,2023-06-30,Elena Lee,Corporate,42,East,Online,Electronics,Bluetooth Speaker,58.98,6,0.0,353.88,Debit Card,4,No
+10209,2023-07-01,Noah Allen,Consumer,65,West,In-Store,Clothing,Graphic Tee,20.84,7,0.15,124.0,Credit Card,5,No
+10210,2023-07-01,Ruby Wright,Consumer,28,East,Online,Beauty,Perfume,81.53,5,0.05,387.27,PayPal,1,Yes
+10211,2023-07-01,Ruby Smith,Consumer,39,West,In-Store,Sports,Tennis Racket,144.21,7,0.0,1009.47,Cash,4,No
+10212,2023-07-02,Nora Smith,Consumer,63,East,Online,Electronics,Bluetooth Speaker,61.41,3,0.0,184.23,PayPal,4,No
+10213,2023-07-03,Leah Davis,Consumer,34,East,In-Store,Sports,Yoga Mat,28.58,8,0.1,205.78,Debit Card,4,No
+10214,2023-07-03,Maya Hall,Consumer,22,West,In-Store,Beauty,Lip Balm Pack,10.99,4,0.05,41.76,Credit Card,2,Yes
+10215,2023-07-03,Jack Garcia,Small Business,32,South,Online,Beauty,Lip Balm Pack,11.21,6,0.0,67.26,Credit Card,5,No
+10216,2023-07-04,Zoe Scott,Consumer,63,South,Online,Sports,Dumbbell Set,85.89,3,0.0,257.67,Debit Card,5,No
+10217,2023-07-05,Nora Young,Consumer,32,South,Online,Beauty,Hair Dryer,61.52,5,0.15,261.46,Debit Card,4,No
+10218,2023-07-05,Aria Nguyen,Corporate,46,West,Online,Sports,Water Bottle,17.69,5,0.1,79.6,Debit Card,2,No
+10219,2023-07-05,Ethan Young,Consumer,66,South,Online,Clothing,Running Shoes,126.27,1,0.1,113.64,Credit Card,5,No
+10220,2023-07-06,Liam Davis,Corporate,67,South,Online,Electronics,Wireless Earbuds,79.52,7,0.15,473.14,Credit Card,5,No
+10221,2023-07-06,Nora Patel,Consumer,41,East,Online,Sports,Tennis Racket,153.5,7,0.0,1074.5,PayPal,5,No
+10222,2023-07-07,Elena Walker,Consumer,54,South,Online,Electronics,Wireless Earbuds,86.12,5,0.0,430.6,Credit Card,5,No
+10223,2023-07-07,Mia Young,Consumer,62,East,Online,Clothing,Wool Sweater,69.25,6,0.15,353.18,Credit Card,3,No
+10224,2023-07-10,Jack Lee,Consumer,72,East,Online,Beauty,Lip Balm Pack,12.08,2,0.0,24.16,Credit Card,4,No
+10225,2023-07-11,Ivy Brown,Consumer,37,East,Online,Home & Kitchen,Coffee Maker,87.58,6,0.0,525.48,Debit Card,4,No
+10226,2023-07-12,Ruby Patel,Corporate,47,West,In-Store,Home & Kitchen,Coffee Maker,79.07,1,0.1,71.16,Cash,4,No
+10227,2023-07-14,Ivy Smith,Small Business,29,North,Online,Beauty,Hair Dryer,54.79,2,0.2,87.66,Credit Card,4,No
+10228,2023-07-15,Ava Patel,Small Business,31,East,In-Store,Clothing,Wool Sweater,58.68,8,0.15,399.02,Debit Card,4,No
+10229,2023-07-16,Jack Chen,Consumer,22,West,Online,Beauty,Hair Dryer,58.11,8,0.1,418.39,Credit Card,5,No
+10230,2023-07-16,Mia Lopez,Consumer,71,North,In-Store,Beauty,Hair Dryer,62.37,3,0.0,187.11,Debit Card,4,No
+10231,2023-07-16,Leah Smith,Small Business,38,North,Online,Clothing,Denim Jacket,94.97,7,0.1,598.31,Credit Card,4,No
+10232,2023-07-17,Zoe Allen,Corporate,69,South,Online,Clothing,Graphic Tee,22.51,6,0.0,135.06,Credit Card,4,No
+10233,2023-07-17,Zoe Patel,Consumer,66,West,Online,Electronics,Wireless Earbuds,81.51,7,0.0,570.57,Credit Card,4,No
+10234,2023-07-17,Lucas Smith,Consumer,66,East,In-Store,Beauty,Lip Balm Pack,13.03,8,0.0,104.24,Credit Card,4,Yes
+10235,2023-07-18,Zoe Kim,Consumer,48,South,Online,Electronics,Smartwatch,180.82,3,0.1,488.21,Credit Card,4,No
+10236,2023-07-19,Zoe Davis,Consumer,52,West,In-Store,Electronics,Laptop Stand,37.19,8,0.2,238.02,Credit Card,4,No
+10237,2023-07-21,Jack Lee,Consumer,18,South,In-Store,Beauty,Hair Dryer,57.03,5,0.1,256.64,Debit Card,5,No
+10238,2023-07-21,Henry Smith,Consumer,33,East,Online,Home & Kitchen,Coffee Maker,79.51,5,0.0,397.55,Credit Card,3,No
+10239,2023-07-23,Zoe Patel,Consumer,19,West,Online,Home & Kitchen,Air Fryer,99.55,4,0.1,358.38,PayPal,4,No
+10240,2023-07-26,Mia Nguyen,Corporate,19,East,Online,Sports,Water Bottle,16.85,8,0.0,134.8,Credit Card,4,No
+10241,2023-07-27,Ava Chen,Corporate,39,East,Online,Electronics,Laptop Stand,36.84,8,0.1,265.25,Credit Card,5,No
+10242,2023-07-28,Aria Scott,Consumer,65,North,In-Store,Electronics,Laptop Stand,37.12,4,0.05,141.06,Cash,4,No
+10243,2023-07-31,Noah Hall,Consumer,53,North,Online,Clothing,Wool Sweater,68.41,2,0.0,136.82,Credit Card,5,Yes
+10244,2023-07-31,Lucas King,Consumer,56,North,In-Store,Electronics,Laptop Stand,38.6,8,0.0,308.8,Credit Card,5,No
+10245,2023-08-03,Leo Wright,Corporate,36,South,Online,Home & Kitchen,Knife Set,66.77,2,0.0,133.54,PayPal,3,No
+10246,2023-08-05,Elena Kim,Corporate,43,West,Online,Sports,Yoga Mat,32.89,6,0.0,197.34,Credit Card,2,No
+10247,2023-08-08,Mia Lee,Corporate,40,North,In-Store,Home & Kitchen,Knife Set,63.98,4,0.0,255.92,Debit Card,5,Yes
+10248,2023-08-08,Henry Davis,Small Business,47,North,Online,Home & Kitchen,Throw Blanket,36.45,1,0.05,34.63,Credit Card,2,No
+10249,2023-08-12,Maya Chen,Consumer,26,South,In-Store,Electronics,Wireless Earbuds,82.47,8,0.1,593.78,Cash,5,No
+10250,2023-08-13,Ruby Hall,Consumer,63,East,Online,Electronics,Smartwatch,190.86,7,0.15,1135.62,Credit Card,4,No
+10251,2023-08-14,Liam Clark,Consumer,43,West,Online,Beauty,Perfume,67.8,3,0.1,183.06,Credit Card,4,No
+10252,2023-08-14,Ivy Lee,Consumer,31,East,Online,Electronics,Wireless Earbuds,75.77,2,0.05,143.96,PayPal,4,No
+10253,2023-08-15,Mason Brown,Small Business,26,North,Online,Home & Kitchen,Coffee Maker,91.65,5,0.0,458.25,PayPal,3,No
+10254,2023-08-15,Maya Wright,Consumer,19,East,In-Store,Electronics,Laptop Stand,40.43,8,0.0,323.44,Credit Card,4,No
+10255,2023-08-15,Ava Walker,Corporate,45,East,Online,Beauty,Face Serum,42.25,3,0.05,120.41,PayPal,5,No
+10256,2023-08-16,Aria Lee,Corporate,23,West,Online,Electronics,Bluetooth Speaker,57.28,1,0.0,57.28,Credit Card,1,Yes
+10257,2023-08-17,Lucas Hall,Consumer,35,South,In-Store,Clothing,Graphic Tee,24.14,2,0.0,48.28,Credit Card,5,No
+10258,2023-08-19,Mia Wright,Consumer,75,East,In-Store,Home & Kitchen,Throw Blanket,34.6,7,0.05,230.09,Credit Card,3,No
+10259,2023-08-20,Liam Patel,Consumer,48,South,Online,Sports,Yoga Mat,32.6,8,0.0,260.8,Debit Card,4,No
+10260,2023-08-20,Elena Brown,Consumer,30,South,In-Store,Beauty,Lip Balm Pack,13.19,2,0.15,22.42,Cash,5,No
+10261,2023-08-20,Aria Scott,Consumer,67,West,Online,Sports,Yoga Mat,30.92,1,0.1,27.83,PayPal,5,No
+10262,2023-08-21,Liam Walker,Consumer,74,East,In-Store,Clothing,Running Shoes,117.36,5,0.05,557.46,Cash,4,No
+10263,2023-08-21,Ava King,Consumer,28,West,Online,Electronics,Smartwatch,197.48,5,0.2,789.92,Credit Card,5,No
+10264,2023-08-21,Noah Lopez,Consumer,19,East,Online,Sports,Dumbbell Set,90.79,3,0.0,272.37,Credit Card,1,Yes
+10265,2023-08-22,Elena Scott,Corporate,62,East,Online,Beauty,Perfume,79.0,2,0.0,158.0,Credit Card,4,No
+10266,2023-08-23,Caleb Davis,Consumer,56,North,In-Store,Electronics,Wireless Earbuds,82.1,8,0.05,623.96,Debit Card,4,No
+10267,2023-08-24,Ava Allen,Consumer,56,South,Online,Sports,Water Bottle,16.75,7,0.2,93.8,PayPal,5,No
+10268,2023-08-24,Elena Wright,Consumer,48,West,In-Store,Electronics,Laptop Stand,36.95,3,0.0,110.85,Cash,1,Yes
+10269,2023-08-25,Mia Martin,Consumer,56,North,In-Store,Clothing,Wool Sweater,70.68,2,0.05,134.29,Credit Card,3,No
+10270,2023-08-25,Ava Davis,Small Business,46,East,Online,Home & Kitchen,Knife Set,69.6,6,0.15,354.96,PayPal,4,Yes
+10271,2023-08-27,Owen Wilson,Corporate,38,North,Online,Home & Kitchen,Knife Set,71.33,4,0.0,285.32,PayPal,2,No
+10272,2023-08-31,Lucas Garcia,Consumer,18,West,In-Store,Beauty,Face Serum,49.12,8,0.1,353.66,Credit Card,4,No
+10273,2023-09-01,Liam Smith,Consumer,35,West,Online,Home & Kitchen,Coffee Maker,91.78,7,0.1,578.21,Debit Card,5,No
+10274,2023-09-01,Ethan Wright,Corporate,50,West,Online,Clothing,Graphic Tee,21.61,1,0.0,21.61,Credit Card,5,No
+10275,2023-09-02,Nora Walker,Consumer,43,North,Online,Sports,Tennis Racket,150.38,3,0.05,428.58,PayPal,3,No
+10276,2023-09-02,Henry Smith,Consumer,53,North,In-Store,Clothing,Running Shoes,126.91,6,0.2,609.17,Debit Card,4,No
+10277,2023-09-03,Mason Clark,Corporate,30,East,In-Store,Clothing,Denim Jacket,87.06,1,0.05,82.71,Credit Card,5,No
+10278,2023-09-03,Aria Kim,Small Business,66,North,In-Store,Clothing,Graphic Tee,21.06,1,0.05,20.01,Credit Card,2,Yes
+10279,2023-09-04,Ruby Allen,Consumer,57,West,In-Store,Clothing,Graphic Tee,23.63,3,0.05,67.35,Cash,5,No
+10280,2023-09-04,Mia Chen,Consumer,66,West,Online,Clothing,Denim Jacket,96.47,7,0.0,675.29,Credit Card,3,No
+10281,2023-09-05,Ava Nguyen,Small Business,68,North,In-Store,Electronics,Bluetooth Speaker,63.42,8,0.1,456.62,Cash,5,No
+10282,2023-09-05,Liam Walker,Consumer,65,North,In-Store,Electronics,Smartwatch,194.28,7,0.0,1359.96,Debit Card,4,No
+10283,2023-09-06,Ivy Scott,Consumer,60,North,Online,Clothing,Denim Jacket,90.18,2,0.2,144.29,Credit Card,5,No
+10284,2023-09-07,Ivy Young,Consumer,21,West,In-Store,Clothing,Running Shoes,113.31,2,0.2,181.3,Cash,2,No
+10285,2023-09-08,Caleb Scott,Small Business,42,North,Online,Sports,Dumbbell Set,90.57,2,0.1,163.03,Debit Card,4,No
+10286,2023-09-09,Caleb Garcia,Corporate,68,West,In-Store,Sports,Dumbbell Set,90.44,8,0.15,614.99,Credit Card,4,No
+10287,2023-09-12,Ivy Brown,Consumer,70,West,In-Store,Clothing,Running Shoes,110.41,6,0.05,629.34,Debit Card,2,No
+10288,2023-09-13,Leah Hall,Consumer,48,West,In-Store,Home & Kitchen,Knife Set,73.93,4,0.0,295.72,Credit Card,4,No
+10289,2023-09-13,Liam Wilson,Small Business,66,North,In-Store,Beauty,Perfume,74.16,5,0.05,352.26,Cash,5,No
+10290,2023-09-13,Henry Patel,Consumer,68,East,In-Store,Clothing,Denim Jacket,91.52,3,0.1,247.1,Debit Card,4,No
+10291,2023-09-15,Caleb Lopez,Corporate,53,North,Online,Home & Kitchen,Knife Set,68.73,6,0.0,412.38,Debit Card,4,No
+10292,2023-09-15,Owen Brown,Consumer,70,South,Online,Clothing,Denim Jacket,90.12,8,0.1,648.86,PayPal,3,No
+10293,2023-09-16,Maya Young,Consumer,54,West,Online,Home & Kitchen,Throw Blanket,37.75,6,0.0,226.5,PayPal,4,No
+10294,2023-09-17,Caleb Hall,Corporate,22,West,Online,Beauty,Hair Dryer,63.42,4,0.05,241.0,Credit Card,4,No
+10295,2023-09-17,Caleb Young,Consumer,27,South,Online,Electronics,Bluetooth Speaker,62.93,3,0.0,188.79,Credit Card,5,No
+10296,2023-09-18,Henry Walker,Corporate,41,East,Online,Beauty,Face Serum,45.45,2,0.0,90.9,PayPal,5,No
+10297,2023-09-20,Ava Young,Small Business,45,East,Online,Home & Kitchen,Knife Set,65.24,7,0.15,388.18,PayPal,4,No
+10298,2023-09-21,Noah Wright,Consumer,47,North,Online,Sports,Tennis Racket,139.22,3,0.1,375.89,Credit Card,4,No
+10299,2023-09-22,Ivy Brown,Consumer,41,South,Online,Home & Kitchen,Coffee Maker,90.06,4,0.0,360.24,Credit Card,3,No
+10300,2023-09-23,Maya Brown,Corporate,52,East,In-Store,Beauty,Hair Dryer,63.67,8,0.1,458.42,Debit Card,4,No
+10301,2023-09-23,Leo Scott,Consumer,35,South,Online,Clothing,Denim Jacket,94.92,8,0.15,645.46,PayPal,3,No
+10302,2023-09-26,Aria King,Consumer,72,South,In-Store,Sports,Yoga Mat,30.41,8,0.1,218.95,Credit Card,5,No
+10303,2023-09-26,Henry Walker,Corporate,20,East,In-Store,Clothing,Graphic Tee,23.55,1,0.1,21.2,Cash,4,No
+10304,2023-09-26,Henry Hall,Consumer,20,North,Online,Home & Kitchen,Knife Set,68.68,4,0.0,274.72,PayPal,1,No
+10305,2023-09-29,Ava Lee,Consumer,35,East,Online,Home & Kitchen,Throw Blanket,37.67,4,0.1,135.61,Credit Card,3,No
+10306,2023-09-29,Leo Lopez,Small Business,52,South,Online,Electronics,Laptop Stand,41.4,4,0.0,165.6,Debit Card,5,No
+10307,2023-10-02,Leo Clark,Consumer,28,East,Online,Electronics,Smartwatch,200.12,5,0.15,850.51,Credit Card,3,No
+10308,2023-10-03,Elena Kim,Consumer,46,West,Online,Sports,Dumbbell Set,88.79,5,0.1,399.56,Debit Card,4,No
+10309,2023-10-03,Owen Smith,Consumer,34,South,Online,Sports,Tennis Racket,150.95,5,0.0,754.75,Credit Card,5,No
+10310,2023-10-04,Leah Lopez,Small Business,25,East,Online,Home & Kitchen,Throw Blanket,32.63,7,0.15,194.15,PayPal,5,No
+10311,2023-10-05,Ruby Allen,Corporate,61,East,Online,Clothing,Denim Jacket,92.46,6,0.1,499.28,Credit Card,4,No
+10312,2023-10-06,Elena Garcia,Consumer,57,South,Online,Home & Kitchen,Knife Set,63.51,1,0.0,63.51,PayPal,3,No
+10313,2023-10-06,Ruby Nguyen,Consumer,21,East,In-Store,Electronics,Bluetooth Speaker,58.75,3,0.0,176.25,Debit Card,4,No
+10314,2023-10-08,Ruby Kim,Small Business,60,West,Online,Home & Kitchen,Throw Blanket,33.38,7,0.0,233.66,Credit Card,4,No
+10315,2023-10-08,Nora Hall,Consumer,75,West,Online,Home & Kitchen,Coffee Maker,89.79,7,0.1,565.68,PayPal,5,No
+10316,2023-10-08,Ethan King,Consumer,24,East,Online,Home & Kitchen,Air Fryer,106.43,8,0.0,851.44,Credit Card,4,No
+10317,2023-10-09,Liam Brown,Corporate,48,North,Online,Clothing,Wool Sweater,61.03,5,0.0,305.15,PayPal,5,No
+10318,2023-10-12,Elena Scott,Small Business,24,South,Online,Electronics,Bluetooth Speaker,60.26,4,0.1,216.94,PayPal,5,No
+10319,2023-10-12,Zoe Wilson,Corporate,51,South,Online,Sports,Tennis Racket,148.58,8,0.0,1188.64,PayPal,5,No
+10320,2023-10-13,Mia Walker,Consumer,46,North,Online,Clothing,Running Shoes,123.99,4,0.0,495.96,Debit Card,4,No
+10321,2023-10-13,Ava Walker,Consumer,25,North,Online,Sports,Tennis Racket,133.03,2,0.0,266.06,Debit Card,4,No
+10322,2023-10-14,Aria Davis,Small Business,73,East,In-Store,Clothing,Wool Sweater,59.33,8,0.0,474.64,Debit Card,4,No
+10323,2023-10-14,Mason Allen,Consumer,18,West,Online,Electronics,Smartwatch,216.34,4,0.05,822.09,Credit Card,4,No
+10324,2023-10-15,Noah King,Consumer,66,North,In-Store,Home & Kitchen,Throw Blanket,36.0,4,0.0,144.0,Debit Card,5,No
+10325,2023-10-15,Aria Wilson,Consumer,59,West,Online,Home & Kitchen,Air Fryer,114.54,7,0.2,641.42,PayPal,5,No
+10326,2023-10-15,Liam Lopez,Corporate,56,East,Online,Beauty,Lip Balm Pack,12.25,4,0.0,49.0,PayPal,3,No
+10327,2023-10-17,Henry Wright,Small Business,75,West,Online,Beauty,Lip Balm Pack,11.65,8,0.0,93.2,Credit Card,5,No
+10328,2023-10-17,Leo Walker,Consumer,40,North,Online,Electronics,Smartwatch,198.59,7,0.0,1390.13,Debit Card,4,No
+10329,2023-10-18,Mia Chen,Consumer,50,West,Online,Sports,Tennis Racket,137.97,2,0.15,234.55,Credit Card,5,No
+10330,2023-10-18,Mia Patel,Consumer,73,East,Online,Clothing,Denim Jacket,89.14,4,0.1,320.9,Credit Card,1,Yes
+10331,2023-10-19,Caleb Chen,Consumer,20,South,In-Store,Home & Kitchen,Air Fryer,107.66,1,0.0,107.66,Credit Card,5,No
+10332,2023-10-19,Liam Davis,Consumer,45,North,Online,Clothing,Denim Jacket,85.16,6,0.0,510.96,PayPal,4,No
+10333,2023-10-21,Ivy Allen,Consumer,64,East,Online,Clothing,Running Shoes,127.48,4,0.0,509.92,Credit Card,3,No
+10334,2023-10-22,Leah Young,Consumer,26,South,Online,Clothing,Wool Sweater,66.49,3,0.1,179.52,PayPal,3,No
+10335,2023-10-23,Mason Martin,Consumer,29,West,In-Store,Home & Kitchen,Knife Set,71.59,1,0.1,64.43,Debit Card,3,No
+10336,2023-10-24,Elena Wright,Small Business,52,East,In-Store,Home & Kitchen,Knife Set,66.59,6,0.05,379.56,Debit Card,4,No
+10337,2023-10-24,Lucas Clark,Corporate,70,East,Online,Home & Kitchen,Throw Blanket,37.41,1,0.05,35.54,PayPal,5,No
+10338,2023-10-24,Ruby King,Consumer,23,West,Online,Home & Kitchen,Coffee Maker,92.58,3,0.05,263.85,Credit Card,5,No
+10339,2023-10-28,Caleb Smith,Corporate,21,West,In-Store,Clothing,Running Shoes,108.25,5,0.05,514.19,Debit Card,4,No
+10340,2023-10-28,Noah Smith,Consumer,68,East,In-Store,Home & Kitchen,Air Fryer,120.15,7,0.0,841.05,Credit Card,2,Yes
+10341,2023-10-30,Nora King,Consumer,33,West,Online,Clothing,Denim Jacket,90.92,3,0.1,245.48,Credit Card,5,No
+10342,2023-10-30,Caleb Young,Consumer,47,South,In-Store,Home & Kitchen,Throw Blanket,37.22,4,0.1,133.99,Cash,5,No
+10343,2023-10-31,Liam Brown,Corporate,63,South,In-Store,Clothing,Wool Sweater,70.26,7,0.1,442.64,Debit Card,2,No
+10344,2023-11-01,Noah Garcia,Small Business,60,South,Online,Home & Kitchen,Knife Set,66.41,8,0.0,531.28,PayPal,4,No
+10345,2023-11-01,Jack Smith,Consumer,30,East,Online,Electronics,Wireless Earbuds,81.7,7,0.0,571.9,Credit Card,4,No
+10346,2023-11-01,Lucas Lopez,Consumer,67,East,In-Store,Clothing,Running Shoes,113.18,5,0.2,452.72,Cash,4,No
+10347,2023-11-01,Leah King,Consumer,62,East,Online,Electronics,Smartwatch,189.54,2,0.2,303.26,Credit Card,5,No
+10348,2023-11-01,Mia Patel,Consumer,63,West,Online,Clothing,Wool Sweater,67.73,7,0.1,426.7,PayPal,1,No
+10349,2023-11-02,Leah Kim,Corporate,47,East,Online,Electronics,Wireless Earbuds,77.8,7,0.1,490.14,Credit Card,3,No
+10350,2023-11-02,Zoe Allen,Corporate,63,North,In-Store,Home & Kitchen,Throw Blanket,38.43,4,0.05,146.03,Debit Card,4,No
+10351,2023-11-02,Caleb Patel,Consumer,64,South,Online,Beauty,Perfume,78.85,6,0.15,402.13,Debit Card,4,No
+10352,2023-11-02,Liam Kim,Consumer,63,West,Online,Clothing,Wool Sweater,58.77,6,0.1,317.36,Debit Card,2,No
+10353,2023-11-03,Ivy Young,Consumer,62,East,Online,Electronics,Wireless Earbuds,82.34,2,0.0,164.68,Debit Card,3,No
+10354,2023-11-03,Mason King,Consumer,40,North,In-Store,Home & Kitchen,Air Fryer,119.75,3,0.1,323.32,Debit Card,3,No
+10355,2023-11-03,Caleb Wright,Consumer,62,West,Online,Electronics,Smartwatch,215.43,7,0.0,1508.01,Credit Card,1,Yes
+10356,2023-11-04,Jack Nguyen,Small Business,19,West,In-Store,Beauty,Hair Dryer,54.71,5,0.0,273.55,Debit Card,4,No
+10357,2023-11-04,Mia Lopez,Corporate,69,East,Online,Electronics,Smartwatch,214.02,1,0.15,181.92,PayPal,3,No
+10358,2023-11-06,Ava Lee,Corporate,32,North,Online,Clothing,Graphic Tee,22.57,6,0.05,128.65,Debit Card,4,No
+10359,2023-11-06,Nora Lopez,Consumer,52,South,Online,Clothing,Denim Jacket,92.65,4,0.05,352.07,Debit Card,3,No
+10360,2023-11-07,Mason Young,Consumer,55,South,In-Store,Electronics,Smartwatch,188.81,2,0.05,358.74,Debit Card,5,No
+10361,2023-11-08,Zoe Kim,Consumer,62,East,Online,Clothing,Wool Sweater,67.53,2,0.2,108.05,PayPal,2,No
+10362,2023-11-09,Ethan Lee,Corporate,36,South,In-Store,Clothing,Wool Sweater,65.52,5,0.0,327.6,Credit Card,5,No
+10363,2023-11-10,Zoe Patel,Consumer,51,South,Online,Sports,Yoga Mat,27.01,3,0.1,72.93,PayPal,4,No
+10364,2023-11-11,Lucas Patel,Corporate,75,East,Online,Beauty,Perfume,70.44,8,0.0,563.52,Credit Card,3,No
+10365,2023-11-11,Zoe Hall,Consumer,75,North,Online,Clothing,Denim Jacket,83.88,3,0.0,251.64,Debit Card,4,No
+10366,2023-11-12,Jack Lee,Small Business,36,South,Online,Sports,Water Bottle,16.47,2,0.0,32.94,PayPal,4,No
+10367,2023-11-14,Lucas Clark,Consumer,21,South,Online,Electronics,Smartwatch,199.76,1,0.05,189.77,Credit Card,4,No
+10368,2023-11-15,Mason Chen,Corporate,59,West,Online,Home & Kitchen,Air Fryer,111.9,4,0.0,447.6,PayPal,4,No
+10369,2023-11-18,Mia Walker,Consumer,59,East,Online,Clothing,Graphic Tee,23.56,2,0.05,44.76,Credit Card,1,No
+10370,2023-11-18,Maya Scott,Consumer,25,West,Online,Clothing,Graphic Tee,24.06,7,0.0,168.42,Credit Card,3,No
+10371,2023-11-18,Lucas Chen,Consumer,20,North,In-Store,Sports,Tennis Racket,138.61,6,0.0,831.66,Credit Card,4,Yes
+10372,2023-11-19,Lucas Nguyen,Small Business,44,East,Online,Sports,Water Bottle,16.71,4,0.15,56.81,Debit Card,2,No
+10373,2023-11-19,Ivy Brown,Small Business,45,West,Online,Electronics,Wireless Earbuds,74.71,8,0.0,597.68,Credit Card,5,No
+10374,2023-11-19,Caleb Hall,Consumer,64,North,In-Store,Clothing,Graphic Tee,22.54,1,0.05,21.41,Debit Card,4,No
+10375,2023-11-19,Ava Brown,Corporate,60,South,In-Store,Sports,Yoga Mat,31.9,2,0.0,63.8,Cash,1,No
+10376,2023-11-19,Mia Hall,Consumer,70,North,Online,Beauty,Perfume,70.51,5,0.0,352.55,Credit Card,5,No
+10377,2023-11-20,Ethan Kim,Consumer,66,East,Online,Home & Kitchen,Air Fryer,103.83,2,0.0,207.66,Credit Card,3,No
+10378,2023-11-20,Aria Clark,Small Business,22,West,Online,Beauty,Perfume,80.41,4,0.15,273.39,Credit Card,5,No
+10379,2023-11-20,Zoe Chen,Consumer,53,West,Online,Beauty,Face Serum,46.18,1,0.0,46.18,Credit Card,5,No
+10380,2023-11-21,Caleb Martin,Corporate,64,South,In-Store,Sports,Tennis Racket,134.81,8,0.1,970.63,Credit Card,5,No
+10381,2023-11-21,Ava Chen,Consumer,44,North,Online,Home & Kitchen,Knife Set,75.0,7,0.0,525.0,Credit Card,5,No
+10382,2023-11-21,Leo Clark,Small Business,73,East,Online,Electronics,Wireless Earbuds,83.18,6,0.05,474.13,Credit Card,2,Yes
+10383,2023-11-21,Lucas Young,Consumer,61,East,Online,Clothing,Graphic Tee,24.19,8,0.05,183.84,Debit Card,1,No
+10384,2023-11-21,Lucas Young,Corporate,19,West,In-Store,Home & Kitchen,Knife Set,70.83,7,0.0,495.81,Credit Card,4,Yes
+10385,2023-11-22,Ethan Davis,Consumer,64,South,Online,Beauty,Lip Balm Pack,12.26,3,0.1,33.1,PayPal,4,No
+10386,2023-11-22,Ava Nguyen,Corporate,65,East,In-Store,Clothing,Denim Jacket,85.21,3,0.0,255.63,Cash,4,No
+10387,2023-11-22,Ruby Allen,Small Business,40,West,In-Store,Clothing,Running Shoes,119.02,5,0.0,595.1,Debit Card,4,No
+10388,2023-11-22,Noah Garcia,Corporate,20,East,Online,Electronics,Bluetooth Speaker,59.75,8,0.0,478.0,Credit Card,5,No
+10389,2023-11-22,Nora Chen,Consumer,27,West,Online,Home & Kitchen,Knife Set,74.34,3,0.2,178.42,Credit Card,5,No
+10390,2023-11-23,Caleb Hall,Consumer,57,South,Online,Clothing,Graphic Tee,21.63,7,0.2,121.13,PayPal,5,No
+10391,2023-11-23,Leo Scott,Corporate,39,South,Online,Sports,Yoga Mat,32.16,8,0.05,244.42,Credit Card,4,No
+10392,2023-11-23,Lucas Young,Corporate,75,North,Online,Electronics,Laptop Stand,41.14,1,0.0,41.14,Credit Card,5,No
+10393,2023-11-23,Jack Garcia,Corporate,44,West,Online,Home & Kitchen,Throw Blanket,37.8,3,0.1,102.06,Credit Card,2,Yes
+10394,2023-11-23,Lucas Scott,Consumer,22,North,In-Store,Home & Kitchen,Knife Set,69.89,6,0.0,419.34,Cash,1,No
+10395,2023-11-26,Caleb Nguyen,Consumer,70,East,Online,Clothing,Graphic Tee,21.0,3,0.15,53.55,PayPal,4,Yes
+10396,2023-11-26,Ruby Nguyen,Consumer,61,North,Online,Electronics,Wireless Earbuds,81.49,8,0.0,651.92,Debit Card,5,No
+10397,2023-11-26,Ethan Young,Corporate,70,East,Online,Clothing,Denim Jacket,87.63,4,0.0,350.52,PayPal,4,No
+10398,2023-11-26,Elena Wright,Consumer,24,South,In-Store,Sports,Dumbbell Set,93.14,6,0.0,558.84,Debit Card,2,No
+10399,2023-11-26,Henry Lee,Corporate,74,East,Online,Electronics,Bluetooth Speaker,54.2,3,0.05,154.47,PayPal,2,No
+10400,2023-11-27,Lucas King,Consumer,51,West,Online,Electronics,Wireless Earbuds,71.88,8,0.0,575.04,Credit Card,3,No
+10401,2023-11-28,Henry Lee,Consumer,75,East,Online,Clothing,Denim Jacket,85.87,5,0.0,429.35,Debit Card,5,No
+10402,2023-11-29,Jack Smith,Consumer,38,North,In-Store,Electronics,Bluetooth Speaker,58.49,3,0.2,140.38,Credit Card,4,No
+10403,2023-11-30,Mia Lee,Corporate,51,East,In-Store,Sports,Water Bottle,18.46,8,0.1,132.91,Credit Card,5,No
+10404,2023-11-30,Liam Hall,Consumer,50,East,Online,Sports,Water Bottle,19.12,5,0.0,95.6,Credit Card,5,Yes
+10405,2023-11-30,Mason Wilson,Corporate,23,South,Online,Beauty,Lip Balm Pack,13.09,4,0.15,44.51,Credit Card,5,No
+10406,2023-12-01,Lucas Young,Consumer,61,East,Online,Sports,Water Bottle,16.44,5,0.05,78.09,Debit Card,5,No
+10407,2023-12-03,Ethan Wilson,Small Business,46,East,In-Store,Home & Kitchen,Coffee Maker,92.64,3,0.2,222.34,Credit Card,3,Yes
+10408,2023-12-03,Elena Garcia,Consumer,29,West,Online,Electronics,Smartwatch,197.58,3,0.0,592.74,Credit Card,3,No
+10409,2023-12-03,Aria King,Consumer,30,West,Online,Sports,Tennis Racket,131.18,2,0.0,262.36,Credit Card,3,No
+10410,2023-12-03,Zoe Kim,Corporate,35,West,In-Store,Sports,Water Bottle,16.42,7,0.1,103.45,Cash,1,No
+10411,2023-12-04,Caleb Kim,Consumer,38,East,Online,Sports,Yoga Mat,29.47,3,0.05,83.99,Debit Card,5,No
+10412,2023-12-04,Jack Garcia,Corporate,24,East,Online,Home & Kitchen,Throw Blanket,35.06,4,0.0,140.24,PayPal,3,No
+10413,2023-12-05,Ethan Lopez,Consumer,55,North,In-Store,Sports,Dumbbell Set,89.67,6,0.05,511.12,Debit Card,4,No
+10414,2023-12-05,Lucas Davis,Small Business,41,East,In-Store,Clothing,Graphic Tee,24.06,6,0.05,137.14,Debit Card,3,No
+10415,2023-12-05,Liam Patel,Consumer,46,North,Online,Home & Kitchen,Coffee Maker,80.71,2,0.0,161.42,Credit Card,4,No
+10416,2023-12-05,Henry Patel,Consumer,22,East,Online,Home & Kitchen,Coffee Maker,80.47,7,0.1,506.96,PayPal,4,No
+10417,2023-12-05,Lucas Wilson,Consumer,74,West,Online,Clothing,Graphic Tee,21.85,8,0.1,157.32,Credit Card,5,No
+10418,2023-12-06,Maya Nguyen,Corporate,19,South,Online,Clothing,Wool Sweater,70.02,6,0.1,378.11,Credit Card,3,No
+10419,2023-12-07,Leah Wilson,Consumer,59,North,Online,Electronics,Bluetooth Speaker,53.62,6,0.1,289.55,PayPal,3,No
+10420,2023-12-07,Mason Garcia,Consumer,60,West,Online,Clothing,Denim Jacket,82.82,1,0.0,82.82,PayPal,3,No
+10421,2023-12-07,Elena Garcia,Consumer,59,South,In-Store,Clothing,Graphic Tee,23.24,4,0.1,83.66,Cash,3,No
+10422,2023-12-07,Aria Garcia,Consumer,58,West,Online,Clothing,Wool Sweater,64.74,1,0.0,64.74,Credit Card,5,No
+10423,2023-12-09,Elena Allen,Corporate,52,North,In-Store,Sports,Yoga Mat,30.86,1,0.0,30.86,Debit Card,5,No
+10424,2023-12-10,Ava Allen,Consumer,19,North,Online,Home & Kitchen,Knife Set,63.27,7,0.05,420.75,Debit Card,1,Yes
+10425,2023-12-11,Henry Scott,Small Business,34,West,Online,Home & Kitchen,Air Fryer,120.95,2,0.0,241.9,PayPal,5,No
+10426,2023-12-11,Ruby Allen,Consumer,55,East,Online,Beauty,Face Serum,43.48,6,0.0,260.88,PayPal,5,No
+10427,2023-12-11,Ava Martin,Consumer,64,West,Online,Electronics,Laptop Stand,38.94,3,0.05,110.98,Credit Card,2,No
+10428,2023-12-11,Ivy Chen,Consumer,57,South,Online,Home & Kitchen,Throw Blanket,33.06,2,0.2,52.9,Credit Card,3,No
+10429,2023-12-12,Ethan Clark,Consumer,72,South,Online,Electronics,Bluetooth Speaker,55.67,7,0.0,389.69,PayPal,5,No
+10430,2023-12-12,Henry Lee,Consumer,37,North,Online,Clothing,Denim Jacket,85.82,2,0.0,171.64,Debit Card,3,No
+10431,2023-12-14,Leah Scott,Small Business,51,South,Online,Beauty,Face Serum,44.52,8,0.0,356.16,Debit Card,5,No
+10432,2023-12-15,Owen Lopez,Corporate,35,South,Online,Electronics,Smartwatch,200.92,4,0.05,763.5,PayPal,4,No
+10433,2023-12-15,Ivy Wright,Consumer,47,North,Online,Sports,Water Bottle,16.32,8,0.05,124.03,PayPal,5,No
+10434,2023-12-16,Aria Scott,Consumer,31,East,Online,Beauty,Perfume,71.5,2,0.05,135.85,PayPal,4,No
+10435,2023-12-16,Aria Scott,Consumer,24,South,In-Store,Home & Kitchen,Knife Set,63.38,7,0.0,443.66,Credit Card,3,No
+10436,2023-12-17,Ruby Lee,Consumer,52,East,In-Store,Sports,Water Bottle,18.84,8,0.1,135.65,Credit Card,4,No
+10437,2023-12-17,Caleb Lee,Corporate,30,North,Online,Clothing,Graphic Tee,22.91,7,0.05,152.35,Credit Card,4,No
+10438,2023-12-18,Ava Scott,Consumer,25,South,In-Store,Clothing,Running Shoes,115.98,2,0.05,220.36,Credit Card,2,Yes
+10439,2023-12-18,Nora Davis,Corporate,38,North,In-Store,Home & Kitchen,Knife Set,70.23,4,0.1,252.83,Credit Card,5,No
+10440,2023-12-18,Leah Hall,Consumer,49,East,Online,Electronics,Smartwatch,215.3,8,0.15,1464.04,PayPal,5,No
+10441,2023-12-19,Ivy Smith,Corporate,50,South,Online,Clothing,Graphic Tee,20.18,1,0.0,20.18,PayPal,5,No
+10442,2023-12-19,Noah Kim,Corporate,41,East,In-Store,Clothing,Running Shoes,108.92,6,0.15,555.49,Debit Card,4,No
+10443,2023-12-19,Noah Martin,Consumer,67,North,Online,Beauty,Perfume,72.21,5,0.0,361.05,Credit Card,4,Yes
+10444,2023-12-20,Ivy Young,Corporate,47,North,Online,Clothing,Graphic Tee,20.33,5,0.05,96.57,Credit Card,3,No
+10445,2023-12-21,Owen Patel,Small Business,58,West,In-Store,Electronics,Bluetooth Speaker,63.07,5,0.0,315.35,Debit Card,5,No
+10446,2023-12-21,Maya Allen,Consumer,62,East,In-Store,Beauty,Hair Dryer,61.19,6,0.0,367.14,Credit Card,5,No
+10447,2023-12-22,Owen Clark,Small Business,40,East,In-Store,Electronics,Bluetooth Speaker,57.89,7,0.15,344.45,Credit Card,4,Yes
+10448,2023-12-22,Ruby Garcia,Corporate,31,West,Online,Beauty,Face Serum,42.9,6,0.2,205.92,PayPal,4,No
+10449,2023-12-23,Noah Nguyen,Corporate,64,West,Online,Sports,Dumbbell Set,103.85,1,0.05,98.66,Credit Card,5,No
+10450,2023-12-23,Zoe Chen,Corporate,36,South,Online,Home & Kitchen,Air Fryer,109.1,3,0.0,327.3,Credit Card,4,No
+10451,2023-12-23,Zoe Allen,Consumer,43,West,Online,Clothing,Running Shoes,129.24,5,0.0,646.2,PayPal,2,Yes
+10452,2023-12-24,Noah Scott,Consumer,45,East,In-Store,Electronics,Wireless Earbuds,86.67,4,0.15,294.68,Credit Card,5,No
+10453,2023-12-24,Maya Hall,Small Business,59,West,In-Store,Electronics,Wireless Earbuds,75.11,5,0.0,375.55,Credit Card,1,No
+10454,2023-12-24,Lucas Kim,Small Business,36,North,Online,Electronics,Laptop Stand,36.59,1,0.0,36.59,Credit Card,3,No
+10455,2023-12-24,Leah King,Consumer,31,North,Online,Clothing,Running Shoes,122.0,5,0.15,518.5,Credit Card,4,No
+10456,2023-12-24,Elena Patel,Consumer,57,East,Online,Clothing,Wool Sweater,69.92,1,0.05,66.42,Debit Card,1,No
+10457,2023-12-26,Mia Chen,Consumer,65,South,Online,Beauty,Face Serum,48.69,1,0.0,48.69,PayPal,3,No
+10458,2023-12-26,Jack Walker,Consumer,26,South,Online,Home & Kitchen,Throw Blanket,33.89,8,0.15,230.45,Credit Card,5,No
+10459,2023-12-26,Jack Lopez,Corporate,75,East,In-Store,Beauty,Lip Balm Pack,11.1,7,0.1,69.93,Cash,4,No
+10460,2023-12-26,Ivy Lopez,Corporate,71,East,Online,Sports,Tennis Racket,140.53,7,0.0,983.71,Credit Card,4,Yes
+10461,2023-12-27,Jack Davis,Consumer,34,East,In-Store,Electronics,Laptop Stand,35.97,2,0.2,57.55,Debit Card,1,No
+10462,2023-12-27,Aria Wright,Corporate,72,East,In-Store,Home & Kitchen,Air Fryer,101.68,7,0.05,676.17,Debit Card,4,No
+10463,2023-12-27,Lucas Wilson,Consumer,20,West,Online,Electronics,Laptop Stand,37.52,1,0.0,37.52,PayPal,2,No
+10464,2023-12-27,Mia Smith,Consumer,25,South,In-Store,Electronics,Smartwatch,207.16,1,0.15,176.09,Debit Card,4,No
+10465,2023-12-28,Liam Chen,Consumer,75,West,In-Store,Beauty,Perfume,69.17,5,0.0,345.85,Credit Card,4,No
+10466,2023-12-28,Liam Clark,Consumer,46,North,In-Store,Clothing,Denim Jacket,91.78,5,0.1,413.01,Debit Card,4,No
+10467,2023-12-29,Liam Martin,Consumer,40,South,Online,Electronics,Laptop Stand,40.64,1,0.1,36.58,Credit Card,3,No
+10468,2023-12-29,Ivy Scott,Corporate,38,West,Online,Electronics,Bluetooth Speaker,61.6,6,0.0,369.6,PayPal,5,No
+10469,2023-12-29,Leo Martin,Consumer,39,East,Online,Home & Kitchen,Coffee Maker,85.89,8,0.2,549.7,Credit Card,4,Yes
+10470,2024-01-01,Aria Hall,Corporate,37,West,In-Store,Clothing,Wool Sweater,68.14,4,0.05,258.93,Credit Card,5,No
+10471,2024-01-01,Ava Hall,Consumer,29,South,In-Store,Electronics,Wireless Earbuds,74.45,5,0.0,372.25,Credit Card,4,No
+10472,2024-01-01,Ava Wilson,Consumer,29,South,Online,Sports,Yoga Mat,31.45,4,0.05,119.51,PayPal,3,No
+10473,2024-01-02,Leo Davis,Consumer,43,East,Online,Electronics,Wireless Earbuds,79.49,8,0.0,635.92,Credit Card,4,No
+10474,2024-01-02,Ethan Wilson,Consumer,49,South,Online,Sports,Yoga Mat,28.56,6,0.2,137.09,PayPal,5,No
+10475,2024-01-02,Noah Garcia,Corporate,68,West,In-Store,Clothing,Wool Sweater,69.34,6,0.1,374.44,Debit Card,4,No
+10476,2024-01-02,Ivy Smith,Small Business,64,West,Online,Home & Kitchen,Coffee Maker,87.73,1,0.0,87.73,Credit Card,5,No
+10477,2024-01-02,Leah Garcia,Consumer,42,North,In-Store,Clothing,Running Shoes,114.56,6,0.1,618.62,Credit Card,4,No
+10478,2024-01-03,Maya Garcia,Corporate,31,West,In-Store,Home & Kitchen,Coffee Maker,90.19,4,0.1,324.68,Cash,3,No
+10479,2024-01-03,Zoe Smith,Consumer,21,West,Online,Beauty,Face Serum,44.46,6,0.1,240.08,Credit Card,3,No
+10480,2024-01-04,Ruby Chen,Small Business,63,South,Online,Sports,Tennis Racket,150.34,3,0.0,451.02,PayPal,2,No
+10481,2024-01-04,Noah Garcia,Corporate,25,South,Online,Electronics,Smartwatch,218.13,2,0.0,436.26,Debit Card,4,No
+10482,2024-01-04,Ethan Scott,Small Business,61,West,In-Store,Clothing,Wool Sweater,67.14,4,0.15,228.28,Debit Card,4,No
+10483,2024-01-05,Leo Davis,Small Business,56,West,Online,Electronics,Laptop Stand,39.39,4,0.15,133.93,PayPal,3,No
+10484,2024-01-06,Nora Nguyen,Small Business,54,South,Online,Electronics,Laptop Stand,40.64,5,0.0,203.2,Debit Card,5,No
+10485,2024-01-06,Ava Walker,Corporate,63,South,Online,Electronics,Wireless Earbuds,72.53,1,0.0,72.53,Credit Card,1,No
+10486,2024-01-08,Liam Young,Small Business,69,West,Online,Electronics,Laptop Stand,38.8,4,0.0,155.2,Credit Card,5,No
+10487,2024-01-08,Owen Wright,Consumer,67,North,Online,Beauty,Lip Balm Pack,10.94,6,0.0,65.64,PayPal,3,Yes
+10488,2024-01-08,Leah Kim,Corporate,52,North,Online,Sports,Tennis Racket,148.1,8,0.2,947.84,Debit Card,5,No
+10489,2024-01-08,Leo Lopez,Corporate,19,West,Online,Sports,Yoga Mat,32.62,1,0.05,30.99,Debit Card,2,Yes
+10490,2024-01-09,Jack Young,Consumer,64,West,Online,Home & Kitchen,Knife Set,68.21,8,0.1,491.11,PayPal,5,No
+10491,2024-01-10,Caleb Lee,Consumer,20,East,In-Store,Clothing,Graphic Tee,23.81,3,0.05,67.86,Debit Card,4,No
+10492,2024-01-12,Liam Lee,Consumer,73,South,In-Store,Clothing,Running Shoes,117.88,7,0.0,825.16,Debit Card,3,No
+10493,2024-01-16,Liam Wright,Consumer,62,South,Online,Clothing,Denim Jacket,87.6,1,0.0,87.6,Credit Card,1,No
+10494,2024-01-18,Liam Scott,Corporate,67,West,Online,Clothing,Graphic Tee,21.29,7,0.0,149.03,Debit Card,3,No
+10495,2024-01-19,Mia Nguyen,Consumer,75,East,In-Store,Clothing,Graphic Tee,20.74,8,0.05,157.62,Credit Card,4,No
+10496,2024-01-20,Noah Chen,Small Business,51,North,Online,Sports,Dumbbell Set,93.7,5,0.05,445.08,PayPal,5,No
+10497,2024-01-22,Mia Wright,Consumer,44,West,Online,Electronics,Wireless Earbuds,84.18,5,0.2,336.72,PayPal,5,Yes
+10498,2024-01-23,Henry Nguyen,Consumer,34,South,Online,Clothing,Denim Jacket,97.44,3,0.15,248.47,Credit Card,2,Yes
+10499,2024-01-24,Lucas Lopez,Corporate,55,North,Online,Clothing,Wool Sweater,59.21,2,0.1,106.58,Credit Card,4,No
+10500,2024-01-24,Ethan Hall,Small Business,53,South,Online,Home & Kitchen,Air Fryer,99.08,7,0.0,693.56,Credit Card,1,Yes
+10501,2024-01-26,Ethan Smith,Consumer,37,West,In-Store,Home & Kitchen,Coffee Maker,77.75,8,0.0,622.0,Credit Card,2,No
+10502,2024-01-27,Noah Clark,Consumer,59,East,Online,Sports,Water Bottle,18.65,1,0.1,16.78,PayPal,4,No
+10503,2024-01-31,Mia Wright,Consumer,71,East,Online,Electronics,Bluetooth Speaker,55.44,7,0.0,388.08,Debit Card,4,No
+10504,2024-01-31,Ava Martin,Consumer,59,South,Online,Electronics,Smartwatch,188.9,5,0.1,850.05,Credit Card,5,Yes
+10505,2024-02-01,Ava Nguyen,Small Business,21,West,Online,Clothing,Denim Jacket,80.42,7,0.1,506.65,Debit Card,5,No
+10506,2024-02-01,Aria Garcia,Small Business,41,East,In-Store,Clothing,Wool Sweater,69.74,6,0.0,418.44,Credit Card,3,No
+10507,2024-02-01,Liam Davis,Consumer,58,East,Online,Sports,Dumbbell Set,89.98,8,0.1,647.86,Debit Card,4,No
+10508,2024-02-01,Caleb Nguyen,Small Business,61,East,Online,Beauty,Hair Dryer,56.5,1,0.0,56.5,Credit Card,5,No
+10509,2024-02-01,Zoe Walker,Consumer,34,North,In-Store,Home & Kitchen,Knife Set,71.81,1,0.0,71.81,Cash,5,No
+10510,2024-02-02,Ava Brown,Corporate,37,West,Online,Electronics,Bluetooth Speaker,56.85,2,0.2,90.96,Credit Card,4,No
+10511,2024-02-03,Maya Lopez,Small Business,60,West,In-Store,Clothing,Denim Jacket,88.35,1,0.1,79.52,Credit Card,4,No
+10512,2024-02-03,Liam Hall,Consumer,25,South,Online,Sports,Dumbbell Set,102.8,6,0.15,524.28,Debit Card,4,No
+10513,2024-02-04,Leah Young,Corporate,66,West,Online,Beauty,Face Serum,48.06,5,0.15,204.26,Debit Card,4,No
+10514,2024-02-04,Liam Allen,Corporate,73,South,In-Store,Home & Kitchen,Knife Set,71.97,7,0.0,503.79,Credit Card,4,No
+10515,2024-02-06,Maya Patel,Consumer,56,South,Online,Clothing,Graphic Tee,21.95,8,0.1,158.04,Credit Card,5,No
+10516,2024-02-07,Elena Lopez,Consumer,71,South,In-Store,Clothing,Wool Sweater,67.35,4,0.0,269.4,Debit Card,4,No
+10517,2024-02-08,Liam Lee,Consumer,40,East,Online,Home & Kitchen,Knife Set,73.16,7,0.0,512.12,Debit Card,4,No
+10518,2024-02-08,Leah Martin,Consumer,42,South,Online,Beauty,Perfume,70.23,5,0.0,351.15,Debit Card,4,Yes
+10519,2024-02-09,Mason Allen,Consumer,30,South,In-Store,Clothing,Graphic Tee,23.64,7,0.0,165.48,Credit Card,5,No
+10520,2024-02-09,Noah Davis,Consumer,49,East,Online,Electronics,Smartwatch,194.83,6,0.05,1110.53,Credit Card,3,No
+10521,2024-02-10,Leah Wright,Corporate,53,South,Online,Electronics,Bluetooth Speaker,64.17,4,0.05,243.85,PayPal,4,Yes
+10522,2024-02-10,Liam Kim,Consumer,18,South,Online,Electronics,Laptop Stand,39.61,5,0.15,168.34,PayPal,5,No
+10523,2024-02-11,Jack Walker,Consumer,40,East,In-Store,Sports,Tennis Racket,147.19,2,0.0,294.38,Credit Card,4,No
+10524,2024-02-11,Maya Hall,Corporate,73,East,Online,Home & Kitchen,Air Fryer,113.65,4,0.1,409.14,Credit Card,5,No
+10525,2024-02-13,Mason Scott,Consumer,52,West,Online,Beauty,Hair Dryer,64.36,1,0.0,64.36,PayPal,4,No
+10526,2024-02-13,Leo Chen,Corporate,38,North,In-Store,Electronics,Smartwatch,198.31,6,0.0,1189.86,Cash,2,Yes
+10527,2024-02-13,Henry King,Consumer,43,West,In-Store,Clothing,Graphic Tee,20.1,1,0.1,18.09,Credit Card,4,No
+10528,2024-02-13,Owen Lee,Consumer,53,South,In-Store,Sports,Yoga Mat,28.37,6,0.0,170.22,Debit Card,3,No
+10529,2024-02-15,Leo Lee,Consumer,22,East,In-Store,Home & Kitchen,Coffee Maker,90.36,8,0.2,578.3,Debit Card,4,Yes
+10530,2024-02-15,Caleb Brown,Consumer,25,South,Online,Electronics,Bluetooth Speaker,54.27,7,0.0,379.89,Credit Card,4,No
+10531,2024-02-15,Mason King,Corporate,42,East,In-Store,Clothing,Denim Jacket,91.18,4,0.0,364.72,Debit Card,4,No
+10532,2024-02-16,Noah Smith,Small Business,26,East,Online,Home & Kitchen,Air Fryer,108.01,5,0.15,459.04,Credit Card,5,No
+10533,2024-02-16,Aria Scott,Consumer,62,East,Online,Home & Kitchen,Coffee Maker,90.45,6,0.15,461.3,Debit Card,5,No
+10534,2024-02-17,Elena Clark,Corporate,52,West,Online,Clothing,Running Shoes,130.06,6,0.0,780.36,Debit Card,5,No
+10535,2024-02-17,Mia Clark,Corporate,43,East,Online,Electronics,Smartwatch,210.11,4,0.0,840.44,Debit Card,5,No
+10536,2024-02-17,Noah Patel,Consumer,57,North,Online,Beauty,Lip Balm Pack,10.81,2,0.05,20.54,PayPal,5,No
+10537,2024-02-19,Nora Walker,Consumer,73,North,In-Store,Clothing,Denim Jacket,90.55,2,0.0,181.1,Cash,5,No
+10538,2024-02-27,Maya Patel,Corporate,74,South,Online,Sports,Yoga Mat,32.73,2,0.0,65.46,Credit Card,3,No
+10539,2024-02-27,Ethan Allen,Consumer,36,East,Online,Home & Kitchen,Coffee Maker,85.25,1,0.1,76.73,Credit Card,5,Yes
+10540,2024-02-28,Zoe Young,Consumer,58,North,In-Store,Electronics,Wireless Earbuds,77.36,7,0.1,487.37,Credit Card,3,No
+10541,2024-02-29,Nora Patel,Corporate,45,West,Online,Electronics,Bluetooth Speaker,56.27,4,0.0,225.08,PayPal,3,No
+10542,2024-02-29,Mia Hall,Corporate,53,South,Online,Electronics,Smartwatch,189.88,2,0.0,379.76,Credit Card,5,No
+10543,2024-03-01,Ivy Lee,Consumer,55,East,Online,Electronics,Wireless Earbuds,72.73,7,0.0,509.11,Debit Card,3,No
+10544,2024-03-02,Lucas Brown,Consumer,53,East,Online,Electronics,Wireless Earbuds,79.85,4,0.1,287.46,Credit Card,5,No
+10545,2024-03-02,Owen Walker,Small Business,36,South,In-Store,Clothing,Denim Jacket,92.79,7,0.0,649.53,Debit Card,5,Yes
+10546,2024-03-02,Ava Walker,Consumer,33,East,Online,Clothing,Running Shoes,123.36,8,0.2,789.5,PayPal,1,Yes
+10547,2024-03-03,Maya Wilson,Consumer,45,South,Online,Clothing,Wool Sweater,62.92,3,0.0,188.76,Credit Card,4,No
+10548,2024-03-05,Zoe Walker,Corporate,39,East,In-Store,Sports,Water Bottle,19.38,2,0.05,36.82,Debit Card,5,No
+10549,2024-03-05,Ivy Hall,Consumer,28,North,Online,Electronics,Wireless Earbuds,81.54,2,0.1,146.77,Credit Card,4,No
+10550,2024-03-06,Ivy King,Consumer,54,West,In-Store,Electronics,Smartwatch,211.14,6,0.2,1013.47,Debit Card,4,No
+10551,2024-03-07,Caleb Allen,Consumer,41,South,Online,Sports,Tennis Racket,138.49,5,0.05,657.83,PayPal,4,No
+10552,2024-03-07,Nora Garcia,Consumer,25,South,Online,Home & Kitchen,Coffee Maker,87.23,2,0.15,148.29,Credit Card,4,No
+10553,2024-03-09,Noah King,Consumer,33,East,Online,Clothing,Running Shoes,120.76,6,0.05,688.33,Debit Card,4,No
+10554,2024-03-09,Ivy Wright,Corporate,35,South,In-Store,Clothing,Denim Jacket,81.79,6,0.0,490.74,Cash,4,No
+10555,2024-03-09,Leah Wilson,Corporate,22,South,Online,Home & Kitchen,Coffee Maker,87.09,8,0.0,696.72,Credit Card,5,No
+10556,2024-03-09,Mason Wright,Corporate,27,North,Online,Electronics,Wireless Earbuds,86.46,7,0.05,574.96,PayPal,2,Yes
+10557,2024-03-10,Leo Kim,Consumer,51,East,Online,Sports,Yoga Mat,28.56,3,0.05,81.4,Credit Card,3,No
+10558,2024-03-11,Noah Nguyen,Consumer,20,South,Online,Sports,Water Bottle,16.73,7,0.1,105.4,Credit Card,1,No
+10559,2024-03-11,Jack Davis,Small Business,47,East,In-Store,Clothing,Wool Sweater,64.24,5,0.05,305.14,Cash,2,No
+10560,2024-03-11,Ava Garcia,Consumer,44,East,Online,Electronics,Bluetooth Speaker,57.58,7,0.0,403.06,Credit Card,3,No
+10561,2024-03-15,Henry Garcia,Consumer,34,North,Online,Beauty,Face Serum,46.89,8,0.05,356.36,PayPal,5,No
+10562,2024-03-15,Zoe Davis,Consumer,39,East,Online,Clothing,Graphic Tee,22.27,5,0.05,105.78,Credit Card,3,No
+10563,2024-03-15,Liam Scott,Corporate,70,South,Online,Home & Kitchen,Coffee Maker,86.39,1,0.0,86.39,Credit Card,4,No
+10564,2024-03-16,Jack Martin,Corporate,50,East,Online,Sports,Tennis Racket,144.95,5,0.0,724.75,Credit Card,3,No
+10565,2024-03-19,Lucas Scott,Corporate,75,North,Online,Sports,Dumbbell Set,103.49,8,0.05,786.52,Debit Card,5,No
+10566,2024-03-20,Liam Martin,Small Business,41,East,In-Store,Beauty,Lip Balm Pack,13.15,2,0.1,23.67,Cash,3,No
+10567,2024-03-20,Aria Wilson,Corporate,39,West,Online,Clothing,Wool Sweater,59.86,2,0.0,119.72,Debit Card,4,No
+10568,2024-03-20,Leah Nguyen,Consumer,22,North,In-Store,Sports,Water Bottle,17.83,1,0.1,16.05,Debit Card,4,No
+10569,2024-03-22,Lucas Smith,Consumer,74,East,Online,Clothing,Denim Jacket,85.34,7,0.05,567.51,Credit Card,3,No
+10570,2024-03-23,Leo King,Consumer,67,East,Online,Clothing,Graphic Tee,22.47,6,0.0,134.82,Debit Card,2,Yes
+10571,2024-03-23,Maya Walker,Small Business,75,South,In-Store,Clothing,Graphic Tee,20.7,4,0.0,82.8,Debit Card,4,No
+10572,2024-03-24,Noah Clark,Small Business,20,West,In-Store,Clothing,Denim Jacket,87.22,1,0.1,78.5,Debit Card,3,No
+10573,2024-03-24,Ruby King,Consumer,70,South,Online,Sports,Dumbbell Set,93.56,8,0.15,636.21,Debit Card,1,No
+10574,2024-03-25,Leo Walker,Corporate,19,West,In-Store,Sports,Yoga Mat,28.38,8,0.1,204.34,Credit Card,5,No
+10575,2024-03-25,Henry Brown,Consumer,41,West,Online,Electronics,Laptop Stand,37.59,3,0.0,112.77,PayPal,4,No
+10576,2024-03-26,Lucas King,Consumer,19,North,Online,Electronics,Laptop Stand,38.07,2,0.1,68.53,Debit Card,1,No
+10577,2024-03-27,Ethan Young,Consumer,58,South,Online,Clothing,Graphic Tee,22.26,8,0.05,169.18,Credit Card,4,Yes
+10578,2024-03-28,Lucas Smith,Consumer,63,South,Online,Clothing,Graphic Tee,20.02,6,0.15,102.1,Credit Card,4,No
+10579,2024-03-28,Henry Allen,Corporate,34,East,In-Store,Beauty,Face Serum,46.0,4,0.0,184.0,Credit Card,4,Yes
+10580,2024-03-29,Leah Chen,Consumer,39,South,Online,Beauty,Face Serum,42.29,4,0.1,152.24,Debit Card,4,No
+10581,2024-03-29,Noah Allen,Consumer,75,West,Online,Beauty,Hair Dryer,61.48,6,0.05,350.44,PayPal,3,No
+10582,2024-03-29,Caleb Allen,Small Business,72,East,In-Store,Sports,Yoga Mat,29.97,5,0.15,127.37,Cash,4,No
+10583,2024-03-31,Ava Wright,Consumer,28,North,Online,Home & Kitchen,Air Fryer,111.3,2,0.05,211.47,Debit Card,4,No
+10584,2024-04-01,Aria Garcia,Consumer,36,West,In-Store,Clothing,Running Shoes,123.21,7,0.0,862.47,Cash,5,No
+10585,2024-04-01,Leah Young,Consumer,35,North,Online,Clothing,Graphic Tee,21.0,2,0.1,37.8,Debit Card,3,No
+10586,2024-04-01,Ivy Lopez,Consumer,41,North,Online,Electronics,Wireless Earbuds,75.96,3,0.05,216.49,Debit Card,3,No
+10587,2024-04-01,Caleb King,Corporate,61,North,Online,Sports,Water Bottle,16.38,7,0.0,114.66,PayPal,3,No
+10588,2024-04-02,Noah Garcia,Corporate,58,West,Online,Clothing,Graphic Tee,21.33,7,0.0,149.31,PayPal,3,No
+10589,2024-04-03,Jack King,Consumer,62,West,In-Store,Electronics,Wireless Earbuds,82.08,6,0.0,492.48,Debit Card,3,No
+10590,2024-04-04,Liam Scott,Corporate,72,South,Online,Clothing,Denim Jacket,94.54,7,0.05,628.69,PayPal,4,No
+10591,2024-04-04,Leah Martin,Consumer,49,South,Online,Clothing,Denim Jacket,95.47,2,0.05,181.39,Credit Card,4,No
+10592,2024-04-04,Owen Martin,Consumer,70,West,Online,Sports,Yoga Mat,31.18,5,0.0,155.9,Credit Card,5,No
+10593,2024-04-07,Zoe Lee,Consumer,75,South,In-Store,Electronics,Laptop Stand,42.24,1,0.0,42.24,Debit Card,3,No
+10594,2024-04-09,Caleb King,Consumer,39,West,Online,Electronics,Wireless Earbuds,75.73,5,0.1,340.78,Credit Card,5,Yes
+10595,2024-04-09,Mia Smith,Consumer,53,North,Online,Beauty,Face Serum,41.17,7,0.05,273.78,PayPal,4,No
+10596,2024-04-10,Elena King,Consumer,57,South,Online,Sports,Water Bottle,17.84,4,0.1,64.22,Debit Card,4,No
+10597,2024-04-10,Lucas Lopez,Consumer,62,West,Online,Home & Kitchen,Knife Set,75.55,5,0.0,377.75,Credit Card,5,No
+10598,2024-04-10,Leah Davis,Consumer,21,West,Online,Home & Kitchen,Knife Set,74.71,8,0.0,597.68,PayPal,5,No
+10599,2024-04-12,Elena King,Consumer,39,South,Online,Electronics,Bluetooth Speaker,53.71,3,0.1,145.02,PayPal,5,No
+10600,2024-04-13,Jack Garcia,Corporate,51,South,In-Store,Beauty,Hair Dryer,59.16,4,0.0,236.64,Credit Card,4,No
+10601,2024-04-13,Caleb Garcia,Consumer,21,West,Online,Sports,Dumbbell Set,104.41,4,0.0,417.64,Debit Card,3,No
+10602,2024-04-15,Ethan Walker,Corporate,55,North,In-Store,Home & Kitchen,Coffee Maker,88.07,2,0.0,176.14,Cash,4,No
+10603,2024-04-16,Leah Young,Corporate,71,South,In-Store,Electronics,Bluetooth Speaker,57.4,5,0.05,272.65,Credit Card,4,No
+10604,2024-04-18,Leah Kim,Consumer,34,North,Online,Electronics,Smartwatch,209.65,5,0.0,1048.25,PayPal,1,No
+10605,2024-04-18,Caleb Walker,Consumer,60,West,Online,Clothing,Graphic Tee,23.39,4,0.2,74.85,Credit Card,2,No
+10606,2024-04-19,Caleb Chen,Corporate,56,East,Online,Clothing,Denim Jacket,92.04,8,0.0,736.32,Credit Card,5,No
+10607,2024-04-19,Aria Nguyen,Consumer,34,South,Online,Electronics,Wireless Earbuds,82.32,8,0.0,658.56,PayPal,5,No
+10608,2024-04-20,Elena Brown,Corporate,35,West,Online,Clothing,Running Shoes,117.55,8,0.1,846.36,Credit Card,5,No
+10609,2024-04-21,Maya Patel,Consumer,49,South,In-Store,Clothing,Wool Sweater,63.92,5,0.0,319.6,Cash,3,No
+10610,2024-04-22,Henry Wilson,Consumer,62,South,Online,Clothing,Denim Jacket,81.01,5,0.0,405.05,Debit Card,5,No
+10611,2024-04-22,Mia Wilson,Consumer,29,South,Online,Clothing,Graphic Tee,21.73,1,0.0,21.73,Credit Card,3,No
+10612,2024-04-24,Lucas Chen,Corporate,22,West,In-Store,Clothing,Denim Jacket,94.79,4,0.0,379.16,Credit Card,3,Yes
+10613,2024-04-24,Nora Wright,Corporate,48,South,Online,Clothing,Denim Jacket,89.01,3,0.1,240.33,Credit Card,4,No
+10614,2024-04-25,Mia Chen,Corporate,48,South,Online,Home & Kitchen,Air Fryer,120.54,6,0.0,723.24,Credit Card,4,No
+10615,2024-04-25,Aria Patel,Consumer,20,South,Online,Clothing,Running Shoes,129.65,7,0.05,862.17,Debit Card,2,No
+10616,2024-04-26,Leah Wright,Consumer,73,West,Online,Electronics,Laptop Stand,40.36,5,0.0,201.8,Credit Card,5,No
+10617,2024-04-27,Nora Lee,Consumer,49,East,In-Store,Sports,Dumbbell Set,96.56,1,0.05,91.73,Cash,5,No
+10618,2024-04-27,Mason Scott,Consumer,54,East,Online,Home & Kitchen,Knife Set,71.42,7,0.2,399.95,PayPal,3,No
+10619,2024-04-28,Caleb Wilson,Consumer,59,South,Online,Clothing,Wool Sweater,63.19,5,0.1,284.36,Credit Card,4,No
+10620,2024-05-01,Leah Lee,Consumer,72,East,In-Store,Sports,Dumbbell Set,90.04,7,0.2,504.22,Debit Card,5,No
+10621,2024-05-02,Aria Lopez,Consumer,74,South,Online,Sports,Dumbbell Set,92.51,3,0.05,263.65,PayPal,4,Yes
+10622,2024-05-03,Henry Scott,Consumer,72,South,In-Store,Sports,Yoga Mat,31.62,6,0.0,189.72,Credit Card,4,No
+10623,2024-05-03,Mia Brown,Consumer,29,South,Online,Sports,Tennis Racket,130.59,7,0.0,914.13,Credit Card,3,No
+10624,2024-05-04,Liam Wright,Consumer,62,East,Online,Home & Kitchen,Knife Set,74.4,8,0.1,535.68,Credit Card,4,No
+10625,2024-05-04,Ava Lopez,Consumer,58,West,Online,Sports,Water Bottle,19.55,8,0.0,156.4,Credit Card,3,No
+10626,2024-05-05,Ethan Hall,Consumer,64,South,Online,Electronics,Wireless Earbuds,81.4,6,0.1,439.56,Credit Card,5,No
+10627,2024-05-06,Leo Lee,Corporate,60,East,In-Store,Home & Kitchen,Coffee Maker,83.51,1,0.0,83.51,Credit Card,3,No
+10628,2024-05-06,Mia Hall,Consumer,60,East,Online,Electronics,Bluetooth Speaker,62.84,8,0.15,427.31,Credit Card,1,Yes
+10629,2024-05-08,Ava Kim,Consumer,65,North,Online,Electronics,Wireless Earbuds,71.35,3,0.0,214.05,Credit Card,5,No
+10630,2024-05-09,Mia Scott,Consumer,47,West,In-Store,Electronics,Wireless Earbuds,79.32,6,0.0,475.92,Credit Card,3,Yes
+10631,2024-05-10,Ava Wilson,Consumer,68,South,Online,Clothing,Wool Sweater,63.72,4,0.0,254.88,Credit Card,4,No
+10632,2024-05-10,Zoe Smith,Consumer,63,West,Online,Electronics,Smartwatch,200.46,2,0.05,380.87,Credit Card,5,No
+10633,2024-05-10,Ivy Walker,Corporate,48,East,Online,Home & Kitchen,Coffee Maker,93.21,8,0.2,596.54,Credit Card,3,No
+10634,2024-05-11,Zoe Smith,Corporate,63,West,Online,Sports,Yoga Mat,31.07,6,0.05,177.1,Credit Card,5,No
+10635,2024-05-11,Ruby Lee,Consumer,34,South,Online,Sports,Water Bottle,18.86,3,0.1,50.92,Credit Card,4,No
+10636,2024-05-11,Maya Young,Small Business,68,South,In-Store,Electronics,Wireless Earbuds,79.52,7,0.05,528.81,Cash,3,No
+10637,2024-05-12,Liam Kim,Corporate,26,South,In-Store,Home & Kitchen,Coffee Maker,89.04,8,0.0,712.32,Debit Card,2,No
+10638,2024-05-12,Elena Garcia,Consumer,18,South,In-Store,Sports,Tennis Racket,153.76,4,0.05,584.29,Debit Card,5,No
+10639,2024-05-13,Aria Garcia,Consumer,61,West,In-Store,Electronics,Smartwatch,218.75,3,0.05,623.44,Credit Card,3,No
+10640,2024-05-14,Ruby Walker,Consumer,20,East,In-Store,Electronics,Wireless Earbuds,78.63,2,0.05,149.4,Credit Card,5,No
+10641,2024-05-16,Ivy Young,Corporate,47,South,In-Store,Clothing,Graphic Tee,21.44,3,0.0,64.32,Credit Card,4,No
+10642,2024-05-16,Leo Wright,Consumer,44,West,Online,Clothing,Denim Jacket,86.58,3,0.0,259.74,Debit Card,5,No
+10643,2024-05-16,Owen Lopez,Consumer,45,North,Online,Electronics,Wireless Earbuds,79.38,8,0.0,635.04,PayPal,2,Yes
+10644,2024-05-16,Noah Smith,Consumer,59,East,Online,Home & Kitchen,Throw Blanket,31.97,7,0.0,223.79,Credit Card,5,No
+10645,2024-05-16,Mia Lee,Small Business,49,West,Online,Clothing,Running Shoes,119.95,4,0.0,479.8,PayPal,5,No
+10646,2024-05-17,Jack Allen,Corporate,42,North,Online,Home & Kitchen,Knife Set,74.4,2,0.0,148.8,Debit Card,5,No
+10647,2024-05-18,Maya Young,Corporate,57,North,In-Store,Home & Kitchen,Coffee Maker,91.21,6,0.05,519.9,Debit Card,3,No
+10648,2024-05-18,Caleb Wilson,Corporate,40,West,In-Store,Home & Kitchen,Air Fryer,118.64,1,0.15,100.84,Credit Card,5,No
+10649,2024-05-19,Noah Brown,Consumer,42,East,In-Store,Electronics,Bluetooth Speaker,58.73,5,0.1,264.28,Credit Card,5,No
+10650,2024-05-19,Noah Young,Consumer,19,West,Online,Sports,Yoga Mat,27.73,8,0.05,210.75,PayPal,3,No
+10651,2024-05-20,Lucas King,Consumer,47,East,Online,Sports,Yoga Mat,27.54,4,0.1,99.14,Credit Card,5,No
+10652,2024-05-20,Elena Kim,Consumer,53,East,Online,Sports,Tennis Racket,150.84,8,0.0,1206.72,Credit Card,2,No
+10653,2024-05-21,Nora Young,Small Business,33,South,In-Store,Electronics,Laptop Stand,40.31,6,0.0,241.86,Cash,2,No
+10654,2024-05-21,Ava Hall,Consumer,73,East,Online,Beauty,Face Serum,46.38,7,0.1,292.19,PayPal,1,Yes
+10655,2024-05-22,Ruby Scott,Consumer,73,East,Online,Home & Kitchen,Knife Set,66.0,3,0.1,178.2,Credit Card,4,No
+10656,2024-05-22,Henry Chen,Consumer,53,East,Online,Clothing,Running Shoes,129.97,7,0.1,818.81,Debit Card,4,No
+10657,2024-05-23,Ava Chen,Consumer,64,West,Online,Clothing,Wool Sweater,61.8,4,0.15,210.12,Credit Card,2,Yes
+10658,2024-05-25,Leah Nguyen,Consumer,32,East,In-Store,Home & Kitchen,Air Fryer,106.19,6,0.1,573.43,Credit Card,4,No
+10659,2024-05-28,Liam Patel,Corporate,38,West,Online,Home & Kitchen,Air Fryer,107.12,4,0.1,385.63,Credit Card,5,No
+10660,2024-06-01,Owen Young,Consumer,54,South,Online,Electronics,Bluetooth Speaker,54.41,5,0.0,272.05,Debit Card,2,No
+10661,2024-06-02,Ava Brown,Consumer,24,North,Online,Clothing,Running Shoes,125.38,1,0.2,100.3,Credit Card,4,No
+10662,2024-06-02,Leo Wright,Consumer,39,East,Online,Clothing,Wool Sweater,67.66,6,0.05,385.66,PayPal,3,No
+10663,2024-06-03,Maya Lopez,Consumer,34,South,Online,Sports,Tennis Racket,134.59,8,0.05,1022.88,Credit Card,4,No
+10664,2024-06-03,Mason Hall,Corporate,39,South,Online,Clothing,Running Shoes,108.25,6,0.05,617.02,Credit Card,4,No
+10665,2024-06-04,Caleb Chen,Small Business,52,East,Online,Electronics,Bluetooth Speaker,60.52,3,0.0,181.56,Credit Card,3,No
+10666,2024-06-05,Zoe Hall,Consumer,21,North,Online,Clothing,Wool Sweater,64.24,3,0.0,192.72,Credit Card,1,No
+10667,2024-06-05,Aria Davis,Consumer,47,South,Online,Electronics,Smartwatch,187.15,8,0.15,1272.62,PayPal,4,No
+10668,2024-06-06,Elena Kim,Consumer,59,West,In-Store,Electronics,Laptop Stand,41.45,2,0.05,78.76,Debit Card,4,No
+10669,2024-06-06,Owen Kim,Corporate,24,West,In-Store,Beauty,Face Serum,48.59,6,0.2,233.23,Cash,4,No
+10670,2024-06-06,Zoe Brown,Corporate,18,West,In-Store,Clothing,Wool Sweater,70.52,6,0.0,423.12,Credit Card,3,No
+10671,2024-06-07,Caleb Garcia,Corporate,25,West,In-Store,Home & Kitchen,Air Fryer,119.28,6,0.05,679.9,Credit Card,5,Yes
+10672,2024-06-08,Zoe King,Consumer,66,North,In-Store,Clothing,Denim Jacket,87.28,5,0.05,414.58,Cash,1,No
+10673,2024-06-09,Ava Wright,Consumer,53,South,Online,Electronics,Laptop Stand,42.53,8,0.0,340.24,Credit Card,3,No
+10674,2024-06-11,Ava Hall,Consumer,18,West,Online,Beauty,Hair Dryer,61.14,8,0.05,464.66,Debit Card,4,No
+10675,2024-06-12,Leo Nguyen,Consumer,40,West,Online,Beauty,Perfume,68.56,4,0.0,274.24,Credit Card,3,No
+10676,2024-06-12,Zoe King,Corporate,63,East,Online,Electronics,Bluetooth Speaker,60.14,4,0.0,240.56,Credit Card,3,No
+10677,2024-06-12,Mia Hall,Consumer,68,West,Online,Clothing,Graphic Tee,21.51,2,0.0,43.02,PayPal,4,No
+10678,2024-06-14,Caleb Allen,Consumer,38,South,Online,Clothing,Denim Jacket,86.83,4,0.05,329.95,Credit Card,5,No
+10679,2024-06-14,Lucas Lee,Consumer,51,North,Online,Electronics,Wireless Earbuds,81.18,8,0.1,584.5,PayPal,5,No
+10680,2024-06-16,Jack Kim,Corporate,38,South,Online,Home & Kitchen,Throw Blanket,36.57,1,0.15,31.08,Credit Card,3,No
+10681,2024-06-17,Ava Brown,Corporate,55,East,In-Store,Sports,Water Bottle,17.3,1,0.15,14.7,Cash,4,No
+10682,2024-06-17,Mason Chen,Corporate,46,North,Online,Sports,Yoga Mat,32.26,1,0.2,25.81,Credit Card,1,No
+10683,2024-06-18,Maya Patel,Consumer,65,East,Online,Home & Kitchen,Throw Blanket,38.17,3,0.2,91.61,Credit Card,5,No
+10684,2024-06-18,Elena Nguyen,Consumer,28,South,Online,Electronics,Wireless Earbuds,77.85,2,0.1,140.13,Credit Card,4,No
+10685,2024-06-19,Mason Scott,Small Business,25,West,Online,Electronics,Wireless Earbuds,79.23,6,0.0,475.38,Credit Card,5,No
+10686,2024-06-19,Ava Chen,Consumer,30,North,In-Store,Home & Kitchen,Coffee Maker,84.04,5,0.05,399.19,Cash,3,No
+10687,2024-06-19,Aria Lee,Corporate,37,East,Online,Sports,Yoga Mat,29.54,8,0.0,236.32,Credit Card,4,No
+10688,2024-06-19,Mason Garcia,Corporate,59,East,Online,Clothing,Running Shoes,124.84,8,0.05,948.78,Credit Card,5,No
+10689,2024-06-21,Elena King,Consumer,38,West,Online,Clothing,Graphic Tee,20.53,3,0.0,61.59,PayPal,1,Yes
+10690,2024-06-21,Noah Hall,Corporate,70,West,Online,Sports,Dumbbell Set,93.76,1,0.05,89.07,PayPal,5,No
+10691,2024-06-23,Nora Nguyen,Corporate,33,South,In-Store,Electronics,Laptop Stand,38.59,8,0.1,277.85,Cash,5,No
+10692,2024-06-23,Liam Kim,Consumer,26,South,Online,Clothing,Denim Jacket,88.9,2,0.0,177.8,Credit Card,5,No
+10693,2024-06-25,Ava Young,Small Business,32,East,Online,Clothing,Denim Jacket,82.04,1,0.15,69.73,PayPal,3,No
+10694,2024-06-25,Leo Smith,Small Business,33,South,Online,Beauty,Lip Balm Pack,11.75,6,0.0,70.5,Debit Card,5,No
+10695,2024-06-26,Jack Nguyen,Consumer,19,South,Online,Electronics,Bluetooth Speaker,57.09,7,0.05,379.65,Debit Card,4,No
+10696,2024-06-30,Mason Garcia,Small Business,74,East,Online,Electronics,Laptop Stand,41.62,3,0.0,124.86,Credit Card,3,No
+10697,2024-06-30,Noah Garcia,Consumer,38,West,In-Store,Clothing,Denim Jacket,80.84,5,0.0,404.2,Cash,3,No
+10698,2024-07-01,Lucas Hall,Consumer,57,North,Online,Home & Kitchen,Knife Set,68.39,1,0.05,64.97,Credit Card,5,No
+10699,2024-07-01,Noah Hall,Corporate,19,West,In-Store,Electronics,Laptop Stand,39.21,3,0.0,117.63,Credit Card,4,No
+10700,2024-07-03,Henry Clark,Small Business,71,North,Online,Sports,Water Bottle,18.62,8,0.0,148.96,PayPal,3,No
+10701,2024-07-04,Zoe Lopez,Consumer,43,South,In-Store,Electronics,Smartwatch,205.98,7,0.1,1297.67,Credit Card,4,No
+10702,2024-07-05,Lucas Hall,Consumer,40,North,Online,Sports,Water Bottle,18.17,2,0.0,36.34,Debit Card,4,No
+10703,2024-07-05,Henry Lee,Corporate,38,North,Online,Electronics,Laptop Stand,38.46,8,0.2,246.14,PayPal,3,No
+10704,2024-07-08,Leo Smith,Consumer,62,West,Online,Beauty,Lip Balm Pack,10.82,4,0.05,41.12,Debit Card,3,No
+10705,2024-07-08,Aria Patel,Consumer,21,North,In-Store,Electronics,Smartwatch,202.77,3,0.0,608.31,Debit Card,4,No
+10706,2024-07-09,Ivy Walker,Consumer,59,East,Online,Sports,Dumbbell Set,103.52,7,0.0,724.64,Credit Card,5,No
+10707,2024-07-11,Ava Clark,Small Business,65,West,Online,Sports,Tennis Racket,133.94,3,0.15,341.55,PayPal,4,No
+10708,2024-07-12,Leo Chen,Consumer,61,West,Online,Electronics,Bluetooth Speaker,64.82,7,0.0,453.74,Credit Card,5,No
+10709,2024-07-12,Leo Martin,Corporate,39,North,Online,Electronics,Laptop Stand,36.88,1,0.1,33.19,Credit Card,3,No
+10710,2024-07-12,Nora Kim,Corporate,45,West,Online,Home & Kitchen,Coffee Maker,85.9,8,0.05,652.84,Debit Card,4,No
+10711,2024-07-13,Henry Clark,Consumer,35,South,Online,Clothing,Running Shoes,110.68,7,0.05,736.02,PayPal,4,No
+10712,2024-07-14,Leah Garcia,Consumer,35,South,In-Store,Clothing,Running Shoes,125.11,5,0.0,625.55,Debit Card,4,No
+10713,2024-07-15,Jack Scott,Corporate,72,South,In-Store,Sports,Dumbbell Set,103.97,8,0.0,831.76,Debit Card,3,No
+10714,2024-07-16,Ethan Allen,Consumer,39,North,Online,Clothing,Wool Sweater,60.28,2,0.0,120.56,PayPal,5,No
+10715,2024-07-16,Nora Wilson,Consumer,73,West,Online,Clothing,Wool Sweater,68.86,1,0.1,61.97,Credit Card,3,No
+10716,2024-07-16,Elena Scott,Consumer,26,North,Online,Clothing,Graphic Tee,20.91,1,0.1,18.82,Credit Card,4,No
+10717,2024-07-17,Elena Walker,Consumer,36,North,Online,Clothing,Graphic Tee,22.57,5,0.0,112.85,Debit Card,4,No
+10718,2024-07-17,Mason Clark,Corporate,22,East,Online,Clothing,Running Shoes,115.56,6,0.05,658.69,Credit Card,5,No
+10719,2024-07-20,Caleb Lee,Consumer,63,North,In-Store,Electronics,Bluetooth Speaker,62.98,4,0.0,251.92,Cash,3,No
+10720,2024-07-22,Ava Young,Small Business,40,East,Online,Clothing,Denim Jacket,83.03,5,0.1,373.64,Credit Card,4,No
+10721,2024-07-22,Liam Scott,Consumer,36,West,In-Store,Clothing,Graphic Tee,21.73,7,0.0,152.11,Debit Card,3,No
+10722,2024-07-23,Jack Hall,Consumer,67,West,Online,Electronics,Smartwatch,215.04,2,0.0,430.08,PayPal,5,Yes
+10723,2024-07-23,Leo Kim,Consumer,50,North,Online,Sports,Dumbbell Set,93.56,2,0.0,187.12,Credit Card,4,No
+10724,2024-07-23,Noah Smith,Small Business,37,East,Online,Electronics,Bluetooth Speaker,64.63,2,0.2,103.41,Debit Card,1,No
+10725,2024-07-24,Caleb Wright,Consumer,40,South,Online,Electronics,Smartwatch,208.01,7,0.1,1310.46,Credit Card,4,No
+10726,2024-07-24,Nora Young,Small Business,50,North,In-Store,Home & Kitchen,Coffee Maker,80.48,3,0.0,241.44,Cash,4,No
+10727,2024-07-26,Mia Clark,Consumer,50,West,In-Store,Clothing,Graphic Tee,23.11,8,0.1,166.39,Credit Card,3,No
+10728,2024-07-26,Ethan Wilson,Consumer,65,South,In-Store,Electronics,Laptop Stand,41.56,3,0.0,124.68,Debit Card,3,No
+10729,2024-07-27,Leah Wright,Consumer,39,North,Online,Clothing,Graphic Tee,20.78,5,0.0,103.9,PayPal,1,Yes
+10730,2024-07-28,Elena Nguyen,Consumer,24,South,Online,Home & Kitchen,Coffee Maker,87.24,3,0.15,222.46,Credit Card,5,No
+10731,2024-07-28,Owen Patel,Corporate,64,North,In-Store,Home & Kitchen,Air Fryer,105.82,4,0.0,423.28,Debit Card,4,No
+10732,2024-07-30,Aria Lopez,Corporate,39,North,In-Store,Beauty,Lip Balm Pack,10.85,3,0.1,29.3,Credit Card,4,No
+10733,2024-07-30,Leah Scott,Consumer,72,North,Online,Sports,Dumbbell Set,103.23,2,0.2,165.17,Credit Card,4,No
+10734,2024-07-31,Mason Walker,Corporate,39,North,In-Store,Clothing,Denim Jacket,80.21,7,0.0,561.47,Debit Card,4,No
+10735,2024-07-31,Ruby Lee,Corporate,55,South,Online,Clothing,Denim Jacket,81.85,4,0.15,278.29,Debit Card,4,Yes
+10736,2024-08-01,Leo Lopez,Corporate,59,East,In-Store,Clothing,Denim Jacket,95.97,4,0.1,345.49,Credit Card,4,No
+10737,2024-08-02,Ava Patel,Corporate,24,East,Online,Electronics,Bluetooth Speaker,61.26,5,0.0,306.3,Debit Card,5,No
+10738,2024-08-04,Ivy Nguyen,Consumer,70,East,In-Store,Beauty,Perfume,78.09,7,0.0,546.63,Debit Card,4,No
+10739,2024-08-04,Mason Garcia,Consumer,73,East,In-Store,Electronics,Laptop Stand,40.81,4,0.0,163.24,Credit Card,3,Yes
+10740,2024-08-05,Aria Patel,Consumer,18,South,Online,Electronics,Smartwatch,197.46,5,0.0,987.3,Credit Card,2,No
+10741,2024-08-06,Lucas Martin,Consumer,48,South,Online,Home & Kitchen,Coffee Maker,81.72,5,0.0,408.6,PayPal,4,No
+10742,2024-08-08,Aria Chen,Consumer,49,North,Online,Home & Kitchen,Knife Set,63.03,3,0.0,189.09,PayPal,4,No
+10743,2024-08-09,Aria Scott,Corporate,43,South,Online,Clothing,Denim Jacket,84.83,1,0.0,84.83,Credit Card,4,No
+10744,2024-08-09,Liam Wright,Consumer,18,South,Online,Beauty,Hair Dryer,57.3,8,0.0,458.4,PayPal,5,No
+10745,2024-08-11,Noah Clark,Corporate,43,West,Online,Clothing,Running Shoes,116.68,1,0.0,116.68,PayPal,4,No
+10746,2024-08-12,Jack Patel,Consumer,35,South,Online,Home & Kitchen,Throw Blanket,32.22,6,0.05,183.65,Credit Card,2,No
+10747,2024-08-14,Owen Lopez,Consumer,47,North,Online,Electronics,Wireless Earbuds,79.61,7,0.1,501.54,Credit Card,4,No
+10748,2024-08-15,Mia Nguyen,Consumer,41,East,Online,Beauty,Hair Dryer,54.69,7,0.1,344.55,PayPal,4,No
+10749,2024-08-15,Ethan Walker,Small Business,27,South,In-Store,Electronics,Smartwatch,203.43,3,0.05,579.78,Credit Card,2,No
+10750,2024-08-15,Ava Chen,Corporate,34,South,Online,Clothing,Running Shoes,114.71,2,0.15,195.01,PayPal,4,No
+10751,2024-08-16,Caleb Wright,Consumer,59,South,In-Store,Beauty,Hair Dryer,63.59,1,0.05,60.41,Credit Card,5,No
+10752,2024-08-16,Lucas Lopez,Consumer,41,West,Online,Beauty,Lip Balm Pack,12.01,8,0.0,96.08,Credit Card,1,Yes
+10753,2024-08-17,Mia King,Consumer,61,West,Online,Beauty,Face Serum,40.81,8,0.0,326.48,Credit Card,4,No
+10754,2024-08-17,Leo Chen,Corporate,38,South,In-Store,Sports,Water Bottle,17.01,6,0.1,91.85,Cash,2,Yes
+10755,2024-08-18,Jack Walker,Small Business,71,South,Online,Electronics,Laptop Stand,39.07,2,0.05,74.23,PayPal,5,No
+10756,2024-08-18,Aria Chen,Consumer,46,East,Online,Electronics,Laptop Stand,36.43,3,0.0,109.29,Credit Card,4,No
+10757,2024-08-19,Owen Allen,Small Business,30,West,Online,Clothing,Wool Sweater,67.99,8,0.05,516.72,PayPal,2,No
+10758,2024-08-19,Ava Kim,Consumer,32,East,In-Store,Electronics,Bluetooth Speaker,60.22,3,0.2,144.53,Debit Card,4,No
+10759,2024-08-19,Mia Patel,Consumer,24,South,Online,Beauty,Lip Balm Pack,10.89,8,0.05,82.76,PayPal,3,No
+10760,2024-08-20,Mia Smith,Consumer,40,South,Online,Electronics,Wireless Earbuds,77.53,1,0.0,77.53,Credit Card,3,No
+10761,2024-08-20,Ava Chen,Consumer,44,South,Online,Clothing,Running Shoes,110.02,4,0.1,396.07,PayPal,4,No
+10762,2024-08-20,Leah Young,Consumer,30,South,Online,Electronics,Wireless Earbuds,81.25,1,0.0,81.25,Debit Card,4,No
+10763,2024-08-20,Jack Wilson,Corporate,35,West,In-Store,Electronics,Smartwatch,182.5,3,0.0,547.5,Debit Card,5,No
+10764,2024-08-21,Ruby Allen,Consumer,42,North,Online,Clothing,Running Shoes,129.03,2,0.0,258.06,Credit Card,5,No
+10765,2024-08-21,Ivy Clark,Corporate,41,East,In-Store,Electronics,Wireless Earbuds,85.05,8,0.2,544.32,Credit Card,5,No
+10766,2024-08-21,Nora Martin,Consumer,59,North,In-Store,Beauty,Perfume,76.64,3,0.0,229.92,Credit Card,4,No
+10767,2024-08-23,Liam Wilson,Corporate,32,East,Online,Home & Kitchen,Knife Set,68.94,3,0.1,186.14,PayPal,5,No
+10768,2024-08-23,Elena Nguyen,Consumer,19,East,Online,Clothing,Wool Sweater,67.24,5,0.0,336.2,PayPal,2,No
+10769,2024-08-23,Mia Clark,Consumer,74,South,Online,Sports,Yoga Mat,28.54,3,0.0,85.62,PayPal,5,No
+10770,2024-08-24,Maya Patel,Small Business,75,North,Online,Sports,Yoga Mat,32.25,4,0.0,129.0,Debit Card,4,No
+10771,2024-08-24,Ava Smith,Corporate,26,East,Online,Clothing,Denim Jacket,86.97,4,0.0,347.88,Credit Card,5,No
+10772,2024-08-24,Zoe Garcia,Corporate,26,North,Online,Sports,Yoga Mat,31.47,1,0.0,31.47,PayPal,1,Yes
+10773,2024-08-26,Ruby Patel,Corporate,21,East,Online,Beauty,Lip Balm Pack,11.68,3,0.0,35.04,Debit Card,4,No
+10774,2024-08-26,Nora Lee,Consumer,63,South,In-Store,Home & Kitchen,Coffee Maker,91.96,2,0.1,165.53,Credit Card,2,Yes
+10775,2024-08-27,Liam Brown,Corporate,39,East,Online,Clothing,Denim Jacket,84.39,1,0.05,80.17,PayPal,3,No
+10776,2024-08-27,Ava Brown,Consumer,34,West,In-Store,Beauty,Face Serum,48.48,1,0.0,48.48,Cash,4,No
+10777,2024-08-29,Aria Davis,Corporate,35,South,Online,Beauty,Lip Balm Pack,11.59,5,0.1,52.16,Debit Card,3,Yes
+10778,2024-08-29,Lucas Scott,Corporate,22,West,Online,Clothing,Running Shoes,129.17,1,0.15,109.79,Debit Card,4,No
+10779,2024-08-29,Lucas Brown,Small Business,56,South,Online,Electronics,Wireless Earbuds,86.85,3,0.05,247.52,PayPal,4,No
+10780,2024-08-30,Mason Lopez,Corporate,63,West,Online,Beauty,Perfume,79.82,3,0.0,239.46,Credit Card,3,No
+10781,2024-08-30,Aria Brown,Corporate,61,East,Online,Home & Kitchen,Coffee Maker,80.34,4,0.0,321.36,PayPal,4,No
+10782,2024-08-30,Ivy Lopez,Consumer,50,South,In-Store,Electronics,Laptop Stand,36.79,6,0.0,220.74,Credit Card,4,No
+10783,2024-08-31,Ruby Brown,Consumer,48,West,In-Store,Home & Kitchen,Throw Blanket,37.29,4,0.0,149.16,Cash,1,Yes
+10784,2024-09-02,Noah Allen,Consumer,33,North,Online,Clothing,Graphic Tee,20.79,2,0.0,41.58,Credit Card,5,No
+10785,2024-09-02,Henry Scott,Small Business,57,East,In-Store,Beauty,Perfume,71.15,8,0.2,455.36,Cash,5,No
+10786,2024-09-05,Aria Chen,Corporate,40,South,Online,Clothing,Denim Jacket,82.55,8,0.05,627.38,Credit Card,5,No
+10787,2024-09-05,Liam King,Consumer,47,West,Online,Electronics,Smartwatch,199.12,4,0.0,796.48,Credit Card,5,No
+10788,2024-09-06,Ethan Garcia,Corporate,68,North,Online,Electronics,Smartwatch,204.1,8,0.05,1551.16,PayPal,4,Yes
+10789,2024-09-09,Lucas Wilson,Corporate,68,West,In-Store,Clothing,Denim Jacket,83.52,3,0.0,250.56,Debit Card,4,No
+10790,2024-09-11,Mason Allen,Consumer,58,South,Online,Beauty,Face Serum,41.55,5,0.15,176.59,Credit Card,4,No
+10791,2024-09-12,Liam Smith,Consumer,60,North,In-Store,Electronics,Laptop Stand,36.55,8,0.05,277.78,Credit Card,2,No
+10792,2024-09-13,Maya Scott,Small Business,34,East,Online,Clothing,Running Shoes,130.47,1,0.1,117.42,Debit Card,5,No
+10793,2024-09-14,Owen Chen,Corporate,39,North,In-Store,Beauty,Perfume,69.58,2,0.0,139.16,Cash,3,No
+10794,2024-09-17,Mason Wilson,Consumer,31,East,Online,Electronics,Smartwatch,205.62,2,0.05,390.68,Credit Card,4,No
+10795,2024-09-18,Owen Wright,Small Business,67,North,Online,Clothing,Denim Jacket,94.24,7,0.1,593.71,PayPal,4,No
+10796,2024-09-18,Ivy Wright,Consumer,50,West,In-Store,Sports,Water Bottle,18.53,5,0.0,92.65,Debit Card,4,No
+10797,2024-09-18,Liam Kim,Consumer,48,East,Online,Electronics,Bluetooth Speaker,57.86,4,0.0,231.44,Credit Card,3,Yes
+10798,2024-09-21,Leo Wilson,Consumer,24,South,Online,Beauty,Perfume,72.03,8,0.05,547.43,Debit Card,5,No
+10799,2024-09-22,Mia Young,Small Business,23,East,In-Store,Sports,Yoga Mat,31.82,5,0.1,143.19,Credit Card,2,No
+10800,2024-09-22,Mia Wilson,Small Business,31,South,Online,Electronics,Laptop Stand,38.92,8,0.05,295.79,Credit Card,4,No
+10801,2024-09-22,Ava Wright,Consumer,32,East,Online,Home & Kitchen,Knife Set,72.13,8,0.2,461.63,Credit Card,3,No
+10802,2024-09-24,Noah Kim,Corporate,64,East,Online,Home & Kitchen,Throw Blanket,36.3,6,0.05,206.91,Credit Card,5,No
+10803,2024-09-24,Owen Scott,Consumer,64,North,Online,Home & Kitchen,Coffee Maker,80.61,1,0.15,68.52,PayPal,5,No
+10804,2024-09-25,Elena Lee,Corporate,60,South,Online,Clothing,Running Shoes,113.47,8,0.0,907.76,PayPal,5,No
+10805,2024-09-25,Ruby Lee,Consumer,72,North,Online,Clothing,Graphic Tee,23.32,2,0.05,44.31,Credit Card,5,No
+10806,2024-09-26,Elena Walker,Corporate,19,North,In-Store,Electronics,Laptop Stand,42.11,1,0.05,40.0,Debit Card,5,No
+10807,2024-09-26,Mason Brown,Consumer,73,North,In-Store,Clothing,Wool Sweater,68.96,2,0.0,137.92,Credit Card,4,No
+10808,2024-09-26,Nora Davis,Consumer,43,West,In-Store,Electronics,Laptop Stand,38.5,5,0.15,163.62,Cash,5,No
+10809,2024-09-26,Nora Kim,Consumer,33,East,Online,Beauty,Perfume,70.0,5,0.0,350.0,Credit Card,5,No
+10810,2024-09-27,Owen Allen,Small Business,41,South,Online,Beauty,Lip Balm Pack,12.37,4,0.05,47.01,Credit Card,3,No
+10811,2024-09-27,Noah Lopez,Consumer,28,East,In-Store,Clothing,Running Shoes,131.18,5,0.0,655.9,Credit Card,5,No
+10812,2024-09-28,Mia Garcia,Consumer,60,West,In-Store,Home & Kitchen,Air Fryer,118.35,2,0.2,189.36,Cash,3,No
+10813,2024-09-29,Aria King,Consumer,46,South,In-Store,Clothing,Running Shoes,126.45,1,0.1,113.8,Debit Card,4,No
+10814,2024-09-29,Nora Lopez,Consumer,42,South,Online,Clothing,Denim Jacket,94.76,5,0.0,473.8,PayPal,4,No
+10815,2024-09-30,Lucas Scott,Corporate,71,West,Online,Clothing,Wool Sweater,65.86,7,0.0,461.02,PayPal,4,No
+10816,2024-09-30,Leo Davis,Consumer,31,West,In-Store,Beauty,Face Serum,44.28,5,0.0,221.4,Debit Card,4,No
+10817,2024-10-01,Caleb Walker,Corporate,73,East,Online,Clothing,Running Shoes,129.27,5,0.0,646.35,PayPal,5,No
+10818,2024-10-02,Nora Hall,Consumer,66,West,Online,Home & Kitchen,Knife Set,73.12,8,0.15,497.22,Debit Card,5,No
+10819,2024-10-03,Liam Martin,Consumer,62,East,In-Store,Beauty,Face Serum,45.49,4,0.15,154.67,Debit Card,2,No
+10820,2024-10-04,Ruby Wright,Corporate,29,South,Online,Clothing,Denim Jacket,90.1,1,0.1,81.09,PayPal,3,No
+10821,2024-10-04,Owen Allen,Consumer,67,North,In-Store,Sports,Water Bottle,16.67,3,0.0,50.01,Cash,1,Yes
+10822,2024-10-04,Aria King,Corporate,55,North,Online,Electronics,Wireless Earbuds,76.78,3,0.05,218.82,Debit Card,5,No
+10823,2024-10-06,Caleb Martin,Small Business,36,South,Online,Sports,Dumbbell Set,90.01,6,0.05,513.06,PayPal,4,No
+10824,2024-10-06,Leah Garcia,Corporate,34,East,Online,Sports,Yoga Mat,31.06,2,0.1,55.91,PayPal,5,No
+10825,2024-10-06,Ruby Patel,Consumer,72,West,In-Store,Sports,Tennis Racket,138.83,6,0.0,832.98,Credit Card,3,No
+10826,2024-10-07,Leo Garcia,Corporate,53,South,Online,Beauty,Lip Balm Pack,12.35,2,0.0,24.7,Credit Card,5,No
+10827,2024-10-07,Ivy Martin,Corporate,49,North,In-Store,Sports,Water Bottle,18.62,4,0.05,70.76,Credit Card,5,No
+10828,2024-10-08,Leah Scott,Consumer,28,South,Online,Beauty,Lip Balm Pack,12.38,3,0.0,37.14,Credit Card,5,No
+10829,2024-10-08,Mia Clark,Small Business,41,West,In-Store,Clothing,Wool Sweater,69.81,7,0.2,390.94,Credit Card,4,No
+10830,2024-10-08,Aria Davis,Consumer,68,East,Online,Home & Kitchen,Air Fryer,102.55,3,0.0,307.65,PayPal,5,No
+10831,2024-10-08,Ruby Garcia,Consumer,21,North,Online,Electronics,Wireless Earbuds,79.15,3,0.2,189.96,Credit Card,3,No
+10832,2024-10-08,Ivy Chen,Consumer,39,South,Online,Electronics,Wireless Earbuds,80.37,8,0.0,642.96,Credit Card,5,No
+10833,2024-10-09,Aria Patel,Consumer,66,South,In-Store,Clothing,Wool Sweater,62.31,1,0.0,62.31,Debit Card,5,No
+10834,2024-10-11,Ava Wilson,Consumer,57,South,Online,Sports,Water Bottle,19.6,3,0.0,58.8,PayPal,4,No
+10835,2024-10-13,Nora Wilson,Consumer,57,North,In-Store,Sports,Yoga Mat,32.06,3,0.05,91.37,Credit Card,4,No
+10836,2024-10-14,Mia Wright,Consumer,61,West,Online,Electronics,Bluetooth Speaker,58.73,4,0.2,187.94,PayPal,3,No
+10837,2024-10-15,Ivy Chen,Corporate,39,West,In-Store,Beauty,Perfume,67.68,2,0.05,128.59,Cash,4,No
+10838,2024-10-15,Lucas King,Consumer,45,West,In-Store,Electronics,Wireless Earbuds,81.22,2,0.15,138.07,Credit Card,4,No
+10839,2024-10-16,Maya Nguyen,Consumer,63,West,Online,Clothing,Wool Sweater,64.23,1,0.15,54.6,PayPal,3,No
+10840,2024-10-16,Ava Lopez,Consumer,49,West,Online,Sports,Dumbbell Set,91.69,2,0.2,146.7,PayPal,1,Yes
+10841,2024-10-17,Elena Young,Small Business,43,North,In-Store,Beauty,Perfume,74.61,6,0.0,447.66,Cash,5,No
+10842,2024-10-18,Ava Davis,Consumer,24,South,In-Store,Sports,Yoga Mat,28.53,2,0.05,54.21,Debit Card,5,Yes
+10843,2024-10-18,Maya Smith,Consumer,47,North,In-Store,Clothing,Graphic Tee,20.59,3,0.0,61.77,Credit Card,4,No
+10844,2024-10-18,Maya Chen,Corporate,49,West,Online,Clothing,Graphic Tee,24.06,5,0.0,120.3,PayPal,4,No
+10845,2024-10-19,Mason Clark,Consumer,70,West,Online,Sports,Tennis Racket,136.74,4,0.0,546.96,Debit Card,4,No
+10846,2024-10-20,Liam Scott,Consumer,48,East,Online,Clothing,Graphic Tee,23.2,3,0.0,69.6,PayPal,5,No
+10847,2024-10-21,Ethan Kim,Corporate,67,North,Online,Sports,Tennis Racket,139.05,3,0.15,354.58,Debit Card,4,No
+10848,2024-10-22,Liam Smith,Corporate,69,South,Online,Sports,Tennis Racket,148.74,3,0.0,446.22,PayPal,5,No
+10849,2024-10-26,Maya Hall,Consumer,19,East,Online,Clothing,Wool Sweater,61.12,1,0.0,61.12,Credit Card,5,No
+10850,2024-10-28,Elena Lee,Consumer,38,North,Online,Beauty,Lip Balm Pack,12.97,5,0.0,64.85,Credit Card,2,Yes
+10851,2024-10-29,Noah Lopez,Consumer,75,North,Online,Clothing,Running Shoes,108.13,4,0.0,432.52,Credit Card,4,No
+10852,2024-10-30,Leo Chen,Consumer,26,West,Online,Sports,Yoga Mat,29.9,1,0.1,26.91,Credit Card,5,No
+10853,2024-10-30,Ethan Lopez,Corporate,66,West,Online,Home & Kitchen,Coffee Maker,83.69,3,0.05,238.52,Credit Card,5,No
+10854,2024-10-31,Caleb Walker,Small Business,41,East,In-Store,Clothing,Running Shoes,119.5,7,0.05,794.68,Cash,5,No
+10855,2024-11-01,Zoe King,Consumer,70,West,Online,Home & Kitchen,Coffee Maker,91.93,5,0.0,459.65,PayPal,3,No
+10856,2024-11-01,Nora Brown,Small Business,63,West,In-Store,Home & Kitchen,Coffee Maker,92.11,1,0.2,73.69,Cash,5,No
+10857,2024-11-02,Lucas Wright,Consumer,49,South,In-Store,Home & Kitchen,Air Fryer,105.33,5,0.0,526.65,Credit Card,3,No
+10858,2024-11-02,Caleb Davis,Small Business,18,North,In-Store,Electronics,Smartwatch,205.13,4,0.05,779.49,Credit Card,5,No
+10859,2024-11-02,Maya Wilson,Consumer,66,West,In-Store,Beauty,Perfume,73.51,7,0.1,463.11,Cash,5,No
+10860,2024-11-03,Ava Brown,Consumer,20,North,Online,Beauty,Face Serum,46.96,8,0.15,319.33,Credit Card,4,No
+10861,2024-11-03,Leo Smith,Corporate,36,South,Online,Electronics,Bluetooth Speaker,62.21,2,0.15,105.76,PayPal,4,No
+10862,2024-11-06,Mason Kim,Small Business,75,West,Online,Beauty,Face Serum,47.1,2,0.15,80.07,Credit Card,4,No
+10863,2024-11-06,Mia Brown,Corporate,42,East,Online,Home & Kitchen,Coffee Maker,80.71,7,0.0,564.97,Credit Card,5,No
+10864,2024-11-06,Lucas Davis,Corporate,50,South,Online,Electronics,Smartwatch,200.59,1,0.2,160.47,Credit Card,4,No
+10865,2024-11-06,Henry Wilson,Consumer,33,East,In-Store,Sports,Dumbbell Set,101.1,6,0.1,545.94,Credit Card,2,No
+10866,2024-11-07,Owen Allen,Small Business,59,South,In-Store,Clothing,Running Shoes,122.17,4,0.0,488.68,Debit Card,4,No
+10867,2024-11-07,Jack Chen,Consumer,38,East,In-Store,Sports,Tennis Racket,148.62,1,0.1,133.76,Credit Card,1,Yes
+10868,2024-11-08,Zoe Hall,Corporate,45,North,Online,Sports,Dumbbell Set,97.04,6,0.2,465.79,Credit Card,3,No
+10869,2024-11-08,Leah Brown,Consumer,59,South,In-Store,Home & Kitchen,Air Fryer,108.11,7,0.1,681.09,Credit Card,4,No
+10870,2024-11-08,Jack Wilson,Small Business,29,East,In-Store,Electronics,Wireless Earbuds,78.84,4,0.1,283.82,Debit Card,4,No
+10871,2024-11-08,Aria Smith,Corporate,21,West,Online,Sports,Dumbbell Set,91.59,2,0.15,155.7,PayPal,2,No
+10872,2024-11-09,Ivy King,Corporate,56,North,Online,Home & Kitchen,Throw Blanket,34.64,2,0.15,58.89,PayPal,4,No
+10873,2024-11-09,Caleb Chen,Consumer,51,South,Online,Beauty,Lip Balm Pack,11.82,1,0.1,10.64,Debit Card,3,No
+10874,2024-11-10,Ivy Lee,Consumer,31,North,Online,Clothing,Graphic Tee,23.44,6,0.0,140.64,Credit Card,3,No
+10875,2024-11-10,Maya Clark,Consumer,61,South,In-Store,Sports,Dumbbell Set,92.98,5,0.0,464.9,Debit Card,4,Yes
+10876,2024-11-11,Ethan Wilson,Consumer,44,West,Online,Beauty,Face Serum,42.15,5,0.0,210.75,Credit Card,1,Yes
+10877,2024-11-11,Henry Kim,Consumer,59,South,Online,Clothing,Running Shoes,121.26,5,0.05,575.98,Credit Card,1,No
+10878,2024-11-11,Maya Allen,Consumer,30,North,Online,Clothing,Graphic Tee,20.76,3,0.0,62.28,Credit Card,3,No
+10879,2024-11-11,Ethan Wilson,Consumer,24,East,In-Store,Clothing,Denim Jacket,87.59,7,0.05,582.47,Debit Card,5,No
+10880,2024-11-12,Ruby Garcia,Consumer,70,South,Online,Electronics,Wireless Earbuds,72.62,5,0.15,308.64,Debit Card,5,Yes
+10881,2024-11-13,Mason Smith,Corporate,68,South,In-Store,Electronics,Laptop Stand,40.78,3,0.2,97.87,Debit Card,5,No
+10882,2024-11-13,Leo Martin,Consumer,40,North,Online,Clothing,Running Shoes,115.45,7,0.0,808.15,Debit Card,2,No
+10883,2024-11-13,Lucas Clark,Corporate,49,North,In-Store,Electronics,Smartwatch,193.49,2,0.1,348.28,Cash,5,No
+10884,2024-11-14,Liam Brown,Consumer,58,West,In-Store,Sports,Yoga Mat,28.0,5,0.0,140.0,Debit Card,5,No
+10885,2024-11-14,Owen Kim,Consumer,22,West,In-Store,Clothing,Wool Sweater,59.75,2,0.15,101.58,Debit Card,5,No
+10886,2024-11-15,Nora Allen,Consumer,28,West,In-Store,Home & Kitchen,Throw Blanket,36.69,4,0.0,146.76,Debit Card,5,No
+10887,2024-11-15,Mia Walker,Consumer,28,East,Online,Clothing,Running Shoes,125.48,6,0.0,752.88,Debit Card,3,No
+10888,2024-11-15,Ava Garcia,Corporate,53,West,Online,Clothing,Running Shoes,126.5,5,0.0,632.5,Credit Card,4,No
+10889,2024-11-15,Ivy Allen,Consumer,70,East,Online,Sports,Dumbbell Set,99.87,8,0.0,798.96,Debit Card,4,No
+10890,2024-11-16,Elena Smith,Corporate,35,South,Online,Clothing,Denim Jacket,96.93,5,0.1,436.19,PayPal,1,No
+10891,2024-11-16,Aria Allen,Corporate,29,East,Online,Home & Kitchen,Coffee Maker,87.46,2,0.0,174.92,Credit Card,4,No
+10892,2024-11-16,Leah Allen,Corporate,24,West,In-Store,Clothing,Wool Sweater,62.69,1,0.1,56.42,Debit Card,3,No
+10893,2024-11-17,Caleb Garcia,Consumer,25,South,Online,Home & Kitchen,Air Fryer,115.38,8,0.2,738.43,Credit Card,5,No
+10894,2024-11-17,Elena Scott,Consumer,36,West,Online,Beauty,Face Serum,47.88,8,0.05,363.89,Debit Card,4,No
+10895,2024-11-17,Ivy Wright,Consumer,46,East,In-Store,Clothing,Running Shoes,110.72,7,0.05,736.29,Credit Card,5,No
+10896,2024-11-18,Owen Patel,Consumer,21,West,In-Store,Home & Kitchen,Air Fryer,106.75,1,0.2,85.4,Credit Card,1,No
+10897,2024-11-18,Caleb Walker,Corporate,34,North,In-Store,Home & Kitchen,Air Fryer,107.03,2,0.0,214.06,Credit Card,5,No
+10898,2024-11-19,Henry Wilson,Small Business,52,North,Online,Electronics,Bluetooth Speaker,64.48,6,0.15,328.85,Credit Card,5,No
+10899,2024-11-19,Maya Garcia,Small Business,57,East,Online,Beauty,Face Serum,48.75,8,0.1,351.0,Debit Card,4,No
+10900,2024-11-20,Mason Kim,Corporate,50,South,In-Store,Clothing,Graphic Tee,22.44,4,0.0,89.76,Credit Card,3,No
+10901,2024-11-20,Mason Kim,Consumer,39,East,Online,Electronics,Laptop Stand,42.52,6,0.0,255.12,Debit Card,4,No
+10902,2024-11-20,Elena Walker,Consumer,67,East,In-Store,Sports,Water Bottle,16.33,7,0.1,102.88,Debit Card,4,No
+10903,2024-11-21,Owen Clark,Consumer,20,East,Online,Sports,Tennis Racket,131.24,8,0.0,1049.92,PayPal,4,Yes
+10904,2024-11-21,Maya Scott,Consumer,19,South,Online,Home & Kitchen,Knife Set,74.13,5,0.15,315.05,Debit Card,3,No
+10905,2024-11-21,Leah Lopez,Small Business,51,West,Online,Beauty,Lip Balm Pack,12.58,7,0.15,74.85,Credit Card,4,No
+10906,2024-11-23,Ivy Wilson,Consumer,41,West,In-Store,Electronics,Wireless Earbuds,76.36,7,0.1,481.07,Cash,5,No
+10907,2024-11-23,Leah Chen,Consumer,26,South,Online,Home & Kitchen,Knife Set,72.51,6,0.1,391.55,Credit Card,3,No
+10908,2024-11-24,Owen Chen,Consumer,75,East,Online,Sports,Tennis Racket,151.45,4,0.05,575.51,Debit Card,5,No
+10909,2024-11-24,Noah Clark,Consumer,45,North,Online,Beauty,Face Serum,44.44,1,0.1,40.0,Credit Card,2,Yes
+10910,2024-11-24,Leah Hall,Corporate,38,West,Online,Home & Kitchen,Throw Blanket,36.32,2,0.05,69.01,Credit Card,4,No
+10911,2024-11-25,Jack Walker,Consumer,38,South,Online,Home & Kitchen,Throw Blanket,32.19,1,0.0,32.19,PayPal,4,No
+10912,2024-11-26,Mia Garcia,Consumer,21,East,Online,Clothing,Denim Jacket,92.81,7,0.1,584.7,PayPal,4,Yes
+10913,2024-11-27,Ethan Brown,Consumer,65,West,Online,Home & Kitchen,Air Fryer,115.43,7,0.05,767.61,Credit Card,4,No
+10914,2024-11-27,Ethan Lee,Small Business,64,South,Online,Home & Kitchen,Throw Blanket,35.12,7,0.0,245.84,PayPal,2,No
+10915,2024-11-28,Zoe Hall,Small Business,18,South,Online,Beauty,Face Serum,47.07,3,0.0,141.21,Credit Card,3,No
+10916,2024-11-28,Caleb King,Consumer,23,North,Online,Sports,Tennis Racket,141.94,5,0.0,709.7,Credit Card,5,No
+10917,2024-11-28,Nora Chen,Small Business,74,North,Online,Sports,Water Bottle,19.26,3,0.0,57.78,PayPal,4,No
+10918,2024-11-28,Maya Wilson,Consumer,59,North,Online,Beauty,Perfume,73.04,8,0.1,525.89,PayPal,5,No
+10919,2024-11-28,Henry Nguyen,Consumer,51,North,In-Store,Electronics,Bluetooth Speaker,62.53,2,0.1,112.55,Debit Card,4,No
+10920,2024-11-28,Henry Martin,Consumer,48,South,In-Store,Sports,Water Bottle,19.05,6,0.1,102.87,Debit Card,5,No
+10921,2024-11-29,Elena Lopez,Consumer,62,North,Online,Clothing,Denim Jacket,97.67,3,0.15,249.06,Credit Card,4,No
+10922,2024-11-29,Noah Martin,Small Business,68,West,Online,Sports,Water Bottle,19.76,8,0.0,158.08,PayPal,5,No
+10923,2024-11-29,Mia Lee,Small Business,18,North,Online,Clothing,Wool Sweater,63.4,4,0.0,253.6,Credit Card,4,No
+10924,2024-11-29,Henry Patel,Consumer,47,North,Online,Clothing,Wool Sweater,68.03,2,0.15,115.65,Credit Card,3,No
+10925,2024-11-30,Leah Smith,Consumer,71,West,Online,Sports,Dumbbell Set,97.47,3,0.0,292.41,Credit Card,3,No
+10926,2024-11-30,Lucas Young,Consumer,57,West,Online,Electronics,Laptop Stand,35.3,8,0.1,254.16,Debit Card,2,No
+10927,2024-12-01,Owen Young,Small Business,38,South,Online,Clothing,Running Shoes,119.14,4,0.05,452.73,Debit Card,2,No
+10928,2024-12-01,Leo Scott,Small Business,32,South,Online,Clothing,Denim Jacket,94.12,7,0.1,592.96,PayPal,4,No
+10929,2024-12-01,Ivy Martin,Consumer,40,North,In-Store,Sports,Tennis Racket,136.5,1,0.1,122.85,Credit Card,4,No
+10930,2024-12-01,Henry Smith,Small Business,75,East,Online,Clothing,Graphic Tee,22.08,8,0.1,158.98,PayPal,5,No
+10931,2024-12-01,Ruby Smith,Corporate,49,West,In-Store,Sports,Water Bottle,16.54,4,0.0,66.16,Cash,3,No
+10932,2024-12-02,Liam Scott,Consumer,30,West,In-Store,Electronics,Bluetooth Speaker,53.11,3,0.0,159.33,Debit Card,5,No
+10933,2024-12-02,Maya Young,Consumer,43,North,Online,Clothing,Wool Sweater,65.06,2,0.2,104.1,Credit Card,3,No
+10934,2024-12-03,Caleb Patel,Small Business,66,South,In-Store,Home & Kitchen,Knife Set,75.09,5,0.15,319.13,Cash,3,No
+10935,2024-12-03,Ivy Davis,Consumer,72,South,In-Store,Home & Kitchen,Throw Blanket,37.47,6,0.05,213.58,Credit Card,4,No
+10936,2024-12-04,Lucas Patel,Consumer,57,North,Online,Beauty,Face Serum,42.94,8,0.1,309.17,Credit Card,3,No
+10937,2024-12-05,Aria Hall,Consumer,60,East,Online,Beauty,Hair Dryer,62.48,5,0.0,312.4,PayPal,4,No
+10938,2024-12-06,Maya Young,Consumer,45,South,Online,Electronics,Bluetooth Speaker,54.81,6,0.05,312.42,Credit Card,5,Yes
+10939,2024-12-06,Jack Wright,Corporate,48,South,Online,Sports,Water Bottle,19.65,7,0.05,130.67,Credit Card,2,No
+10940,2024-12-07,Aria Walker,Corporate,39,East,Online,Home & Kitchen,Throw Blanket,38.29,3,0.1,103.38,Credit Card,3,No
+10941,2024-12-07,Jack Davis,Consumer,27,North,Online,Clothing,Wool Sweater,66.86,7,0.0,468.02,Debit Card,2,No
+10942,2024-12-07,Ethan Wright,Consumer,22,East,In-Store,Sports,Yoga Mat,31.03,3,0.0,93.09,Cash,5,No
+10943,2024-12-07,Maya Chen,Corporate,34,West,Online,Beauty,Hair Dryer,56.42,4,0.2,180.54,PayPal,2,No
+10944,2024-12-07,Liam Young,Consumer,64,East,Online,Clothing,Graphic Tee,20.35,8,0.15,138.38,Debit Card,4,No
+10945,2024-12-08,Liam Kim,Consumer,36,North,In-Store,Beauty,Perfume,71.43,5,0.0,357.15,Debit Card,5,No
+10946,2024-12-08,Liam Brown,Small Business,31,North,Online,Electronics,Laptop Stand,35.62,6,0.1,192.35,Debit Card,3,No
+10947,2024-12-09,Nora Lee,Consumer,38,East,Online,Electronics,Bluetooth Speaker,60.71,7,0.1,382.47,Credit Card,2,Yes
+10948,2024-12-09,Mason Brown,Small Business,68,West,In-Store,Sports,Yoga Mat,30.22,1,0.0,30.22,Credit Card,3,No
+10949,2024-12-10,Nora King,Consumer,27,West,Online,Clothing,Running Shoes,127.37,8,0.1,917.06,Debit Card,5,No
+10950,2024-12-10,Elena Martin,Consumer,69,West,Online,Home & Kitchen,Knife Set,63.04,3,0.0,189.12,Credit Card,2,No
+10951,2024-12-11,Leah Wright,Consumer,47,South,Online,Clothing,Running Shoes,129.11,4,0.0,516.44,Credit Card,5,No
+10952,2024-12-11,Zoe Lee,Consumer,30,South,In-Store,Electronics,Laptop Stand,42.38,5,0.0,211.9,Debit Card,2,No
+10953,2024-12-11,Mason Clark,Small Business,64,South,Online,Sports,Yoga Mat,29.3,4,0.05,111.34,PayPal,3,No
+10954,2024-12-12,Leo Martin,Consumer,34,South,Online,Sports,Water Bottle,17.09,2,0.05,32.47,PayPal,5,No
+10955,2024-12-12,Ruby Patel,Consumer,57,North,Online,Electronics,Laptop Stand,38.38,6,0.05,218.77,Debit Card,4,No
+10956,2024-12-12,Mia Chen,Consumer,59,East,Online,Electronics,Laptop Stand,38.91,4,0.0,155.64,PayPal,3,No
+10957,2024-12-12,Ruby King,Consumer,72,North,In-Store,Sports,Water Bottle,18.68,4,0.1,67.25,Credit Card,5,No
+10958,2024-12-12,Maya Walker,Small Business,62,West,In-Store,Beauty,Hair Dryer,62.32,6,0.0,373.92,Debit Card,3,No
+10959,2024-12-12,Ivy Hall,Consumer,39,North,In-Store,Beauty,Perfume,75.13,4,0.0,300.52,Debit Card,5,Yes
+10960,2024-12-13,Ethan Davis,Consumer,20,South,Online,Home & Kitchen,Knife Set,73.74,1,0.05,70.05,PayPal,4,No
+10961,2024-12-13,Ruby Kim,Consumer,54,East,Online,Clothing,Denim Jacket,84.77,8,0.0,678.16,PayPal,5,No
+10962,2024-12-13,Aria Hall,Consumer,65,East,Online,Clothing,Running Shoes,129.82,3,0.15,331.04,Credit Card,4,No
+10963,2024-12-15,Jack Davis,Corporate,49,South,Online,Electronics,Bluetooth Speaker,61.57,6,0.05,350.95,PayPal,4,No
+10964,2024-12-16,Elena Hall,Corporate,65,East,Online,Clothing,Graphic Tee,20.54,8,0.1,147.89,PayPal,5,No
+10965,2024-12-16,Leah Smith,Small Business,40,South,Online,Electronics,Laptop Stand,42.3,1,0.0,42.3,Credit Card,4,No
+10966,2024-12-16,Liam Chen,Consumer,54,West,Online,Electronics,Wireless Earbuds,86.0,1,0.0,86.0,Debit Card,2,Yes
+10967,2024-12-16,Liam Walker,Consumer,45,South,Online,Clothing,Wool Sweater,66.68,5,0.0,333.4,Credit Card,4,No
+10968,2024-12-16,Leah Wright,Consumer,69,North,In-Store,Electronics,Smartwatch,179.83,1,0.0,179.83,Debit Card,3,No
+10969,2024-12-16,Caleb Kim,Corporate,71,East,Online,Clothing,Running Shoes,124.9,5,0.0,624.5,Credit Card,4,No
+10970,2024-12-16,Noah Scott,Consumer,74,East,In-Store,Home & Kitchen,Coffee Maker,82.64,7,0.1,520.63,Debit Card,5,No
+10971,2024-12-17,Zoe Walker,Small Business,72,East,Online,Home & Kitchen,Coffee Maker,92.02,7,0.05,611.93,Credit Card,4,No
+10972,2024-12-18,Caleb Patel,Consumer,29,North,Online,Beauty,Lip Balm Pack,11.13,6,0.15,56.76,Credit Card,5,No
+10973,2024-12-18,Owen Nguyen,Consumer,32,North,In-Store,Beauty,Perfume,73.14,8,0.0,585.12,Debit Card,4,No
+10974,2024-12-19,Elena Wright,Consumer,72,South,Online,Home & Kitchen,Knife Set,65.44,4,0.0,261.76,Credit Card,1,No
+10975,2024-12-19,Jack Walker,Consumer,53,North,Online,Beauty,Lip Balm Pack,11.96,5,0.0,59.8,PayPal,1,Yes
+10976,2024-12-19,Mason Young,Small Business,67,East,Online,Clothing,Running Shoes,129.5,7,0.15,770.52,Credit Card,1,No
+10977,2024-12-20,Ava Davis,Corporate,40,West,Online,Sports,Tennis Racket,126.15,4,0.0,504.6,Credit Card,3,No
+10978,2024-12-20,Jack Smith,Consumer,52,North,Online,Clothing,Graphic Tee,20.05,2,0.05,38.1,PayPal,3,No
+10979,2024-12-20,Nora Wilson,Corporate,24,West,In-Store,Home & Kitchen,Air Fryer,111.25,8,0.1,801.0,Debit Card,3,No
+10980,2024-12-21,Jack Lee,Consumer,24,East,In-Store,Beauty,Lip Balm Pack,12.26,1,0.0,12.26,Cash,4,No
+10981,2024-12-22,Owen Brown,Consumer,25,East,Online,Home & Kitchen,Coffee Maker,90.63,1,0.2,72.5,PayPal,5,No
+10982,2024-12-23,Ivy Scott,Consumer,73,West,Online,Home & Kitchen,Coffee Maker,85.97,7,0.2,481.43,PayPal,5,No
+10983,2024-12-23,Aria Hall,Consumer,40,South,Online,Sports,Yoga Mat,28.5,6,0.0,171.0,Debit Card,5,No
+10984,2024-12-23,Mia Nguyen,Consumer,61,East,In-Store,Clothing,Wool Sweater,68.6,6,0.0,411.6,Debit Card,5,Yes
+10985,2024-12-24,Ivy Brown,Consumer,58,East,Online,Sports,Yoga Mat,27.82,6,0.05,158.57,Debit Card,5,No
+10986,2024-12-24,Aria Wright,Corporate,39,West,Online,Electronics,Wireless Earbuds,80.54,3,0.05,229.54,Credit Card,4,No
+10987,2024-12-24,Zoe Young,Consumer,57,North,Online,Electronics,Wireless Earbuds,75.73,7,0.05,503.6,Credit Card,4,No
+10988,2024-12-27,Ruby Allen,Corporate,36,East,Online,Electronics,Laptop Stand,37.46,5,0.05,177.94,Credit Card,2,Yes
+10989,2024-12-27,Ivy Patel,Consumer,26,West,In-Store,Electronics,Laptop Stand,39.8,3,0.2,95.52,Credit Card,1,Yes
+10990,2024-12-27,Liam King,Corporate,73,East,In-Store,Beauty,Face Serum,47.44,1,0.1,42.7,Credit Card,5,No
+10991,2024-12-28,Jack Walker,Small Business,58,South,Online,Electronics,Bluetooth Speaker,59.42,3,0.0,178.26,PayPal,3,No
+10992,2024-12-28,Elena Davis,Corporate,31,West,In-Store,Clothing,Denim Jacket,89.71,3,0.1,242.22,Credit Card,5,No
+10993,2024-12-28,Maya Walker,Corporate,22,West,Online,Home & Kitchen,Throw Blanket,35.21,8,0.0,281.68,Debit Card,4,No
+10994,2024-12-28,Jack Kim,Corporate,65,South,In-Store,Sports,Yoga Mat,28.63,5,0.2,114.52,Debit Card,2,No
+10995,2024-12-29,Noah King,Consumer,56,West,Online,Sports,Dumbbell Set,104.23,7,0.05,693.13,Debit Card,5,No
+10996,2024-12-30,Maya Smith,Small Business,43,North,Online,Clothing,Denim Jacket,81.71,7,0.0,571.97,Debit Card,5,Yes
+10997,2024-12-30,Mia Brown,Corporate,75,North,Online,Electronics,Bluetooth Speaker,60.4,6,0.15,308.04,Credit Card,5,Yes
+10998,2024-12-30,Aria Young,Consumer,58,South,Online,Sports,Dumbbell Set,93.19,3,0.0,279.57,PayPal,4,No
+10999,2024-12-30,Ethan Davis,Consumer,50,West,Online,Electronics,Bluetooth Speaker,63.32,2,0.1,113.98,Debit Card,5,No
+11000,2024-12-31,Henry King,Consumer,65,East,In-Store,Electronics,Wireless Earbuds,74.88,1,0.05,71.14,Credit Card,4,No

@@ -1,0 +1,21 @@
+{
+  "n_test_questions": 120,
+  "n_bank_examples": 150,
+  "gold_queries_ok": true,
+  "max_embedding_cosine": {
+    "similarity": 0.8027,
+    "test_question": "average billing amount by year",
+    "bank_question": "average bill by year"
+  },
+  "max_difflib_ratio": {
+    "similarity": 0.8182,
+    "test_question": "monthly revenue in 2024",
+    "bank_question": "monthly usage in 2024"
+  },
+  "pairs_above_cosine_limit": 0,
+  "limits": {
+    "cosine": 0.9,
+    "difflib": 0.85
+  },
+  "problems": []
+}

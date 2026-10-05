@@ -1,0 +1,640 @@
+{
+  "config": {
+    "llm_model": "openai/gpt-oss-120b",
+    "reasoning_effort": "low",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "rag_k": 3,
+    "n_questions": 120,
+    "new_llm_calls_this_run": 0,
+    "python_hash_seed": "0"
+  },
+  "systems": {
+    "rule_based": {
+      "overall": {
+        "n": 120,
+        "n_correct": 37,
+        "accuracy": 0.30833333333333335,
+        "n_errors": 0,
+        "error_rate": 0.0,
+        "n_rejected": 0,
+        "n_fallback": 0
+      },
+      "by_intent": {
+        "filter": {
+          "n": 24,
+          "n_correct": 5,
+          "accuracy": 0.20833333333333334,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "count": {
+          "n": 24,
+          "n_correct": 9,
+          "accuracy": 0.375,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "aggregate": {
+          "n": 24,
+          "n_correct": 13,
+          "accuracy": 0.5416666666666666,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "compare": {
+          "n": 24,
+          "n_correct": 4,
+          "accuracy": 0.16666666666666666,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "trend": {
+          "n": 24,
+          "n_correct": 6,
+          "accuracy": 0.25,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      },
+      "by_dataset": {
+        "healthcare": {
+          "n": 60,
+          "n_correct": 22,
+          "accuracy": 0.36666666666666664,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "retail": {
+          "n": 60,
+          "n_correct": 15,
+          "accuracy": 0.25,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      }
+    },
+    "rule_based_gold_intent": {
+      "overall": {
+        "n": 120,
+        "n_correct": 39,
+        "accuracy": 0.325,
+        "n_errors": 0,
+        "error_rate": 0.0,
+        "n_rejected": 0,
+        "n_fallback": 0
+      },
+      "by_intent": {
+        "filter": {
+          "n": 24,
+          "n_correct": 5,
+          "accuracy": 0.20833333333333334,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "count": {
+          "n": 24,
+          "n_correct": 9,
+          "accuracy": 0.375,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "aggregate": {
+          "n": 24,
+          "n_correct": 13,
+          "accuracy": 0.5416666666666666,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "compare": {
+          "n": 24,
+          "n_correct": 4,
+          "accuracy": 0.16666666666666666,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "trend": {
+          "n": 24,
+          "n_correct": 8,
+          "accuracy": 0.3333333333333333,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      },
+      "by_dataset": {
+        "healthcare": {
+          "n": 60,
+          "n_correct": 23,
+          "accuracy": 0.38333333333333336,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "retail": {
+          "n": 60,
+          "n_correct": 16,
+          "accuracy": 0.26666666666666666,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      }
+    },
+    "llm_zero_shot": {
+      "overall": {
+        "n": 120,
+        "n_correct": 119,
+        "accuracy": 0.9916666666666667,
+        "n_errors": 0,
+        "error_rate": 0.0,
+        "n_rejected": 0,
+        "n_fallback": 0
+      },
+      "by_intent": {
+        "filter": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "count": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "aggregate": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "compare": {
+          "n": 24,
+          "n_correct": 23,
+          "accuracy": 0.9583333333333334,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "trend": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      },
+      "by_dataset": {
+        "healthcare": {
+          "n": 60,
+          "n_correct": 59,
+          "accuracy": 0.9833333333333333,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "retail": {
+          "n": 60,
+          "n_correct": 60,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      }
+    },
+    "llm_rag": {
+      "overall": {
+        "n": 120,
+        "n_correct": 112,
+        "accuracy": 0.9333333333333333,
+        "n_errors": 1,
+        "error_rate": 0.008333333333333333,
+        "n_rejected": 1,
+        "n_fallback": 1
+      },
+      "by_intent": {
+        "filter": {
+          "n": 24,
+          "n_correct": 22,
+          "accuracy": 0.9166666666666666,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "count": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 1,
+          "n_fallback": 1
+        },
+        "aggregate": {
+          "n": 24,
+          "n_correct": 21,
+          "accuracy": 0.875,
+          "n_errors": 1,
+          "error_rate": 0.041666666666666664,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "compare": {
+          "n": 24,
+          "n_correct": 21,
+          "accuracy": 0.875,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "trend": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      },
+      "by_dataset": {
+        "healthcare": {
+          "n": 60,
+          "n_correct": 58,
+          "accuracy": 0.9666666666666667,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 1,
+          "n_fallback": 1
+        },
+        "retail": {
+          "n": 60,
+          "n_correct": 54,
+          "accuracy": 0.9,
+          "n_errors": 1,
+          "error_rate": 0.016666666666666666,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      }
+    }
+  },
+  "ablation": {
+    "0": {
+      "overall": {
+        "n": 120,
+        "n_correct": 119,
+        "accuracy": 0.9916666666666667,
+        "n_errors": 0,
+        "error_rate": 0.0,
+        "n_rejected": 0,
+        "n_fallback": 0
+      },
+      "by_intent": {
+        "filter": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "count": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "aggregate": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "compare": {
+          "n": 24,
+          "n_correct": 23,
+          "accuracy": 0.9583333333333334,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "trend": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      },
+      "by_dataset": {
+        "healthcare": {
+          "n": 60,
+          "n_correct": 59,
+          "accuracy": 0.9833333333333333,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "retail": {
+          "n": 60,
+          "n_correct": 60,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      }
+    },
+    "1": {
+      "overall": {
+        "n": 120,
+        "n_correct": 96,
+        "accuracy": 0.8,
+        "n_errors": 2,
+        "error_rate": 0.016666666666666666,
+        "n_rejected": 0,
+        "n_fallback": 0
+      },
+      "by_intent": {
+        "filter": {
+          "n": 24,
+          "n_correct": 22,
+          "accuracy": 0.9166666666666666,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "count": {
+          "n": 24,
+          "n_correct": 23,
+          "accuracy": 0.9583333333333334,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "aggregate": {
+          "n": 24,
+          "n_correct": 14,
+          "accuracy": 0.5833333333333334,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "compare": {
+          "n": 24,
+          "n_correct": 20,
+          "accuracy": 0.8333333333333334,
+          "n_errors": 1,
+          "error_rate": 0.041666666666666664,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "trend": {
+          "n": 24,
+          "n_correct": 17,
+          "accuracy": 0.7083333333333334,
+          "n_errors": 1,
+          "error_rate": 0.041666666666666664,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      },
+      "by_dataset": {
+        "healthcare": {
+          "n": 60,
+          "n_correct": 52,
+          "accuracy": 0.8666666666666667,
+          "n_errors": 1,
+          "error_rate": 0.016666666666666666,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "retail": {
+          "n": 60,
+          "n_correct": 44,
+          "accuracy": 0.7333333333333333,
+          "n_errors": 1,
+          "error_rate": 0.016666666666666666,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      }
+    },
+    "3": {
+      "overall": {
+        "n": 120,
+        "n_correct": 112,
+        "accuracy": 0.9333333333333333,
+        "n_errors": 1,
+        "error_rate": 0.008333333333333333,
+        "n_rejected": 1,
+        "n_fallback": 1
+      },
+      "by_intent": {
+        "filter": {
+          "n": 24,
+          "n_correct": 22,
+          "accuracy": 0.9166666666666666,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "count": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 1,
+          "n_fallback": 1
+        },
+        "aggregate": {
+          "n": 24,
+          "n_correct": 21,
+          "accuracy": 0.875,
+          "n_errors": 1,
+          "error_rate": 0.041666666666666664,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "compare": {
+          "n": 24,
+          "n_correct": 21,
+          "accuracy": 0.875,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "trend": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      },
+      "by_dataset": {
+        "healthcare": {
+          "n": 60,
+          "n_correct": 58,
+          "accuracy": 0.9666666666666667,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 1,
+          "n_fallback": 1
+        },
+        "retail": {
+          "n": 60,
+          "n_correct": 54,
+          "accuracy": 0.9,
+          "n_errors": 1,
+          "error_rate": 0.016666666666666666,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      }
+    },
+    "5": {
+      "overall": {
+        "n": 120,
+        "n_correct": 115,
+        "accuracy": 0.9583333333333334,
+        "n_errors": 0,
+        "error_rate": 0.0,
+        "n_rejected": 0,
+        "n_fallback": 0
+      },
+      "by_intent": {
+        "filter": {
+          "n": 24,
+          "n_correct": 23,
+          "accuracy": 0.9583333333333334,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "count": {
+          "n": 24,
+          "n_correct": 24,
+          "accuracy": 1.0,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "aggregate": {
+          "n": 24,
+          "n_correct": 22,
+          "accuracy": 0.9166666666666666,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "compare": {
+          "n": 24,
+          "n_correct": 23,
+          "accuracy": 0.9583333333333334,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "trend": {
+          "n": 24,
+          "n_correct": 23,
+          "accuracy": 0.9583333333333334,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      },
+      "by_dataset": {
+        "healthcare": {
+          "n": 60,
+          "n_correct": 58,
+          "accuracy": 0.9666666666666667,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        },
+        "retail": {
+          "n": 60,
+          "n_correct": 57,
+          "accuracy": 0.95,
+          "n_errors": 0,
+          "error_rate": 0.0,
+          "n_rejected": 0,
+          "n_fallback": 0
+        }
+      }
+    }
+  },
+  "bert_intent_accuracy_on_benchmark": 0.8833333333333333
+}

@@ -60,6 +60,8 @@ The current code is an enhanced version of the original project.
   Both produced unreliable SQL for aggregate/compare/trend queries (missing `GROUP BY`, dropped aggregate
   functions, wrong comparison operators). The final design instead uses fully self-contained, rule-based SQL
   generation driven by the uploaded schema — no external API calls and no model download required to run it.
+  v2 revisits this with retrieval-augmented prompting and a proper benchmark. See
+  "Retrieval-Augmented SQL" below.
 
 The system contains two major components:
 
@@ -103,6 +105,7 @@ The system contains two major components:
 ```text
 data/
   healthcare_dataset.csv   # Example dataset (one of many CSVs the app can load)
+  retail_sales.csv         # Seeded synthetic retail dataset (second SQL-benchmark dataset)
   intent_dataset.csv       # Domain-neutral training data for the intent classifier
 
 intent_model/              # Saved fine-tuned BERT intent classification model (after training)
@@ -110,18 +113,31 @@ intent_model/              # Saved fine-tuned BERT intent classification model (
 eval/
   intent_hard_test.csv      # 150 hand-written hard test questions (see "Evaluation" below)
   evaluate_intent.py         # Compares BERT against keyword and TF-IDF baselines
-  results/                    # Generated metrics, comparison table, misclassified examples
+  evaluate_sql.py            # Text-to-SQL benchmark: rule-based vs zero-shot LLM vs RAG
+  sql_metrics.py             # Execution-accuracy result-set comparison
+  sql_benchmark/
+    test_questions.jsonl     # 120 benchmark questions with gold SQL (healthcare + retail)
+    example_bank.jsonl       # 150 question -> SQL retrieval examples on 5 other schemas
+    build_example_bank.py    # Builds the bank and executes every example's SQL
+    check_benchmark.py       # Gold-query and bank/test leakage checks
+    make_retail_dataset.py   # Generates data/retail_sales.csv (seeded)
+  results/                    # Generated metrics, tables, failures, cached LLM responses
 
 src/
   app.py                    # Streamlit entry point — thin orchestrator wiring the pieces together
   data_context.py            # CSV loading, type inference, SQLite table setup
   intent.py                   # BERT intent classifier + keyword-based fallback
   sql_builder.py               # Schema-aware, rule-based NL -> SQL generation
+  rag_sql.py                   # Retrieval-augmented NL -> SQL (Groq LLM + FAISS retrieval)
+  sql_safety.py                # Read-only, single-SELECT, timeout + row-cap guardrails
   visualization.py              # Chart rendering + insights
   model_training.ipynb           # Notebook for training the intent model
 
+tests/                      # pytest: SQL safety checks + result-set comparison
 logs/                       # Training logs
-requirements.txt           # Dependencies
+requirements.txt           # Runtime dependencies
+requirements-train.txt     # Training / evaluation / test dependencies
+.env.example               # Template for .env (GROQ_API_KEY)
 ```
 
 ---
@@ -248,6 +264,189 @@ Per-class F1 on the hard set:
 * **Caveats:** the hard set is small (150 rows), one person wrote and labeled it, and that person knew the
   keyword list when writing it. A few labels are judgment calls. For example, "which month did we sell the
   most" is labeled trend because it groups by time.
+
+---
+
+## 🔎 Retrieval-Augmented SQL
+
+v1's README says LLM-generated SQL was unreliable for aggregate, compare and trend queries. This stage
+tests whether that's still true, and whether retrieval fixes it, by giving an LLM retrieved
+question→SQL examples plus the relevant schema. `src/app.py` doesn't use this module yet; app
+integration is the next stage.
+
+### Architecture
+
+```text
+question ──► embed (all-MiniLM-L6-v2) ──► FAISS top-k ──► k example question→SQL pairs ─┐
+dataset  ──► build_schema_context(): columns, types, categorical values, min/max ───────┤
+                                                                                       ▼
+                              Groq LLM (openai/gpt-oss-120b, temperature 0) ──► SQL text
+                                                                                       ▼
+            validate_sql(): one SELECT/WITH statement, no write or admin keywords
+                     │ rejected, or LLM call failed                    │ ok
+                     ▼                                                 ▼
+          rule-based sql_builder (v1)      read-only DB copy + 5 s timeout + 1,000-row cap
+```
+
+* **`src/rag_sql.py`:** `build_schema_context`, `retrieve_examples`, and `generate_sql(question,
+  dataset, mode)` with `mode` set to `llm_zero_shot` (schema only) or `llm_rag` (schema plus k
+  examples). The model name, embedding model and default k are config constants at the top of the
+  file. The API key comes from `GROQ_API_KEY` in `.env`; copy `.env.example`.
+* **`src/sql_safety.py`:** three independent layers.
+  1. A static check that allows a single `SELECT`/`WITH` statement and rejects `;`-chained
+     statements, `PRAGMA`, `ATTACH`, DDL and DML. Keywords inside string literals, quoted
+     identifiers and comments are ignored.
+  2. Execution on a private in-memory copy of the database with `PRAGMA query_only` and an
+     authorizer that only permits reads.
+  3. A wall-clock timeout and a row cap.
+* **Example bank (`eval/sql_benchmark/example_bank.jsonl`):** 150 question→SQL pairs on 5 schemas
+  that don't appear in the benchmark: HR, school, logistics, hotel and energy. The bank teaches SQL
+  patterns but can't leak benchmark answers. Every bank query is executed when the bank is built.
+
+### Design choices
+
+* **FAISS over Chroma.** The bank is a 150-row, version-controlled JSONL file, and FAISS covers what
+  it needs:
+  * exact search with `IndexFlatIP` over unit vectors, which is cosine similarity;
+  * one pip wheel;
+  * no server, no SQLite-backed store, no telemetry, and no extra persistence layer to keep in sync.
+
+  The index is a rebuildable artifact, cached in `.rag_cache/` and keyed by the bank's hash.
+  Chroma's metadata filtering and incremental upserts would only pay off with a large, changing
+  example store.
+* **`all-MiniLM-L6-v2` for embeddings.** It's small, fast on CPU and free. Its similarity scores are
+  spread out enough for the leakage check (cosine > 0.9) to be meaningful.
+* **`openai/gpt-oss-120b` on Groq.** It's the strongest general model on Groq's current list. It
+  runs with low reasoning effort to keep latency and token use down.
+* **The safety failure mode is fallback.** If the LLM call fails or its SQL is rejected, the app
+  still answers, using the v1 rule-based generator.
+
+### Benchmark
+
+* **Data:** 120 questions with gold SQL, 60 on `healthcare_dataset.csv` and 60 on a seeded synthetic
+  `retail_sales.csv` (1,000 orders), with 12 per intent per dataset. Every gold query was executed.
+  Filters return 3–71 rows, and top-N questions have no ties at the LIMIT boundary.
+* **Leakage check:** `eval/sql_benchmark/check_benchmark.py` compares every bank question with every
+  test question. It caught one exact duplicate, which was then reworded. After that, the maximum
+  embedding cosine is **0.80** ("average billing amount by year" vs "average bill by year") and the
+  maximum difflib ratio is **0.82**, both under the 0.9 and 0.85 limits.
+* **Metric: execution accuracy.** The generated SQL's result set must equal the gold result set.
+  * Rows are compared as a multiset, or in order if the question asks for a ranking.
+  * Floats are rounded to 2 decimals.
+  * Column names and order are ignored. Extra predicted columns are allowed, but every gold column
+    must be matched.
+  * The comparison logic is in `eval/sql_metrics.py` and covered by `tests/`.
+* **Run it** with `python eval/evaluate_sql.py`. Every LLM response is cached in
+  `eval/results/llm_cache.jsonl`, keyed by model and prompt hash, so re-runs make no API calls.
+  * A run from an empty cache needs about 480 calls (~400K tokens), which is more than Groq's free
+    tier allows in a day (200K tokens). The script stops cleanly at the quota and resumes from the
+    cache.
+  * The script pins `PYTHONHASHSEED` because of a rule-based bug described below.
+
+### Results
+
+| System | Overall | Healthcare | Retail | SQL errors | Rejected by safety | Fallbacks |
+|---|---|---|---|---|---|---|
+| rule_based (BERT intent, as in the app today) | **30.8%** (37/120) | 36.7% | 25.0% | 0 | 0 | 0 |
+| rule_based_gold_intent (true intent) | **32.5%** (39/120) | 38.3% | 26.7% | 0 | 0 | 0 |
+| llm_zero_shot (schema only) | **99.2%** (119/120) | 98.3% | 100.0% | 0 | 0 | 0 |
+| llm_rag (schema + 3 examples) | **93.3%** (112/120) | 96.7% | 90.0% | 1 | 1 | 1 |
+
+Accuracy by intent:
+
+| System | filter | count | aggregate | compare | trend |
+|---|---|---|---|---|---|
+| rule_based | 21% | 38% | 54% | 17% | 25% |
+| rule_based_gold_intent | 21% | 38% | 54% | 17% | 33% |
+| llm_zero_shot | 100% | 100% | 100% | 96% | 100% |
+| llm_rag | 92% | 100% | 88% | 88% | 100% |
+
+Ablation over the number of retrieved examples (k=0 sends exactly the zero-shot prompt):
+
+| k | Overall | filter | count | aggregate | compare | trend | SQL errors |
+|---|---|---|---|---|---|---|---|
+| 0 | **99.2%** | 100% | 100% | 100% | 96% | 100% | 0 |
+| 1 | **80.0%** | 92% | 96% | 58% | 83% | 71% | 2 |
+| 3 | **93.3%** | 92% | 100% | 88% | 88% | 100% | 1 |
+| 5 | **95.8%** | 96% | 100% | 92% | 96% | 96% | 0 |
+
+Full results: `eval/results/sql_results.md` / `.json`. Every question that any system got wrong is
+listed in `eval/results/sql_failures.csv`.
+
+### What this shows
+
+**The hypothesis was wrong for this model and benchmark.** A current LLM given a good schema context
+(types, actual categorical values, date format and ranges) doesn't make the errors v1 ran into.
+Zero-shot got every `GROUP BY`, aggregate and operator right, with no SQL errors. Retrieval had
+nothing left to fix: it never turned a wrong zero-shot answer into a right one, and it broke 7 that
+zero-shot got right.
+
+**Why retrieval hurt.** I traced every RAG failure back to its retrieved examples and raw response.
+There were two causes:
+
+1. **Retrieval matches on topic, not SQL shape.** "Average order revenue by region" retrieved hotel
+   *revenue* examples (similarity 0.41–0.50) instead of an "average X by Y" pattern.
+2. **The examples conflict with the target schema.** Every bank example queries a table also named
+   `data`, but with different columns. With low reasoning effort the model sometimes resolves the
+   conflict badly:
+   * it copies an example outright (`SELECT Cancelled, AVG(Total Price) ...`, a hotel query, for a
+     retail question);
+   * it substitutes an example's filter value (`Category = 'Electronics'` instead of
+     `Customer Segment = 'Corporate'`);
+   * it gives up (`SELECT 1`, `SELECT * FROM data LIMIT 0`, or `LIMIT 3` with the WHERE clause
+     dropped).
+
+   This second cause is partly a prompt-design flaw on my side. Fixing it is the obvious next step
+   (see below).
+
+**The ablation fits that explanation.** k=1 is worst (80%) because a single off-topic example
+dominates the prompt. More examples dilute any one bad example: k=3 scores 93% and k=5 scores 96%.
+None of them beats k=0.
+
+**The rule-based generator is far weaker than its v1 demos suggested,** and the intent model isn't
+the bottleneck: BERT predicts 88% of benchmark intents correctly, and giving it the true intent only
+adds 2 points. The failures are in SQL construction:
+
+* **Filters are dropped or wrong.**
+  * "Over 80" is ignored when the word "age" isn't nearby.
+  * "Older than 65" and "between 30 and 40" aren't recognized at all.
+  * "Under 2000" becomes a filter for the *year* 2000.
+* **Compare questions group by the wrong column.** Without a "by X" phrase, it groups by the
+  lowest-cardinality column. "Cigna vs Aetna average billing" is grouped by Gender.
+* **The wrong aggregate is chosen.** "Highest bill" doesn't match the column name "Billing Amount",
+  so it falls back to `COUNT(*)`.
+* **Some questions are out of reach entirely:** top-N, `COUNT(DISTINCT)`, lengths of stay, and
+  free-text values such as a customer name.
+* **The date column is nondeterministic.** `sql_builder` picks it with `next(iter(set))`, so on the
+  healthcare data it's *Date of Admission* in some processes and *Discharge Date* in others. Total
+  accuracy moves between 27.5% and 32.5% depending on Python's hash seed. The numbers above use a
+  pinned seed. The bug isn't fixed in this stage, but it should be fixed before app integration.
+
+**Remaining LLM misses are mostly judgment calls.** Zero-shot's one miss ("normal vs abnormal test
+results") also returned the third group, "Inconclusive". One RAG miss answered "which sells more,
+yoga mats or water bottles" with only the winning row. The metric counts both as wrong.
+
+**Caveats:**
+
+* The benchmark is small (n=120; the 95% confidence interval on 99.2% is about 95–100%).
+* It's single-table, and I wrote both the questions and the gold SQL.
+* The LLM prompt states the same output conventions the gold SQL follows: `SELECT *` for listings,
+  one row per compared group, and `strftime` buckets. This is a best case for the LLM systems. The
+  rule-based system doesn't share those conventions, though the column-flexible metric reduces the
+  difference.
+* One RAG output was an empty response, counted under "Rejected by safety"; the fallback answered
+  that question correctly.
+
+**What this means for the next stage:**
+
+* Use `llm_zero_shot` as the primary generator, with the rule-based path as the safety fallback.
+* Keep RAG off by default until it's fixed. Candidate fixes:
+  * give each example its own table name and schema line, so it can't be confused with the user's table;
+  * retrieve by SQL pattern rather than topic, for example by masking domain nouns before embedding,
+    or by filtering the bank by predicted intent;
+  * add a minimum-similarity threshold, below which no examples are sent.
+* RAG is most likely to help on harder schemas, such as multi-table joins, unusual column semantics
+  or domain-specific definitions. This benchmark doesn't test those.
 
 ---
 
