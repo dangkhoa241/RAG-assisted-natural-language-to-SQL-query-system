@@ -1,19 +1,30 @@
-# ML-Assisted Natural Language to SQL Query System
+# RAG-Assisted Natural Language to SQL Query System
 
-**🔗 Live demo:** [ml-assisted-natural-language-to-sql-query-system.streamlit.app](https://ml-assisted-natural-language-to-sql-query-system.streamlit.app/)
+A natural-language data assistant for any tabular CSV dataset. A fine-tuned BERT intent classifier
+routes each question. Retrieval-augmented text-to-SQL then writes the query, using a Groq-hosted LLM
+grounded in schema and example context retrieved with local embeddings.
 
-This project implements an end-to-end pipeline that allows users to query **any tabular CSV dataset**
-using **plain English** — not just the healthcare example dataset it ships with. Upload any CSV and
-the app adapts to its columns automatically.
+> **Status:** 🚧 The RAG text-to-SQL pipeline and the new React UI are **in progress**. The code in this
+> repo is still the v1 system: BERT intent classifier, rule-based SQL generator and Streamlit UI,
+> documented below.
 
-**User question → Intent classification → SQL generation → Query execution → Table → Chart**
+**🔗 v1 live demo:** [ml-assisted-natural-language-to-sql-query-system.streamlit.app](https://ml-assisted-natural-language-to-sql-query-system.streamlit.app/)
+
+**v1 pipeline:** User question → Intent classification → SQL generation → Query execution → Table → Chart
 
 ---
 
-## 🚀 Enhanced Version
+## 📜 Project history
 
-This is an enhanced version of the original project:
+This repo continues the original project, with its full commit history:
 [dangkhoa241/LLMs-powered-natural-language-query-system-for-healthcare](https://github.com/dangkhoa241/LLMs-powered-natural-language-query-system-for-healthcare).
+v2 adds retrieval-augmented SQL generation and a React front end. Earlier work is preserved in the history.
+
+---
+
+## 🚀 v1: Enhanced Version
+
+The current code is an enhanced version of the original project.
 
 ### What changed
 
