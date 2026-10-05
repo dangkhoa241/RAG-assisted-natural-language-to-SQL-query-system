@@ -5,8 +5,7 @@
     "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
     "rag_k": 3,
     "n_questions": 120,
-    "new_llm_calls_this_run": 0,
-    "python_hash_seed": "0"
+    "new_llm_calls_this_run": 0
   },
   "systems": {
     "rule_based": {

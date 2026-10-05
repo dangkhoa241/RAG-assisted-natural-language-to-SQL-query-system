@@ -5,7 +5,9 @@ Systems:
                            (what the app does today)
   rule_based_gold_intent - sql_builder.build_sql given the true intent (upper bound for the rule-based path)
   llm_zero_shot          - Groq LLM with the schema only
-  llm_rag                - Groq LLM with the schema + k=3 retrieved examples
+  llm_rag                - Groq LLM with the schema + k=3 retrieved examples, in the Stage 2 example style
+                           (example_style="stage2") so these numbers reproduce from the cache.
+                           The fixed example retrieval is evaluated by evaluate_stage3.py.
 Plus an ablation of llm_rag over k = 0, 1, 3, 5 (k=0 sends exactly the llm_zero_shot prompt).
 
 LLM systems run exactly as they would in production: if the LLM's SQL fails the safety check, the
@@ -16,9 +18,7 @@ mid-run, the script stops; re-running later resumes from the cache.
 Usage (from the repo root):  python eval/evaluate_sql.py
 """
 import json
-import os
 import sqlite3
-import subprocess
 import sys
 import time
 from collections import defaultdict
@@ -47,7 +47,6 @@ DATASETS = {"healthcare": ROOT_DIR / "data" / "healthcare_dataset.csv", "retail"
 INTENTS = ["filter", "count", "aggregate", "compare", "trend"]
 MAIN_SYSTEMS = ["rule_based", "rule_based_gold_intent", "llm_zero_shot", "llm_rag"]
 ABLATION_K = [0, 1, 3, 5]
-HASH_SEED = "0"
 
 
 def load_jsonl(path):
@@ -98,7 +97,8 @@ def run_llm(name, questions, datasets, schemas, gold, bert_intents, cache, mode,
     for q, intent in zip(questions, bert_intents):
         ds = datasets[q["dataset"]]
         gen = generate_sql_detailed(q["question"], ds, mode=mode, k=k, intent=intent, cache=cache,
-                                    raise_on_quota=True, schema_context=schemas[q["dataset"]])
+                                    raise_on_quota=True, schema_context=schemas[q["dataset"]],
+                                    example_style="stage2")
         df, err = execute(gen.sql, ds)
         records.append({
             "id": q["id"], "dataset": q["dataset"], "intent": q["intent"], "system": name,
@@ -143,11 +143,6 @@ def to_markdown(results):
 
 
 def main():
-    # sql_builder picks the date column with next(iter(set)), whose order depends on Python's
-    # per-process string hashing. Pin the hash seed so the rule-based numbers are reproducible.
-    if os.environ.get("PYTHONHASHSEED") != HASH_SEED:
-        env = dict(os.environ, PYTHONHASHSEED=HASH_SEED)
-        sys.exit(subprocess.run([sys.executable, *sys.argv], env=env).returncode)
     if not MODEL_DIR.exists():
         sys.exit(f"Trained intent model not found at {MODEL_DIR}. Run src/model_training.ipynb first.")
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -190,7 +185,7 @@ def main():
     results = {
         "config": {"llm_model": GROQ_MODEL, "reasoning_effort": LLM_REASONING_EFFORT,
                    "embedding_model": EMBEDDING_MODEL, "rag_k": DEFAULT_K, "n_questions": len(questions),
-                   "new_llm_calls_this_run": new_calls, "python_hash_seed": HASH_SEED},
+                   "new_llm_calls_this_run": new_calls},
         "systems": {name: breakdown(records[name]) for name in MAIN_SYSTEMS},
         "ablation": {str(k): breakdown(records[f"llm_rag_k{k}"]) for k in ABLATION_K},
         "bert_intent_accuracy_on_benchmark": sum(b == q["intent"] for b, q in zip(bert_intents, questions)) / len(questions),

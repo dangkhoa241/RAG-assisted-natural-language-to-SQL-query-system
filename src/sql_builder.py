@@ -26,7 +26,10 @@ def extract_categorical_filters(query: str, dataset: Dataset):
                 continue
             pattern = rf"(?<![a-z0-9]){re.escape(val_l)}(?![a-z0-9])"
             if re.search(pattern, ql):
-                filters.setdefault(col, set()).add(val)
+                # A list (not a set) keeps the generated SQL independent of the hash seed.
+                matched = filters.setdefault(col, [])
+                if val not in matched:
+                    matched.append(val)
 
     return filters
 
@@ -132,6 +135,16 @@ def detect_group_column(query: str, dataset: Dataset):
     return min(dataset.categorical_cols, key=lambda c: dataset.df[c].nunique(dropna=True))
 
 
+# DATE COLUMN CHOICE
+def pick_date_column(dataset: Dataset):
+    """The date column to filter and bucket on: the first column (in CSV order) whose name
+    contains "date", else the first detected date column. None if the data has no dates.
+    Deterministic, unlike iterating over the `date_cols` set."""
+    ordered = [c for c in dataset.df.columns if c in dataset.date_cols]
+    named = [c for c in ordered if "date" in c.lower()]
+    return (named or ordered or [None])[0]
+
+
 # WHERE CLAUSE BUILDER
 def build_where_clauses(query: str, dataset: Dataset):
     clauses = []
@@ -139,7 +152,7 @@ def build_where_clauses(query: str, dataset: Dataset):
     cat_filters = extract_categorical_filters(query, dataset)
     for col, vals in cat_filters.items():
         if len(vals) == 1:
-            val = next(iter(vals))
+            val = vals[0]
             clauses.append(f"LOWER(`{col}`) = LOWER('{escape_sql_literal(val)}')")
         else:
             parts = [f"LOWER(`{col}`) = LOWER('{escape_sql_literal(v)}')" for v in vals]
@@ -148,8 +161,8 @@ def build_where_clauses(query: str, dataset: Dataset):
     clauses.extend(extract_numeric_filters(query, dataset))
 
     start, end = parse_date_range(query)
-    if start and end and dataset.date_cols:
-        date_col = next(iter(dataset.date_cols))
+    date_col = pick_date_column(dataset)
+    if start and end and date_col:
         clauses.append(f"date(`{date_col}`) BETWEEN date('{start}') AND date('{end}')")
 
     return clauses
@@ -215,7 +228,7 @@ def build_sql(query: str, intent: str, dataset: Dataset):
         return intent, sql
 
     if intent == "trend":
-        date_col = next(iter(dataset.date_cols), None)
+        date_col = pick_date_column(dataset)
         if date_col is None:
             return "filter", f"SELECT * FROM data {where_sql} LIMIT 200;"
 

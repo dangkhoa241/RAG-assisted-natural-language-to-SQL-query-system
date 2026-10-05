@@ -2,8 +2,16 @@
 
 Modes:
   llm_zero_shot - the prompt contains the schema only
-  llm_rag       - schema + the k most similar examples from the example bank
+  llm_rag       - schema + up to k similar examples from the example bank
                   (with k=0 the prompt is identical to llm_zero_shot)
+  llm_doc_rag   - schema + the top-k business-glossary chunks for the dataset (doc_retrieval.py),
+                  or an explicit list of chunks via `docs` (used for the oracle upper bound)
+
+Example retrieval (example_style="fixed", the default):
+  - each example is shown with its own table name and schema line, never the table name `data`
+  - examples are filtered to the predicted intent (falls back to all intents if none match)
+  - examples scoring below EXAMPLE_MIN_SCORE are dropped, so a question with no close example gets none
+example_style="stage2" reproduces the Stage 2 prompts (every example used `data`, top-k by similarity only).
 
 If the LLM call fails or its SQL fails the safety check, generation falls back to the
 rule-based generator in sql_builder.py.
@@ -33,6 +41,12 @@ EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 EXAMPLE_BANK_PATH = ROOT_DIR / "eval" / "sql_benchmark" / "example_bank.jsonl"
 INDEX_CACHE_DIR = ROOT_DIR / ".rag_cache"
 DEFAULT_K = 3
+# Cosine similarity below which a bank example is not shown. Calibrated on the bank itself (leave-one-out
+# against the other schemas), not on a test set: at 0.35, 71% of bank questions still get >= 1 example.
+EXAMPLE_MIN_SCORE = 0.35
+MIN_INTENT_MATCHES = 1   # use intent-filtered examples if at least this many clear the threshold
+DOC_K = 3
+DOC_RETRIEVER = "hybrid"
 MAX_CATEGORY_VALUES_IN_PROMPT = 20
 MAX_LLM_RETRIES = 8
 
@@ -87,7 +101,7 @@ class ExampleRetriever:
         from sentence_transformers import SentenceTransformer
 
         raw = Path(bank_path).read_bytes()
-        self.examples = [json.loads(line) for line in raw.decode("utf-8").splitlines() if line.strip()]
+        self.examples = [_with_own_table(json.loads(line)) for line in raw.decode("utf-8").splitlines() if line.strip()]
         self.model = SentenceTransformer(model_name, device="cpu")
 
         key = hashlib.sha256(raw + model_name.encode()).hexdigest()[:16]
@@ -104,11 +118,32 @@ class ExampleRetriever:
     def embed(self, texts) -> np.ndarray:
         return self.model.encode(list(texts), normalize_embeddings=True, convert_to_numpy=True).astype("float32")
 
-    def search(self, question: str, k: int):
+    def search(self, question: str, k: int, intent: str = None, min_score: float = None):
+        """Up to k examples, most similar first. With `min_score`, weaker matches are dropped; with
+        `intent`, only examples of that intent are kept unless fewer than MIN_INTENT_MATCHES survive."""
         if k <= 0:
             return []
-        scores, ids = self.index.search(self.embed([question]), k)
-        return [dict(self.examples[i], score=float(s)) for s, i in zip(scores[0], ids[0]) if i >= 0]
+        if intent is None and min_score is None:
+            scores, ids = self.index.search(self.embed([question]), k)
+            return [dict(self.examples[i], score=float(s)) for s, i in zip(scores[0], ids[0]) if i >= 0]
+        scores, ids = self.index.search(self.embed([question]), len(self.examples))
+        ranked = [dict(self.examples[i], score=float(s)) for s, i in zip(scores[0], ids[0])
+                  if i >= 0 and (min_score is None or s >= min_score)]
+        if intent is not None:
+            same = [e for e in ranked if e["intent"] == intent]
+            if len(same) >= MIN_INTENT_MATCHES:
+                ranked = same
+        return ranked[:k]
+
+
+def _with_own_table(example: dict) -> dict:
+    """Add `table`, `table_schema` and `table_sql`: the example rewritten to use its own table name
+    (e.g. hr_employees) instead of `data`, so the LLM can't mistake it for the user's table."""
+    table = example["schema_name"]
+    columns = example["schema"].split(": data(", 1)[1][:-1]
+    return dict(example, table=table,
+                table_schema=f"Table `{table}` columns: {columns}",
+                table_sql=re.sub(r"\bFROM data\b", f"FROM {table}", example["sql"]))
 
 
 _retriever = None
@@ -123,17 +158,36 @@ def get_retriever() -> ExampleRetriever:
     return _retriever
 
 
-def retrieve_examples(question: str, k: int = DEFAULT_K):
-    """The top-k example-bank pairs most similar to `question` (each with a `score`)."""
-    return get_retriever().search(question, k)
+def retrieve_examples(question: str, k: int = DEFAULT_K, intent: str = None, example_style: str = "fixed"):
+    """Up to k example-bank pairs similar to `question` (each with a `score`). The "fixed" style filters
+    by `intent` and applies EXAMPLE_MIN_SCORE; "stage2" is plain top-k."""
+    if example_style == "stage2":
+        return get_retriever().search(question, k)
+    return get_retriever().search(question, k, intent=intent, min_score=EXAMPLE_MIN_SCORE)
+
+
+def retrieve_docs(question: str, dataset_name: str, k: int = DOC_K, method: str = DOC_RETRIEVER):
+    """The top-k glossary chunks for `question` from docs/glossary/<dataset_name>.md."""
+    from doc_retrieval import get_glossary_retriever
+
+    return get_glossary_retriever(dataset_name).search(question, k, method)
 
 
 # --- Prompt + LLM call -----------------------------------------------------
-def build_messages(question: str, schema_context: str, examples) -> list:
+def build_messages(question: str, schema_context: str, examples, docs=None, example_style: str = "fixed") -> list:
     parts = [f"Schema:\n{schema_context}"]
-    if examples:
+    if docs:
+        defs = "\n".join(f"- {d['term']}: {d['definition']}" for d in docs)
+        parts.append("Business definitions (when the question uses one of these terms, apply its definition "
+                     f"exactly; ignore definitions the question doesn't use):\n{defs}")
+    if examples and example_style == "stage2":
         shots = "\n\n".join(f"Question: {e['question']}\nSQL: {e['sql']}" for e in examples)
         parts.append(f"Examples from other tables (same conventions):\n{shots}")
+    elif examples:
+        shots = "\n\n".join(f"{e['table_schema']}\nQuestion: {e['question']}\nSQL: {e['table_sql']}"
+                              for e in examples)
+        parts.append("Examples written for OTHER tables. Copy their SQL patterns, but query only the table "
+                     f"`data` and its columns:\n{shots}")
     parts.append(f"Question: {question}\nSQL:")
     return [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": "\n\n".join(parts)}]
 
@@ -243,6 +297,7 @@ class SQLGeneration:
     error: str = None            # why we fell back, if we did
     rejected: bool = False       # the LLM's SQL failed the safety check
     examples: list = field(default_factory=list)
+    docs: list = field(default_factory=list)
 
 
 def _rule_based_sql(question: str, dataset: Dataset, intent: str = None) -> str:
@@ -256,12 +311,18 @@ def _rule_based_sql(question: str, dataset: Dataset, intent: str = None) -> str:
 
 def generate_sql_detailed(question: str, dataset: Dataset, mode: str = "llm_rag", k: int = DEFAULT_K,
                           intent: str = None, cache: LLMCache = None, raise_on_quota: bool = False,
-                          schema_context: str = None) -> SQLGeneration:
-    if mode not in ("llm_zero_shot", "llm_rag"):
+                          schema_context: str = None, example_style: str = "fixed", dataset_name: str = None,
+                          docs: list = None, doc_method: str = DOC_RETRIEVER) -> SQLGeneration:
+    """`intent` is the predicted intent: it filters examples (llm_rag) and drives the rule-based fallback.
+    llm_doc_rag retrieves k glossary chunks for `dataset_name`, unless `docs` gives the chunks directly."""
+    if mode not in ("llm_zero_shot", "llm_rag", "llm_doc_rag"):
         raise ValueError(f"unknown mode: {mode}")
-    examples = retrieve_examples(question, k) if mode == "llm_rag" else []
+    examples = retrieve_examples(question, k, intent, example_style) if mode == "llm_rag" else []
+    if mode == "llm_doc_rag" and docs is None:
+        docs = retrieve_docs(question, dataset_name, k, doc_method)
+    docs = docs or []
     schema_context = schema_context or build_schema_context(dataset)
-    messages = build_messages(question, schema_context, examples)
+    messages = build_messages(question, schema_context, examples, docs, example_style)
 
     try:
         llm_sql = extract_sql(call_llm(messages, cache=cache))
@@ -269,17 +330,17 @@ def generate_sql_detailed(question: str, dataset: Dataset, mode: str = "llm_rag"
         if raise_on_quota:
             raise
         return SQLGeneration(_rule_based_sql(question, dataset, intent), "fallback", mode,
-                             error="LLM daily quota exhausted", examples=examples)
+                             error="LLM daily quota exhausted", examples=examples, docs=docs)
     except LLMError as e:
         return SQLGeneration(_rule_based_sql(question, dataset, intent), "fallback", mode,
-                             error=f"LLM call failed: {e}", examples=examples)
+                             error=f"LLM call failed: {e}", examples=examples, docs=docs)
 
     try:
         safe_sql = validate_sql(llm_sql)
     except UnsafeSQLError as e:
         return SQLGeneration(_rule_based_sql(question, dataset, intent), "fallback", mode, llm_sql=llm_sql,
-                             error=f"rejected by safety check: {e}", rejected=True, examples=examples)
-    return SQLGeneration(safe_sql, "llm", mode, llm_sql=llm_sql, examples=examples)
+                             error=f"rejected by safety check: {e}", rejected=True, examples=examples, docs=docs)
+    return SQLGeneration(safe_sql, "llm", mode, llm_sql=llm_sql, examples=examples, docs=docs)
 
 
 def generate_sql(question: str, dataset: Dataset, mode: str = "llm_rag", **kwargs) -> str:
