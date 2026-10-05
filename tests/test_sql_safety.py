@@ -84,3 +84,14 @@ def test_readonly_connection_blocks_writes_even_without_validation(conn):
         ro.execute("PRAGMA query_only = OFF")
     ro.close()
     assert conn.execute("SELECT COUNT(*) FROM data").fetchone()[0] == 2  # original untouched
+
+
+@pytest.mark.parametrize("sql", ["SELECT zeroblob(200000)", "SELECT length(randomblob(200000))"])
+def test_huge_values_are_refused(conn, sql):
+    with pytest.raises(sqlite3.Error, match="too big"):
+        run_safe_query(sql, conn)
+
+
+def test_huge_printf_yields_null(conn):
+    # printf() returns NULL instead of raising when its result would exceed the length limit
+    assert run_safe_query("SELECT printf('%.*c', 200000, 'x') AS s", conn).iat[0, 0] is None

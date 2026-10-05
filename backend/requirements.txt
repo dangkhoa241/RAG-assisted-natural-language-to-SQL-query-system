@@ -1,0 +1,5 @@
+# Web API on top of the root requirements.txt (pip install -r requirements.txt -r backend/requirements.txt)
+fastapi
+uvicorn[standard]
+python-multipart
+httpx          # FastAPI TestClient

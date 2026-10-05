@@ -139,7 +139,10 @@ src/
   visualization.py              # Chart rendering + insights
   model_training.ipynb           # Notebook for training the intent model
 
-tests/                      # pytest: SQL safety checks + result-set comparison
+backend/                    # FastAPI app over src/: datasets, queries, limits (see "Running the app")
+frontend/                   # Vite + React + TypeScript + Tailwind + Recharts UI
+
+tests/                      # pytest: SQL safety, result comparison, and the API (tests/api/)
 logs/                       # Training logs
 requirements.txt           # Runtime dependencies
 requirements-train.txt     # Training / evaluation / test dependencies
@@ -818,7 +821,111 @@ only the column names and values found in the CSV change, not the code.
 
 ---
 
-## 🖥️ Running the Application
+## 🖥️ Running the app
+
+Stage 4 replaces the Streamlit UI with a **FastAPI backend** (`backend/`) and a **React frontend**
+(`frontend/`). The backend reuses the `src/` modules unchanged: the BERT intent classifier,
+`rag_sql` (LLM generation + glossary retrieval), `sql_builder` (rule-based fallback) and `sql_safety`.
+
+**Prerequisites:** Python 3.11, Node.js 20.19+ or 22.12+, and a `.env` in the repo root with `GROQ_API_KEY`
+(copy `.env.example`). Without a key the app still works: auto mode answers with the rule-based generator.
+
+**Backend** (PowerShell, from the repo root):
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt -r backend\requirements.txt
+uvicorn backend.main:create_app --factory --port 8000
+```
+
+Startup takes ~10 s (it loads the intent model and the glossary embeddings once). Check it with
+`curl http://127.0.0.1:8000/api/health`. If `intent_model/` lives elsewhere, set
+`INTENT_MODEL_PATH` in `.env` (a local path or a Hugging Face Hub repo id).
+
+**Frontend** (a second terminal):
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Open http://localhost:5173. Vite proxies `/api` to port 8000, so the browser only talks to one origin.
+
+**Tests:**
+
+```powershell
+python -m pytest tests                  # backend + src (LLM mocked, no network)
+cd frontend
+npm test                                # Vitest: chart selection + components
+npx playwright install chromium         # once
+npm run e2e                             # Playwright smoke test (mocked backend)
+```
+
+### API
+
+| Endpoint | What it does |
+|---|---|
+| `GET /api/samples` | The built-in datasets (healthcare, retail): schema, row count, example questions |
+| `POST /api/datasets` | Upload a CSV (multipart field `file`, ≤ 10 MB) → `dataset_id`, rows, schema (types + sample values) |
+| `POST /api/query` | `{dataset_id, question, mode, use_glossary}` → intent + confidence, generator (and why it fell back), SQL, columns, rows (≤ 500), suggested chart, retrieved context, latency per step |
+| `GET /api/config`, `GET /api/health` | Server defaults (mode, glossary, model, remaining budget) and status |
+
+Errors always have the shape `{"error": {"code", "message"}}`, never a stack trace.
+
+**Modes:**
+- `auto` (the default) tries the zero-shot LLM first, which Stage 2 found most accurate. It falls back to the rule-based generator when the LLM is rate-limited, over budget, fails, returns SQL the safety layer rejects, or returns SQL that errors. `generator.fallback_reason` says which.
+- `llm` never falls back; it returns an error instead.
+- `rule_based` never calls the LLM.
+
+The glossary toggle (`use_glossary`, off by default) adds retrieved business definitions to the prompt. It only applies to the sample datasets, which are the ones with a glossary. The LLM is `openai/gpt-oss-120b` on Groq.
+
+**Settings** (environment variables or `.env`; all optional, defaults in brackets):
+- `DEFAULT_MODE` [auto], `GLOSSARY_DEFAULT` [false], `LLM_STRATEGY` [zero_shot, or example_rag]
+- `LLM_RATE_LIMIT_PER_MIN` per client IP [10], `LLM_DAILY_BUDGET` for the whole server, per UTC day [500]
+- `MAX_UPLOAD_MB` [10], `MAX_ROWS` [200000], `MAX_COLUMNS` [100]
+- `MAX_SESSIONS` (uploads kept in memory) [20], `SESSION_TTL_MIN` [30]
+- `MAX_ROWS_RETURNED` [500], `FRONTEND_ORIGINS` (CORS) [http://localhost:5173]
+
+When the daily budget is used up, `auto` answers with the rule-based generator (`fallback_reason: "daily_budget"`) and `llm` returns 429.
+
+**Restyling:** every color (including the chart palette, light and dark), font, radius and the base
+spacing unit is a CSS variable in [`frontend/src/styles/theme.css`](frontend/src/styles/theme.css).
+The eight chart series colors are a color-blind-checked categorical palette; keep their order if you
+swap hues.
+
+### Security
+
+- **Uploads:**
+  - The size limit is enforced while the body streams in, not trusted from `Content-Length`.
+  - Only `.csv` is accepted. Files must parse as UTF-8 CSV, and rows (checked before parsing), columns and column names are capped.
+  - Column names containing backticks or control characters are rejected.
+  - Uploads are rate-limited per IP.
+  - Every dataset gets its own in-memory SQLite connection, so a query on one dataset can't see another (tested in `tests/api/test_security.py`).
+  - Sessions are dropped after 30 idle minutes, or when the oldest of 20 is evicted.
+  - Dataset ids are random 128-bit values. Anyone who has an id can query that dataset; there are no user accounts.
+- **SQL safety:** generated SQL, whether from the LLM or the rule-based generator, runs through three independent layers in `src/sql_safety.py`:
+  1. A static check: exactly one `SELECT`/`WITH` statement, with no write, admin, `ATTACH` or `PRAGMA` keywords.
+  2. A private read-only copy of the database, with `PRAGMA query_only`, an authorizer that denies everything except reads, and a 100 KB cap on any single value.
+  3. A 5 s timeout and a 1,000-row cap.
+- **Prompt injection through CSV contents:** the LLM prompt includes the uploaded column names and cell values (as schema context), so a malicious CSV can try to instruct the model.
+  - The design assumes the injection *succeeds*. The app trusts nothing the model writes: its SQL goes through the safety layers above, and the UI renders all text as text, never as HTML.
+  - Long values are truncated before they reach the prompt (300 characters per schema line, 12,000 in total).
+  - `tests/api/test_security.py` uploads a CSV with injection text in its cells and column names and makes the mocked LLM "obey". It returns `DROP`, `DELETE`, `UPDATE`, `INSERT`, stacked statements, `ATTACH`, `PRAGMA`, `CREATE TABLE … AS`, `load_extension`, `pragma_database_list`, an endless recursive CTE, and a 500 MB `zeroblob`. Every one is blocked: `auto` falls back to the rule-based generator, `llm` returns 422, and the data is unchanged.
+  - What injection *can* still do is make the LLM write a wrong but harmless `SELECT`. The "How it works" panel shows the SQL that ran, so you can check it.
+- **Rate limits:**
+  - LLM queries are limited per IP (sliding window), with a global daily budget on top.
+  - Both live in memory, so they reset on restart and are per process. Behind a reverse proxy, run uvicorn with `--proxy-headers --forwarded-allow-ips=<proxy>`; otherwise every client shares the proxy's IP.
+- **Other protections:**
+  - Errors: one JSON shape, a generic message for unexpected errors (details stay in the server log), and provider errors are never forwarded.
+  - CORS: only `FRONTEND_ORIGINS`, `GET`/`POST`, and no credentials.
+  - Request bodies other than uploads are capped at 16 KB.
+  - API keys stay server-side in `.env`.
+
+### Streamlit (v1 UI)
+
+The original Streamlit app is still there for now:
 
 ```bash
 pip install -r requirements.txt

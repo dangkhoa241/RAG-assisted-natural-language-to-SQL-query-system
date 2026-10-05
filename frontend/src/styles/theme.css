@@ -1,0 +1,202 @@
+/*
+ * Theme tokens: the one place to restyle the app.
+ * Every color, font, radius and the base spacing unit used by components and charts comes from here.
+ * Light values live on :root; dark values apply when the OS is dark (unless the user picked light)
+ * or when the user picked dark. Chart series colors are a CVD-validated categorical palette,
+ * stepped separately for each surface; keep their order if you swap the hues.
+ */
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+
+  /* type */
+  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-code: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+
+  /* spacing & shape (Tailwind's p-4, gap-2 … are multiples of --spacing) */
+  --spacing: 0.25rem;
+  --radius-panel: 0.75rem;
+  --radius-ctl: 0.5rem;
+  --panel-padding: 1.25rem;
+
+  /* surfaces & ink */
+  --page: #f9f9f7;
+  --surface: #fcfcfb;
+  --surface-raised: #ffffff;
+  --surface-sunken: #f0efec;
+  --ink: #0b0b0b;
+  --ink-secondary: #52514e;
+  --ink-muted: #6b6a65;
+  --border: rgba(11, 11, 11, 0.1);
+  --border-strong: rgba(11, 11, 11, 0.2);
+
+  /* accent & status */
+  --accent: #2a78d6;
+  --accent-ink: #ffffff;
+  --accent-soft: #cde2fb;
+  --focus-ring: #2a78d6;
+  --success: #006300;
+  --warning-ink: #8a5a00;
+  --warning-soft: #fdf1d6;
+  --danger: #b42828;
+  --danger-soft: #fbe3e3;
+
+  /* charts */
+  --chart-surface: #fcfcfb;
+  --chart-grid: #e1e0d9;
+  --chart-axis: #c3c2b7;
+  --chart-label: #6b6a65;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #008300;
+  --series-7: #4a3aa7;
+  --series-8: #e34948;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --surface-raised: #222220;
+    --surface-sunken: #141413;
+    --ink: #ffffff;
+    --ink-secondary: #c3c2b7;
+    --ink-muted: #9a988f;
+    --border: rgba(255, 255, 255, 0.1);
+    --border-strong: rgba(255, 255, 255, 0.2);
+    --accent: #3987e5;
+    --accent-ink: #ffffff;
+    --accent-soft: #1c3a5e;
+    --focus-ring: #6da7ec;
+    --success: #0ca30c;
+    --warning-ink: #f5c35c;
+    --warning-soft: #3a2e12;
+    --danger: #f08080;
+    --danger-soft: #3d1c1c;
+    --chart-surface: #1a1a19;
+    --chart-grid: #2c2c2a;
+    --chart-axis: #383835;
+    --chart-label: #9a988f;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --series-5: #d55181;
+    --series-6: #008300;
+    --series-7: #9085e9;
+    --series-8: #e66767;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d;
+  --surface: #1a1a19;
+  --surface-raised: #222220;
+  --surface-sunken: #141413;
+  --ink: #ffffff;
+  --ink-secondary: #c3c2b7;
+  --ink-muted: #9a988f;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --accent: #3987e5;
+  --accent-ink: #ffffff;
+  --accent-soft: #1c3a5e;
+  --focus-ring: #6da7ec;
+  --success: #0ca30c;
+  --warning-ink: #f5c35c;
+  --warning-soft: #3a2e12;
+  --danger: #f08080;
+  --danger-soft: #3d1c1c;
+  --chart-surface: #1a1a19;
+  --chart-grid: #2c2c2a;
+  --chart-axis: #383835;
+  --chart-label: #9a988f;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --series-6: #008300;
+  --series-7: #9085e9;
+  --series-8: #e66767;
+}
+
+/* Expose the tokens as Tailwind utilities (bg-surface, text-ink-muted, border-border, font-mono …). */
+@theme inline {
+  --font-sans: var(--font-ui);
+  --font-mono: var(--font-code);
+  --radius-card: var(--radius-panel);
+  --radius-control: var(--radius-ctl);
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-ink: var(--ink);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-muted: var(--ink-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-warning-ink: var(--warning-ink);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+}
+
+html {
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  padding: var(--panel-padding);
+}
+
+pre, code {
+  font-variant-ligatures: none; /* show ">=" as typed, never as a "≥" glyph */
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-sunken) 25%, var(--border) 50%, var(--surface-sunken) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+  border-radius: var(--radius-ctl);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+  * { transition: none !important; }
+}

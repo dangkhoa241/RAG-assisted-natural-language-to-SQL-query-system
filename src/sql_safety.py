@@ -2,8 +2,8 @@
 
 Three independent layers, so a gap in one is caught by the next:
   1. validate_sql()        - static check: a single SELECT/WITH statement, no write/admin keywords
-  2. readonly_connection() - a private copy of the database with PRAGMA query_only and an authorizer
-                             that only permits reads
+  2. readonly_connection() - a private copy of the database with PRAGMA query_only, an authorizer
+                             that only permits reads, and a cap on the size of any one value
   3. run_safe_query()      - a wall-clock timeout and a cap on returned rows
 """
 import re
@@ -14,6 +14,9 @@ import pandas as pd
 
 QUERY_TIMEOUT_S = 5.0
 MAX_RESULT_ROWS = 1000
+# SQLite's default is 1 GB, so one `SELECT zeroblob(...)` or printf('%.*c', ...) could exhaust memory.
+# Together with MAX_RESULT_ROWS this bounds a result at ~100 MB even if every value is maximal.
+MAX_VALUE_BYTES = 100_000
 
 FORBIDDEN_KEYWORDS = {
     "INSERT", "UPDATE", "DELETE", "REPLACE", "UPSERT", "DROP", "ALTER", "CREATE", "TRUNCATE",
@@ -85,6 +88,7 @@ def readonly_connection(source: sqlite3.Connection) -> sqlite3.Connection:
     conn = sqlite3.connect(":memory:")
     conn.deserialize(source.serialize())
     conn.execute("PRAGMA query_only = ON")
+    conn.setlimit(sqlite3.SQLITE_LIMIT_LENGTH, MAX_VALUE_BYTES)
     conn.set_authorizer(_authorizer)
     return conn
 

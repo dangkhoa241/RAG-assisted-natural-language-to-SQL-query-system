@@ -217,3 +217,6 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Stage 4 frontend: the Python-template `lib/` rule above must not hide frontend source
+!frontend/src/lib/
