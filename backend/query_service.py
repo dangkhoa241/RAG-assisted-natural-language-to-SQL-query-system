@@ -1,7 +1,8 @@
 """One question -> intent -> SQL (LLM and/or rule-based) -> safe execution -> chart suggestion.
 
-Generation, retrieval and execution all reuse src/: rag_sql.generate_sql_detailed, rag_sql.retrieve_docs /
-retrieve_examples, sql_builder.build_sql and sql_safety.run_safe_query.
+Generation, retrieval and execution all reuse src/: rag_sql.generate_sql_detailed (Groq or Cerebras),
+doc_retrieval.match_terms (via backend.glossary), rag_sql.retrieve_examples, sql_builder.build_sql and
+sql_safety.run_safe_query.
 """
 import json
 import logging
@@ -16,6 +17,7 @@ from sql_safety import MAX_RESULT_ROWS, QUERY_TIMEOUT_S, QueryTimeoutError, Unsa
 
 from backend.chart import suggest_chart
 from backend.config import Settings
+from backend.glossary import matched_definitions
 from backend.ratelimit import DailyBudget, SlidingWindowLimiter
 from backend.sessions import Session
 
@@ -110,7 +112,7 @@ class QueryService:
         t_start = time.perf_counter()
         latency = {"intent": 0, "retrieval": 0, "generation": 0, "execution": 0}
         notes = []
-        context = {"glossary": [], "examples": []}
+        context = {"glossary_checked": False, "glossary": [], "examples": []}
 
         t = time.perf_counter()
         intent = self.predict_intent(question)
@@ -119,8 +121,8 @@ class QueryService:
         if use_glossary and not session.glossary:
             notes.append("Glossary definitions exist only for the built-in sample datasets, so none were used.")
         glossary = session.glossary if use_glossary else None
-        if glossary and mode == "rule_based":
-            notes.append("The rule-based generator doesn't use glossary definitions.")
+        if glossary and mode == "rule_based" and matched_definitions(question, glossary):
+            notes.append("The question uses a glossary term, but the rule-based generator doesn't use definitions.")
 
         if mode == "rule_based":
             t = time.perf_counter()
@@ -170,7 +172,8 @@ class QueryService:
                 "used": gen.used,
                 "requested_mode": mode,
                 "llm_strategy": gen.llm_strategy,
-                "model": rag_sql.GROQ_MODEL if gen.used == "llm" else None,
+                "model": self.settings.llm_model if gen.used == "llm" else None,
+                "provider": self.settings.llm_provider if gen.used == "llm" else None,
                 "fallback_reason": gen.fallback_reason,
                 "fallback_detail": gen.fallback_detail,
                 "rejected_sql": gen.rejected_sql,
@@ -187,13 +190,16 @@ class QueryService:
         }
 
     def _generate_llm(self, question, intent, session, glossary, mode, context, latency) -> _Generated:
-        docs = None
+        docs = []
         if glossary:
-            strategy, rag_mode = "glossary_rag", "llm_doc_rag"
             t = time.perf_counter()
-            docs = rag_sql.retrieve_docs(question, glossary)
+            docs = matched_definitions(question, glossary)
             latency["retrieval"] = _ms(t)
-            context["glossary"] = [{"id": d["id"], "term": d["term"], "definition": d["definition"]} for d in docs]
+            context["glossary_checked"] = True
+            context["glossary"] = [{"id": d["id"], "term": d["term"], "matched": d["matched"],
+                                    "definition": d["definition"]} for d in docs]
+        if docs:   # no matched term: no definitions, so the prompt is the plain zero-shot (or example) one
+            strategy, rag_mode = "glossary_rag", "llm_doc_rag"
         elif self.settings.llm_strategy == "example_rag":
             strategy, rag_mode = "example_rag", "llm_rag"
         else:
@@ -202,7 +208,8 @@ class QueryService:
         t = time.perf_counter()
         result = rag_sql.generate_sql_detailed(
             question, session.dataset, mode=rag_mode, intent=intent, schema_context=session.schema_context,
-            dataset_name=glossary, docs=docs)
+            dataset_name=glossary, docs=docs or None, model=self.settings.llm_model,
+            provider=self.settings.llm_provider)
         latency["generation"] = _ms(t)
         if result.examples:
             context["examples"] = [{"question": e["question"], "sql": e.get("table_sql", e["sql"]),

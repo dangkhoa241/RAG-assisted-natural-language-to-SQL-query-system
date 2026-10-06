@@ -1,7 +1,6 @@
 # Additional dependencies needed only to train the intent classifier
 # (src/model_training.ipynb) and to run the evaluations and tests (eval/, tests/).
-# Not required to run the Streamlit app itself, so they're kept out of
-# requirements.txt to keep deployments lean.
+# Not required to run the app itself, so they're kept out of requirements.txt.
 -r requirements.txt
 scikit-learn
 joblib

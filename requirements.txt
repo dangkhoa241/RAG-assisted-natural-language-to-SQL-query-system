@@ -2,14 +2,9 @@
 # CUDA-enabled wheel, and this app never uses a GPU.
 --extra-index-url https://download.pytorch.org/whl/cpu
 
-# --- Core Application ---
-streamlit
+# --- Core ---
 pandas
 numpy
-
-# --- Visualization ---
-matplotlib
-seaborn
 
 # --- NLP / Intent Classification ---
 torch
@@ -19,7 +14,7 @@ huggingface-hub
 
 # --- Retrieval-augmented text-to-SQL ---
 groq
-openai          # Cerebras client (OpenAI-compatible API), Stage 3 benchmark only
+openai          # Cerebras client (OpenAI-compatible API)
 python-dotenv
 sentence-transformers
 faiss-cpu

@@ -1,7 +1,7 @@
 """Intent detection: a trained BERT classifier when available, with a keyword-based fallback."""
 import os
+from functools import lru_cache
 
-import streamlit as st
 from transformers import pipeline
 
 # Defaults to the local training output. Set INTENT_MODEL_PATH to a Hugging Face
@@ -10,8 +10,9 @@ from transformers import pipeline
 INTENT_MODEL_PATH = os.environ.get("INTENT_MODEL_PATH", "intent_model")
 
 
-@st.cache_resource
+@lru_cache(maxsize=1)
 def load_intent_classifier():
+    """Loaded once per process; None if the model can't be loaded (callers then use keywords)."""
     try:
         return pipeline("text-classification", model=INTENT_MODEL_PATH, tokenizer=INTENT_MODEL_PATH)
     except Exception:

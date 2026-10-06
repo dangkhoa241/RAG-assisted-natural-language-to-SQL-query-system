@@ -32,4 +32,19 @@ SAMPLES = {
             ("net revenue per fiscal year", True),
         ],
     },
+    "saas": {
+        "name": "SaaS subscriptions",
+        "description": "B2B software accounts: plans, billing cycles, MRR, seats, cancellations, support and NPS.",
+        "path": ROOT_DIR / "data" / "saas_subscriptions.csv",
+        "glossary": "saas",
+        "examples": [
+            ("total MRR by plan", False),
+            ("number of signups per month in 2024", False),
+            ("compare average MRR of monthly and annual billing", False),
+            ("list Enterprise accounts in EMEA with more than 10 support tickets", False),
+            ("what is our ARR?", True),
+            ("how many active accounts do we have?", True),
+            ("logo churn rate by plan", True),
+        ],
+    },
 }

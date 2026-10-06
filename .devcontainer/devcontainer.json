@@ -1,12 +1,15 @@
 {
-  "name": "Python 3",
+  "name": "NL to SQL (FastAPI + React)",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "22" }
+  },
   "customizations": {
     "codespaces": {
       "openFiles": [
         "README.md",
-        "src/app.py"
+        "backend/main.py"
       ]
     },
     "vscode": {
@@ -17,17 +20,22 @@
       ]
     }
   },
-  "updateContentCommand": "[ -f packages.txt ] && sudo apt update && sudo apt upgrade -y && sudo xargs apt install -y <packages.txt; [ -f requirements.txt ] && pip3 install --user -r requirements.txt; pip3 install --user streamlit; echo '✅ Packages installed and Requirements met'",
+  "updateContentCommand": "pip3 install --user -r requirements.txt -r backend/requirements.txt && (cd frontend && npm install) && echo '✅ Packages installed and Requirements met'",
   "postAttachCommand": {
-    "server": "streamlit run src/app.py --server.enableCORS false --server.enableXsrfProtection false"
+    "backend": "uvicorn backend.main:create_app --factory --port 8000",
+    "frontend": "cd frontend && npm run dev -- --host"
   },
   "portsAttributes": {
-    "8501": {
+    "5173": {
       "label": "Application",
       "onAutoForward": "openPreview"
+    },
+    "8000": {
+      "label": "API"
     }
   },
   "forwardPorts": [
-    8501
+    5173,
+    8000
   ]
 }

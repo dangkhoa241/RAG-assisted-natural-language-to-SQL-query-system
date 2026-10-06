@@ -93,23 +93,40 @@ describe("HowItWorks", () => {
     expect(screen.getByText(/Ask a question to see each step/)).toBeInTheDocument();
   });
 
-  it("explains intent, generator, context and latency", () => {
+  it("explains intent, generator, matched glossary terms and latency", () => {
     const r = makeResult({
       generator: { ...makeResult().generator, llm_strategy: "glossary_rag" },
-      context: { glossary: [{ id: "g1", term: "Repeat customer", definition: "3 or more orders." }], examples: [] },
+      context: {
+        glossary_checked: true,
+        glossary: [{ id: "g1", term: "Repeat customer", matched: "repeat buyer", definition: "3 or more orders." }],
+        examples: [],
+      },
     });
     render(<HowItWorks result={r} />);
     expect(screen.getByText("aggregate")).toBeInTheDocument();
     expect(screen.getByRole("meter", { name: "Intent confidence" })).toHaveAttribute("aria-valuenow", "97");
     expect(screen.getByText("LLM with glossary definitions")).toBeInTheDocument();
-    expect(screen.getByText("Repeat customer")).toBeInTheDocument();
+    expect(screen.getByText("openai/gpt-oss-20b · Groq")).toBeInTheDocument();
+    const terms = screen.getByRole("list", { name: "Matched glossary terms" });
+    expect(terms).toHaveTextContent("Repeat customer");
+    expect(terms).toHaveTextContent("“repeat buyer”");
+    expect(terms).toHaveTextContent("3 or more orders.");   // the definition sent is visible, not collapsed
+    expect(screen.getByText(/1 term matched/)).toBeInTheDocument();
     expect(screen.getByText("830 ms")).toBeInTheDocument();
+  });
+
+  it("says when no glossary term matched, and hides the glossary step when it was off", () => {
+    const { unmount } = render(<HowItWorks result={makeResult()} />);
+    expect(screen.getByText(/No glossary term appears in the question/)).toBeInTheDocument();
+    unmount();
+    render(<HowItWorks result={makeResult({ context: { glossary_checked: false, glossary: [], examples: [] } })} />);
+    expect(screen.queryByText(/Business glossary/)).not.toBeInTheDocument();
   });
 
   it("shows why the generator fell back", () => {
     const r = makeResult({
       generator: {
-        used: "rule_based", requested_mode: "auto", llm_strategy: "zero_shot", model: null,
+        used: "rule_based", requested_mode: "auto", llm_strategy: "zero_shot", model: null, provider: null,
         fallback_reason: "unsafe_sql",
         fallback_detail: "The LLM's SQL was rejected by the safety check (forbidden keyword(s): DROP).",
         rejected_sql: "DROP TABLE data",

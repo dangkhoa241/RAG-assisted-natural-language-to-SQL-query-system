@@ -15,7 +15,6 @@ Usage (from the repo root):  python eval/evaluate_intent.py
 """
 import json
 import sys
-import types
 from pathlib import Path
 
 import numpy as np
@@ -40,12 +39,6 @@ RANDOM_SEED = 42
 MAX_LENGTH = 64
 BATCH_SIZE = 32
 
-# src/intent.py imports streamlit only for @st.cache_resource. If streamlit isn't
-# installed, stub it with a no-op decorator so the module imports unchanged.
-try:
-    import streamlit  # noqa: F401
-except ImportError:
-    sys.modules["streamlit"] = types.SimpleNamespace(cache_resource=lambda f: f)
 sys.path.insert(0, str(ROOT_DIR / "src"))
 from intent import guess_intent_by_keywords  # noqa: E402
 

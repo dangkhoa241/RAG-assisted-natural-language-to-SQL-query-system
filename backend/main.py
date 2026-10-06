@@ -4,7 +4,6 @@ Run from the repo root:  uvicorn backend.main:create_app --factory --port 8000
 """
 import logging
 import os
-import re
 
 from fastapi import FastAPI, File, Request, UploadFile
 from fastapi.exceptions import RequestValidationError
@@ -16,6 +15,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 import rag_sql
 
 from backend.config import Settings
+from backend.glossary import glossary_chunks
 from backend.query_service import QueryError, QueryService
 from backend.ratelimit import SlidingWindowLimiter
 from backend.samples import SAMPLES
@@ -26,11 +26,6 @@ log = logging.getLogger("backend")
 _DEFAULT = object()
 MULTIPART_OVERHEAD = 64 * 1024
 MAX_JSON_BODY = 16 * 1024
-
-if re.search(r"(?<!\d)20b", rag_sql.GROQ_MODEL):
-    # The Stage 3B benchmark is spending gpt-oss-20b's Groq quota; the app must never touch it.
-    raise RuntimeError(f"refusing to start with {rag_sql.GROQ_MODEL}: use gpt-oss-120b")
-
 
 class ApiError(Exception):
     def __init__(self, status: int, code: str, message: str, headers: dict = None):
@@ -93,12 +88,9 @@ def _client_ip(request: Request) -> str:
 
 
 def _quiet_library_logs():
-    """src/intent.py uses @st.cache_resource, which warns on every call outside `streamlit run`;
-    the model loaders print progress bars. Neither belongs in an API server's log."""
-    import streamlit.logger
+    """The model loaders print progress bars, which don't belong in an API server's log."""
     from transformers.utils import logging as hf_logging
 
-    streamlit.logger.set_log_level("error")   # also applies to streamlit loggers created later
     for name in ("sentence_transformers", "httpx", "httpx2", "huggingface_hub", "datasets"):
         logging.getLogger(name).setLevel(logging.WARNING)
     hf_logging.disable_progress_bar()
@@ -109,9 +101,10 @@ def _load_intent_classifier():
     return load_intent_classifier()
 
 
-def _preload_retrieval_models():
-    for spec in SAMPLES.values():
-        rag_sql.retrieve_docs("warm up", spec["glossary"])
+def _preload_retrieval_models(settings: Settings):
+    """Glossary gating is plain text matching; only example_rag needs the embedding model and FAISS index."""
+    if settings.llm_strategy == "example_rag":
+        rag_sql.get_retriever()
 
 
 def _sample_payload(session) -> dict:
@@ -127,15 +120,17 @@ def _sample_payload(session) -> dict:
 
 
 def create_app(settings: Settings = None, intent_classifier=_DEFAULT) -> FastAPI:
-    """Builds the app and loads everything once: samples, the intent classifier and, unless
-    PRELOAD_MODELS is off, the glossary embedding model."""
+    """Builds the app and loads everything once: samples, their glossaries, the intent classifier and,
+    for example_rag (unless PRELOAD_MODELS is off), the embedding model."""
     logging.basicConfig(level=os.environ.get("LOG_LEVEL", "INFO"))
     _quiet_library_logs()
     settings = settings or Settings.from_env()
     if intent_classifier is _DEFAULT:
         intent_classifier = _load_intent_classifier() if settings.preload_models else None
     if settings.preload_models:
-        _preload_retrieval_models()
+        _preload_retrieval_models(settings)
+    for spec in SAMPLES.values():
+        glossary_chunks(spec["glossary"])   # parse each glossary once; a broken file fails at startup
 
     store = SessionStore(settings.max_sessions, settings.session_ttl_s)
     for sample_id, spec in SAMPLES.items():
@@ -203,7 +198,8 @@ def create_app(settings: Settings = None, intent_classifier=_DEFAULT) -> FastAPI
         return {
             "default_mode": settings.default_mode,
             "glossary_default": settings.glossary_default,
-            "llm_model": rag_sql.GROQ_MODEL if settings.llm_enabled else None,
+            "llm_provider": settings.llm_provider if settings.llm_enabled else None,
+            "llm_model": settings.llm_model if settings.llm_enabled else None,
             "llm_budget_remaining": service.budget.remaining,
             "max_upload_mb": settings.max_upload_bytes // (1024 * 1024),
             "max_rows_returned": settings.max_rows_returned,
@@ -244,7 +240,10 @@ def create_app(settings: Settings = None, intent_classifier=_DEFAULT) -> FastAPI
             raise ApiError(404, "dataset_not_found",
                            "That dataset isn't loaded (uploads expire after inactivity). Upload it again.")
         mode = body.mode or settings.default_mode
-        use_glossary = settings.glossary_default if body.use_glossary is None else body.use_glossary
+        if body.use_glossary is None:   # the server default only applies where there is a glossary
+            use_glossary = settings.glossary_default and session.glossary is not None
+        else:
+            use_glossary = body.use_glossary
         return service.run(session, body.question, mode, use_glossary, _client_ip(request))
 
     return app

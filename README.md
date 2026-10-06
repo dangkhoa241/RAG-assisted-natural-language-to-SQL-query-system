@@ -1,25 +1,30 @@
 # RAG-Assisted Natural Language to SQL Query System
 
-A natural-language data assistant for any tabular CSV dataset. A fine-tuned BERT intent classifier
-routes each question. Retrieval-augmented text-to-SQL then writes the query, using a Groq-hosted LLM
-grounded in schema and example context retrieved with local embeddings.
+A natural-language data assistant for any tabular CSV dataset, with a FastAPI backend and a React UI.
+A fine-tuned BERT classifier predicts each question's intent. An LLM (gpt-oss on Groq or Cerebras) writes
+the SQL from the dataset's schema. When the question uses a company-specific business term, the
+term's glossary definition is added to the prompt. Every query runs through a read-only safety layer, and
+the rule-based v1 generator answers if the LLM is unavailable or its SQL is rejected.
 
-> **Status:** 🚧 The RAG text-to-SQL pipeline and the new React UI are **in progress**. The code in this
-> repo is still the v1 system: BERT intent classifier, rule-based SQL generator and Streamlit UI,
-> documented below.
-
-**🔗 v1 live demo:** [ml-assisted-natural-language-to-sql-query-system.streamlit.app](https://ml-assisted-natural-language-to-sql-query-system.streamlit.app/)
-
-**v1 pipeline:** User question → Intent classification → SQL generation → Query execution → Table → Chart
+**Pipeline:** question → intent (BERT) → glossary terms matched in the question → LLM SQL (rule-based fallback)
+→ safety checks → table + chart, with every step shown in the "How it works" panel.
 
 <table>
   <tr>
-    <td><img src="docs/screenshots/desktop-light.png" alt="Stage 4 React UI in light mode: average billing amount by insurance provider as a bar chart, with the result table, the SQL and the How it works panel" /></td>
-    <td><img src="docs/screenshots/desktop-dark.png" alt="Stage 4 React UI in dark mode: how many repeat customers, answered with glossary definitions and shown as a big-number card" /></td>
+    <td><img src="docs/screenshots/desktop-saas-light.png" alt="Light mode, SaaS dataset: logo churn rate by plan as a bar chart. How it works shows the matched glossary term Logo churn rate and the definition sent to the LLM" /></td>
+    <td><img src="docs/screenshots/desktop-saas-dark.png" alt="Dark mode, SaaS dataset: what is our ARR, answered as a big-number card. How it works shows the matched term ARR and its definition (annual-billed, uncancelled accounts only)" /></td>
   </tr>
   <tr>
-    <td align="center"><sub>Light mode: zero-shot LLM answer, bar chart</sub></td>
-    <td align="center"><sub>Dark mode: glossary-assisted answer, number card</sub></td>
+    <td align="center"><sub>Light: "logo churn rate by plan", glossary term matched</sub></td>
+    <td align="center"><sub>Dark: "what is our ARR?", glossary term matched</sub></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/desktop-light.png" alt="Light mode, healthcare dataset: average billing amount by insurance provider as a bar chart. No glossary term matched, so the prompt was zero-shot" /></td>
+    <td><img src="docs/screenshots/desktop-dark.png" alt="Dark mode, retail dataset: how many repeat customers, answered with the Repeat customer definition and shown as a number card" /></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Light: no glossary term, zero-shot prompt</sub></td>
+    <td align="center"><sub>Dark: "repeat customers", glossary term matched</sub></td>
   </tr>
 </table>
 
@@ -33,14 +38,18 @@ This repo is v2 of the project. Its full commit history carries over from the ea
    [dangkhoa241/LLMs-powered-natural-language-query-system-for-healthcare](https://github.com/dangkhoa241/LLMs-powered-natural-language-query-system-for-healthcare)
 2. **v1:** generalized to any CSV, with a Streamlit demo:
    [dangkhoa241/ML-assisted-natural-language-to-SQL-query-system](https://github.com/dangkhoa241/ML-assisted-natural-language-to-SQL-query-system)
+   ([live demo](https://ml-assisted-natural-language-to-sql-query-system.streamlit.app/))
 
-v2 adds retrieval-augmented SQL generation and a React front end.
+v2 replaces the rule-based SQL generator with an LLM (keeping it as the fallback), adds glossary
+retrieval and benchmarks for both, and replaces the Streamlit UI with FastAPI + React.
 
 ---
 
 ## 🚀 v1: Enhanced Version
 
-The current code is an enhanced version of the original project.
+v1 was an enhanced version of the original project. Its intent classifier and rule-based SQL generator
+are still part of v2: the classifier routes every question, and the rule-based generator is the fallback
+when the LLM can't answer.
 
 ### What changed
 
@@ -74,7 +83,7 @@ The current code is an enhanced version of the original project.
   v2 revisits this with retrieval-augmented prompting and a proper benchmark. See
   "Retrieval-Augmented SQL" below.
 
-The system contains two major components:
+v1 had two components, plus a Streamlit UI that v2 replaced:
 
 ### 1. **Intent Classification Model**
 
@@ -98,25 +107,15 @@ The system contains two major components:
 * Because everything is derived from the uploaded schema instead of hardcoded column names,
   the same logic works on a healthcare dataset, a sales dataset, an HR dataset, etc.
 
-### 3. **Streamlit Web Application (`app.py`)**
-
-* Interactive UI for uploading a CSV and entering queries
-* Displays:
-
-  * 🧠 Detected intent + generated SQL
-  * 📄 Clean results table
-  * 📈 Automatically generated chart based on intent (bar / pie / line)
-  * 📝 Basic insights (highest / lowest values)
-* Fully end-to-end: from CSV upload + text input → visualization
-
 ---
 
 ## 📂 What This Project Contains
 
 ```text
 data/
-  healthcare_dataset.csv   # Example dataset (one of many CSVs the app can load)
-  retail_sales.csv         # Seeded synthetic retail dataset (second SQL-benchmark dataset)
+  healthcare_dataset.csv   # Sample dataset (healthcare admissions)
+  retail_sales.csv         # Seeded synthetic retail dataset (sample + SQL benchmark)
+  saas_subscriptions.csv   # Seeded synthetic SaaS accounts (sample + Stage 3C held-out domain)
   intent_dataset.csv       # Domain-neutral training data for the intent classifier
 
 intent_model/              # Saved fine-tuned BERT intent classification model (after training)
@@ -127,12 +126,16 @@ eval/
   evaluate_sql.py            # Text-to-SQL benchmark: rule-based vs zero-shot LLM vs RAG
   evaluate_doc_retrieval.py  # Glossary retrieval: dense vs BM25 vs hybrid
   evaluate_stage3.py         # Stage 3: glossary RAG and model-size comparison (20b on Groq, 120b on Cerebras)
+  evaluate_stage3c.py        # Stage 3C: term-gated glossary RAG, held-out SaaS domain
+  stage3c_config.json        # Frozen Stage 3C settings (the app's glossary gate reads these)
   sql_metrics.py             # Execution-accuracy result-set comparison
   sql_benchmark/
     test_questions.jsonl     # 120 benchmark questions with gold SQL (healthcare + retail)
     glossary_questions.jsonl # 60 questions that need a business definition (Stage 3)
     build_glossary_questions.py # Builds and checks the glossary benchmark
     REVIEW.md                # 15 glossary questions written out for human review
+    saas_questions.jsonl     # 60 held-out SaaS questions (Stage 3C)
+    REVIEW_SAAS.md           # The SaaS questions written out for human review
     example_bank.jsonl       # 150 question -> SQL retrieval examples on 5 other schemas
     build_example_bank.py    # Builds the bank and executes every example's SQL
     check_benchmark.py       # Gold-query and bank/test leakage checks
@@ -140,24 +143,25 @@ eval/
   results/                    # Generated metrics, tables, failures, cached LLM responses
 
 src/
-  app.py                    # Streamlit entry point — thin orchestrator wiring the pieces together
   data_context.py            # CSV loading, type inference, SQLite table setup
   intent.py                   # BERT intent classifier + keyword-based fallback
   sql_builder.py               # Schema-aware, rule-based NL -> SQL generation
   rag_sql.py                   # Retrieval-augmented NL -> SQL (Groq or Cerebras LLM + FAISS retrieval)
-  doc_retrieval.py             # Business-glossary retrieval (dense, BM25, hybrid)
+  doc_retrieval.py             # Business-glossary retrieval (dense, BM25, hybrid) and term gating
   sql_safety.py                # Read-only, single-SELECT, timeout + row-cap guardrails
-  visualization.py              # Chart rendering + insights
   model_training.ipynb           # Notebook for training the intent model
 
+docs/glossary/              # Business glossaries: healthcare.md, retail.md, saas.md
+
 backend/                    # FastAPI app over src/: datasets, queries, limits (see "Running the app")
+  glossary.py                # Term-gated glossary definitions (frozen Stage 3C settings)
 frontend/                   # Vite + React + TypeScript + Tailwind + Recharts UI
 
 tests/                      # pytest: SQL safety, result comparison, and the API (tests/api/)
 logs/                       # Training logs
 requirements.txt           # Runtime dependencies
 requirements-train.txt     # Training / evaluation / test dependencies
-.env.example               # Template for .env (GROQ_API_KEY; CEREBRAS_API_KEY for the Stage 3 benchmark)
+.env.example               # Template for .env (GROQ_API_KEY, CEREBRAS_API_KEY, optional LLM_PROVIDER / LLM_MODEL)
 ```
 
 ---
@@ -291,8 +295,8 @@ Per-class F1 on the hard set:
 
 v1's README says LLM-generated SQL was unreliable for aggregate, compare and trend queries. This stage
 tests whether that's still true, and whether retrieval fixes it, by giving an LLM retrieved
-question→SQL examples plus the relevant schema. `src/app.py` doesn't use this module yet; app
-integration is the next stage.
+question→SQL examples plus the relevant schema. (This section describes Stage 2. The app now uses
+`rag_sql` through the FastAPI backend; see "Running the app".)
 
 ### Architecture
 
@@ -638,7 +642,9 @@ top 3.
   so any serving differences, such as numerics or kernels, are confounded with model size.
 
 **Next stage:** integrate into the app with `zero_shot` as the default generator and glossary
-retrieval behind a relevance gate, using the 20b if latency or cost matters.
+retrieval behind a relevance gate, using the 20b if latency or cost matters. Stage 3C chose the gate
+(term and alias matching, tuned on the dev domains only and frozen in `eval/stage3c_config.json`), and
+the app now uses it with gpt-oss-20b as the default model; see "Running the app".
 
 ### Held-out domain (SaaS)
 
@@ -802,44 +808,52 @@ glossary retrieval.
 
 ## 🔍 What Makes This Project Unique
 
-* Combines **ML-based intent classification + a self-built, schema-aware SQL generator**
-* Works on **any uploaded CSV**, not a single fixed dataset — columns, types, and values are
-  discovered at runtime
-* Full *intent-aware* NL→SQL system
-* Automatic **chart selection** based on predicted intent
-* No external LLM API calls — everything runs locally
-* End-to-end **Streamlit application** included
-* Reproducible model training notebook
+* Works on **any uploaded CSV**: columns, types and values are discovered at runtime and sent to the LLM
+  as schema context
+* **Business definitions only when they apply:** a glossary definition is added to the prompt only if
+  its term or an alias appears in the question, so ordinary questions get the plain zero-shot prompt
+* **Measured, not assumed:** each design choice (zero-shot over example RAG, glossary context over a
+  bigger model, term gating) comes from a benchmark in this repo (see "Evaluation" and
+  "Retrieval-Augmented SQL")
+* **Safe by construction:** LLM SQL runs read-only, single-statement, time- and row-capped, with a
+  rule-based fallback
+* **Transparent:** the UI shows the intent, the generator, the matched glossary terms and the
+  definitions sent, the SQL, and per-step latency
 
 ---
 
 ## 🧠 Example Workflow
 
-**User uploads `healthcare_dataset.csv` and asks:**
+**User picks the SaaS sample dataset and asks:**
 
-> “Show emergency cases under age 40 with billing less than 12,000”
+> "What is our ARR?"
 
 **System:**
 
-1. Intent model → **filter**
-2. SQL generator → matches "emergency" to the `Admission Type` column's real values, "under age 40"
-   to the `Age` column, "billing less than 12,000" to the `Billing Amount` column
-3. Executor → runs the generated SQL against the uploaded data
-4. Result → filtered table (charts are generated for aggregate/compare/trend queries)
+1. Intent model → **count** (BERT)
+2. Glossary gate → the question contains the term *ARR*, so its definition is sent: only Annual-billed
+   accounts with no cancel date, `SUM(MRR) × 12`
+3. LLM (gpt-oss) → writes:
+   ```sql
+   SELECT SUM(`MRR`)*12 AS `ARR` FROM data WHERE `Billing Cycle`='Annual' AND `Cancel Date` IS NULL
+   ```
+4. Safety layer → one read-only `SELECT`, run on a private copy with a timeout and a row cap
+5. Result → a big-number card, with the matched term and its definition in "How it works"
 
-The same pipeline works unmodified if the user instead uploads a sales, HR, or student dataset —
-only the column names and values found in the CSV change, not the code.
+Asked "total MRR by plan" instead, no glossary term matches, nothing extra is sent, and the prompt is the
+zero-shot one. On an uploaded CSV, which has no glossary, every prompt is zero-shot.
 
 ---
 
 ## 🖥️ Running the app
 
-Stage 4 replaces the Streamlit UI with a **FastAPI backend** (`backend/`) and a **React frontend**
-(`frontend/`). The backend reuses the `src/` modules unchanged: the BERT intent classifier,
-`rag_sql` (LLM generation + glossary retrieval), `sql_builder` (rule-based fallback) and `sql_safety`.
+The app is a **FastAPI backend** (`backend/`) and a **React frontend** (`frontend/`). The backend reuses
+the `src/` modules: the BERT intent classifier, `rag_sql` (LLM generation, Groq or Cerebras),
+`doc_retrieval` (glossary term matching), `sql_builder` (rule-based fallback) and `sql_safety`.
 
 **Prerequisites:** Python 3.11, Node.js 20.19+ or 22.12+, and a `.env` in the repo root with `GROQ_API_KEY`
-(copy `.env.example`). Without a key the app still works: auto mode answers with the rule-based generator.
+(copy `.env.example`), or `CEREBRAS_API_KEY` with `LLM_PROVIDER=cerebras`. Without a key the app still
+works: auto mode answers with the rule-based generator.
 
 **Backend** (PowerShell, from the repo root):
 
@@ -850,7 +864,7 @@ pip install -r requirements.txt -r backend\requirements.txt
 uvicorn backend.main:create_app --factory --port 8000
 ```
 
-Startup takes ~10 s (it loads the intent model and the glossary embeddings once). Check it with
+Startup takes a few seconds (it loads the intent model and parses the glossaries once). Check it with
 `curl http://127.0.0.1:8000/api/health`. If `intent_model/` lives elsewhere, set
 `INTENT_MODEL_PATH` in `.env` (a local path or a Hugging Face Hub repo id).
 
@@ -867,7 +881,7 @@ Open http://localhost:5173. Vite proxies `/api` to port 8000, so the browser onl
 **Tests:**
 
 ```powershell
-python -m pytest tests                  # backend + src (LLM mocked, no network)
+python -m pytest tests                  # backend + src (LLM mocked, no network; glossary matching is real)
 cd frontend
 npm test                                # Vitest: chart selection + components
 npx playwright install chromium         # once
@@ -878,10 +892,10 @@ npm run e2e                             # Playwright smoke test (mocked backend)
 
 | Endpoint | What it does |
 |---|---|
-| `GET /api/samples` | The built-in datasets (healthcare, retail): schema, row count, example questions |
+| `GET /api/samples` | The built-in datasets (healthcare, retail, SaaS): schema, row count, example questions |
 | `POST /api/datasets` | Upload a CSV (multipart field `file`, ≤ 10 MB) → `dataset_id`, rows, schema (types + sample values) |
-| `POST /api/query` | `{dataset_id, question, mode, use_glossary}` → intent + confidence, generator (and why it fell back), SQL, columns, rows (≤ 500), suggested chart, retrieved context, latency per step |
-| `GET /api/config`, `GET /api/health` | Server defaults (mode, glossary, model, remaining budget) and status |
+| `POST /api/query` | `{dataset_id, question, mode, use_glossary}` → intent + confidence, generator (model, provider, and why it fell back), SQL, columns, rows (≤ 500), suggested chart, matched glossary terms with the definitions sent, latency per step |
+| `GET /api/config`, `GET /api/health` | Server defaults (mode, glossary, provider, model, remaining budget) and status |
 
 Errors always have the shape `{"error": {"code", "message"}}`, never a stack trace.
 
@@ -890,10 +904,26 @@ Errors always have the shape `{"error": {"code", "message"}}`, never a stack tra
 - `llm` never falls back; it returns an error instead.
 - `rule_based` never calls the LLM.
 
-The glossary toggle (`use_glossary`, off by default) adds retrieved business definitions to the prompt. It only applies to the sample datasets, which are the ones with a glossary. The LLM is `openai/gpt-oss-120b` on Groq.
+**Glossary (on by default).** The three sample datasets each have a business glossary (`docs/glossary/`).
+With `use_glossary` on, the backend looks for each glossary term and its listed aliases in the question
+(whole words, case-insensitive, plurals and hyphens ignored, `FY2024` matching `FY`) and sends only the
+definitions it finds. If no term appears, nothing is sent and the prompt is exactly the zero-shot one.
+This is the `doc_rag_gated` mode from Stage 3C: the backend reads `eval/stage3c_config.json` at startup
+and refuses to start if those frozen settings ask for something it doesn't implement. Stage 3B showed
+why the gate matters: always sending the top 3 retrieved definitions cost about 4 points on the 120
+original questions, which need none. With the gate, ordinary questions pay nothing, so the toggle
+can be on by default. The "How it works" panel lists each matched term, the word or phrase in the
+question that matched it, and the definition sent. Uploaded CSVs have no glossary.
+
+**Model.** The default is `openai/gpt-oss-20b` on Groq: in Stage 3B the 20b scored within 2.5 points of
+the 120b whenever the same context was in the prompt, and tied it when given exactly the needed
+definitions. Set `LLM_PROVIDER=cerebras` to use `gpt-oss-120b` on Cerebras instead (calls are spaced at
+least 12.5 s apart to stay under that account's 5 requests/minute), or set `LLM_MODEL` to any model ID the
+provider serves.
 
 **Settings** (environment variables or `.env`; all optional, defaults in brackets):
-- `DEFAULT_MODE` [auto], `GLOSSARY_DEFAULT` [false], `LLM_STRATEGY` [zero_shot, or example_rag]
+- `LLM_PROVIDER` [groq, or cerebras], `LLM_MODEL` [openai/gpt-oss-20b on Groq, gpt-oss-120b on Cerebras]
+- `DEFAULT_MODE` [auto], `GLOSSARY_DEFAULT` [true], `LLM_STRATEGY` when no glossary term matches [zero_shot, or example_rag]
 - `LLM_RATE_LIMIT_PER_MIN` per client IP [10], `LLM_DAILY_BUDGET` for the whole server, per UTC day [500]
 - `MAX_UPLOAD_MB` [10], `MAX_ROWS` [200000], `MAX_COLUMNS` [100]
 - `MAX_SESSIONS` (uploads kept in memory) [20], `SESSION_TTL_MIN` [30]
@@ -950,18 +980,10 @@ The schema starts collapsed so the question box stays near the top.
   - Request bodies other than uploads are capped at 16 KB.
   - API keys stay server-side in `.env`.
 
-### Streamlit (v1 UI)
+### Training the intent classifier
 
-The original Streamlit app is still there for now:
-
-```bash
-pip install -r requirements.txt
-streamlit run src/app.py
-```
-
-Training the intent classifier (optional — the app falls back to keyword-based intent detection
-without it) needs a few extra dependencies, kept in a separate file so the deployed app doesn't
-have to install them:
+Optional: without a trained model the app falls back to keyword-based intent detection. Training needs a
+few extra dependencies, kept in a separate file so the app doesn't have to install them:
 
 ```bash
 pip install -r requirements-train.txt
@@ -972,21 +994,11 @@ jupyter notebook src/model_training.ipynb
 
 ## ☁️ Deployment
 
-The app is deployable as-is on [Streamlit Community Cloud](https://streamlit.io/cloud) (free,
-connects directly to a GitHub repo):
+The backend is a standard ASGI app (`uvicorn backend.main:create_app --factory`), and `npm run build` in
+`frontend/` produces static files for any static host. Set `FRONTEND_ORIGINS` to the frontend's URL, and
+behind a reverse proxy run uvicorn with `--proxy-headers` (see "Security").
 
-1. Push this repo to GitHub.
-2. On [share.streamlit.io](https://share.streamlit.io), create a new app pointing at this repo,
-   branch `main`, and main file path `src/app.py`.
-3. Deploy. `intent_model/` is gitignored (it's a ~400MB trained model, not meant for git), so the
-   deployed app runs on the keyword-based intent fallback out of the box — no extra setup required.
-
-To have the deployed app use the actual trained BERT classifier instead of the fallback:
-
-1. Push the contents of `intent_model/` to a model repo on the
-   [Hugging Face Hub](https://huggingface.co/new) (e.g. `your-username/intent-model`).
-2. In the Streamlit Cloud app's settings, add a secret/environment variable
-   `INTENT_MODEL_PATH=your-username/intent-model`.
-3. Redeploy — `src/intent.py` reads that variable and loads the model from the Hub instead of the
-   local `intent_model/` folder.
-
+`intent_model/` is gitignored (it's a ~400 MB trained model). To use it on a server, push the folder to
+a model repo on the [Hugging Face Hub](https://huggingface.co/new) and set
+`INTENT_MODEL_PATH=your-username/intent-model`; `src/intent.py` then loads it from the Hub. Without it,
+the app uses the keyword-based intent fallback.

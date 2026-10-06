@@ -1,8 +1,10 @@
-"""Pure units: chart suggestion, rate limiting, the daily budget and session expiry."""
+"""Pure units: chart suggestion, rate limiting, the daily budget, session expiry, settings and glossary gating."""
 import pandas as pd
 import pytest
 
 from backend.chart import suggest_chart
+from backend.config import Settings
+from backend.glossary import GATE, matched_definitions
 from backend.ratelimit import DailyBudget, SlidingWindowLimiter
 from backend.sessions import SessionStore, load_session_dataset, make_session
 
@@ -93,3 +95,39 @@ def test_upload_connection_is_usable_from_another_thread():
     t = threading.Thread(target=lambda: out.append(session.dataset.conn.execute("SELECT COUNT(*) FROM data").fetchone()))
     t.start(); t.join()
     assert out == [(2,)]
+
+
+# --- settings and glossary gating ------------------------------------------------------------
+def test_llm_provider_and_model_settings(monkeypatch):
+    for name in ("LLM_PROVIDER", "LLM_MODEL", "CEREBRAS_API_KEY"):
+        monkeypatch.delenv(name, raising=False)
+    monkeypatch.setenv("GROQ_API_KEY", "test")
+    s = Settings.from_env()
+    assert (s.llm_provider, s.llm_model, s.llm_enabled, s.glossary_default) == ("groq", "openai/gpt-oss-20b", True, True)
+
+    monkeypatch.setenv("LLM_MODEL", "openai/gpt-oss-120b")       # the .env override used during development
+    assert Settings.from_env().llm_model == "openai/gpt-oss-120b"
+
+    monkeypatch.delenv("LLM_MODEL")
+    monkeypatch.setenv("LLM_PROVIDER", "cerebras")
+    s = Settings.from_env()
+    assert (s.llm_provider, s.llm_model, s.llm_enabled) == ("cerebras", "gpt-oss-120b", False)   # no Cerebras key
+
+    monkeypatch.setenv("LLM_PROVIDER", "openai")
+    with pytest.raises(ValueError):
+        Settings.from_env()
+
+
+def test_gate_uses_the_frozen_stage3c_settings():
+    assert GATE["doc_method"] == "gated" and GATE["max_chunks"] is None and GATE["retrieval_fallback"] is None
+
+
+@pytest.mark.parametrize("question, glossary, expected", [
+    ("what is our ARR?", "saas", [("ss_arr", "ARR")]),
+    ("how many active accounts do we have?", "saas", [("ss_active_account", "Active account")]),
+    ("total MRR by plan", "saas", []),
+    ("revenue in FY2024", "retail", [("rt_fiscal_year", "FY")]),                     # FY<year> matches FY
+    ("how many high-cost admissions were there", "healthcare", [("hc_high_cost", "High-cost admission")]),
+])
+def test_matched_definitions(question, glossary, expected):
+    assert [(d["id"], d["matched"]) for d in matched_definitions(question, glossary)] == expected

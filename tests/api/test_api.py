@@ -15,13 +15,16 @@ def ask(client, question="how many patients by gender", dataset_id="healthcare",
 def test_health_and_config(client):
     assert client.get("/api/health").json() == {"status": "ok", "intent_model": "bert", "llm_configured": True}
     cfg = client.get("/api/config").json()
-    assert cfg["default_mode"] == "auto" and cfg["glossary_default"] is False
-    assert cfg["llm_model"] == "openai/gpt-oss-120b"
+    assert cfg["default_mode"] == "auto" and cfg["glossary_default"] is True
+    assert cfg["llm_provider"] == "groq" and cfg["llm_model"] == "openai/gpt-oss-20b"
 
 
-def test_samples_list_both_datasets_with_schema_and_examples(client):
+def test_samples_list_all_three_datasets_with_schema_and_examples(client):
     samples = {s["dataset_id"]: s for s in client.get("/api/samples").json()["samples"]}
-    assert set(samples) == {"healthcare", "retail"}
+    assert set(samples) == {"healthcare", "retail", "saas"}
+    saas = samples["saas"]
+    assert saas["rows"] == 1200 and saas["has_glossary"] is True
+    assert any(e["needs_glossary"] for e in saas["example_questions"])
     hc = samples["healthcare"]
     assert hc["rows"] > 0 and hc["has_glossary"] is True and hc["example_questions"]
     types = {c["name"]: c["type"] for c in hc["schema"]}
@@ -41,8 +44,12 @@ def test_auto_uses_llm_zero_shot_by_default(client, llm, docs):
     assert body["columns"][1]["type"] == "number"
     assert body["chart"]["type"] in ("pie", "bar") and body["chart"]["x"] == "Gender"
     assert set(body["latency_ms"]) == {"intent", "retrieval", "generation", "execution", "total"}
-    assert docs == []                                          # glossary is off by default
-    assert llm.calls[0]["model"] == "openai/gpt-oss-120b"
+    # the glossary is on by default, but no term matches, so nothing is sent
+    assert docs == [("how many patients by gender", "healthcare", [])]
+    assert body["context"]["glossary_checked"] is True and body["context"]["glossary"] == []
+    assert "Business definitions" not in llm.last_prompt
+    assert llm.calls[0]["model"] == "openai/gpt-oss-20b" and llm.calls[0]["provider"] == "groq"
+    assert body["generator"]["model"] == "openai/gpt-oss-20b" and body["generator"]["provider"] == "groq"
 
 
 def test_auto_falls_back_when_llm_fails_without_leaking_the_error(client, llm):
@@ -98,13 +105,38 @@ def test_server_default_mode_applies_when_mode_is_omitted(make_client, llm):
 
 
 # --- glossary ------------------------------------------------------------------------------
-def test_glossary_toggle_retrieves_definitions_for_samples(client, llm, docs):
+def test_glossary_sends_only_matched_definitions(client, llm, docs):
     llm.reply = "SELECT COUNT(*) AS n FROM data"
     body = ask(client, "how many repeat customers", dataset_id="retail", use_glossary=True).json()
-    assert docs == [("how many repeat customers", "retail")]
+    assert docs == [("how many repeat customers", "retail", ["rt_repeat_customer"])]
     assert body["generator"]["llm_strategy"] == "glossary_rag"
-    assert body["context"]["glossary"][0]["term"] == "Repeat customer"
-    assert "Repeat customer: 3 or more orders." in llm.last_prompt
+    [d] = body["context"]["glossary"]
+    assert d["term"] == "Repeat customer" and d["matched"] == "Repeat customer"
+    assert d["definition"].startswith("A customer with 3 or more orders.")
+    assert "- Repeat customer: A customer with 3 or more orders." in llm.last_prompt
+    assert "Net revenue" not in llm.last_prompt                 # unmatched terms are never sent
+
+
+def test_glossary_matches_aliases_and_several_terms(client, llm):
+    llm.reply = "SELECT COUNT(*) AS n FROM data"
+    body = ask(client, "how many churned customers per FY", dataset_id="saas").json()
+    assert [(d["id"], d["matched"]) for d in body["context"]["glossary"]] == [
+        ("ss_churned", "churned customer"), ("ss_fiscal_year", "FY")]
+
+
+def test_glossary_without_a_match_sends_the_zero_shot_prompt(client, llm):
+    llm.reply = "SELECT SUM(`MRR`) AS mrr FROM data"
+    ask(client, "total MRR", dataset_id="saas", use_glossary=False)
+    off = llm.last_prompt
+    body = ask(client, "total MRR", dataset_id="saas", use_glossary=True).json()
+    assert llm.last_prompt == off
+    assert body["generator"]["llm_strategy"] == "zero_shot" and body["context"]["glossary_checked"] is True
+
+
+def test_glossary_off_skips_matching(client, llm, docs):
+    body = ask(client, "how many repeat customers", dataset_id="retail", use_glossary=False).json()
+    assert docs == [] and body["context"]["glossary_checked"] is False
+    assert body["generator"]["llm_strategy"] == "zero_shot"
 
 
 def test_glossary_toggle_is_ignored_for_uploads(client, llm, docs):
@@ -117,9 +149,28 @@ def test_glossary_toggle_is_ignored_for_uploads(client, llm, docs):
 
 
 def test_glossary_default_is_configurable(make_client, docs):
-    client = make_client(glossary_default=True)
-    ask(client, dataset_id="retail")
-    assert len(docs) == 1
+    client = make_client(glossary_default=False)
+    ask(client, "how many repeat customers", dataset_id="retail")
+    assert docs == []
+
+
+def test_glossary_default_is_silent_for_uploads(client, llm, docs):
+    ds = upload(client, SMALL_CSV).json()["dataset_id"]
+    body = ask(client, "total sales by region", dataset_id=ds).json()
+    assert docs == [] and body["notes"] == []
+
+
+def test_rule_based_mode_notes_an_unused_glossary_term(client, llm):
+    body = ask(client, "how many repeat customers", dataset_id="retail", mode="rule_based").json()
+    assert llm.calls == [] and any("glossary term" in n for n in body["notes"])
+    assert ask(client, "total revenue by region", dataset_id="retail", mode="rule_based").json()["notes"] == []
+
+
+def test_provider_and_model_come_from_settings(make_client, llm):
+    client = make_client(llm_provider="cerebras", llm_model="gpt-oss-120b")
+    gen = ask(client).json()["generator"]
+    assert llm.calls[0]["provider"] == "cerebras" and llm.calls[0]["model"] == "gpt-oss-120b"
+    assert gen["provider"] == "cerebras" and gen["model"] == "gpt-oss-120b"
 
 
 # --- limits ----------------------------------------------------------------------------------
@@ -261,13 +312,9 @@ def test_security_headers(client):
     assert r.headers["X-Content-Type-Options"] == "nosniff" and r.headers["Cache-Control"] == "no-store"
 
 
-def test_never_uses_gpt_oss_20b():
-    assert "20b" not in rag_sql.GROQ_MODEL.replace("120b", "")
-
-
 def test_execution_fallback_keeps_the_llm_strategy(client, llm, docs):
     llm.reply = "SELECT nope FROM data"
-    gen = ask(client, dataset_id="retail", use_glossary=True).json()["generator"]
+    gen = ask(client, "how many repeat customers", dataset_id="retail", use_glossary=True).json()["generator"]
     assert gen["fallback_reason"] == "execution_error" and gen["llm_strategy"] == "glossary_rag"
 
 

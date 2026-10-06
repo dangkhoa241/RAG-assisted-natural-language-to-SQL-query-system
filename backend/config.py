@@ -2,8 +2,11 @@
 
 Every variable is optional:
   DEFAULT_MODE              auto | llm | rule_based                     (auto)
-  GLOSSARY_DEFAULT          whether the glossary toggle starts on       (false)
-  LLM_STRATEGY              zero_shot | example_rag, without glossary   (zero_shot)
+  GLOSSARY_DEFAULT          whether the glossary toggle starts on       (true)
+  LLM_STRATEGY              zero_shot | example_rag, when no glossary term matches (zero_shot)
+  LLM_PROVIDER              groq | cerebras                             (groq)
+  LLM_MODEL                 the provider's model ID                     (groq: openai/gpt-oss-20b,
+                                                                         cerebras: gpt-oss-120b)
   LLM_RATE_LIMIT_PER_MIN    LLM queries per client IP per minute        (10)
   LLM_DAILY_BUDGET          LLM queries per UTC day, all clients        (500)
   LLM_MAX_RETRIES           attempts per LLM call on rate limits         (2)
@@ -15,12 +18,15 @@ Every variable is optional:
   SESSION_TTL_MIN           idle minutes before an upload is dropped    (30)
   MAX_ROWS_RETURNED         result rows sent to the client              (500)
   FRONTEND_ORIGINS          comma-separated CORS origins                (http://localhost:5173)
-  PRELOAD_MODELS            load the intent and embedding models at startup (true)
+  PRELOAD_MODELS            load the intent model (and, for example_rag, the embedding model) at startup (true)
+
+The provider's API key comes from GROQ_API_KEY or CEREBRAS_API_KEY.
 """
 import os
 from dataclasses import dataclass
 
 from dotenv import load_dotenv
+from rag_sql import PROVIDER_API_KEYS
 
 from backend import ROOT_DIR
 
@@ -28,6 +34,10 @@ load_dotenv(ROOT_DIR / ".env")
 
 MODES = ("auto", "llm", "rule_based")
 LLM_STRATEGIES = ("zero_shot", "example_rag")
+PROVIDERS = tuple(PROVIDER_API_KEYS)
+# Stage 3 found gpt-oss-20b matches gpt-oss-120b once the right definitions are in the prompt.
+# Cerebras doesn't serve the 20b, so its default is the 120b.
+DEFAULT_MODELS = {"groq": "openai/gpt-oss-20b", "cerebras": "gpt-oss-120b"}
 
 
 def _bool(name: str, default: bool) -> bool:
@@ -50,8 +60,10 @@ def _choice(name: str, default: str, allowed: tuple) -> str:
 @dataclass
 class Settings:
     default_mode: str = "auto"
-    glossary_default: bool = False
+    glossary_default: bool = True
     llm_strategy: str = "zero_shot"
+    llm_provider: str = "groq"
+    llm_model: str = DEFAULT_MODELS["groq"]
     llm_rate_limit_per_min: int = 10
     llm_daily_budget: int = 500
     llm_max_retries: int = 2
@@ -64,15 +76,18 @@ class Settings:
     max_rows_returned: int = 500
     frontend_origins: tuple = ("http://localhost:5173",)
     preload_models: bool = True
-    llm_enabled: bool = True     # False when no GROQ_API_KEY is set: auto mode then always uses rule_based
+    llm_enabled: bool = True     # False when the provider's API key isn't set: auto mode then always uses rule_based
 
     @classmethod
     def from_env(cls) -> "Settings":
         origins = os.environ.get("FRONTEND_ORIGINS", "http://localhost:5173")
+        provider = _choice("LLM_PROVIDER", "groq", PROVIDERS)
         return cls(
             default_mode=_choice("DEFAULT_MODE", "auto", MODES),
-            glossary_default=_bool("GLOSSARY_DEFAULT", False),
+            glossary_default=_bool("GLOSSARY_DEFAULT", True),
             llm_strategy=_choice("LLM_STRATEGY", "zero_shot", LLM_STRATEGIES),
+            llm_provider=provider,
+            llm_model=os.environ.get("LLM_MODEL", "").strip() or DEFAULT_MODELS[provider],
             llm_rate_limit_per_min=_int("LLM_RATE_LIMIT_PER_MIN", 10),
             llm_daily_budget=_int("LLM_DAILY_BUDGET", 500),
             llm_max_retries=_int("LLM_MAX_RETRIES", 2),
@@ -85,5 +100,5 @@ class Settings:
             max_rows_returned=_int("MAX_ROWS_RETURNED", 500),
             frontend_origins=tuple(o.strip() for o in origins.split(",") if o.strip()),
             preload_models=_bool("PRELOAD_MODELS", True),
-            llm_enabled=bool(os.environ.get("GROQ_API_KEY")),
+            llm_enabled=bool(os.environ.get(PROVIDER_API_KEYS[provider])),
         )

@@ -30,6 +30,7 @@ export interface DatasetInfo {
 export interface AppConfig {
   default_mode: Mode;
   glossary_default: boolean;
+  llm_provider: "groq" | "cerebras" | null;
   llm_model: string | null;
   llm_budget_remaining: number;
   max_upload_mb: number;
@@ -58,6 +59,7 @@ export interface QueryResult {
     requested_mode: Mode;
     llm_strategy: "zero_shot" | "example_rag" | "glossary_rag" | null;
     model: string | null;
+    provider: "groq" | "cerebras" | null;
     fallback_reason: string | null;
     fallback_detail: string | null;
     rejected_sql: string | null;
@@ -69,7 +71,10 @@ export interface QueryResult {
   truncated: boolean;
   chart: ChartSpec;
   context: {
-    glossary: { id: string; term: string; definition: string }[];
+    /** True when the question was checked against the dataset's glossary (only matched terms are sent). */
+    glossary_checked: boolean;
+    /** The definitions sent to the LLM; `matched` is the term or alias found in the question. */
+    glossary: { id: string; term: string; matched: string; definition: string }[];
     examples: { question: string; sql: string; score: number }[];
   };
   latency_ms: { intent: number; retrieval: number; generation: number; execution: number; total: number };

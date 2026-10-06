@@ -6,7 +6,7 @@ import App from "../App";
 import { makeResult, SAMPLE } from "./fixtures";
 
 const CONFIG = {
-  default_mode: "auto", glossary_default: false, llm_model: "openai/gpt-oss-120b",
+  default_mode: "auto", glossary_default: true, llm_provider: "groq", llm_model: "openai/gpt-oss-20b",
   llm_budget_remaining: 500, max_upload_mb: 10, max_rows_returned: 500,
 };
 
@@ -52,18 +52,19 @@ describe("App", () => {
     expect(screen.getByRole("region", { name: "Result table" })).toHaveTextContent("East");
     expect(screen.getByRole("region", { name: "SQL" })).toHaveTextContent("SUM(`Revenue`)");
     expect(screen.getByLabelText("Ask a question about the data")).toHaveValue("total revenue by region");
-    expect(lastQueryBody()).toEqual({ dataset_id: "retail", question: "total revenue by region", mode: "auto", use_glossary: false });
+    expect(lastQueryBody()).toEqual({ dataset_id: "retail", question: "total revenue by region", mode: "auto", use_glossary: true });
   });
 
-  it("sends the chosen mode and glossary toggle", async () => {
+  it("sends the chosen mode and lets the user turn the glossary off", async () => {
     const user = userEvent.setup();
     render(<App />);
     await user.click(await screen.findByRole("radio", { name: /Retail orders/ }));
     await user.selectOptions(screen.getByRole("combobox", { name: /Mode/ }), "llm");
+    expect(screen.getByLabelText("Use business glossary")).toBeChecked();   // on by default
     await user.click(screen.getByLabelText("Use business glossary"));
     await user.type(screen.getByLabelText("Ask a question about the data"), "how many repeat customers{Enter}");
     await screen.findByTestId("chart-bar");
-    expect(lastQueryBody()).toMatchObject({ mode: "llm", use_glossary: true, question: "how many repeat customers" });
+    expect(lastQueryBody()).toMatchObject({ mode: "llm", use_glossary: false, question: "how many repeat customers" });
   });
 
   it("shows the server's error with a retry countdown when rate-limited", async () => {

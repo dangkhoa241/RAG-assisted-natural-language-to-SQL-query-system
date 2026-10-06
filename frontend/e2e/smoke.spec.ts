@@ -18,7 +18,7 @@ const RESULT = {
   question: "average billing amount by insurance provider",
   intent: { label: "aggregate", confidence: 0.99, source: "bert" },
   generator: {
-    used: "llm", requested_mode: "auto", llm_strategy: "zero_shot", model: "openai/gpt-oss-120b",
+    used: "llm", requested_mode: "auto", llm_strategy: "zero_shot", model: "openai/gpt-oss-20b", provider: "groq",
     fallback_reason: null, fallback_detail: null, rejected_sql: null,
   },
   sql: "SELECT `Insurance Provider`, AVG(`Billing Amount`) AS avg_billing FROM data GROUP BY `Insurance Provider`",
@@ -27,14 +27,14 @@ const RESULT = {
   row_count: 4,
   truncated: false,
   chart: { type: "bar", x: "Insurance Provider", y: "avg_billing", reason: "categories × one metric" },
-  context: { glossary: [], examples: [] },
+  context: { glossary_checked: true, glossary: [], examples: [] },
   latency_ms: { intent: 30, retrieval: 0, generation: 900, execution: 2, total: 940 },
   notes: [],
 };
 
 test("sample dataset → question → chart and table", async ({ page }) => {
   await page.route("**/api/config", (r) => r.fulfill({ json: {
-    default_mode: "auto", glossary_default: false, llm_model: "openai/gpt-oss-120b",
+    default_mode: "auto", glossary_default: true, llm_provider: "groq", llm_model: "openai/gpt-oss-20b",
     llm_budget_remaining: 500, max_upload_mb: 10, max_rows_returned: 500,
   } }));
   await page.route("**/api/samples", (r) => r.fulfill({ json: { samples: [SAMPLE] } }));
@@ -62,7 +62,8 @@ test("sample dataset → question → chart and table", async ({ page }) => {
 
   await expect(page.getByRole("region", { name: "SQL" })).toContainText("AVG(`Billing Amount`)");
   await expect(page.getByText("LLM zero-shot")).toBeVisible();
-  expect(sent).toEqual({ dataset_id: "healthcare", question: "average billing amount by insurance provider", mode: "auto", use_glossary: false });
+  await expect(page.getByText("No glossary term appears in the question, so no definitions were sent.")).toBeVisible();
+  expect(sent).toEqual({ dataset_id: "healthcare", question: "average billing amount by insurance provider", mode: "auto", use_glossary: true });
 
   await page.getByLabel("Chart type").selectOption("pie");
   await expect(page.getByTestId("chart-pie")).toBeVisible();

@@ -2,6 +2,7 @@ import type { QueryResult } from "../api/types";
 
 const STRATEGY = { zero_shot: "zero-shot", example_rag: "with retrieved examples", glossary_rag: "with glossary definitions" } as const;
 const STEPS = ["intent", "retrieval", "generation", "execution"] as const;
+const PROVIDER = { groq: "Groq", cerebras: "Cerebras" } as const;
 const FALLBACK_TITLE: Record<string, string> = {
   daily_budget: "Daily LLM budget used up",
   rate_limited: "LLM rate limit reached",
@@ -27,7 +28,7 @@ export function HowItWorks({ result }: { result: QueryResult | null }) {
       <h2 id="how-heading" className="text-xs font-semibold tracking-wide text-ink-muted uppercase">How it works</h2>
       {!result ? (
         <p className="text-sm text-ink-secondary">
-          Ask a question to see each step: the predicted intent, which generator wrote the SQL, any retrieved context, and how long each step took.
+          Ask a question to see each step: the predicted intent, which generator wrote the SQL, which business-glossary terms matched, and how long each step took.
         </p>
       ) : (
         <Details result={result} />
@@ -40,6 +41,7 @@ function Details({ result }: { result: QueryResult }) {
   const { intent, generator: gen, context, latency_ms: lat } = result;
   const pct = intent.confidence === null ? null : Math.round(intent.confidence * 100);
   const maxStep = Math.max(1, ...STEPS.map((s) => lat[s]));
+  let step = 2;
 
   return (
     <dl className="flex flex-col gap-4">
@@ -62,7 +64,11 @@ function Details({ result }: { result: QueryResult }) {
         <span className="font-medium">
           {gen.used === "llm" ? `LLM ${STRATEGY[gen.llm_strategy ?? "zero_shot"]}` : "Rule-based"}
         </span>
-        {gen.model && <span className="block font-mono text-xs text-ink-muted">{gen.model}</span>}
+        {gen.model && (
+          <span className="block font-mono text-xs text-ink-muted">
+            {gen.model}{gen.provider && ` · ${PROVIDER[gen.provider]}`}
+          </span>
+        )}
         {gen.fallback_reason && (
           <div role="note" className="mt-2 rounded-[var(--radius-ctl)] bg-warning-soft px-3 py-2 text-xs text-ink">
             <p className="font-semibold text-warning-ink">↳ Fell back: {FALLBACK_TITLE[gen.fallback_reason] ?? gen.fallback_reason}</p>
@@ -77,29 +83,42 @@ function Details({ result }: { result: QueryResult }) {
         )}
       </Row>
 
-      {(context.glossary.length > 0 || context.examples.length > 0) && (
-        <Row label="3 · Retrieved context">
-          {context.glossary.length > 0 && (
-            <ul className="flex flex-col gap-1.5">
-              {context.glossary.map((d) => (
-                <li key={d.id}>
-                  <details>
-                    <summary className="cursor-pointer font-medium">{d.term}</summary>
-                    <p className="mt-0.5 text-xs text-ink-secondary">{d.definition}</p>
-                  </details>
-                </li>
-              ))}
-            </ul>
+      {context.glossary_checked && (
+        <Row label={`${++step} · Business glossary`}>
+          {context.glossary.length > 0 ? (
+            <>
+              <p className="text-xs text-ink-secondary">
+                {context.glossary.length === 1 ? "1 term" : `${context.glossary.length} terms`} matched in the question. Only these definitions were sent:
+              </p>
+              <ul className="mt-1.5 flex flex-col gap-2" aria-label="Matched glossary terms">
+                {context.glossary.map((d) => (
+                  <li key={d.id} className="rounded-[var(--radius-ctl)] border border-border px-2.5 py-2">
+                    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                      <span className="font-medium">{d.term}</span>
+                      <span className="rounded bg-accent-soft px-1.5 py-0.5 font-mono text-[11px] text-ink" title="Matched in the question">
+                        “{d.matched}”
+                      </span>
+                    </div>
+                    <p className="mt-1 text-xs leading-relaxed text-ink-secondary">{d.definition}</p>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <p className="text-xs text-ink-secondary">No glossary term appears in the question, so no definitions were sent.</p>
           )}
-          {context.examples.length > 0 && (
-            <ul className="flex flex-col gap-1.5">
-              {context.examples.map((e) => (
-                <li key={e.question} className="text-xs">
-                  <span className="text-ink">{e.question}</span> <span className="tabular text-ink-muted">({e.score.toFixed(2)})</span>
-                </li>
-              ))}
-            </ul>
-          )}
+        </Row>
+      )}
+
+      {context.examples.length > 0 && (
+        <Row label={`${++step} · Retrieved examples`}>
+          <ul className="flex flex-col gap-1.5">
+            {context.examples.map((e) => (
+              <li key={e.question} className="text-xs">
+                <span className="text-ink">{e.question}</span> <span className="tabular text-ink-muted">({e.score.toFixed(2)})</span>
+              </li>
+            ))}
+          </ul>
         </Row>
       )}
 

@@ -5,7 +5,7 @@ export function makeResult(overrides: Partial<QueryResult> = {}): QueryResult {
     question: "total revenue by region",
     intent: { label: "aggregate", confidence: 0.97, source: "bert" },
     generator: {
-      used: "llm", requested_mode: "auto", llm_strategy: "zero_shot", model: "openai/gpt-oss-120b",
+      used: "llm", requested_mode: "auto", llm_strategy: "zero_shot", model: "openai/gpt-oss-20b", provider: "groq",
       fallback_reason: null, fallback_detail: null, rejected_sql: null,
     },
     sql: "SELECT `Region`, SUM(`Revenue`) AS total FROM data GROUP BY `Region`",
@@ -14,7 +14,7 @@ export function makeResult(overrides: Partial<QueryResult> = {}): QueryResult {
     row_count: 3,
     truncated: false,
     chart: { type: "bar", x: "Region", y: "total", reason: "categories × one metric" },
-    context: { glossary: [], examples: [] },
+    context: { glossary_checked: true, glossary: [], examples: [] },
     latency_ms: { intent: 20, retrieval: 0, generation: 800, execution: 3, total: 830 },
     notes: [],
     ...overrides,

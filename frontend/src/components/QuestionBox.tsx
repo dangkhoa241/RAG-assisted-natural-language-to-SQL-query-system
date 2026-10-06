@@ -68,7 +68,7 @@ export function QuestionBox(p: Props) {
             </select>
             <span className="hidden text-xs text-ink-muted md:inline">{MODES.find((m) => m.value === p.mode)?.hint}</span>
           </label>
-          <label className={`flex items-center gap-2 ${p.glossaryAvailable ? "" : "opacity-60"}`} title={p.glossaryAvailable ? "" : "Only the sample datasets have a glossary"}>
+          <label className={`flex items-center gap-2 ${p.glossaryAvailable ? "" : "opacity-60"}`} title={p.glossaryAvailable ? "Sends a definition only when its term appears in the question" : "Only the sample datasets have a glossary"}>
             <input
               type="checkbox"
               checked={p.useGlossary && p.glossaryAvailable}

@@ -39,6 +39,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 # --- Configuration ---------------------------------------------------------
 GROQ_MODEL = "openai/gpt-oss-120b"
 DEFAULT_PROVIDER = "groq"
+PROVIDER_API_KEYS = {"groq": "GROQ_API_KEY", "cerebras": "CEREBRAS_API_KEY"}   # .env variable per provider
 CEREBRAS_BASE_URL = "https://api.cerebras.ai/v1"
 # Minimum seconds between request starts, per provider (the Cerebras account allows 5 requests/min).
 MIN_REQUEST_INTERVAL_S = {"cerebras": 12.5}

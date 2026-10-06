@@ -13,7 +13,7 @@ import { EmptyState, ErrorAlert, ResultsSkeleton } from "./components/StateViews
 import { useTheme } from "./hooks/useTheme";
 
 const FALLBACK_CONFIG: AppConfig = {
-  default_mode: "auto", glossary_default: false, llm_model: null, llm_budget_remaining: 0, max_upload_mb: 10, max_rows_returned: 500,
+  default_mode: "auto", glossary_default: true, llm_provider: null, llm_model: null, llm_budget_remaining: 0, max_upload_mb: 10, max_rows_returned: 500,
 };
 
 interface Failure {
@@ -39,7 +39,7 @@ export default function App() {
 
   const [question, setQuestion] = useState("");
   const [mode, setMode] = useState<Mode>("auto");
-  const [useGlossary, setUseGlossary] = useState(false);
+  const [useGlossary, setUseGlossary] = useState(true);
   const [result, setResult] = useState<QueryResult | null>(null);
   const [resultKey, setResultKey] = useState(0);
   const [busy, setBusy] = useState(false);
