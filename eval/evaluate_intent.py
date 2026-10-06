@@ -4,6 +4,8 @@ Models:
   keyword  - guess_intent_by_keywords from src/intent.py (the app's fallback)
   tfidf_lr - TF-IDF (1-2 grams) + LogisticRegression, trained on the same train split as BERT
   bert     - the fine-tuned model in intent_model/ (CPU, batched inference)
+  bert_int8 - the same model with dynamic int8 quantization of its Linear layers (INTENT_QUANTIZE=int8 in the app);
+             run this on Linux, where the quantized kernels match the deployed image
 
 Test sets:
   val            - the notebook's 50% stratified val split (same seed/test_size/stratify)
@@ -40,7 +42,7 @@ MAX_LENGTH = 64
 BATCH_SIZE = 32
 
 sys.path.insert(0, str(ROOT_DIR / "src"))
-from intent import guess_intent_by_keywords  # noqa: E402
+from intent import guess_intent_by_keywords, quantize_int8  # noqa: E402
 
 
 def load_split():
@@ -56,9 +58,11 @@ def load_split():
     return train_df, val_df, labels
 
 
-def predict_bert(texts):
+def predict_bert(texts, int8=False):
     tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
     model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR).to("cpu").eval()
+    if int8:
+        model = quantize_int8(model)
     id2label = model.config.id2label
     preds = []
     with torch.no_grad():
@@ -129,6 +133,7 @@ def main():
         "keyword": lambda texts: [guess_intent_by_keywords(t) for t in texts],
         "tfidf_lr": lambda texts: list(tfidf_lr.predict(texts)),
         "bert": predict_bert,
+        "bert_int8": lambda texts: predict_bert(texts, int8=True),
     }
     model_names = list(models)
 

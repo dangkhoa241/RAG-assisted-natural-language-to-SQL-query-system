@@ -7,6 +7,7 @@
 | keyword | 0.657 / 0.669 | 0.240 / 0.136 | 0.240 / 0.133 | 0.240 / 0.139 |
 | tfidf_lr | 0.999 / 0.999 | 0.693 / 0.689 | 0.667 / 0.662 | 0.720 / 0.718 |
 | bert | 1.000 / 1.000 | 0.847 / 0.841 | 0.853 / 0.837 | 0.840 / 0.844 |
+| bert_int8 | 1.000 / 1.000 | 0.833 / 0.828 | 0.827 / 0.818 | 0.840 / 0.839 |
 
 Cells are accuracy / macro-F1.
 
@@ -17,6 +18,7 @@ Cells are accuracy / macro-F1.
 | keyword | 0.10 | 0.00 | 0.21 | 0.38 | 0.00 |
 | tfidf_lr | 0.69 | 0.77 | 0.55 | 0.67 | 0.77 |
 | bert | 0.90 | 0.95 | 0.64 | 0.80 | 0.92 |
+| bert_int8 | 0.86 | 0.91 | 0.60 | 0.80 | 0.97 |
 
 ## Confusion matrices on the hard set (rows = true, cols = predicted)
 
@@ -49,4 +51,14 @@ Cells are accuracy / macro-F1.
 | count | 3 | 0 | 15 | 10 | 2 |
 | filter | 0 | 0 | 0 | 30 | 0 |
 | trend | 0 | 0 | 1 | 1 | 28 |
+
+**bert_int8**
+
+| true \ pred | aggregate | compare | count | filter | trend |
+|---|---|---|---|---|---|
+| aggregate | 25 | 0 | 5 | 0 | 0 |
+| compare | 0 | 26 | 0 | 4 | 0 |
+| count | 3 | 0 | 15 | 11 | 1 |
+| filter | 0 | 0 | 0 | 30 | 0 |
+| trend | 0 | 1 | 0 | 0 | 29 |
 

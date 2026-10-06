@@ -1,0 +1,37 @@
+{
+  "rows": [
+    {
+      "variant": "none",
+      "weights_mb": 417.7,
+      "rss_before_load_mb": 252.1,
+      "rss_mb": 390.6,
+      "anon_mb": 289.5,
+      "file_mb": 101.1,
+      "peak_rss_mb": 755.6,
+      "load_s": 3.19,
+      "served_rss_mb": 755.5,
+      "served_anon_mb": 303.0,
+      "served_file_mb": 452.6,
+      "latency_ms_median": 58.6,
+      "latency_ms_p95": 77.4,
+      "n_queries": 150
+    },
+    {
+      "variant": "int8",
+      "weights_mb": 173.1,
+      "rss_before_load_mb": 252.1,
+      "rss_mb": 838.1,
+      "anon_mb": 412.3,
+      "file_mb": 425.8,
+      "peak_rss_mb": 869.0,
+      "load_s": 6.08,
+      "served_rss_mb": 869.0,
+      "served_anon_mb": 413.0,
+      "served_file_mb": 456.0,
+      "latency_ms_median": 18.5,
+      "latency_ms_p95": 25.2,
+      "n_queries": 150
+    }
+  ],
+  "cpu_count": 12
+}

@@ -1,127 +1,127 @@
-text,true_label,split_type,pred_keyword,pred_tfidf_lr,pred_bert
-emplyees in the sales dept hired after 2020,filter,in_domain_hard,filter,count,filter
-pull the students on academic probation in the cs major,filter,in_domain_hard,filter,count,filter
-i need the transactions flagged as fraud from last month,filter,in_domain_hard,filter,trend,filter
-players who scored over 20 points and are still on rookie contracts,filter,in_domain_hard,filter,compare,filter
-"sensors whose battery is below 15 percent, the ones in building b",filter,in_domain_hard,filter,count,filter
-farms in iowa growing soybeans,filter,unseen_domain,filter,compare,filter
-which guests checked in without a reservation,filter,unseen_domain,filter,compare,filter
-economy passengers who requested a vegetarian meal on the lisbon route,filter,unseen_domain,filter,compare,filter
-telecom subscribers on the unlimited plan whose contracts end in december,filter,unseen_domain,filter,compare,filter
-whats our headcount in engineering these days,count,in_domain_hard,count,compare,count
-"just tell me the total patients admitted last year, a single number",count,in_domain_hard,aggregate,count,count
-how manny students failed calc this semester,count,in_domain_hard,filter,count,trend
-are there a lot of books overdue at main branch? need the exact figure,count,in_domain_hard,filter,count,count
-total orders placed via the mobile app,count,in_domain_hard,aggregate,count,filter
-houses sold in 2023 - what's the tally,count,in_domain_hard,filter,count,count
-hw mny shipments are stuck in customs,count,in_domain_hard,filter,filter,filter
-size of the marketing team?,count,in_domain_hard,filter,count,aggregate
-"games won at home this season, just give me the tally",count,in_domain_hard,filter,filter,count
-tell me the amount of sensors reporting errors,count,in_domain_hard,filter,aggregate,count
-"reservations for friday night, what are we at",count,in_domain_hard,filter,aggregate,filter
-"posts flagged for review today, total pls",count,in_domain_hard,aggregate,aggregate,filter
-tell me the size of the customer complaint backlog this week,count,in_domain_hard,filter,aggregate,aggregate
-"accounts opened since january, what's the figure",count,in_domain_hard,count,trend,trend
-employees on parental leave right now - just a number please,count,in_domain_hard,filter,filter,filter
-"flights cancelled yesterday, what's the tally",count,unseen_domain,filter,count,count
-total claims filed after the hailstorm,count,unseen_domain,aggregate,aggregate,count
-players online on the eu servers - just the total,count,unseen_domain,aggregate,filter,filter
-"farms enrolled in the subsidy program, give me a single number",count,unseen_domain,filter,count,filter
-tally up the outages in the eastern grid this week,count,unseen_domain,filter,count,count
-"vacant rooms tonight, just the number",count,unseen_domain,filter,filter,filter
-"passengers booked on flight ua 902, give me the headcount",count,unseen_domain,count,count,filter
-whats the size of our fleet of rental suvs,count,unseen_domain,filter,count,count
-"subscribers who churned in q2, need the total",count,unseen_domain,aggregate,count,filter
-quantity of tractors due for maintenance,count,unseen_domain,filter,aggregate,count
-has anyone filed more than one claim this year? i want the exact amount of such policyholders,count,unseen_domain,filter,compare,count
-"achievements unlocked by beta testers, give me the overall figure",count,unseen_domain,filter,aggregate,aggregate
-wind turbines installed in texas - what does that come to,count,unseen_domain,filter,filter,count
-"bookings made thru expedia last month for the airport hotel, just the tally",count,unseen_domain,filter,count,count
-whats the typical salary for engineers,aggregate,in_domain_hard,filter,aggregate,aggregate
-how much do patients usually get billed per insurance provider,aggregate,in_domain_hard,filter,aggregate,aggregate
-what do houses go for in each neighborhood,aggregate,in_domain_hard,filter,aggregate,aggregate
-"how long does a delivery take per carrier, roughly",aggregate,in_domain_hard,filter,aggregate,aggregate
-how much revenue did each store bring in,aggregate,in_domain_hard,filter,trend,aggregate
-typical gpa in each major,aggregate,in_domain_hard,filter,aggregate,aggregate
-biggest single transaction for each account type,aggregate,in_domain_hard,count,aggregate,aggregate
-points per game for every team this season,aggregate,in_domain_hard,filter,aggregate,aggregate
-"what does a meal cost per cuisine type, generally",aggregate,in_domain_hard,filter,aggregate,aggregate
-overall spend per customer segment,aggregate,in_domain_hard,filter,aggregate,aggregate
-"temperature readings by sensor location, what's the norm",aggregate,in_domain_hard,filter,aggregate,aggregate
-"how many likes do posts typically get, by platform",aggregate,in_domain_hard,count,count,count
-whats the longest a book stays checked out at each branch,aggregate,in_domain_hard,filter,filter,aggregate
-how low does rent go in each city,aggregate,in_domain_hard,filter,compare,aggregate
-typical fare per route,aggregate,unseen_domain,filter,aggregate,aggregate
-"what does a night at each hotel run us, generally",aggregate,unseen_domain,filter,aggregate,aggregate
-crop yield per acre for each region,aggregate,unseen_domain,filter,aggregate,aggregate
-how long do players stay in a session per game mode,aggregate,unseen_domain,filter,compare,aggregate
-payout per claim type,aggregate,unseen_domain,filter,aggregate,aggregate
-how much do renters spend per rental by car class,aggregate,unseen_domain,filter,aggregate,aggregate
-data usage per plan tier,aggregate,unseen_domain,filter,aggregate,aggregate
-how much fuel does each aircraft model burn per flight,aggregate,unseen_domain,filter,aggregate,aggregate
-largest claim ever paid out in each region,aggregate,unseen_domain,filter,compare,filter
-occupancy rate by hotel brand,aggregate,unseen_domain,filter,aggregate,aggregate
-how much rain did each farm get altogether this season,aggregate,unseen_domain,filter,trend,trend
-"in-game purchases, how much do they bring in per platform",aggregate,unseen_domain,filter,aggregate,aggregate
-peak load recorded at each substation,aggregate,unseen_domain,filter,trend,aggregate
-typical monthly phone bill per region,aggregate,unseen_domain,filter,aggregate,aggregate
-are men or women billed more,compare,in_domain_hard,filter,compare,compare
-do remote workers earn more than office ones,compare,in_domain_hard,filter,compare,compare
-"who sells more, the downtown store or the mall one",compare,in_domain_hard,filter,compare,compare
-is fedex faster than ups for us,compare,in_domain_hard,filter,aggregate,compare
-do cs majors have better gpas than math majors,compare,in_domain_hard,filter,compare,compare
-"which pays more interest, savings or checking accounts",compare,in_domain_hard,count,compare,compare
-"lakers or celtics, who scores more per game",compare,in_domain_hard,filter,compare,compare
-do weekend diners tip better than weekday ones,compare,in_domain_hard,filter,compare,compare
-are condos pricier than townhouses in this area,compare,in_domain_hard,filter,filter,compare
-do indoor sensors drain battery faster than outdoor ones,compare,in_domain_hard,filter,compare,compare
-"which branch lends out more books, east or west",compare,in_domain_hard,filter,compare,compare
-do videos get more engagement than images,compare,in_domain_hard,filter,compare,compare
-"line a and line b, which one has more defects",compare,in_domain_hard,filter,compare,compare
-mobile app shoppers spend more than desktop shoppers or nah,compare,in_domain_hard,filter,compare,compare
-is the er or the icu stay longer on average,compare,in_domain_hard,aggregate,aggregate,compare
-"delta or united, which one has more delays",compare,unseen_domain,filter,compare,compare
-do business class passengers complain less than economy,compare,unseen_domain,filter,compare,compare
-do suites make more money than standard rooms,compare,unseen_domain,filter,compare,compare
-"corn or soybeans, which gives better yield per acre",compare,unseen_domain,filter,compare,compare
-do pc players spend more than console players,compare,unseen_domain,filter,compare,compare
-is solar cheaper to run than wind for us,compare,unseen_domain,filter,filter,compare
-auto claims against home claims - which pay out more,compare,unseen_domain,filter,compare,filter
-are suv rentals longer than sedan rentals,compare,unseen_domain,filter,filter,filter
-"which carrier drops fewer calls, verizon or att",compare,unseen_domain,filter,compare,compare
-do weekend guests stay longer than business travellers,compare,unseen_domain,filter,compare,compare
-"iowa farms or nebraska farms, whose harvest is bigger",compare,unseen_domain,filter,compare,compare
-is ranked mode or casual mode more popular with players over 30,compare,unseen_domain,filter,compare,compare
-did the coal plant or the gas plant produce more electricity,compare,unseen_domain,filter,compare,compare
-young drivers and senior drivers: who files pricier claims,compare,unseen_domain,filter,compare,filter
-do prepaid customers churn more than postpaid customers,compare,unseen_domain,filter,compare,compare
-which month did we sell the most,trend,in_domain_hard,filter,trend,count
-how have admissions been changing since 2019,trend,in_domain_hard,filter,count,trend
-is employee turnover going up or down lately,trend,in_domain_hard,filter,trend,trend
-enrollment each semester for the past five years,trend,in_domain_hard,filter,trend,trend
-has our account balance been climbing week to week,trend,in_domain_hard,count,aggregate,trend
-attendance at home games season after season,trend,in_domain_hard,filter,filter,trend
-are we getting more or fewer reservations each month,trend,in_domain_hard,filter,trend,trend
-how did home prices move throughout 2023,trend,in_domain_hard,filter,trend,trend
-sensor temperature readings hour by hour yesterday,trend,in_domain_hard,filter,aggregate,trend
-library checkouts week over week,trend,in_domain_hard,filter,trend,trend
-"shipping delays, are they getting worse as the year goes on",trend,in_domain_hard,filter,trend,trend
-follower counts across the last 12 months,trend,in_domain_hard,count,trend,trend
-how has the defect rate evolved since we added the new line,trend,in_domain_hard,filter,trend,trend
-daily sales for the past month plotted out,trend,in_domain_hard,filter,trend,trend
-did avg billing rise or fall each quarter,trend,in_domain_hard,aggregate,trend,trend
-how have flight delays changed through the summer,trend,unseen_domain,aggregate,count,trend
-hotel occupancy week by week this year,trend,unseen_domain,filter,trend,trend
-corn yields each year since 2010,trend,unseen_domain,filter,trend,trend
-daily active players since launch,trend,unseen_domain,filter,trend,trend
-electricity demand hour by hour last tuesday,trend,unseen_domain,filter,trend,trend
-are insurance claims going up each quarter,trend,unseen_domain,filter,filter,trend
-rental bookings season by season,trend,unseen_domain,filter,aggregate,trend
-data usage month to month from january through june,trend,unseen_domain,filter,trend,trend
-has the price of jet fuel been rising lately,trend,unseen_domain,filter,count,trend
-room cancellations every week since march,trend,unseen_domain,filter,trend,trend
-milk production on the dairy farm year after year,trend,unseen_domain,filter,trend,trend
-how did in-game revenue evolve after the last patch,trend,unseen_domain,filter,trend,trend
-solar output across each month of 2024,trend,unseen_domain,filter,trend,trend
-claim payouts quarter over quarter,trend,unseen_domain,filter,trend,filter
-dropped calls each day during the storm week,trend,unseen_domain,filter,trend,trend
+text,true_label,split_type,pred_keyword,pred_tfidf_lr,pred_bert,pred_bert_int8
+emplyees in the sales dept hired after 2020,filter,in_domain_hard,filter,count,filter,filter
+pull the students on academic probation in the cs major,filter,in_domain_hard,filter,count,filter,filter
+i need the transactions flagged as fraud from last month,filter,in_domain_hard,filter,trend,filter,filter
+players who scored over 20 points and are still on rookie contracts,filter,in_domain_hard,filter,compare,filter,filter
+"sensors whose battery is below 15 percent, the ones in building b",filter,in_domain_hard,filter,count,filter,filter
+farms in iowa growing soybeans,filter,unseen_domain,filter,compare,filter,filter
+which guests checked in without a reservation,filter,unseen_domain,filter,compare,filter,filter
+economy passengers who requested a vegetarian meal on the lisbon route,filter,unseen_domain,filter,compare,filter,filter
+telecom subscribers on the unlimited plan whose contracts end in december,filter,unseen_domain,filter,compare,filter,filter
+whats our headcount in engineering these days,count,in_domain_hard,count,compare,count,count
+"just tell me the total patients admitted last year, a single number",count,in_domain_hard,aggregate,count,count,count
+how manny students failed calc this semester,count,in_domain_hard,filter,count,trend,count
+are there a lot of books overdue at main branch? need the exact figure,count,in_domain_hard,filter,count,count,count
+total orders placed via the mobile app,count,in_domain_hard,aggregate,count,filter,filter
+houses sold in 2023 - what's the tally,count,in_domain_hard,filter,count,count,count
+hw mny shipments are stuck in customs,count,in_domain_hard,filter,filter,filter,filter
+size of the marketing team?,count,in_domain_hard,filter,count,aggregate,aggregate
+"games won at home this season, just give me the tally",count,in_domain_hard,filter,filter,count,count
+tell me the amount of sensors reporting errors,count,in_domain_hard,filter,aggregate,count,count
+"reservations for friday night, what are we at",count,in_domain_hard,filter,aggregate,filter,filter
+"posts flagged for review today, total pls",count,in_domain_hard,aggregate,aggregate,filter,filter
+tell me the size of the customer complaint backlog this week,count,in_domain_hard,filter,aggregate,aggregate,aggregate
+"accounts opened since january, what's the figure",count,in_domain_hard,count,trend,trend,trend
+employees on parental leave right now - just a number please,count,in_domain_hard,filter,filter,filter,filter
+"flights cancelled yesterday, what's the tally",count,unseen_domain,filter,count,count,count
+total claims filed after the hailstorm,count,unseen_domain,aggregate,aggregate,count,count
+players online on the eu servers - just the total,count,unseen_domain,aggregate,filter,filter,filter
+"farms enrolled in the subsidy program, give me a single number",count,unseen_domain,filter,count,filter,filter
+tally up the outages in the eastern grid this week,count,unseen_domain,filter,count,count,count
+"vacant rooms tonight, just the number",count,unseen_domain,filter,filter,filter,filter
+"passengers booked on flight ua 902, give me the headcount",count,unseen_domain,count,count,filter,filter
+whats the size of our fleet of rental suvs,count,unseen_domain,filter,count,count,count
+"subscribers who churned in q2, need the total",count,unseen_domain,aggregate,count,filter,filter
+quantity of tractors due for maintenance,count,unseen_domain,filter,aggregate,count,count
+has anyone filed more than one claim this year? i want the exact amount of such policyholders,count,unseen_domain,filter,compare,count,count
+"achievements unlocked by beta testers, give me the overall figure",count,unseen_domain,filter,aggregate,aggregate,aggregate
+wind turbines installed in texas - what does that come to,count,unseen_domain,filter,filter,count,count
+"bookings made thru expedia last month for the airport hotel, just the tally",count,unseen_domain,filter,count,count,filter
+whats the typical salary for engineers,aggregate,in_domain_hard,filter,aggregate,aggregate,aggregate
+how much do patients usually get billed per insurance provider,aggregate,in_domain_hard,filter,aggregate,aggregate,aggregate
+what do houses go for in each neighborhood,aggregate,in_domain_hard,filter,aggregate,aggregate,aggregate
+"how long does a delivery take per carrier, roughly",aggregate,in_domain_hard,filter,aggregate,aggregate,aggregate
+how much revenue did each store bring in,aggregate,in_domain_hard,filter,trend,aggregate,count
+typical gpa in each major,aggregate,in_domain_hard,filter,aggregate,aggregate,aggregate
+biggest single transaction for each account type,aggregate,in_domain_hard,count,aggregate,aggregate,aggregate
+points per game for every team this season,aggregate,in_domain_hard,filter,aggregate,aggregate,aggregate
+"what does a meal cost per cuisine type, generally",aggregate,in_domain_hard,filter,aggregate,aggregate,aggregate
+overall spend per customer segment,aggregate,in_domain_hard,filter,aggregate,aggregate,aggregate
+"temperature readings by sensor location, what's the norm",aggregate,in_domain_hard,filter,aggregate,aggregate,aggregate
+"how many likes do posts typically get, by platform",aggregate,in_domain_hard,count,count,count,count
+whats the longest a book stays checked out at each branch,aggregate,in_domain_hard,filter,filter,aggregate,count
+how low does rent go in each city,aggregate,in_domain_hard,filter,compare,aggregate,aggregate
+typical fare per route,aggregate,unseen_domain,filter,aggregate,aggregate,aggregate
+"what does a night at each hotel run us, generally",aggregate,unseen_domain,filter,aggregate,aggregate,aggregate
+crop yield per acre for each region,aggregate,unseen_domain,filter,aggregate,aggregate,aggregate
+how long do players stay in a session per game mode,aggregate,unseen_domain,filter,compare,aggregate,aggregate
+payout per claim type,aggregate,unseen_domain,filter,aggregate,aggregate,aggregate
+how much do renters spend per rental by car class,aggregate,unseen_domain,filter,aggregate,aggregate,aggregate
+data usage per plan tier,aggregate,unseen_domain,filter,aggregate,aggregate,aggregate
+how much fuel does each aircraft model burn per flight,aggregate,unseen_domain,filter,aggregate,aggregate,aggregate
+largest claim ever paid out in each region,aggregate,unseen_domain,filter,compare,filter,count
+occupancy rate by hotel brand,aggregate,unseen_domain,filter,aggregate,aggregate,aggregate
+how much rain did each farm get altogether this season,aggregate,unseen_domain,filter,trend,trend,count
+"in-game purchases, how much do they bring in per platform",aggregate,unseen_domain,filter,aggregate,aggregate,aggregate
+peak load recorded at each substation,aggregate,unseen_domain,filter,trend,aggregate,aggregate
+typical monthly phone bill per region,aggregate,unseen_domain,filter,aggregate,aggregate,aggregate
+are men or women billed more,compare,in_domain_hard,filter,compare,compare,compare
+do remote workers earn more than office ones,compare,in_domain_hard,filter,compare,compare,compare
+"who sells more, the downtown store or the mall one",compare,in_domain_hard,filter,compare,compare,compare
+is fedex faster than ups for us,compare,in_domain_hard,filter,aggregate,compare,compare
+do cs majors have better gpas than math majors,compare,in_domain_hard,filter,compare,compare,compare
+"which pays more interest, savings or checking accounts",compare,in_domain_hard,count,compare,compare,compare
+"lakers or celtics, who scores more per game",compare,in_domain_hard,filter,compare,compare,compare
+do weekend diners tip better than weekday ones,compare,in_domain_hard,filter,compare,compare,compare
+are condos pricier than townhouses in this area,compare,in_domain_hard,filter,filter,compare,filter
+do indoor sensors drain battery faster than outdoor ones,compare,in_domain_hard,filter,compare,compare,compare
+"which branch lends out more books, east or west",compare,in_domain_hard,filter,compare,compare,compare
+do videos get more engagement than images,compare,in_domain_hard,filter,compare,compare,compare
+"line a and line b, which one has more defects",compare,in_domain_hard,filter,compare,compare,compare
+mobile app shoppers spend more than desktop shoppers or nah,compare,in_domain_hard,filter,compare,compare,compare
+is the er or the icu stay longer on average,compare,in_domain_hard,aggregate,aggregate,compare,compare
+"delta or united, which one has more delays",compare,unseen_domain,filter,compare,compare,compare
+do business class passengers complain less than economy,compare,unseen_domain,filter,compare,compare,compare
+do suites make more money than standard rooms,compare,unseen_domain,filter,compare,compare,compare
+"corn or soybeans, which gives better yield per acre",compare,unseen_domain,filter,compare,compare,compare
+do pc players spend more than console players,compare,unseen_domain,filter,compare,compare,compare
+is solar cheaper to run than wind for us,compare,unseen_domain,filter,filter,compare,compare
+auto claims against home claims - which pay out more,compare,unseen_domain,filter,compare,filter,filter
+are suv rentals longer than sedan rentals,compare,unseen_domain,filter,filter,filter,filter
+"which carrier drops fewer calls, verizon or att",compare,unseen_domain,filter,compare,compare,compare
+do weekend guests stay longer than business travellers,compare,unseen_domain,filter,compare,compare,compare
+"iowa farms or nebraska farms, whose harvest is bigger",compare,unseen_domain,filter,compare,compare,compare
+is ranked mode or casual mode more popular with players over 30,compare,unseen_domain,filter,compare,compare,compare
+did the coal plant or the gas plant produce more electricity,compare,unseen_domain,filter,compare,compare,compare
+young drivers and senior drivers: who files pricier claims,compare,unseen_domain,filter,compare,filter,filter
+do prepaid customers churn more than postpaid customers,compare,unseen_domain,filter,compare,compare,compare
+which month did we sell the most,trend,in_domain_hard,filter,trend,count,trend
+how have admissions been changing since 2019,trend,in_domain_hard,filter,count,trend,trend
+is employee turnover going up or down lately,trend,in_domain_hard,filter,trend,trend,trend
+enrollment each semester for the past five years,trend,in_domain_hard,filter,trend,trend,trend
+has our account balance been climbing week to week,trend,in_domain_hard,count,aggregate,trend,trend
+attendance at home games season after season,trend,in_domain_hard,filter,filter,trend,trend
+are we getting more or fewer reservations each month,trend,in_domain_hard,filter,trend,trend,trend
+how did home prices move throughout 2023,trend,in_domain_hard,filter,trend,trend,trend
+sensor temperature readings hour by hour yesterday,trend,in_domain_hard,filter,aggregate,trend,trend
+library checkouts week over week,trend,in_domain_hard,filter,trend,trend,trend
+"shipping delays, are they getting worse as the year goes on",trend,in_domain_hard,filter,trend,trend,compare
+follower counts across the last 12 months,trend,in_domain_hard,count,trend,trend,trend
+how has the defect rate evolved since we added the new line,trend,in_domain_hard,filter,trend,trend,trend
+daily sales for the past month plotted out,trend,in_domain_hard,filter,trend,trend,trend
+did avg billing rise or fall each quarter,trend,in_domain_hard,aggregate,trend,trend,trend
+how have flight delays changed through the summer,trend,unseen_domain,aggregate,count,trend,trend
+hotel occupancy week by week this year,trend,unseen_domain,filter,trend,trend,trend
+corn yields each year since 2010,trend,unseen_domain,filter,trend,trend,trend
+daily active players since launch,trend,unseen_domain,filter,trend,trend,trend
+electricity demand hour by hour last tuesday,trend,unseen_domain,filter,trend,trend,trend
+are insurance claims going up each quarter,trend,unseen_domain,filter,filter,trend,trend
+rental bookings season by season,trend,unseen_domain,filter,aggregate,trend,trend
+data usage month to month from january through june,trend,unseen_domain,filter,trend,trend,trend
+has the price of jet fuel been rising lately,trend,unseen_domain,filter,count,trend,trend
+room cancellations every week since march,trend,unseen_domain,filter,trend,trend,trend
+milk production on the dairy farm year after year,trend,unseen_domain,filter,trend,trend,trend
+how did in-game revenue evolve after the last patch,trend,unseen_domain,filter,trend,trend,trend
+solar output across each month of 2024,trend,unseen_domain,filter,trend,trend,trend
+claim payouts quarter over quarter,trend,unseen_domain,filter,trend,filter,trend
+dropped calls each day during the storm week,trend,unseen_domain,filter,trend,trend,trend

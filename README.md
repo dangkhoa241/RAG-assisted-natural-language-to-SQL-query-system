@@ -305,6 +305,32 @@ Per-class F1 on the hard set:
   keyword list when writing it. A few labels are judgment calls. For example, "which month did we sell the
   most" is labeled trend because it groups by time.
 
+### A smaller intent model for a 512 MB host
+
+The free hosting tier the app targets has 512 MB of RAM. The fp32 BERT model and torch don't fit in that.
+
+**Int8 quantization in torch** (`INTENT_QUANTIZE=int8`, which still works for local use) applies dynamic
+int8 quantization to every `Linear` layer when the model loads. It was measured in the Docker image (Linux)
+with `eval/evaluate_intent.py` (row `bert_int8`) and `eval/benchmark_intent_quantization.py`:
+
+| Variant | Hard set (n=150) | Val (n=1,000) | Weights | Process memory after 155 queries (heap + mapped file) | Latency median / p95 |
+|---|---|---|---|---|---|
+| fp32 (torch) | 0.847 | 1.000 | 418 MB | 303 + 453 MB | 59 / 77 ms |
+| int8 (torch, dynamic) | 0.833 | 1.000 | 173 MB | 413 + 456 MB | 19 / 25 ms |
+
+Int8 cost 1.4 points on the hard set (two questions) and made inference 3× faster, but **it didn't reduce
+memory**:
+
+* Transformers memory-maps the fp32 safetensors file, and the embeddings keep reading from that mapping, so
+  the whole 418 MB file stays mapped.
+* The quantized weights are new heap allocations on top of it.
+* Quantizing in place (`inplace=True`) avoids a full copy of the model, which the default would make, but
+  that only lowers the peak during loading.
+* torch and transformers alone take about 250–300 MB of heap before any model is loaded.
+
+The whole app container with int8 peaked at 1.08 GB and was OOM-killed at startup under
+`docker run --memory=512m --cpus=0.1`.
+
 ---
 
 ## 🔎 Retrieval-Augmented SQL
