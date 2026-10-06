@@ -1,4 +1,4 @@
-"""Retrieval-augmented text-to-SQL: Groq LLM + schema context + retrieved question->SQL examples.
+"""Retrieval-augmented text-to-SQL: LLM (Groq or Cerebras) + schema context + retrieved question->SQL examples.
 
 Modes:
   llm_zero_shot - the prompt contains the schema only
@@ -12,6 +12,9 @@ Example retrieval (example_style="fixed", the default):
   - examples are filtered to the predicted intent (falls back to all intents if none match)
   - examples scoring below EXAMPLE_MIN_SCORE are dropped, so a question with no close example gets none
 example_style="stage2" reproduces the Stage 2 prompts (every example used `data`, top-k by similarity only).
+
+Providers: "groq" (the default, used by the app) and "cerebras" (OpenAI-compatible API, used for the Stage 3
+gpt-oss-120b runs). Model IDs are the provider's own: "openai/gpt-oss-120b" on Groq, "gpt-oss-120b" on Cerebras.
 
 If the LLM call fails or its SQL fails the safety check, generation falls back to the
 rule-based generator in sql_builder.py.
@@ -35,6 +38,10 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 
 # --- Configuration ---------------------------------------------------------
 GROQ_MODEL = "openai/gpt-oss-120b"
+DEFAULT_PROVIDER = "groq"
+CEREBRAS_BASE_URL = "https://api.cerebras.ai/v1"
+# Minimum seconds between request starts, per provider (the Cerebras account allows 5 requests/min).
+MIN_REQUEST_INTERVAL_S = {"cerebras": 12.5}
 LLM_REASONING_EFFORT = "low"   # gpt-oss reasoning budget; "low" keeps latency and token use down
 LLM_MAX_COMPLETION_TOKENS = 1024
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
@@ -197,11 +204,18 @@ class LLMError(RuntimeError):
 
 
 class DailyLimitError(LLMError):
-    """The provider's daily request/token quota is exhausted; retrying today won't help."""
+    """The provider's daily request/token quota is exhausted; retrying right away won't help.
+    `retry_after_s` is the wait the provider suggests ("Please try again in 7m12.5s"), if it gave one."""
+
+    def __init__(self, message: str):
+        super().__init__(message)
+        m = re.search(r"try again in\s+(?:(\d+)h)?(?:(\d+)m)?(?:([\d.]+)s)?", message)
+        self.retry_after_s = (int(m.group(1) or 0) * 3600 + int(m.group(2) or 0) * 60 + float(m.group(3) or 0)
+                              if m and any(m.groups()) else None)
 
 
 class LLMCache:
-    """Append-only JSONL cache of LLM responses, keyed by model + prompt hash."""
+    """Append-only JSONL cache of LLM responses, keyed by provider + model + prompt hash."""
 
     def __init__(self, path: Path):
         self.path = Path(path)
@@ -213,67 +227,129 @@ class LLMCache:
                     self.entries[e["key"]] = e
 
     @staticmethod
-    def make_key(model: str, messages: list, params: dict) -> str:
-        payload = json.dumps({"model": model, "messages": messages, "params": params}, sort_keys=True)
-        return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+    def make_key(model: str, messages: list, params: dict, provider: str = DEFAULT_PROVIDER) -> str:
+        payload = {"model": model, "messages": messages, "params": params}
+        if provider != DEFAULT_PROVIDER:  # Groq keys predate providers; leaving them unchanged keeps old caches valid
+            payload["provider"] = provider
+        return hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
 
     def get(self, key):
         e = self.entries.get(key)
         return None if e is None else e["response"]
 
-    def put(self, key, model, response, usage=None):
+    def put(self, key, model, response, usage=None, latency_s=None, provider=None, time_info=None):
         e = {"key": key, "model": model, "response": response, "usage": usage}
+        if provider is not None:
+            e["provider"] = provider
+        if latency_s is not None:
+            e["latency_s"] = latency_s  # wall time of the successful request (excludes rate-limit waits)
+        if time_info is not None:
+            e["time_info"] = time_info  # Cerebras's server-side timings (Groq reports them inside `usage`)
         self.entries[key] = e
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with open(self.path, "a", encoding="utf-8") as f:
             f.write(json.dumps(e) + "\n")
 
 
-_client = None
+_clients = {}
+_last_request_start = {}
 
 
-def _groq_client():
-    global _client
-    if _client is None:
+def _client_for(provider: str):
+    """The SDK client for `provider`. SDK retries are off; call_llm retries with backoff."""
+    if provider not in _clients:
         from dotenv import load_dotenv
-        from groq import Groq
 
         load_dotenv(ROOT_DIR / ".env")
-        if not os.environ.get("GROQ_API_KEY"):
-            raise LLMError("GROQ_API_KEY is not set (add it to .env)")
-        _client = Groq(max_retries=0)  # retries are handled below, with backoff
-    return _client
+        if provider == "groq":
+            from groq import Groq
+
+            if not os.environ.get("GROQ_API_KEY"):
+                raise LLMError("GROQ_API_KEY is not set (add it to .env)")
+            _clients[provider] = Groq(max_retries=0)
+        elif provider == "cerebras":
+            from openai import OpenAI
+
+            if not os.environ.get("CEREBRAS_API_KEY"):
+                raise LLMError("CEREBRAS_API_KEY is not set (add it to .env)")
+            _clients[provider] = OpenAI(base_url=CEREBRAS_BASE_URL, api_key=os.environ["CEREBRAS_API_KEY"],
+                                        max_retries=0)
+        else:
+            raise ValueError(f"unknown provider: {provider}")
+    return _clients[provider]
 
 
-def call_llm(messages: list, cache: LLMCache = None, model: str = GROQ_MODEL) -> str:
-    """One chat completion at temperature 0, with exponential backoff on rate limits."""
+def _sdk(provider: str):
+    """The provider's SDK module (groq and openai have the same exception classes)."""
+    if provider == "cerebras":
+        import openai
+        return openai
     import groq
+    return groq
 
-    params = {"temperature": 0, "reasoning_effort": LLM_REASONING_EFFORT,
-              "max_completion_tokens": LLM_MAX_COMPLETION_TOKENS}
-    key = LLMCache.make_key(model, messages, params)
+
+def _throttle(provider: str):
+    """Sleep so request starts to `provider` are at least MIN_REQUEST_INTERVAL_S apart (no bursts)."""
+    gap = MIN_REQUEST_INTERVAL_S.get(provider)
+    if gap:
+        wait = _last_request_start.get(provider, float("-inf")) + gap - time.monotonic()
+        if wait > 0:
+            time.sleep(wait)
+    _last_request_start[provider] = time.monotonic()
+
+
+def _is_daily_limit(e) -> bool:
+    msg = str(e).lower()
+    if any(s in msg for s in ("per day", "(tpd)", "(rpd)", "daily", "tokens_per_day", "requests_per_day")):
+        return True
+    headers = e.response.headers if getattr(e, "response", None) is not None else {}
+    return any(headers.get(h) == "0" for h in ("x-ratelimit-remaining-requests-day", "x-ratelimit-remaining-tokens-day"))
+
+
+def llm_params(model: str = GROQ_MODEL) -> dict:
+    params = {"temperature": 0, "max_completion_tokens": LLM_MAX_COMPLETION_TOKENS}
+    if "gpt-oss" in model:
+        params["reasoning_effort"] = LLM_REASONING_EFFORT
+    return params
+
+
+def cache_key(messages: list, model: str = GROQ_MODEL, provider: str = DEFAULT_PROVIDER) -> str:
+    return LLMCache.make_key(model, messages, llm_params(model), provider)
+
+
+def call_llm(messages: list, cache: LLMCache = None, model: str = GROQ_MODEL, provider: str = DEFAULT_PROVIDER) -> str:
+    """One chat completion at temperature 0, with exponential backoff on rate limits."""
+    params = llm_params(model)
+    key = LLMCache.make_key(model, messages, params, provider)
     if cache is not None and (hit := cache.get(key)) is not None:
         return hit
 
-    client = _groq_client()
+    client = _client_for(provider)
+    sdk = _sdk(provider)
     for attempt in range(MAX_LLM_RETRIES):
         try:
+            _throttle(provider)
+            started = time.perf_counter()
             resp = client.chat.completions.create(model=model, messages=messages, **params)
+            latency = time.perf_counter() - started
             text = resp.choices[0].message.content or ""
             if cache is not None:
-                cache.put(key, model, text, resp.usage.model_dump() if resp.usage else None)
+                time_info = (resp.model_extra or {}).get("time_info") if provider != "groq" else None
+                cache.put(key, model, text, resp.usage.model_dump() if resp.usage else None, round(latency, 3),
+                          provider=provider, time_info=time_info)
             return text
-        except groq.RateLimitError as e:
-            msg = str(e).lower()
-            if "per day" in msg or "(tpd)" in msg or "(rpd)" in msg:
+        except sdk.RateLimitError as e:
+            if _is_daily_limit(e):
                 raise DailyLimitError(str(e)) from e
             retry_after = e.response.headers.get("retry-after") if e.response is not None else None
             wait = float(retry_after) if retry_after else min(2 ** attempt, 60)
-        except (groq.APIConnectionError, groq.InternalServerError) as e:
+            wait = max(wait, MIN_REQUEST_INTERVAL_S.get(provider, 0))
+            print(f"  429 from {provider} (attempt {attempt + 1}), backing off {wait:.0f}s: {str(e)[:300]}", flush=True)
+        except (sdk.APIConnectionError, sdk.InternalServerError) as e:
             wait = min(2 ** attempt, 60)
             if attempt == MAX_LLM_RETRIES - 1:
                 raise LLMError(str(e)) from e
-        except groq.APIError as e:
+        except sdk.APIError as e:
             raise LLMError(str(e)) from e
         time.sleep(wait + 0.25 * attempt)
     raise LLMError(f"gave up after {MAX_LLM_RETRIES} rate-limited attempts")
@@ -298,6 +374,7 @@ class SQLGeneration:
     rejected: bool = False       # the LLM's SQL failed the safety check
     examples: list = field(default_factory=list)
     docs: list = field(default_factory=list)
+    cache_key: str = None        # key of the LLM call in LLMCache (for usage/latency lookups)
 
 
 def _rule_based_sql(question: str, dataset: Dataset, intent: str = None) -> str:
@@ -312,7 +389,8 @@ def _rule_based_sql(question: str, dataset: Dataset, intent: str = None) -> str:
 def generate_sql_detailed(question: str, dataset: Dataset, mode: str = "llm_rag", k: int = DEFAULT_K,
                           intent: str = None, cache: LLMCache = None, raise_on_quota: bool = False,
                           schema_context: str = None, example_style: str = "fixed", dataset_name: str = None,
-                          docs: list = None, doc_method: str = DOC_RETRIEVER) -> SQLGeneration:
+                          docs: list = None, doc_method: str = DOC_RETRIEVER,
+                          model: str = GROQ_MODEL, provider: str = DEFAULT_PROVIDER) -> SQLGeneration:
     """`intent` is the predicted intent: it filters examples (llm_rag) and drives the rule-based fallback.
     llm_doc_rag retrieves k glossary chunks for `dataset_name`, unless `docs` gives the chunks directly."""
     if mode not in ("llm_zero_shot", "llm_rag", "llm_doc_rag"):
@@ -323,24 +401,25 @@ def generate_sql_detailed(question: str, dataset: Dataset, mode: str = "llm_rag"
     docs = docs or []
     schema_context = schema_context or build_schema_context(dataset)
     messages = build_messages(question, schema_context, examples, docs, example_style)
+    key = cache_key(messages, model, provider)
 
     try:
-        llm_sql = extract_sql(call_llm(messages, cache=cache))
+        llm_sql = extract_sql(call_llm(messages, cache=cache, model=model, provider=provider))
     except DailyLimitError:
         if raise_on_quota:
             raise
         return SQLGeneration(_rule_based_sql(question, dataset, intent), "fallback", mode,
-                             error="LLM daily quota exhausted", examples=examples, docs=docs)
+                             error="LLM daily quota exhausted", examples=examples, docs=docs, cache_key=key)
     except LLMError as e:
         return SQLGeneration(_rule_based_sql(question, dataset, intent), "fallback", mode,
-                             error=f"LLM call failed: {e}", examples=examples, docs=docs)
+                             error=f"LLM call failed: {e}", examples=examples, docs=docs, cache_key=key)
 
     try:
         safe_sql = validate_sql(llm_sql)
     except UnsafeSQLError as e:
         return SQLGeneration(_rule_based_sql(question, dataset, intent), "fallback", mode, llm_sql=llm_sql,
-                             error=f"rejected by safety check: {e}", rejected=True, examples=examples, docs=docs)
-    return SQLGeneration(safe_sql, "llm", mode, llm_sql=llm_sql, examples=examples, docs=docs)
+                             error=f"rejected by safety check: {e}", rejected=True, examples=examples, docs=docs, cache_key=key)
+    return SQLGeneration(safe_sql, "llm", mode, llm_sql=llm_sql, examples=examples, docs=docs, cache_key=key)
 
 
 def generate_sql(question: str, dataset: Dataset, mode: str = "llm_rag", **kwargs) -> str:

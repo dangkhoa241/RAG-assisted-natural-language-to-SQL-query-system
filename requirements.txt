@@ -19,6 +19,7 @@ huggingface-hub
 
 # --- Retrieval-augmented text-to-SQL ---
 groq
+openai          # Cerebras client (OpenAI-compatible API), Stage 3 benchmark only
 python-dotenv
 sentence-transformers
 faiss-cpu

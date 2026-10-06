@@ -78,3 +78,35 @@ def test_duplicate_valued_columns_are_assigned_correctly():
     gold = df([(1, 1, "a"), (2, 2, "b")], ["x", "y", "z"])
     pred = df([("a", 1, 1), ("b", 2, 2)], ["z", "x", "y"])
     assert results_match(gold, pred)
+
+
+# --- Label columns vs metric-only gold (the glossary benchmark's derived-group shape) ---
+
+def test_labeled_prediction_matches_metric_only_gold():
+    # e.g. "premium vs standard insurers": gold is metric-only, the model adds its own group labels.
+    gold = df([(25495.01,), (25386.4,)], ["AVG(`Billing Amount`)"])
+    pred = df([("standard", 25386.4), ("premium", 25495.01)], ["insurer_group", "avg_billing"])
+    assert results_match(gold, pred)
+    assert results_match(gold, pred[["avg_billing", "insurer_group"]])  # label column last
+    assert not results_match(gold, df([("premium", 25495.01), ("standard", 25386.5)], ["g", "v"]))
+
+
+def test_ordered_metric_only_gold_checks_period_order():
+    # Fiscal-year trend: gold is metric-only and ordered; a labeled prediction must list periods in order.
+    gold = df([(150,), (210,), (180,)], ["COUNT(*)"])
+    pred = df([("FY2019", 150), ("FY2020", 210), ("FY2021", 180)], ["fy", "n"])
+    assert results_match(gold, pred, ordered=True)
+    assert not results_match(gold, pred.iloc[::-1], ordered=True)
+
+
+def test_metric_only_prediction_fails_against_labeled_gold():
+    # Deliberately asymmetric: when gold labels groups with real data values (Region, Channel...),
+    # unlabeled numbers can't show which group is which, so they don't count as correct.
+    gold = df([("North", 10), ("West", 12)], ["Region", "n"])
+    assert not results_match(gold, df([(10,), (12,)], ["n"]))
+    assert results_match(gold, df([(12, "West"), (10, "North")], ["n", "region"]))
+
+
+def test_pivoted_single_row_does_not_match_one_row_per_group():
+    gold = df([(25495.01,), (25386.4,)], ["v"])
+    assert not results_match(gold, df([(25495.01, 25386.4)], ["premium", "standard"]))

@@ -1,0 +1,1076 @@
+{
+  "config": {
+    "models": {
+      "gpt-oss-20b": {
+        "provider": "Groq",
+        "model_id": "openai/gpt-oss-20b"
+      },
+      "gpt-oss-120b": {
+        "provider": "Cerebras",
+        "model_id": "gpt-oss-120b"
+      }
+    },
+    "reasoning_effort": "low",
+    "temperature": 0,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "doc_retriever": "hybrid",
+    "doc_k": 3,
+    "example_k": 3,
+    "example_min_score": 0.35,
+    "n_questions": {
+      "glossary": 60,
+      "original": 120
+    }
+  },
+  "accuracy": {
+    "glossary": {
+      "zero_shot": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 6,
+            "accuracy": 0.1,
+            "n_errors": 0,
+            "n_fallback": 0,
+            "n_label_only_miss": 0
+          },
+          "by_dataset": {
+            "healthcare": {
+              "n": 30,
+              "n_missing": 0,
+              "n_correct": 2,
+              "accuracy": 0.06666666666666667,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "retail": {
+              "n": 30,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.13333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 1,
+              "accuracy": 0.08333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 1,
+              "accuracy": 0.08333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 1,
+              "accuracy": 0.08333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 1,
+              "accuracy": 0.08333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 2,
+              "accuracy": 0.16666666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 6,
+            "accuracy": 0.1,
+            "n_errors": 1,
+            "n_fallback": 0,
+            "n_label_only_miss": 0
+          },
+          "by_dataset": {
+            "healthcare": {
+              "n": 30,
+              "n_missing": 0,
+              "n_correct": 2,
+              "accuracy": 0.06666666666666667,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "retail": {
+              "n": 30,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.13333333333333333,
+              "n_errors": 1,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 1,
+              "accuracy": 0.08333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 2,
+              "accuracy": 0.16666666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 0,
+              "accuracy": 0.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 1,
+              "accuracy": 0.08333333333333333,
+              "n_errors": 1,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 2,
+              "accuracy": 0.16666666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          }
+        }
+      },
+      "doc_rag": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 52,
+            "accuracy": 0.8666666666666667,
+            "n_errors": 0,
+            "n_fallback": 0,
+            "n_label_only_miss": 0
+          },
+          "by_dataset": {
+            "healthcare": {
+              "n": 30,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 0.8,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "retail": {
+              "n": 30,
+              "n_missing": 0,
+              "n_correct": 28,
+              "accuracy": 0.9333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 53,
+            "accuracy": 0.8833333333333333,
+            "n_errors": 0,
+            "n_fallback": 0,
+            "n_label_only_miss": 0
+          },
+          "by_dataset": {
+            "healthcare": {
+              "n": 30,
+              "n_missing": 0,
+              "n_correct": 26,
+              "accuracy": 0.8666666666666667,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "retail": {
+              "n": 30,
+              "n_missing": 0,
+              "n_correct": 27,
+              "accuracy": 0.9,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          }
+        }
+      },
+      "oracle_doc": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 57,
+            "accuracy": 0.95,
+            "n_errors": 1,
+            "n_fallback": 0,
+            "n_label_only_miss": 0
+          },
+          "by_dataset": {
+            "healthcare": {
+              "n": 30,
+              "n_missing": 0,
+              "n_correct": 28,
+              "accuracy": 0.9333333333333333,
+              "n_errors": 1,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "retail": {
+              "n": 30,
+              "n_missing": 0,
+              "n_correct": 29,
+              "accuracy": 0.9666666666666667,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 9,
+              "accuracy": 0.75,
+              "n_errors": 1,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 57,
+            "accuracy": 0.95,
+            "n_errors": 0,
+            "n_fallback": 0,
+            "n_label_only_miss": 0
+          },
+          "by_dataset": {
+            "healthcare": {
+              "n": 30,
+              "n_missing": 0,
+              "n_correct": 30,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "retail": {
+              "n": 30,
+              "n_missing": 0,
+              "n_correct": 27,
+              "accuracy": 0.9,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          }
+        }
+      }
+    },
+    "original": {
+      "zero_shot": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 120,
+            "n_missing": 0,
+            "n_correct": 118,
+            "accuracy": 0.9833333333333333,
+            "n_errors": 0,
+            "n_fallback": 0,
+            "n_label_only_miss": 0
+          },
+          "by_dataset": {
+            "healthcare": {
+              "n": 60,
+              "n_missing": 0,
+              "n_correct": 59,
+              "accuracy": 0.9833333333333333,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "retail": {
+              "n": 60,
+              "n_missing": 0,
+              "n_correct": 59,
+              "accuracy": 0.9833333333333333,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          },
+          "by_intent": {
+            "filter": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "count": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "aggregate": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "compare": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 22,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "trend": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 120,
+            "n_missing": 0,
+            "n_correct": 119,
+            "accuracy": 0.9916666666666667,
+            "n_errors": 0,
+            "n_fallback": 0,
+            "n_label_only_miss": 0
+          },
+          "by_dataset": {
+            "healthcare": {
+              "n": 60,
+              "n_missing": 0,
+              "n_correct": 59,
+              "accuracy": 0.9833333333333333,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "retail": {
+              "n": 60,
+              "n_missing": 0,
+              "n_correct": 60,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          },
+          "by_intent": {
+            "filter": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "count": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "aggregate": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "compare": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "trend": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          }
+        }
+      },
+      "example_rag_fixed": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 120,
+            "n_missing": 0,
+            "n_correct": 117,
+            "accuracy": 0.975,
+            "n_errors": 0,
+            "n_fallback": 0,
+            "n_label_only_miss": 1
+          },
+          "by_dataset": {
+            "healthcare": {
+              "n": 60,
+              "n_missing": 0,
+              "n_correct": 60,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "retail": {
+              "n": 60,
+              "n_missing": 0,
+              "n_correct": 57,
+              "accuracy": 0.95,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 1
+            }
+          },
+          "by_intent": {
+            "filter": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "count": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "aggregate": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 1
+            },
+            "compare": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "trend": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 120,
+            "n_missing": 0,
+            "n_correct": 120,
+            "accuracy": 1.0,
+            "n_errors": 0,
+            "n_fallback": 0,
+            "n_label_only_miss": 0
+          },
+          "by_dataset": {
+            "healthcare": {
+              "n": 60,
+              "n_missing": 0,
+              "n_correct": 60,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "retail": {
+              "n": 60,
+              "n_missing": 0,
+              "n_correct": 60,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          },
+          "by_intent": {
+            "filter": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "count": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "aggregate": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "compare": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "trend": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          }
+        }
+      },
+      "doc_rag": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 120,
+            "n_missing": 0,
+            "n_correct": 113,
+            "accuracy": 0.9416666666666667,
+            "n_errors": 0,
+            "n_fallback": 0,
+            "n_label_only_miss": 0
+          },
+          "by_dataset": {
+            "healthcare": {
+              "n": 60,
+              "n_missing": 0,
+              "n_correct": 56,
+              "accuracy": 0.9333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "retail": {
+              "n": 60,
+              "n_missing": 0,
+              "n_correct": 57,
+              "accuracy": 0.95,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          },
+          "by_intent": {
+            "filter": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "count": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "aggregate": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 22,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "compare": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 21,
+              "accuracy": 0.875,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "trend": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 120,
+            "n_missing": 0,
+            "n_correct": 114,
+            "accuracy": 0.95,
+            "n_errors": 0,
+            "n_fallback": 0,
+            "n_label_only_miss": 0
+          },
+          "by_dataset": {
+            "healthcare": {
+              "n": 60,
+              "n_missing": 0,
+              "n_correct": 57,
+              "accuracy": 0.95,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "retail": {
+              "n": 60,
+              "n_missing": 0,
+              "n_correct": 57,
+              "accuracy": 0.95,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          },
+          "by_intent": {
+            "filter": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 22,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "count": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "aggregate": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "compare": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 22,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            },
+            "trend": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0,
+              "n_label_only_miss": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "usage": {
+    "gpt-oss-20b": {
+      "n_calls": 516,
+      "n_with_client_latency": 516,
+      "latency_median_s": 0.3965,
+      "latency_p95_s": 0.90925,
+      "server_time_median_s": 0.1469746305,
+      "server_time_p95_s": 0.5439825002500001,
+      "avg_prompt_tokens": 792.5988372093024,
+      "avg_completion_tokens": 83.02906976744185,
+      "avg_reasoning_tokens": 38.310077519379846,
+      "avg_total_tokens": 875.6279069767442,
+      "provider": "Groq"
+    },
+    "gpt-oss-120b": {
+      "n_calls": 516,
+      "n_with_client_latency": 516,
+      "latency_median_s": 0.319,
+      "latency_p95_s": 1.0615,
+      "server_time_median_s": 0.07042968273162842,
+      "server_time_p95_s": 0.5300073027610779,
+      "avg_prompt_tokens": 792.5988372093024,
+      "avg_completion_tokens": 93.28682170542636,
+      "avg_reasoning_tokens": 48.44961240310077,
+      "avg_total_tokens": 885.8856589147287,
+      "provider": "Cerebras"
+    }
+  },
+  "doc_rag_glossary_failures": {
+    "gpt-oss-20b": {
+      "retrieval_miss": 4,
+      "generation_miss": 4
+    },
+    "gpt-oss-120b": {
+      "retrieval_miss": 4,
+      "generation_miss": 3
+    }
+  },
+  "paired_small_vs_large": {
+    "glossary": {
+      "zero_shot": {
+        "n": 60,
+        "both": 4,
+        "only_small": 2,
+        "only_large": 2,
+        "neither": 52
+      },
+      "doc_rag": {
+        "n": 60,
+        "both": 49,
+        "only_small": 3,
+        "only_large": 4,
+        "neither": 4
+      },
+      "oracle_doc": {
+        "n": 60,
+        "both": 55,
+        "only_small": 2,
+        "only_large": 2,
+        "neither": 1
+      }
+    },
+    "original": {
+      "zero_shot": {
+        "n": 120,
+        "both": 118,
+        "only_small": 0,
+        "only_large": 1,
+        "neither": 1
+      },
+      "example_rag_fixed": {
+        "n": 120,
+        "both": 117,
+        "only_small": 0,
+        "only_large": 3,
+        "neither": 0
+      },
+      "doc_rag": {
+        "n": 120,
+        "both": 111,
+        "only_small": 2,
+        "only_large": 3,
+        "neither": 4
+      }
+    }
+  },
+  "glossary_zero_shot_naive": {
+    "gpt-oss-20b": {
+      "wrong": 54,
+      "naive_match": 14
+    },
+    "gpt-oss-120b": {
+      "wrong": 54,
+      "naive_match": 19
+    }
+  },
+  "n_missing": 0
+}

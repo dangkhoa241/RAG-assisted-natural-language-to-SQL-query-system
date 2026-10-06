@@ -114,9 +114,14 @@ eval/
   intent_hard_test.csv      # 150 hand-written hard test questions (see "Evaluation" below)
   evaluate_intent.py         # Compares BERT against keyword and TF-IDF baselines
   evaluate_sql.py            # Text-to-SQL benchmark: rule-based vs zero-shot LLM vs RAG
+  evaluate_doc_retrieval.py  # Glossary retrieval: dense vs BM25 vs hybrid
+  evaluate_stage3.py         # Stage 3: glossary RAG and model-size comparison (20b on Groq, 120b on Cerebras)
   sql_metrics.py             # Execution-accuracy result-set comparison
   sql_benchmark/
     test_questions.jsonl     # 120 benchmark questions with gold SQL (healthcare + retail)
+    glossary_questions.jsonl # 60 questions that need a business definition (Stage 3)
+    build_glossary_questions.py # Builds and checks the glossary benchmark
+    REVIEW.md                # 15 glossary questions written out for human review
     example_bank.jsonl       # 150 question -> SQL retrieval examples on 5 other schemas
     build_example_bank.py    # Builds the bank and executes every example's SQL
     check_benchmark.py       # Gold-query and bank/test leakage checks
@@ -128,7 +133,8 @@ src/
   data_context.py            # CSV loading, type inference, SQLite table setup
   intent.py                   # BERT intent classifier + keyword-based fallback
   sql_builder.py               # Schema-aware, rule-based NL -> SQL generation
-  rag_sql.py                   # Retrieval-augmented NL -> SQL (Groq LLM + FAISS retrieval)
+  rag_sql.py                   # Retrieval-augmented NL -> SQL (Groq or Cerebras LLM + FAISS retrieval)
+  doc_retrieval.py             # Business-glossary retrieval (dense, BM25, hybrid)
   sql_safety.py                # Read-only, single-SELECT, timeout + row-cap guardrails
   visualization.py              # Chart rendering + insights
   model_training.ipynb           # Notebook for training the intent model
@@ -137,7 +143,7 @@ tests/                      # pytest: SQL safety checks + result-set comparison
 logs/                       # Training logs
 requirements.txt           # Runtime dependencies
 requirements-train.txt     # Training / evaluation / test dependencies
-.env.example               # Template for .env (GROQ_API_KEY)
+.env.example               # Template for .env (GROQ_API_KEY; CEREBRAS_API_KEY for the Stage 3 benchmark)
 ```
 
 ---
@@ -420,7 +426,7 @@ adds 2 points. The failures are in SQL construction:
 * **The date column is nondeterministic.** `sql_builder` picks it with `next(iter(set))`, so on the
   healthcare data it's *Date of Admission* in some processes and *Discharge Date* in others. Total
   accuracy moves between 27.5% and 32.5% depending on Python's hash seed. The numbers above use a
-  pinned seed. The bug isn't fixed in this stage, but it should be fixed before app integration.
+  pinned seed. The bug wasn't fixed in this stage; Stage 3 fixed it.
 
 **Remaining LLM misses are mostly judgment calls.** Zero-shot's one miss ("normal vs abnormal test
 results") also returned the third group, "Inconclusive". One RAG miss answered "which sells more,
@@ -447,6 +453,177 @@ yoga mats or water bottles" with only the winning row. The metric counts both as
   * add a minimum-similarity threshold, below which no examples are sent.
 * RAG is most likely to help on harder schemas, such as multi-table joins, unusual column semantics
   or domain-specific definitions. This benchmark doesn't test those.
+
+### Stage 3: business definitions and model size
+
+Stage 2 found that the schema alone was enough context for the original 120 questions. Stage 3 asks
+two questions:
+
+1. Does retrieval help when the schema *isn't* enough, because the question uses a company-specific
+   business term?
+2. Can a smaller model plus retrieval match a larger model?
+
+#### What was added
+
+* **Business glossaries** (`docs/glossary/healthcare.md`, `retail.md`), with 26 definitions each.
+  Several definitions are deliberately different from the everyday reading:
+  * a *senior patient* is 67 or older, not 65;
+  * *government payers* are Medicare **and** UnitedHealthcare;
+  * the hospital's fiscal year runs July–June and the retailer's runs February–January;
+  * a *returning customer* ordered in both 2023 and 2024, and the term has nothing to do with returns.
+
+  The glossaries also contain near-miss distractors: *senior care tier* (80+) next to *senior
+  patient*, *premium room* next to *premium insurer*, and *net sales* next to *net revenue*.
+* **A 60-question glossary benchmark** (`eval/sql_benchmark/glossary_questions.jsonl`): 30 questions
+  per dataset and 12 per intent. Each question uses at least one term without restating it. Each comes
+  with the IDs of the definitions it needs, gold SQL, and a `naive_sql` for the plausible everyday
+  reading. Every naive query was checked to give a different answer from the gold. 15 questions are
+  written out for human review in `eval/sql_benchmark/REVIEW.md`.
+* **Glossary retrieval** (`src/doc_retrieval.py`), using dense embeddings, BM25, or both fused with
+  reciprocal rank fusion. The hybrid retriever was best: recall@3 **93.3%**, and 90% of questions had
+  every needed definition in the top 3 (`eval/results/doc_retrieval_results.md`).
+* **The Stage 2 example-retrieval fixes.** Each example now shows its own table name and schema, the
+  bank is filtered by predicted intent, and examples below cosine 0.35 aren't sent. This system is
+  called `example_rag_fixed`.
+* **The `sql_builder` hash-seed bug** described above is fixed. The date column is now chosen
+  deterministically.
+
+#### Setup
+
+* **Systems.** On the glossary set:
+  * `zero_shot`: schema only;
+  * `doc_rag`: schema plus the top-3 retrieved definitions;
+  * `oracle_doc`: schema plus exactly the needed definitions, which is an upper bound for `doc_rag`.
+
+  On the original 120 questions: `zero_shot`, `example_rag_fixed`, and `doc_rag`. Running `doc_rag`
+  there checks whether irrelevant definitions do harm.
+* **Models.** `gpt-oss-20b` runs on **Groq**, and `gpt-oss-120b` runs on **Cerebras**. Both use the
+  same prompts, temperature 0, low reasoning effort and a 1,024-token completion cap.
+  * The 120b moved to Cerebras because Groq's free-tier daily token cap would have spread its 516
+    calls over several days. Cerebras finished them in one afternoon.
+  * Every 120b number in this section comes from Cerebras, and every 20b number comes from Groq. The
+    Stage 2 tables above are Groq results.
+  * Cerebras reproduces Stage 2's 120b zero-shot result exactly: 99.2%, with the same single miss.
+* **Running it.** `python eval/evaluate_stage3.py run --model gpt-oss-20b|gpt-oss-120b --wait` makes
+  the calls, and `python eval/evaluate_stage3.py report` scores everything from the caches.
+  * The provider is part of the cache key, and each model has its own cache file in `eval/results/`.
+  * Cerebras calls are throttled to 5 per minute. The run also hit a ~300 requests/hour limit once
+    and slept through it.
+
+#### Results
+
+Glossary set (60 questions that need a business definition):
+
+| System | gpt-oss-20b (Groq) | gpt-oss-120b (Cerebras) |
+|---|---|---|
+| zero_shot (schema only) | **10.0%** (6/60) | **10.0%** (6/60) |
+| doc_rag (top-3 retrieved definitions) | **86.7%** (52/60) | **88.3%** (53/60) |
+| oracle_doc (exactly the needed definitions) | **95.0%** (57/60) | **95.0%** (57/60) |
+
+Original set (the 120 Stage 2 questions):
+
+| System | gpt-oss-20b (Groq) | gpt-oss-120b (Cerebras) |
+|---|---|---|
+| zero_shot | **98.3%** (118/120) | **99.2%** (119/120) |
+| example_rag_fixed (Stage 2's llm_rag: 93.3%) | **97.5%** (117/120) | **100.0%** (120/120) |
+| doc_rag (glossary definitions, none needed) | **94.2%** (113/120) | **95.0%** (114/120) |
+
+Small vs. large, question by question. "Only 20b" counts questions the 20b got right and the 120b
+got wrong.
+
+| Set | System | Both right | Only 20b | Only 120b | Both wrong |
+|---|---|---|---|---|---|
+| glossary | zero_shot | 4 | 2 | 2 | 52 |
+| glossary | doc_rag | 49 | 3 | 4 | 4 |
+| glossary | oracle_doc | 55 | 2 | 2 | 1 |
+| original | zero_shot | 118 | 0 | 1 | 1 |
+| original | example_rag_fixed | 117 | 0 | 3 | 0 |
+| original | doc_rag | 111 | 2 | 3 | 4 |
+
+Full tables (by dataset and intent, failure breakdowns, latency and tokens) are in
+`eval/results/stage3_results.md` / `.json`. Every wrong answer is in `eval/results/stage3_failures.csv`,
+with the retrieved chunk or example IDs.
+
+#### What this shows
+
+**Business definitions are knowledge the model doesn't have, and model size doesn't supply it.**
+Both models score 10% on the glossary set without definitions. The model six times larger is no
+better: each model got 2 questions right that the other missed. Many wrong answers are exactly the everyday reading the benchmark was built to catch (14 of the 20b's
+and 19 of the 120b's answers match `naive_sql`):
+
+* "senior patients" became `Age >= 65`;
+* "government payers" became Medicare only;
+* "fiscal year" became the calendar year;
+* "returning customers" became `Returned = 'Yes'`.
+
+**Retrieved definitions close almost all of that gap.** Accuracy goes from 10% to 87–88% with
+retrieved definitions and to 95% with the exact ones. The small model plus retrieval (86.7%) beats
+the large model without it (10.0%) by 77 points.
+
+**On this benchmark, context matters far more than model size.** Given the same context, the two
+models are never more than 2.5 points apart (3 of 120 questions), and they tie on `oracle_doc`. At low reasoning effort, the 20b is a reasonable choice whenever
+the right context is in the prompt.
+
+**The remaining `doc_rag` gap is mostly retrieval.**
+
+* Both models miss the same 4 questions, and in each of them a needed definition wasn't retrieved.
+* A retrieved distractor can make things worse than retrieving nothing. For "high-cost admissions of
+  senior patients", the retriever returned *senior care tier* (80+) instead of *senior patient*
+  (67+), and both models wrote `Age >= 80`.
+* Where the definitions were all present, the remaining misses come from SQL details, especially
+  fiscal-year arithmetic (see below).
+
+**The Stage 2 example-retrieval fixes worked.** Example RAG went from 93.3% (Stage 2) to 97.5–100%.
+It no longer hurts the 120b, and its 3 extra correct answers are within noise. It still doesn't
+reliably beat zero-shot: the 20b drops 0.8 points.
+
+**Irrelevant definitions cost a few points.** `doc_rag` on the original set (no definitions needed)
+scores 95.0% for the 120b (99.2% zero-shot) and 94.2% for the 20b (98.3% zero-shot). Both models
+applied definitions the question didn't use, despite the prompt telling them not to:
+
+* *billable days* (+1 day) was applied to plain "length of stay" questions;
+* the *AOV* rule (non-returned orders only) was applied to "average order revenue".
+
+The AOV case is arguably a conflict between the glossary and the Stage 2 gold SQL rather than a
+model error. Either way, the app should only add definitions whose term actually appears in the
+question, for example with a retrieval-score or term-match gate, rather than always sending the
+top 3.
+
+**Notable failures:**
+
+| Question | System | What went wrong |
+|---|---|---|
+| number of admissions per fiscal year | 20b oracle_doc | The `CASE` returns text in one branch and an integer in the other, so SQLite puts `'2021'` and `2021` in separate groups |
+| net revenue per fiscal year | 120b oracle_doc | The same text/integer mix in its fiscal-year label, although the definition was right |
+| how many returning customers are there? | 120b doc_rag + oracle_doc | `strftime('%Y','`Order Date`')`: quoting the column name turns it into a string literal, so every year is NULL |
+| patients on Lipitor with abnormal test results admitted in 2023 | 120b doc_rag | It wrote `'Lipicon'`, a value that appears nowhere in the data. Zero-shot spelled it correctly |
+| hard goods vs soft goods: average revenue per order | 120b zero_shot | It guessed the hidden definition exactly, then selected `Revenue` from a subquery that didn't include it |
+| how many bulk buyers are there? | 20b doc_rag | `COUNT(DISTINCT ...)` with `GROUP BY` returns a 1 for each buyer instead of one count |
+| compare CSAT between B2B and consumer orders | 120b doc_rag + oracle_doc | It returned the three segments separately instead of merging Corporate and Small Business into B2B |
+| show patients with premium insurers and flagged results... | both, doc_rag | *Premium insurer* wasn't retrieved, so both models listed all five insurers (*premium room* was retrieved instead) |
+
+**Latency and cost.**
+
+* The models ran on different providers, so their latencies can't be compared: the difference is as
+  much about hardware as model size. Median client latency was 0.32 s for the 120b on Cerebras and
+  0.40 s for the 20b on Groq.
+* The 120b's 516 calls used 457K tokens. Cerebras served 324K of them from its prompt cache, so only
+  133K uncached tokens counted against the daily limit.
+* The 20b's 516 calls used 452K tokens on Groq. Once the free tier's daily token cap was reached,
+  the run slowed to about one call every 5–7 minutes.
+
+**Caveats:**
+
+* The glossary set is small (n=60), and the 95% confidence interval on 87% is roughly ±9 points.
+  The model-size differences are well inside that.
+* I wrote the glossaries, the questions and the gold SQL. The definitions are deliberately
+  counterintuitive so that the model can't already know them. Real company glossaries are often
+  closer to everyday usage, so the zero-shot score here is a worst case.
+* Each system was run once, at temperature 0. The two models are served by different providers,
+  so any serving differences, such as numerics or kernels, are confounded with model size.
+
+**Next stage:** integrate into the app with `zero_shot` as the default generator and glossary
+retrieval behind a relevance gate, using the 20b if latency or cost matters.
 
 ---
 
