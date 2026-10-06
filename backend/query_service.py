@@ -1,5 +1,9 @@
 """One question -> intent -> SQL (LLM and/or rule-based) -> safe execution -> chart suggestion.
 
+The LLM step tries a chain of models on one provider: the primary (LLM_MODEL), then each of
+LLM_FALLBACK_MODELS when the previous one is out of quota or rate-limited. Any other failure (an API error,
+SQL the safety layer rejects) goes straight to the rule-based generator, since another model wouldn't help.
+
 Generation, retrieval and execution all reuse src/: rag_sql.generate_sql_detailed (Groq or Cerebras),
 doc_retrieval.match_terms (via backend.glossary), rag_sql.retrieve_examples, sql_builder.build_sql and
 sql_safety.run_safe_query.
@@ -29,6 +33,7 @@ FALLBACK_MESSAGES = {
     "rate_limited": "Too many LLM questions from your address in the last minute, so the rule-based generator answered.",
     "llm_unavailable": "No LLM is configured on the server, so the rule-based generator answered.",
     "provider_quota": "The LLM provider's daily quota is exhausted, so the rule-based generator answered.",
+    "provider_rate_limited": "The LLM provider is rate-limiting requests, so the rule-based generator answered.",
     "llm_error": "The LLM call failed, so the rule-based generator answered.",
     "unsafe_sql": "The LLM's SQL was rejected by the safety check ({detail}), so the rule-based generator answered.",
     "execution_error": "The LLM's SQL failed to run ({detail}), so the rule-based generator answered.",
@@ -52,6 +57,26 @@ class _Generated:
     fallback_reason: str = None
     fallback_detail: str = None
     rejected_sql: str = None
+    model: str = None            # the model whose SQL is used (LLM answers only)
+    model_note: str = None       # e.g. "gpt-oss-20b (120b quota exhausted)" when a fallback model answered
+    models_tried: list = None    # [{"model", "outcome"}] in the order tried
+
+
+MODEL_OUTCOMES = {"quota": "quota_exhausted", "rate_limit": "rate_limited"}
+OUTCOME_TEXT = {"quota_exhausted": "quota exhausted", "rate_limited": "rate-limited"}
+
+
+def _short(model: str) -> str:
+    return model.split("/")[-1]
+
+
+def model_note(primary: str, answered: str, first_outcome: str) -> str:
+    """'gpt-oss-20b (120b quota exhausted)': who answered, and why the primary didn't."""
+    label = _short(primary)
+    prefix = "gpt-oss-"
+    if label.startswith(prefix) and _short(answered).startswith(prefix):
+        label = label[len(prefix):]
+    return f"{_short(answered)} ({label} {OUTCOME_TEXT.get(first_outcome, 'failed')})"
 
 
 def _ms(start: float) -> int:
@@ -144,9 +169,9 @@ class QueryService:
         except (UnsafeSQLError, QueryTimeoutError, sqlite3.Error) as e:
             if gen.used == "llm" and mode == "auto":
                 detail = _execution_message(e)
-                strategy = gen.llm_strategy
+                strategy, tried = gen.llm_strategy, gen.models_tried
                 gen = self._fallback(question, intent["label"], session, "execution_error", detail, gen.sql)
-                gen.llm_strategy = strategy
+                gen.llm_strategy, gen.models_tried = strategy, tried
                 try:
                     df = run_safe_query(gen.sql, session.dataset.conn, max_rows=MAX_RESULT_ROWS)
                 except (UnsafeSQLError, QueryTimeoutError, sqlite3.Error) as e2:
@@ -172,7 +197,9 @@ class QueryService:
                 "used": gen.used,
                 "requested_mode": mode,
                 "llm_strategy": gen.llm_strategy,
-                "model": self.settings.llm_model if gen.used == "llm" else None,
+                "model": gen.model if gen.used == "llm" else None,
+                "model_note": gen.model_note if gen.used == "llm" else None,
+                "models_tried": gen.models_tried or [],
                 "provider": self.settings.llm_provider if gen.used == "llm" else None,
                 "fallback_reason": gen.fallback_reason,
                 "fallback_detail": gen.fallback_detail,
@@ -205,30 +232,50 @@ class QueryService:
         else:
             strategy, rag_mode = "zero_shot", "llm_zero_shot"
 
+        chain = (self.settings.llm_model,) + tuple(
+            m for m in self.settings.llm_fallback_models if m != self.settings.llm_model)
+        tried = []
         t = time.perf_counter()
-        result = rag_sql.generate_sql_detailed(
-            question, session.dataset, mode=rag_mode, intent=intent, schema_context=session.schema_context,
-            dataset_name=glossary, docs=docs or None, model=self.settings.llm_model,
-            provider=self.settings.llm_provider)
+        for i, model in enumerate(chain):
+            last = i == len(chain) - 1
+            # Only the last model waits out a per-minute limit; earlier ones fail over on the first 429.
+            result = rag_sql.generate_sql_detailed(
+                question, session.dataset, mode=rag_mode, intent=intent, schema_context=session.schema_context,
+                dataset_name=glossary, docs=docs or None, model=model, provider=self.settings.llm_provider,
+                max_retries=None if last else 1)
+            if result.source == "llm":
+                tried.append({"model": model, "outcome": "answered"})
+                break
+            if result.rejected:
+                tried.append({"model": model, "outcome": "rejected"})
+                break
+            outcome = MODEL_OUTCOMES.get(result.error_kind, "failed")
+            tried.append({"model": model, "outcome": outcome})
+            log.warning("LLM %s failed (%s): %s", model, outcome, result.error)   # raw errors stay in the server log
+            if outcome == "failed":
+                break
         latency["generation"] = _ms(t)
         if result.examples:
             context["examples"] = [{"question": e["question"], "sql": e.get("table_sql", e["sql"]),
                                     "score": round(e["score"], 3)} for e in result.examples]
 
         if result.source == "llm":
-            return _Generated(result.sql, "llm", intent, llm_strategy=strategy)
+            note = model_note(chain[0], model, tried[0]["outcome"]) if model != chain[0] else None
+            return _Generated(result.sql, "llm", intent, llm_strategy=strategy, model=model, model_note=note,
+                              models_tried=tried)
 
         if result.rejected:
             reason, detail = "unsafe_sql", result.error.split(": ", 1)[-1]
-        elif result.error and "quota" in result.error:
+        elif tried[-1]["outcome"] == "quota_exhausted":
             reason, detail = "provider_quota", None
+        elif tried[-1]["outcome"] == "rate_limited":
+            reason, detail = "provider_rate_limited", None
         else:
             reason, detail = "llm_error", None
-        log.warning("LLM generation fell back: %s", result.error)   # the raw error stays in the server log
         if mode == "llm":
             raise self._llm_failure(reason, detail)
         gen = self._fallback(question, intent, session, reason, detail, result.llm_sql if result.rejected else None)
-        gen.llm_strategy = strategy
+        gen.llm_strategy, gen.models_tried = strategy, tried
         return gen
 
     @staticmethod
@@ -245,4 +292,7 @@ class QueryService:
             return QueryError(422, reason, f"The LLM's SQL was rejected by the safety check ({detail}).")
         if reason == "provider_quota":
             return QueryError(429, reason, "The LLM provider's daily quota is exhausted. Try auto or rule-based mode.")
+        if reason == "provider_rate_limited":
+            return QueryError(429, reason, "The LLM provider is rate-limiting requests. Try again shortly, "
+                                           "or use auto or rule-based mode.")
         return QueryError(502, reason, "The LLM call failed. Try again, or use auto or rule-based mode.")

@@ -8,6 +8,7 @@ const FALLBACK_TITLE: Record<string, string> = {
   rate_limited: "LLM rate limit reached",
   llm_unavailable: "No LLM configured",
   provider_quota: "LLM provider quota exhausted",
+  provider_rate_limited: "LLM provider rate limit reached",
   llm_error: "LLM call failed",
   unsafe_sql: "LLM SQL blocked by the safety check",
   execution_error: "LLM SQL failed to run",
@@ -68,6 +69,9 @@ function Details({ result }: { result: QueryResult }) {
           <span className="block font-mono text-xs text-ink-muted">
             {gen.model}{gen.provider && ` · ${PROVIDER[gen.provider]}`}
           </span>
+        )}
+        {gen.model_note && (
+          <p role="note" className="mt-1 text-xs text-warning-ink">↳ Answered by {gen.model_note}</p>
         )}
         {gen.fallback_reason && (
           <div role="note" className="mt-2 rounded-[var(--radius-ctl)] bg-warning-soft px-3 py-2 text-xs text-ink">

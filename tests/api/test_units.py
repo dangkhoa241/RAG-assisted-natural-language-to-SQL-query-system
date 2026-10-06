@@ -103,15 +103,22 @@ def test_llm_provider_and_model_settings(monkeypatch):
         monkeypatch.delenv(name, raising=False)
     monkeypatch.setenv("GROQ_API_KEY", "test")
     s = Settings.from_env()
-    assert (s.llm_provider, s.llm_model, s.llm_enabled, s.glossary_default) == ("groq", "openai/gpt-oss-20b", True, True)
+    assert (s.llm_provider, s.llm_model, s.llm_enabled, s.glossary_default) == ("groq", "openai/gpt-oss-120b", True, True)
+    assert s.llm_fallback_models == ("openai/gpt-oss-20b",)
 
-    monkeypatch.setenv("LLM_MODEL", "openai/gpt-oss-120b")       # the .env override used during development
-    assert Settings.from_env().llm_model == "openai/gpt-oss-120b"
+    monkeypatch.setenv("LLM_MODEL", "openai/gpt-oss-20b")
+    monkeypatch.setenv("LLM_FALLBACK_MODELS", "")                 # set but empty: no fallback
+    s = Settings.from_env()
+    assert (s.llm_model, s.llm_fallback_models) == ("openai/gpt-oss-20b", ())
+    monkeypatch.setenv("LLM_FALLBACK_MODELS", "a/one, a/two")
+    assert Settings.from_env().llm_fallback_models == ("a/one", "a/two")
 
     monkeypatch.delenv("LLM_MODEL")
+    monkeypatch.delenv("LLM_FALLBACK_MODELS")
     monkeypatch.setenv("LLM_PROVIDER", "cerebras")
     s = Settings.from_env()
     assert (s.llm_provider, s.llm_model, s.llm_enabled) == ("cerebras", "gpt-oss-120b", False)   # no Cerebras key
+    assert s.llm_fallback_models == ()                                # Cerebras doesn't serve the 20b
 
     monkeypatch.setenv("LLM_PROVIDER", "openai")
     with pytest.raises(ValueError):
@@ -120,6 +127,18 @@ def test_llm_provider_and_model_settings(monkeypatch):
 
 def test_gate_uses_the_frozen_stage3c_settings():
     assert GATE["doc_method"] == "gated" and GATE["max_chunks"] is None and GATE["retrieval_fallback"] is None
+
+
+def test_app_gating_config_matches_the_frozen_benchmark_config():
+    import json
+
+    from backend import ROOT_DIR
+    from backend.glossary import GATING_CONFIG
+
+    assert GATING_CONFIG == ROOT_DIR / "config" / "glossary_gating.json"
+    app = json.loads(GATING_CONFIG.read_text(encoding="utf-8"))
+    frozen = json.loads((ROOT_DIR / "eval" / "stage3c_config.json").read_text(encoding="utf-8"))
+    assert app == frozen
 
 
 @pytest.mark.parametrize("question, glossary, expected", [

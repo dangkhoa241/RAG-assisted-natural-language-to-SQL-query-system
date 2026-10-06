@@ -6,7 +6,7 @@ import App from "../App";
 import { makeResult, SAMPLE } from "./fixtures";
 
 const CONFIG = {
-  default_mode: "auto", glossary_default: true, llm_provider: "groq", llm_model: "openai/gpt-oss-20b",
+  default_mode: "auto", glossary_default: true, llm_provider: "groq", llm_model: "openai/gpt-oss-120b", llm_fallback_models: ["openai/gpt-oss-20b"],
   llm_budget_remaining: 500, max_upload_mb: 10, max_rows_returned: 500,
 };
 

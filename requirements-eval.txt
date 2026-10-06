@@ -1,0 +1,19 @@
+# Everything beyond the app runtime: the benchmarks (eval/), the tests (tests/), and training the
+# intent classifier (src/model_training.ipynb).
+-r requirements.txt
+
+# --- Retrieval: the Stage 2/3 benchmarks, and the app's optional LLM_STRATEGY=example_rag ---
+sentence-transformers
+faiss-cpu
+rank_bm25
+sentencepiece
+
+# --- Evaluation and training ---
+scikit-learn
+joblib
+jupyter
+notebook
+
+# --- Tests ---
+pytest
+httpx          # FastAPI TestClient

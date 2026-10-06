@@ -218,6 +218,10 @@ class DailyLimitError(LLMError):
                               if m and any(m.groups()) else None)
 
 
+class RateLimitError(LLMError):
+    """The provider was still rate-limiting (a per-minute limit, not the daily quota) after every allowed attempt."""
+
+
 class LLMCache:
     """Append-only JSONL cache of LLM responses, keyed by provider + model + prompt hash."""
 
@@ -321,8 +325,11 @@ def cache_key(messages: list, model: str = GROQ_MODEL, provider: str = DEFAULT_P
     return LLMCache.make_key(model, messages, llm_params(model), provider)
 
 
-def call_llm(messages: list, cache: LLMCache = None, model: str = GROQ_MODEL, provider: str = DEFAULT_PROVIDER) -> str:
-    """One chat completion at temperature 0, with exponential backoff on rate limits."""
+def call_llm(messages: list, cache: LLMCache = None, model: str = GROQ_MODEL, provider: str = DEFAULT_PROVIDER,
+             max_retries: int = None) -> str:
+    """One chat completion at temperature 0, with exponential backoff on rate limits. Raises DailyLimitError
+    when the daily quota is gone and RateLimitError when still rate-limited after `max_retries` attempts
+    (default MAX_LLM_RETRIES; 1 fails over on the first 429 without waiting)."""
     params = llm_params(model)
     key = LLMCache.make_key(model, messages, params, provider)
     if cache is not None and (hit := cache.get(key)) is not None:
@@ -330,7 +337,8 @@ def call_llm(messages: list, cache: LLMCache = None, model: str = GROQ_MODEL, pr
 
     client = _client_for(provider)
     sdk = _sdk(provider)
-    for attempt in range(MAX_LLM_RETRIES):
+    attempts = max_retries or MAX_LLM_RETRIES
+    for attempt in range(attempts):
         try:
             _throttle(provider)
             started = time.perf_counter()
@@ -345,18 +353,20 @@ def call_llm(messages: list, cache: LLMCache = None, model: str = GROQ_MODEL, pr
         except sdk.RateLimitError as e:
             if _is_daily_limit(e):
                 raise DailyLimitError(str(e)) from e
+            if attempt == attempts - 1:
+                raise RateLimitError(f"gave up after {attempts} rate-limited attempts: {e}") from e
             retry_after = e.response.headers.get("retry-after") if e.response is not None else None
             wait = float(retry_after) if retry_after else min(2 ** attempt, 60)
             wait = max(wait, MIN_REQUEST_INTERVAL_S.get(provider, 0))
             print(f"  429 from {provider} (attempt {attempt + 1}), backing off {wait:.0f}s: {str(e)[:300]}", flush=True)
         except (sdk.APIConnectionError, sdk.InternalServerError) as e:
             wait = min(2 ** attempt, 60)
-            if attempt == MAX_LLM_RETRIES - 1:
+            if attempt == attempts - 1:
                 raise LLMError(str(e)) from e
         except sdk.APIError as e:
             raise LLMError(str(e)) from e
         time.sleep(wait + 0.25 * attempt)
-    raise LLMError(f"gave up after {MAX_LLM_RETRIES} rate-limited attempts")
+    raise LLMError(f"gave up after {attempts} attempts")
 
 
 def extract_sql(text: str) -> str:
@@ -379,6 +389,7 @@ class SQLGeneration:
     examples: list = field(default_factory=list)
     docs: list = field(default_factory=list)
     cache_key: str = None        # key of the LLM call in LLMCache (for usage/latency lookups)
+    error_kind: str = None       # why the LLM call failed: "quota", "rate_limit" or "error" (None if it answered)
 
 
 def _rule_based_sql(question: str, dataset: Dataset, intent: str = None) -> str:
@@ -394,9 +405,11 @@ def generate_sql_detailed(question: str, dataset: Dataset, mode: str = "llm_rag"
                           intent: str = None, cache: LLMCache = None, raise_on_quota: bool = False,
                           schema_context: str = None, example_style: str = "fixed", dataset_name: str = None,
                           docs: list = None, doc_method: str = DOC_RETRIEVER,
-                          model: str = GROQ_MODEL, provider: str = DEFAULT_PROVIDER) -> SQLGeneration:
+                          model: str = GROQ_MODEL, provider: str = DEFAULT_PROVIDER,
+                          max_retries: int = None) -> SQLGeneration:
     """`intent` is the predicted intent: it filters examples (llm_rag) and drives the rule-based fallback.
-    llm_doc_rag retrieves k glossary chunks for `dataset_name`, unless `docs` gives the chunks directly."""
+    llm_doc_rag retrieves k glossary chunks for `dataset_name`, unless `docs` gives the chunks directly.
+    `max_retries` is passed to call_llm (attempts on a per-minute rate limit)."""
     if mode not in ("llm_zero_shot", "llm_rag", "llm_doc_rag"):
         raise ValueError(f"unknown mode: {mode}")
     examples = retrieve_examples(question, k, intent, example_style) if mode == "llm_rag" else []
@@ -408,15 +421,21 @@ def generate_sql_detailed(question: str, dataset: Dataset, mode: str = "llm_rag"
     key = cache_key(messages, model, provider)
 
     try:
-        llm_sql = extract_sql(call_llm(messages, cache=cache, model=model, provider=provider))
+        llm_sql = extract_sql(call_llm(messages, cache=cache, model=model, provider=provider, max_retries=max_retries))
     except DailyLimitError:
         if raise_on_quota:
             raise
         return SQLGeneration(_rule_based_sql(question, dataset, intent), "fallback", mode,
-                             error="LLM daily quota exhausted", examples=examples, docs=docs, cache_key=key)
+                             error="LLM daily quota exhausted", examples=examples, docs=docs, cache_key=key,
+                             error_kind="quota")
+    except RateLimitError as e:
+        return SQLGeneration(_rule_based_sql(question, dataset, intent), "fallback", mode,
+                             error=f"LLM rate limit: {e}", examples=examples, docs=docs, cache_key=key,
+                             error_kind="rate_limit")
     except LLMError as e:
         return SQLGeneration(_rule_based_sql(question, dataset, intent), "fallback", mode,
-                             error=f"LLM call failed: {e}", examples=examples, docs=docs, cache_key=key)
+                             error=f"LLM call failed: {e}", examples=examples, docs=docs, cache_key=key,
+                             error_kind="error")
 
     try:
         safe_sql = validate_sql(llm_sql)

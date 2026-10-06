@@ -1,4 +1,7 @@
-"""Gated glossary RAG with the settings frozen in Stage 3C (eval/stage3c_config.json, "doc_rag_gated").
+"""Gated glossary RAG with the settings frozen in Stage 3C ("doc_rag_gated").
+
+The app reads config/glossary_gating.json, a copy of eval/stage3c_config.json (which stays in eval/ so the
+benchmark can be reproduced); tests/api/test_units.py checks the two agree.
 
 A definition is sent only if its term or one of its aliases appears in the question
 (doc_retrieval.match_terms). With no match, nothing is sent and the prompt is exactly the zero-shot one.
@@ -11,13 +14,13 @@ from doc_retrieval import load_glossary, match_terms
 
 from backend import ROOT_DIR
 
-STAGE3C_CONFIG = ROOT_DIR / "eval" / "stage3c_config.json"
+GATING_CONFIG = ROOT_DIR / "config" / "glossary_gating.json"
 
 
 def _load_gate() -> dict:
-    gate = json.loads(STAGE3C_CONFIG.read_text(encoding="utf-8"))["doc_rag_gated"]
+    gate = json.loads(GATING_CONFIG.read_text(encoding="utf-8"))["doc_rag_gated"]
     if gate["doc_method"] != "gated" or gate["retrieval_fallback"] is not None:
-        raise RuntimeError(f"{STAGE3C_CONFIG.name}: the app implements only term gating without a retrieval fallback")
+        raise RuntimeError(f"{GATING_CONFIG.name}: the app implements only term gating without a retrieval fallback")
     return gate
 
 

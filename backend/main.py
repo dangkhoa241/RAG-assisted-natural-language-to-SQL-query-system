@@ -88,23 +88,32 @@ def _client_ip(request: Request) -> str:
 
 
 def _quiet_library_logs():
-    """The model loaders print progress bars, which don't belong in an API server's log."""
-    from transformers.utils import logging as hf_logging
-
-    for name in ("sentence_transformers", "httpx", "httpx2", "huggingface_hub", "datasets"):
+    """HTTP clients log every request at INFO, which doesn't belong in an API server's log."""
+    for name in ("httpx", "httpx2", "huggingface_hub", "sentence_transformers", "datasets"):
         logging.getLogger(name).setLevel(logging.WARNING)
-    hf_logging.disable_progress_bar()
 
 
 def _load_intent_classifier():
+    """The only heavy import at startup: transformers + torch for the BERT intent model."""
     from intent import load_intent_classifier
+
+    try:
+        from transformers.utils import logging as hf_logging
+        hf_logging.disable_progress_bar()   # the loaders' progress bars don't belong in a server log
+    except ImportError:
+        pass
     return load_intent_classifier()
 
 
 def _preload_retrieval_models(settings: Settings):
-    """Glossary gating is plain text matching; only example_rag needs the embedding model and FAISS index."""
+    """Glossary gating is plain text matching, so by default no embedding model or FAISS index is loaded.
+    Only LLM_STRATEGY=example_rag needs them (sentence-transformers + faiss, from requirements-eval.txt)."""
     if settings.llm_strategy == "example_rag":
-        rag_sql.get_retriever()
+        try:
+            rag_sql.get_retriever()
+        except ImportError as e:
+            raise RuntimeError("LLM_STRATEGY=example_rag needs sentence-transformers and faiss-cpu "
+                               "(pip install -r requirements-eval.txt)") from e
 
 
 def _sample_payload(session) -> dict:
@@ -200,6 +209,7 @@ def create_app(settings: Settings = None, intent_classifier=_DEFAULT) -> FastAPI
             "glossary_default": settings.glossary_default,
             "llm_provider": settings.llm_provider if settings.llm_enabled else None,
             "llm_model": settings.llm_model if settings.llm_enabled else None,
+            "llm_fallback_models": list(settings.llm_fallback_models) if settings.llm_enabled else [],
             "llm_budget_remaining": service.budget.remaining,
             "max_upload_mb": settings.max_upload_bytes // (1024 * 1024),
             "max_rows_returned": settings.max_rows_returned,

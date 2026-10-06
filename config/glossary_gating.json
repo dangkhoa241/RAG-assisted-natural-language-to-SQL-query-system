@@ -1,0 +1,27 @@
+{
+  "description": "Stage 3C frozen settings, chosen on the dev set only (healthcare + retail). Part B runs the held-out SaaS set once with exactly these settings; anything changed after seeing SaaS results is reported separately as post-hoc.",
+  "frozen": true,
+  "doc_rag": {
+    "description": "Ungated baseline, unchanged from Stage 3B: always the top-k glossary chunks.",
+    "retriever": "hybrid",
+    "k": 3,
+    "index_aliases": false
+  },
+  "doc_rag_gated": {
+    "description": "Send a definition only if its term or one of its listed aliases appears in the question; no definitions means the prompt is identical to zero_shot.",
+    "doc_method": "gated",
+    "matching": "whole-word phrase, case-insensitive, hyphens as spaces, plural -s ignored, FY<year> matches FY; a match inside a longer match for another chunk is dropped",
+    "max_chunks": null,
+    "retrieval_fallback": null,
+    "retrieval_fallback_reason": "Term matching found every required chunk on all 60 dev glossary questions and gave no definitions to any of the 120 original questions, so no fallback was added."
+  },
+  "oracle_doc": "exactly the question's required_chunks, in the order listed",
+  "llm": {
+    "gpt-oss-20b": {"provider": "groq", "model_id": "openai/gpt-oss-20b"},
+    "gpt-oss-120b": {"provider": "cerebras", "model_id": "gpt-oss-120b"},
+    "temperature": 0,
+    "reasoning_effort": "low",
+    "max_completion_tokens": 1024
+  },
+  "glossaries": "docs/glossary/{healthcare,retail,saas}.md as committed with this file (aliases included)"
+}

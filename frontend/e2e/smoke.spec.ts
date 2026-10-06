@@ -18,7 +18,7 @@ const RESULT = {
   question: "average billing amount by insurance provider",
   intent: { label: "aggregate", confidence: 0.99, source: "bert" },
   generator: {
-    used: "llm", requested_mode: "auto", llm_strategy: "zero_shot", model: "openai/gpt-oss-20b", provider: "groq",
+    used: "llm", requested_mode: "auto", llm_strategy: "zero_shot", model: "openai/gpt-oss-120b", provider: "groq", model_note: null, models_tried: [{ model: "openai/gpt-oss-120b", outcome: "answered" }],
     fallback_reason: null, fallback_detail: null, rejected_sql: null,
   },
   sql: "SELECT `Insurance Provider`, AVG(`Billing Amount`) AS avg_billing FROM data GROUP BY `Insurance Provider`",
@@ -34,7 +34,7 @@ const RESULT = {
 
 test("sample dataset → question → chart and table", async ({ page }) => {
   await page.route("**/api/config", (r) => r.fulfill({ json: {
-    default_mode: "auto", glossary_default: true, llm_provider: "groq", llm_model: "openai/gpt-oss-20b",
+    default_mode: "auto", glossary_default: true, llm_provider: "groq", llm_model: "openai/gpt-oss-120b", llm_fallback_models: ["openai/gpt-oss-20b"],
     llm_budget_remaining: 500, max_upload_mb: 10, max_rows_returned: 500,
   } }));
   await page.route("**/api/samples", (r) => r.fulfill({ json: { samples: [SAMPLE] } }));

@@ -5,11 +5,15 @@ Every variable is optional:
   GLOSSARY_DEFAULT          whether the glossary toggle starts on       (true)
   LLM_STRATEGY              zero_shot | example_rag, when no glossary term matches (zero_shot)
   LLM_PROVIDER              groq | cerebras                             (groq)
-  LLM_MODEL                 the provider's model ID                     (groq: openai/gpt-oss-20b,
+  LLM_MODEL                 the primary model ID                        (groq: openai/gpt-oss-120b,
                                                                          cerebras: gpt-oss-120b)
+  LLM_FALLBACK_MODELS       comma-separated models on the same provider, tried in order when the
+                            primary is out of quota or rate-limited; empty disables (groq: openai/gpt-oss-20b,
+                                                                         cerebras: none)
   LLM_RATE_LIMIT_PER_MIN    LLM queries per client IP per minute        (10)
   LLM_DAILY_BUDGET          LLM queries per UTC day, all clients        (500)
-  LLM_MAX_RETRIES           attempts per LLM call on rate limits         (2)
+  LLM_MAX_RETRIES           attempts on a rate limit for the LAST model in the chain (2); earlier
+                            models fail over on the first 429
   UPLOAD_RATE_LIMIT_PER_MIN uploads per client IP per minute            (10)
   MAX_UPLOAD_MB             largest accepted CSV                        (10)
   MAX_COLUMNS               widest accepted CSV                         (100)
@@ -35,9 +39,11 @@ load_dotenv(ROOT_DIR / ".env")
 MODES = ("auto", "llm", "rule_based")
 LLM_STRATEGIES = ("zero_shot", "example_rag")
 PROVIDERS = tuple(PROVIDER_API_KEYS)
-# Stage 3 found gpt-oss-20b matches gpt-oss-120b once the right definitions are in the prompt.
-# Cerebras doesn't serve the 20b, so its default is the 120b.
-DEFAULT_MODELS = {"groq": "openai/gpt-oss-20b", "cerebras": "gpt-oss-120b"}
+# Stage 3C's held-out SaaS domain: with the same gated definitions, gpt-oss-120b scored 95% and gpt-oss-20b
+# 80%, so the 120b is the primary model. On Groq the 20b has its own quota, so it is the fallback when the
+# 120b's quota runs out. Cerebras doesn't serve the 20b.
+DEFAULT_MODELS = {"groq": "openai/gpt-oss-120b", "cerebras": "gpt-oss-120b"}
+DEFAULT_FALLBACK_MODELS = {"groq": ("openai/gpt-oss-20b",), "cerebras": ()}
 
 
 def _bool(name: str, default: bool) -> bool:
@@ -57,6 +63,16 @@ def _choice(name: str, default: str, allowed: tuple) -> str:
     return value
 
 
+def _models(name: str, default: tuple) -> tuple:
+    """A comma-separated list; set but empty (or "none") means no fallback."""
+    raw = os.environ.get(name)
+    if raw is None:
+        return default
+    if raw.strip().lower() in ("", "none"):
+        return ()
+    return tuple(m.strip() for m in raw.split(",") if m.strip())
+
+
 @dataclass
 class Settings:
     default_mode: str = "auto"
@@ -64,6 +80,7 @@ class Settings:
     llm_strategy: str = "zero_shot"
     llm_provider: str = "groq"
     llm_model: str = DEFAULT_MODELS["groq"]
+    llm_fallback_models: tuple = DEFAULT_FALLBACK_MODELS["groq"]
     llm_rate_limit_per_min: int = 10
     llm_daily_budget: int = 500
     llm_max_retries: int = 2
@@ -88,6 +105,7 @@ class Settings:
             llm_strategy=_choice("LLM_STRATEGY", "zero_shot", LLM_STRATEGIES),
             llm_provider=provider,
             llm_model=os.environ.get("LLM_MODEL", "").strip() or DEFAULT_MODELS[provider],
+            llm_fallback_models=_models("LLM_FALLBACK_MODELS", DEFAULT_FALLBACK_MODELS[provider]),
             llm_rate_limit_per_min=_int("LLM_RATE_LIMIT_PER_MIN", 10),
             llm_daily_budget=_int("LLM_DAILY_BUDGET", 500),
             llm_max_retries=_int("LLM_MAX_RETRIES", 2),

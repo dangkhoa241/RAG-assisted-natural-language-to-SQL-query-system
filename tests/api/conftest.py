@@ -18,17 +18,21 @@ from intent import guess_intent_by_keywords  # noqa: E402
 
 
 class FakeLLM:
-    """Stands in for rag_sql.call_llm. `reply` is the SQL to return, or an exception to raise."""
+    """Stands in for rag_sql.call_llm. `reply` is the SQL to return, or an exception to raise;
+    `by_model` overrides it for specific model IDs (to fake one model's quota running out)."""
 
     def __init__(self):
         self.reply = "SELECT `Gender`, COUNT(*) AS n FROM data GROUP BY `Gender`"
+        self.by_model = {}
         self.calls = []
 
-    def __call__(self, messages, cache=None, model=rag_sql.GROQ_MODEL, provider=rag_sql.DEFAULT_PROVIDER):
-        self.calls.append({"messages": messages, "model": model, "provider": provider})
-        if isinstance(self.reply, Exception):
-            raise self.reply
-        return self.reply
+    def __call__(self, messages, cache=None, model=rag_sql.GROQ_MODEL, provider=rag_sql.DEFAULT_PROVIDER,
+                 max_retries=None):
+        self.calls.append({"messages": messages, "model": model, "provider": provider, "max_retries": max_retries})
+        reply = self.by_model.get(model, self.reply)
+        if isinstance(reply, Exception):
+            raise reply
+        return reply
 
     @property
     def last_prompt(self) -> str:

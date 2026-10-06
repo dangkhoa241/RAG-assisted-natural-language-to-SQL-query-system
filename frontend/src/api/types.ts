@@ -4,6 +4,7 @@ export type Mode = "auto" | "llm" | "rule_based";
 export type ChartType = "bar" | "line" | "pie" | "table" | "stat";
 export type ColumnKind = "numeric" | "categorical" | "date" | "text";
 export type Cell = string | number | boolean | null;
+export type ModelOutcome = "answered" | "quota_exhausted" | "rate_limited" | "failed" | "rejected";
 
 export interface SchemaColumn {
   name: string;
@@ -32,6 +33,8 @@ export interface AppConfig {
   glossary_default: boolean;
   llm_provider: "groq" | "cerebras" | null;
   llm_model: string | null;
+  /** Tried in order when the primary model is out of quota or rate-limited. */
+  llm_fallback_models: string[];
   llm_budget_remaining: number;
   max_upload_mb: number;
   max_rows_returned: number;
@@ -58,7 +61,11 @@ export interface QueryResult {
     used: "llm" | "rule_based";
     requested_mode: Mode;
     llm_strategy: "zero_shot" | "example_rag" | "glossary_rag" | null;
+    /** The model whose SQL is used (LLM answers only). */
     model: string | null;
+    /** Set when a fallback model answered, e.g. "gpt-oss-20b (120b quota exhausted)". */
+    model_note: string | null;
+    models_tried: { model: string; outcome: ModelOutcome }[];
     provider: "groq" | "cerebras" | null;
     fallback_reason: string | null;
     fallback_detail: string | null;

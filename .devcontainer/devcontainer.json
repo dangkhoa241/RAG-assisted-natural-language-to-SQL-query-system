@@ -20,7 +20,7 @@
       ]
     }
   },
-  "updateContentCommand": "pip3 install --user -r requirements.txt -r backend/requirements.txt && (cd frontend && npm install) && echo '✅ Packages installed and Requirements met'",
+  "updateContentCommand": "pip3 install --user -r requirements.txt && (cd frontend && npm install) && echo '✅ Packages installed and Requirements met'",
   "postAttachCommand": {
     "backend": "uvicorn backend.main:create_app --factory --port 8000",
     "frontend": "cd frontend && npm run dev -- --host"

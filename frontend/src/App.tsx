@@ -13,7 +13,7 @@ import { EmptyState, ErrorAlert, ResultsSkeleton } from "./components/StateViews
 import { useTheme } from "./hooks/useTheme";
 
 const FALLBACK_CONFIG: AppConfig = {
-  default_mode: "auto", glossary_default: true, llm_provider: null, llm_model: null, llm_budget_remaining: 0, max_upload_mb: 10, max_rows_returned: 500,
+  default_mode: "auto", glossary_default: true, llm_provider: null, llm_model: null, llm_fallback_models: [], llm_budget_remaining: 0, max_upload_mb: 10, max_rows_returned: 500,
 };
 
 interface Failure {

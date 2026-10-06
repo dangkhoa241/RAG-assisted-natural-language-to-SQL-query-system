@@ -127,7 +127,7 @@ eval/
   evaluate_doc_retrieval.py  # Glossary retrieval: dense vs BM25 vs hybrid
   evaluate_stage3.py         # Stage 3: glossary RAG and model-size comparison (20b on Groq, 120b on Cerebras)
   evaluate_stage3c.py        # Stage 3C: term-gated glossary RAG, held-out SaaS domain
-  stage3c_config.json        # Frozen Stage 3C settings (the app's glossary gate reads these)
+  stage3c_config.json        # Frozen Stage 3C settings (kept for reproducibility; the app reads config/)
   sql_metrics.py             # Execution-accuracy result-set comparison
   sql_benchmark/
     test_questions.jsonl     # 120 benchmark questions with gold SQL (healthcare + retail)
@@ -152,16 +152,18 @@ src/
   model_training.ipynb           # Notebook for training the intent model
 
 docs/glossary/              # Business glossaries: healthcare.md, retail.md, saas.md
+config/glossary_gating.json # The app's glossary-gating settings (a copy of eval/stage3c_config.json)
 
 backend/                    # FastAPI app over src/: datasets, queries, limits (see "Running the app")
   glossary.py                # Term-gated glossary definitions (frozen Stage 3C settings)
+  query_service.py           # intent -> glossary gate -> model chain (120b, then 20b) -> rule-based fallback
 frontend/                   # Vite + React + TypeScript + Tailwind + Recharts UI
 
-tests/                      # pytest: SQL safety, result comparison, and the API (tests/api/)
+tests/                      # pytest: SQL safety, result comparison, LLM retries, and the API (tests/api/)
 logs/                       # Training logs
-requirements.txt           # Runtime dependencies
-requirements-train.txt     # Training / evaluation / test dependencies
-.env.example               # Template for .env (GROQ_API_KEY, CEREBRAS_API_KEY, optional LLM_PROVIDER / LLM_MODEL)
+requirements.txt           # App runtime: FastAPI, pandas, torch (CPU) + transformers, Groq/OpenAI clients
+requirements-eval.txt      # Benchmarks, tests and training: retrieval (sentence-transformers, FAISS, BM25), pytest, notebooks
+.env.example               # Template for .env (API keys, optional provider / model / fallback settings)
 ```
 
 ---
@@ -244,7 +246,7 @@ Labels follow what each intent does in `sql_builder.py`:
 
 ### Results
 
-Run `python eval/evaluate_intent.py`. You need `requirements-train.txt` installed and a trained
+Run `python eval/evaluate_intent.py`. You need `requirements-eval.txt` installed and a trained
 `intent_model/`. The script rebuilds the notebook's exact train/val split and trains the
 TF-IDF baseline on the same 1,000 training rows that BERT used. Full output, including confusion
 matrices, is in `eval/results/`.
@@ -642,9 +644,10 @@ top 3.
   so any serving differences, such as numerics or kernels, are confounded with model size.
 
 **Next stage:** integrate into the app with `zero_shot` as the default generator and glossary
-retrieval behind a relevance gate, using the 20b if latency or cost matters. Stage 3C chose the gate
-(term and alias matching, tuned on the dev domains only and frozen in `eval/stage3c_config.json`), and
-the app now uses it with gpt-oss-20b as the default model; see "Running the app".
+retrieval behind a relevance gate. Stage 3C chose the gate (term and alias matching, tuned on the dev
+domains only and frozen in `eval/stage3c_config.json`) and, on its held-out domain, reversed the model
+choice suggested here: the 120b is clearly ahead once the definitions involve arithmetic. The app uses
+the gate with gpt-oss-120b as the primary model and gpt-oss-20b as its fallback; see "Running the app".
 
 ### Held-out domain (SaaS)
 
@@ -860,7 +863,7 @@ works: auto mode answers with the rule-based generator.
 ```powershell
 python -m venv .venv
 .venv\Scripts\Activate.ps1
-pip install -r requirements.txt -r backend\requirements.txt
+pip install -r requirements.txt
 uvicorn backend.main:create_app --factory --port 8000
 ```
 
@@ -881,6 +884,7 @@ Open http://localhost:5173. Vite proxies `/api` to port 8000, so the browser onl
 **Tests:**
 
 ```powershell
+pip install -r requirements-eval.txt    # once: pytest, plus the benchmark dependencies
 python -m pytest tests                  # backend + src (LLM mocked, no network; glossary matching is real)
 cd frontend
 npm test                                # Vitest: chart selection + components
@@ -894,35 +898,49 @@ npm run e2e                             # Playwright smoke test (mocked backend)
 |---|---|
 | `GET /api/samples` | The built-in datasets (healthcare, retail, SaaS): schema, row count, example questions |
 | `POST /api/datasets` | Upload a CSV (multipart field `file`, ≤ 10 MB) → `dataset_id`, rows, schema (types + sample values) |
-| `POST /api/query` | `{dataset_id, question, mode, use_glossary}` → intent + confidence, generator (model, provider, and why it fell back), SQL, columns, rows (≤ 500), suggested chart, matched glossary terms with the definitions sent, latency per step |
-| `GET /api/config`, `GET /api/health` | Server defaults (mode, glossary, provider, model, remaining budget) and status |
+| `POST /api/query` | `{dataset_id, question, mode, use_glossary}` → intent + confidence, generator (the model that answered, a note if it was the fallback model, every model tried, and why it fell back), SQL, columns, rows (≤ 500), suggested chart, matched glossary terms with the definitions sent, latency per step |
+| `GET /api/config`, `GET /api/health` | Server defaults (mode, glossary, provider, primary and fallback models, remaining budget) and status |
 
 Errors always have the shape `{"error": {"code", "message"}}`, never a stack trace.
 
 **Modes:**
-- `auto` (the default) tries the zero-shot LLM first, which Stage 2 found most accurate. It falls back to the rule-based generator when the LLM is rate-limited, over budget, fails, returns SQL the safety layer rejects, or returns SQL that errors. `generator.fallback_reason` says which.
-- `llm` never falls back; it returns an error instead.
+- `auto` (the default) asks the LLM first: zero-shot, which Stage 2 found most accurate, plus any matched glossary definitions. It falls back to the rule-based generator when every model in the chain is out of quota or rate-limited, the app's own limits are hit, the call fails, or the SQL is rejected by the safety layer or errors. `generator.fallback_reason` says which.
+- `llm` never falls back to the rule-based generator; it returns an error instead. It does use the fallback model.
 - `rule_based` never calls the LLM.
 
 **Glossary (on by default).** The three sample datasets each have a business glossary (`docs/glossary/`).
 With `use_glossary` on, the backend looks for each glossary term and its listed aliases in the question
 (whole words, case-insensitive, plurals and hyphens ignored, `FY2024` matching `FY`) and sends only the
 definitions it finds. If no term appears, nothing is sent and the prompt is exactly the zero-shot one.
-This is the `doc_rag_gated` mode from Stage 3C: the backend reads `eval/stage3c_config.json` at startup
-and refuses to start if those frozen settings ask for something it doesn't implement. Stage 3B showed
+This is the `doc_rag_gated` mode from Stage 3C: the backend reads `config/glossary_gating.json` (a copy of
+the frozen `eval/stage3c_config.json`; a test keeps the two identical) at startup and refuses to start if
+those settings ask for something it doesn't implement. Stage 3B showed
 why the gate matters: always sending the top 3 retrieved definitions cost about 4 points on the 120
 original questions, which need none. With the gate, ordinary questions pay nothing, so the toggle
 can be on by default. The "How it works" panel lists each matched term, the word or phrase in the
 question that matched it, and the definition sent. Uploaded CSVs have no glossary.
 
-**Model.** The default is `openai/gpt-oss-20b` on Groq: in Stage 3B the 20b scored within 2.5 points of
-the 120b whenever the same context was in the prompt, and tied it when given exactly the needed
-definitions. Set `LLM_PROVIDER=cerebras` to use `gpt-oss-120b` on Cerebras instead (calls are spaced at
-least 12.5 s apart to stay under that account's 5 requests/minute), or set `LLM_MODEL` to any model ID the
-provider serves.
+**Model.** The primary model is `openai/gpt-oss-120b` on Groq, with `openai/gpt-oss-20b` on Groq as the
+fallback. On the held-out SaaS domain (Stage 3C), with the same gated definitions, the 120b answered 95%
+of the glossary questions and the 20b 80%; Stage 3B's tie between them didn't survive definitions that
+involve ratios and date arithmetic. Each model has its own Groq quota, so:
+
+1. the 120b answers when it can;
+2. if Groq reports the 120b out of daily quota or rate-limited, the 20b gets the same prompt at once
+   (the 120b doesn't wait out a 429), and the "How it works" panel says so, e.g. *Answered by
+   gpt-oss-20b (120b quota exhausted)*;
+3. if the 20b is also out, `auto` answers with the rule-based generator.
+
+Other failures, such as an API error or SQL the safety layer rejects, skip the 20b, since another model
+wouldn't fix them. A query that fails over still counts once against the daily budget. Set
+`LLM_PROVIDER=cerebras` to use `gpt-oss-120b` on Cerebras instead (no fallback model, since Cerebras
+doesn't serve the 20b; calls are spaced at least 12.5 s apart to stay under that account's 5
+requests/minute).
 
 **Settings** (environment variables or `.env`; all optional, defaults in brackets):
-- `LLM_PROVIDER` [groq, or cerebras], `LLM_MODEL` [openai/gpt-oss-20b on Groq, gpt-oss-120b on Cerebras]
+- `LLM_PROVIDER` [groq, or cerebras], `LLM_MODEL` [openai/gpt-oss-120b on Groq, gpt-oss-120b on Cerebras]
+- `LLM_FALLBACK_MODELS`, comma-separated, same provider; set it empty to disable [openai/gpt-oss-20b on Groq, none on Cerebras]
+- `LLM_MAX_RETRIES`: attempts on a per-minute rate limit for the last model in the chain [2]
 - `DEFAULT_MODE` [auto], `GLOSSARY_DEFAULT` [true], `LLM_STRATEGY` when no glossary term matches [zero_shot, or example_rag]
 - `LLM_RATE_LIMIT_PER_MIN` per client IP [10], `LLM_DAILY_BUDGET` for the whole server, per UTC day [500]
 - `MAX_UPLOAD_MB` [10], `MAX_ROWS` [200000], `MAX_COLUMNS` [100]
@@ -983,10 +1001,10 @@ The schema starts collapsed so the question box stays near the top.
 ### Training the intent classifier
 
 Optional: without a trained model the app falls back to keyword-based intent detection. Training needs a
-few extra dependencies, kept in a separate file so the app doesn't have to install them:
+few extra dependencies, kept out of the app's runtime requirements:
 
 ```bash
-pip install -r requirements-train.txt
+pip install -r requirements-eval.txt
 jupyter notebook src/model_training.ipynb
 ```
 

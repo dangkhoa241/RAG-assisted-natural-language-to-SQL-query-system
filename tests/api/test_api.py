@@ -16,7 +16,8 @@ def test_health_and_config(client):
     assert client.get("/api/health").json() == {"status": "ok", "intent_model": "bert", "llm_configured": True}
     cfg = client.get("/api/config").json()
     assert cfg["default_mode"] == "auto" and cfg["glossary_default"] is True
-    assert cfg["llm_provider"] == "groq" and cfg["llm_model"] == "openai/gpt-oss-20b"
+    assert cfg["llm_provider"] == "groq" and cfg["llm_model"] == "openai/gpt-oss-120b"
+    assert cfg["llm_fallback_models"] == ["openai/gpt-oss-20b"]
 
 
 def test_samples_list_all_three_datasets_with_schema_and_examples(client):
@@ -48,8 +49,11 @@ def test_auto_uses_llm_zero_shot_by_default(client, llm, docs):
     assert docs == [("how many patients by gender", "healthcare", [])]
     assert body["context"]["glossary_checked"] is True and body["context"]["glossary"] == []
     assert "Business definitions" not in llm.last_prompt
-    assert llm.calls[0]["model"] == "openai/gpt-oss-20b" and llm.calls[0]["provider"] == "groq"
-    assert body["generator"]["model"] == "openai/gpt-oss-20b" and body["generator"]["provider"] == "groq"
+    assert len(llm.calls) == 1   # the primary answered, so the fallback model is never called
+    assert llm.calls[0]["model"] == "openai/gpt-oss-120b" and llm.calls[0]["provider"] == "groq"
+    assert body["generator"]["model"] == "openai/gpt-oss-120b" and body["generator"]["provider"] == "groq"
+    assert body["generator"]["model_note"] is None
+    assert body["generator"]["models_tried"] == [{"model": "openai/gpt-oss-120b", "outcome": "answered"}]
 
 
 def test_auto_falls_back_when_llm_fails_without_leaking_the_error(client, llm):

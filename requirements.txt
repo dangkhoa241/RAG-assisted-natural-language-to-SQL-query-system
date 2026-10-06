@@ -1,21 +1,25 @@
-# CPU-only torch wheel — much smaller/faster to install than the default
-# CUDA-enabled wheel, and this app never uses a GPU.
+# Runtime dependencies of the app: the FastAPI backend (backend/) and the src/ modules it uses.
+# Benchmarks, tests, retrieval experiments and training need requirements-eval.txt as well.
+
+# CPU-only torch wheel: much smaller and faster to install than the default CUDA build,
+# and the app never uses a GPU.
 --extra-index-url https://download.pytorch.org/whl/cpu
 
-# --- Core ---
+# --- Web API ---
+fastapi
+uvicorn[standard]
+python-multipart
+
+# --- Data ---
 pandas
 numpy
 
-# --- NLP / Intent Classification ---
+# --- Intent classifier (BERT) ---
 torch
 transformers
-sentencepiece
 huggingface-hub
 
-# --- Retrieval-augmented text-to-SQL ---
+# --- LLM providers ---
 groq
 openai          # Cerebras client (OpenAI-compatible API)
 python-dotenv
-sentence-transformers
-faiss-cpu
-rank_bm25

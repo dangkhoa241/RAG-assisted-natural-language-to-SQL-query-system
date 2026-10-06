@@ -106,7 +106,7 @@ describe("HowItWorks", () => {
     expect(screen.getByText("aggregate")).toBeInTheDocument();
     expect(screen.getByRole("meter", { name: "Intent confidence" })).toHaveAttribute("aria-valuenow", "97");
     expect(screen.getByText("LLM with glossary definitions")).toBeInTheDocument();
-    expect(screen.getByText("openai/gpt-oss-20b · Groq")).toBeInTheDocument();
+    expect(screen.getByText("openai/gpt-oss-120b · Groq")).toBeInTheDocument();
     const terms = screen.getByRole("list", { name: "Matched glossary terms" });
     expect(terms).toHaveTextContent("Repeat customer");
     expect(terms).toHaveTextContent("“repeat buyer”");
@@ -127,6 +127,7 @@ describe("HowItWorks", () => {
     const r = makeResult({
       generator: {
         used: "rule_based", requested_mode: "auto", llm_strategy: "zero_shot", model: null, provider: null,
+        model_note: null, models_tried: [{ model: "openai/gpt-oss-120b", outcome: "rejected" }],
         fallback_reason: "unsafe_sql",
         fallback_detail: "The LLM's SQL was rejected by the safety check (forbidden keyword(s): DROP).",
         rejected_sql: "DROP TABLE data",
@@ -136,5 +137,27 @@ describe("HowItWorks", () => {
     expect(screen.getByText("Rule-based")).toBeInTheDocument();
     expect(screen.getByText(/Fell back: LLM SQL blocked by the safety check/)).toBeInTheDocument();
     expect(screen.getByText("DROP TABLE data")).toBeInTheDocument();
+  });
+
+  it("names the fallback model when the primary model was out of quota", () => {
+    const base = makeResult();
+    const r = makeResult({
+      generator: {
+        ...base.generator, model: "openai/gpt-oss-20b", model_note: "gpt-oss-20b (120b quota exhausted)",
+        models_tried: [
+          { model: "openai/gpt-oss-120b", outcome: "quota_exhausted" },
+          { model: "openai/gpt-oss-20b", outcome: "answered" },
+        ],
+      },
+    });
+    render(<HowItWorks result={r} />);
+    expect(screen.getByText("openai/gpt-oss-20b · Groq")).toBeInTheDocument();
+    expect(screen.getByRole("note")).toHaveTextContent("Answered by gpt-oss-20b (120b quota exhausted)");
+  });
+
+  it("shows no fallback note when the primary model answered", () => {
+    render(<HowItWorks result={makeResult()} />);
+    expect(screen.getByText("openai/gpt-oss-120b · Groq")).toBeInTheDocument();
+    expect(screen.queryByText(/Answered by/)).not.toBeInTheDocument();
   });
 });
