@@ -95,6 +95,9 @@ def build_schema_context(dataset: Dataset) -> str:
         else:
             examples = ", ".join(_quote(v) for v in s.astype(str).head(2))
             lines.append(f"- `{col}` TEXT, free text, e.g. {examples}")
+        n_null = int(df[col].isna().sum())
+        if n_null:  # only columns with empty cells get this note, so fully populated schemas are unchanged
+            lines[-1] += f"; NULL in {n_null} rows"
     return "\n".join(lines)
 
 

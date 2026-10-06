@@ -1,0 +1,2654 @@
+{
+  "part": "dev",
+  "config": {
+    "description": "Stage 3C frozen settings, chosen on the dev set only (healthcare + retail). Part B runs the held-out SaaS set once with exactly these settings; anything changed after seeing SaaS results is reported separately as post-hoc.",
+    "frozen": true,
+    "doc_rag": {
+      "description": "Ungated baseline, unchanged from Stage 3B: always the top-k glossary chunks.",
+      "retriever": "hybrid",
+      "k": 3,
+      "index_aliases": false
+    },
+    "doc_rag_gated": {
+      "description": "Send a definition only if its term or one of its listed aliases appears in the question; no definitions means the prompt is identical to zero_shot.",
+      "doc_method": "gated",
+      "matching": "whole-word phrase, case-insensitive, hyphens as spaces, plural -s ignored, FY<year> matches FY; a match inside a longer match for another chunk is dropped",
+      "max_chunks": null,
+      "retrieval_fallback": null,
+      "retrieval_fallback_reason": "Term matching found every required chunk on all 60 dev glossary questions and gave no definitions to any of the 120 original questions, so no fallback was added."
+    },
+    "oracle_doc": "exactly the question's required_chunks, in the order listed",
+    "llm": {
+      "gpt-oss-20b": {
+        "provider": "groq",
+        "model_id": "openai/gpt-oss-20b"
+      },
+      "gpt-oss-120b": {
+        "provider": "cerebras",
+        "model_id": "gpt-oss-120b"
+      },
+      "temperature": 0,
+      "reasoning_effort": "low",
+      "max_completion_tokens": 1024
+    },
+    "glossaries": "docs/glossary/{healthcare,retail,saas}.md as committed with this file (aliases included)"
+  },
+  "n_questions": {
+    "glossary": 60,
+    "original": 120
+  },
+  "accuracy": {
+    "glossary": {
+      "zero_shot": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 6,
+            "accuracy": 0.1,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 1,
+              "accuracy": 0.08333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 1,
+              "accuracy": 0.08333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 1,
+              "accuracy": 0.08333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 1,
+              "accuracy": 0.08333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 2,
+              "accuracy": 0.16666666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 6,
+            "accuracy": 0.1,
+            "n_errors": 1,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 1,
+              "accuracy": 0.08333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 2,
+              "accuracy": 0.16666666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 0,
+              "accuracy": 0.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 1,
+              "accuracy": 0.08333333333333333,
+              "n_errors": 1,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 2,
+              "accuracy": 0.16666666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      },
+      "doc_rag": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 52,
+            "accuracy": 0.8666666666666667,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 53,
+            "accuracy": 0.8833333333333333,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      },
+      "doc_rag_gated": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 57,
+            "accuracy": 0.95,
+            "n_errors": 1,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 9,
+              "accuracy": 0.75,
+              "n_errors": 1,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 55,
+            "accuracy": 0.9166666666666666,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      },
+      "oracle_doc": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 57,
+            "accuracy": 0.95,
+            "n_errors": 1,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 9,
+              "accuracy": 0.75,
+              "n_errors": 1,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 57,
+            "accuracy": 0.95,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      }
+    },
+    "original": {
+      "zero_shot": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 120,
+            "n_missing": 0,
+            "n_correct": 118,
+            "accuracy": 0.9833333333333333,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 22,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 120,
+            "n_missing": 0,
+            "n_correct": 119,
+            "accuracy": 0.9916666666666667,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      },
+      "doc_rag": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 120,
+            "n_missing": 0,
+            "n_correct": 113,
+            "accuracy": 0.9416666666666667,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 22,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 21,
+              "accuracy": 0.875,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 120,
+            "n_missing": 0,
+            "n_correct": 114,
+            "accuracy": 0.95,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 22,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 22,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      },
+      "doc_rag_gated": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 120,
+            "n_missing": 0,
+            "n_correct": 118,
+            "accuracy": 0.9833333333333333,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 22,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 120,
+            "n_missing": 0,
+            "n_correct": 119,
+            "accuracy": 0.9916666666666667,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 23,
+              "accuracy": 0.9583333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 24,
+              "n_missing": 0,
+              "n_correct": 24,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "gating": {
+    "glossary": {
+      "doc_rag": {
+        "n": 60,
+        "all_required": 0.9,
+        "exact": 0.0,
+        "precision": 0.45,
+        "avg_definitions": 3.0,
+        "questions_with_unneeded_definitions": 60,
+        "questions_missing_a_definition": 6,
+        "misses": {
+          "hg_f01": {
+            "required": [
+              "hc_long_stay",
+              "hc_icu_room"
+            ],
+            "given": [
+              "hc_long_stay",
+              "hc_icu_room",
+              "hc_step_down_unit"
+            ]
+          },
+          "hg_f02": {
+            "required": [
+              "hc_high_cost",
+              "hc_senior_patient"
+            ],
+            "given": [
+              "hc_high_cost_condition",
+              "hc_senior_care_tier",
+              "hc_high_cost"
+            ]
+          },
+          "hg_f03": {
+            "required": [
+              "hc_premium_insurer",
+              "hc_flagged_result"
+            ],
+            "given": [
+              "hc_flagged_claim",
+              "hc_flagged_result",
+              "hc_premium_room"
+            ]
+          },
+          "hg_f04": {
+            "required": [
+              "hc_cost_overrun"
+            ],
+            "given": [
+              "hc_cost_overrun",
+              "hc_high_risk_patient",
+              "hc_high_cost_condition"
+            ]
+          },
+          "hg_f05": {
+            "required": [
+              "hc_short_stay",
+              "hc_step_down_unit"
+            ],
+            "given": [
+              "hc_step_down_unit",
+              "hc_short_stay",
+              "hc_icu_room"
+            ]
+          },
+          "hg_f06": {
+            "required": [
+              "hc_flu_season",
+              "hc_high_risk_patient"
+            ],
+            "given": [
+              "hc_flu_season",
+              "hc_fiscal_year",
+              "hc_high_risk_patient"
+            ]
+          },
+          "hg_c01": {
+            "required": [
+              "hc_unplanned_admission",
+              "hc_chronic_condition"
+            ],
+            "given": [
+              "hc_chronic_condition",
+              "hc_unplanned_admission",
+              "hc_high_cost_condition"
+            ]
+          },
+          "hg_c02": {
+            "required": [
+              "hc_formulary_drug"
+            ],
+            "given": [
+              "hc_formulary_drug",
+              "hc_high_cost_condition",
+              "hc_unplanned_admission"
+            ]
+          },
+          "hg_c03": {
+            "required": [
+              "hc_government_payer",
+              "hc_fiscal_year"
+            ],
+            "given": [
+              "hc_fiscal_year",
+              "hc_flu_season",
+              "hc_fiscal_quarter"
+            ]
+          },
+          "hg_c04": {
+            "required": [
+              "hc_rare_blood_type",
+              "hc_icu_room"
+            ],
+            "given": [
+              "hc_rare_blood_type",
+              "hc_icu_room",
+              "hc_unplanned_admission"
+            ]
+          },
+          "hg_c05": {
+            "required": [
+              "hc_young_adult",
+              "hc_flagged_result"
+            ],
+            "given": [
+              "hc_flagged_claim",
+              "hc_flagged_result",
+              "hc_young_adult"
+            ]
+          },
+          "hg_c06": {
+            "required": [
+              "hc_flagged_claim"
+            ],
+            "given": [
+              "hc_flagged_claim",
+              "hc_flagged_result",
+              "hc_chronic_condition"
+            ]
+          },
+          "hg_a01": {
+            "required": [
+              "hc_daily_rate"
+            ],
+            "given": [
+              "hc_unplanned_admission",
+              "hc_daily_rate",
+              "hc_high_cost_condition"
+            ]
+          },
+          "hg_a02": {
+            "required": [
+              "hc_billable_days"
+            ],
+            "given": [
+              "hc_billable_days",
+              "hc_high_cost_condition",
+              "hc_daily_rate"
+            ]
+          },
+          "hg_a03": {
+            "required": [
+              "hc_high_cost"
+            ],
+            "given": [
+              "hc_high_cost",
+              "hc_high_cost_condition",
+              "hc_cost_overrun"
+            ]
+          },
+          "hg_a04": {
+            "required": [
+              "hc_senior_care_tier"
+            ],
+            "given": [
+              "hc_senior_care_tier",
+              "hc_high_cost_condition",
+              "hc_cost_overrun"
+            ]
+          },
+          "hg_a05": {
+            "required": [
+              "hc_premium_insurer"
+            ],
+            "given": [
+              "hc_high_cost_condition",
+              "hc_cost_overrun",
+              "hc_premium_room"
+            ]
+          },
+          "hg_a06": {
+            "required": [
+              "hc_high_risk_patient"
+            ],
+            "given": [
+              "hc_high_risk_patient",
+              "hc_senior_care_tier",
+              "hc_high_cost_condition"
+            ]
+          },
+          "hg_p01": {
+            "required": [
+              "hc_premium_insurer"
+            ],
+            "given": [
+              "hc_cost_overrun",
+              "hc_premium_insurer",
+              "hc_high_cost_condition"
+            ]
+          },
+          "hg_p02": {
+            "required": [
+              "hc_long_stay",
+              "hc_short_stay"
+            ],
+            "given": [
+              "hc_long_stay",
+              "hc_short_stay",
+              "hc_cost_overrun"
+            ]
+          },
+          "hg_p03": {
+            "required": [
+              "hc_formulary_drug",
+              "hc_flagged_result"
+            ],
+            "given": [
+              "hc_formulary_drug",
+              "hc_flagged_result",
+              "hc_flagged_claim"
+            ]
+          },
+          "hg_p04": {
+            "required": [
+              "hc_icu_room",
+              "hc_step_down_unit"
+            ],
+            "given": [
+              "hc_step_down_unit",
+              "hc_icu_room",
+              "hc_cost_overrun"
+            ]
+          },
+          "hg_p05": {
+            "required": [
+              "hc_senior_patient",
+              "hc_young_adult"
+            ],
+            "given": [
+              "hc_senior_care_tier",
+              "hc_senior_patient",
+              "hc_young_adult"
+            ]
+          },
+          "hg_p06": {
+            "required": [
+              "hc_flagged_result",
+              "hc_unplanned_admission"
+            ],
+            "given": [
+              "hc_flagged_claim",
+              "hc_unplanned_admission",
+              "hc_flagged_result"
+            ]
+          },
+          "hg_t01": {
+            "required": [
+              "hc_fiscal_year"
+            ],
+            "given": [
+              "hc_fiscal_year",
+              "hc_flu_season",
+              "hc_fiscal_quarter"
+            ]
+          },
+          "hg_t02": {
+            "required": [
+              "hc_fiscal_quarter",
+              "hc_fiscal_year"
+            ],
+            "given": [
+              "hc_fiscal_quarter",
+              "hc_fiscal_year",
+              "hc_flu_season"
+            ]
+          },
+          "hg_t03": {
+            "required": [
+              "hc_unplanned_admission"
+            ],
+            "given": [
+              "hc_unplanned_admission",
+              "hc_flu_season",
+              "hc_fiscal_year"
+            ]
+          },
+          "hg_t04": {
+            "required": [
+              "hc_daily_rate"
+            ],
+            "given": [
+              "hc_daily_rate",
+              "hc_fiscal_quarter",
+              "hc_high_cost_condition"
+            ]
+          },
+          "hg_t05": {
+            "required": [
+              "hc_long_stay"
+            ],
+            "given": [
+              "hc_long_stay",
+              "hc_short_stay",
+              "hc_flu_season"
+            ]
+          },
+          "hg_t06": {
+            "required": [
+              "hc_cost_overrun",
+              "hc_fiscal_year"
+            ],
+            "given": [
+              "hc_fiscal_year",
+              "hc_fiscal_quarter",
+              "hc_cost_overrun"
+            ]
+          },
+          "rg_f01": {
+            "required": [
+              "rt_high_value_customer"
+            ],
+            "given": [
+              "rt_high_value_customer",
+              "rt_high_value_order",
+              "rt_premium_customer"
+            ]
+          },
+          "rg_f02": {
+            "required": [
+              "rt_deep_discount",
+              "rt_bulk_order"
+            ],
+            "given": [
+              "rt_deep_discount",
+              "rt_bulk_buyer",
+              "rt_bulk_order"
+            ]
+          },
+          "rg_f03": {
+            "required": [
+              "rt_detractor",
+              "rt_cash_equivalent"
+            ],
+            "given": [
+              "rt_detractor",
+              "rt_cash_equivalent",
+              "rt_high_value_order"
+            ]
+          },
+          "rg_f04": {
+            "required": [
+              "rt_premium_product_order",
+              "rt_mature_shopper"
+            ],
+            "given": [
+              "rt_premium_product_order",
+              "rt_mature_shopper",
+              "rt_premium_customer"
+            ]
+          },
+          "rg_f05": {
+            "required": [
+              "rt_hard_goods",
+              "rt_holiday_season"
+            ],
+            "given": [
+              "rt_holiday_season",
+              "rt_hard_goods",
+              "rt_fiscal_year"
+            ]
+          },
+          "rg_f06": {
+            "required": [
+              "rt_omnichannel_customer",
+              "rt_repeat_customer"
+            ],
+            "given": [
+              "rt_repeat_customer",
+              "rt_omnichannel_customer",
+              "rt_returning_customer"
+            ]
+          },
+          "rg_c01": {
+            "required": [
+              "rt_repeat_customer"
+            ],
+            "given": [
+              "rt_repeat_customer",
+              "rt_high_value_customer",
+              "rt_returning_customer"
+            ]
+          },
+          "rg_c02": {
+            "required": [
+              "rt_b2b_order",
+              "rt_core_market"
+            ],
+            "given": [
+              "rt_b2b_order",
+              "rt_core_market",
+              "rt_net_revenue"
+            ]
+          },
+          "rg_c03": {
+            "required": [
+              "rt_fiscal_year"
+            ],
+            "given": [
+              "rt_fiscal_year",
+              "rt_holiday_season",
+              "rt_returning_customer"
+            ]
+          },
+          "rg_c04": {
+            "required": [
+              "rt_returning_customer"
+            ],
+            "given": [
+              "rt_returning_customer",
+              "rt_repeat_customer",
+              "rt_high_value_customer"
+            ]
+          },
+          "rg_c05": {
+            "required": [
+              "rt_high_value_order"
+            ],
+            "given": [
+              "rt_high_value_order",
+              "rt_omnichannel_customer",
+              "rt_high_value_customer"
+            ]
+          },
+          "rg_c06": {
+            "required": [
+              "rt_bulk_buyer"
+            ],
+            "given": [
+              "rt_bulk_buyer",
+              "rt_bulk_order",
+              "rt_repeat_customer"
+            ]
+          },
+          "rg_a01": {
+            "required": [
+              "rt_net_revenue"
+            ],
+            "given": [
+              "rt_net_sales",
+              "rt_core_market",
+              "rt_net_revenue"
+            ]
+          },
+          "rg_a02": {
+            "required": [
+              "rt_average_order_value"
+            ],
+            "given": [
+              "rt_average_order_value",
+              "rt_omnichannel_customer",
+              "rt_high_value_order"
+            ]
+          },
+          "rg_a03": {
+            "required": [
+              "rt_markdown"
+            ],
+            "given": [
+              "rt_markdown",
+              "rt_return_rate",
+              "rt_hard_goods"
+            ]
+          },
+          "rg_a04": {
+            "required": [
+              "rt_csat"
+            ],
+            "given": [
+              "rt_csat",
+              "rt_premium_product_order",
+              "rt_hard_goods"
+            ]
+          },
+          "rg_a05": {
+            "required": [
+              "rt_premium_customer"
+            ],
+            "given": [
+              "rt_premium_customer",
+              "rt_premium_product_order",
+              "rt_return_rate"
+            ]
+          },
+          "rg_a06": {
+            "required": [
+              "rt_net_sales"
+            ],
+            "given": [
+              "rt_net_sales",
+              "rt_cash_equivalent",
+              "rt_net_revenue"
+            ]
+          },
+          "rg_p01": {
+            "required": [
+              "rt_return_rate"
+            ],
+            "given": [
+              "rt_return_rate",
+              "rt_omnichannel_customer",
+              "rt_returning_customer"
+            ]
+          },
+          "rg_p02": {
+            "required": [
+              "rt_core_market",
+              "rt_gross_sales"
+            ],
+            "given": [
+              "rt_core_market",
+              "rt_net_sales",
+              "rt_gross_sales"
+            ]
+          },
+          "rg_p03": {
+            "required": [
+              "rt_hard_goods"
+            ],
+            "given": [
+              "rt_hard_goods",
+              "rt_average_order_value",
+              "rt_high_value_order"
+            ]
+          },
+          "rg_p04": {
+            "required": [
+              "rt_csat",
+              "rt_b2b_order"
+            ],
+            "given": [
+              "rt_b2b_order",
+              "rt_csat",
+              "rt_returning_customer"
+            ]
+          },
+          "rg_p05": {
+            "required": [
+              "rt_mature_shopper",
+              "rt_average_order_value"
+            ],
+            "given": [
+              "rt_mature_shopper",
+              "rt_average_order_value",
+              "rt_high_value_order"
+            ]
+          },
+          "rg_p06": {
+            "required": [
+              "rt_detractor"
+            ],
+            "given": [
+              "rt_core_market",
+              "rt_returning_customer",
+              "rt_return_rate"
+            ]
+          },
+          "rg_t01": {
+            "required": [
+              "rt_fiscal_quarter",
+              "rt_fiscal_year"
+            ],
+            "given": [
+              "rt_fiscal_quarter",
+              "rt_fiscal_year",
+              "rt_markdown"
+            ]
+          },
+          "rg_t02": {
+            "required": [
+              "rt_fiscal_year",
+              "rt_net_revenue"
+            ],
+            "given": [
+              "rt_fiscal_year",
+              "rt_net_sales",
+              "rt_fiscal_quarter"
+            ]
+          },
+          "rg_t03": {
+            "required": [
+              "rt_deep_discount"
+            ],
+            "given": [
+              "rt_deep_discount",
+              "rt_returning_customer",
+              "rt_holiday_season"
+            ]
+          },
+          "rg_t04": {
+            "required": [
+              "rt_holiday_season"
+            ],
+            "given": [
+              "rt_holiday_season",
+              "rt_fiscal_year",
+              "rt_return_rate"
+            ]
+          },
+          "rg_t05": {
+            "required": [
+              "rt_return_rate"
+            ],
+            "given": [
+              "rt_returning_customer",
+              "rt_return_rate",
+              "rt_fiscal_quarter"
+            ]
+          },
+          "rg_t06": {
+            "required": [
+              "rt_premium_product_order"
+            ],
+            "given": [
+              "rt_premium_product_order",
+              "rt_premium_customer",
+              "rt_average_order_value"
+            ]
+          }
+        }
+      },
+      "doc_rag_gated": {
+        "n": 60,
+        "all_required": 1.0,
+        "exact": 1.0,
+        "precision": 1.0,
+        "avg_definitions": 1.45,
+        "questions_with_unneeded_definitions": 0,
+        "questions_missing_a_definition": 0,
+        "misses": {}
+      }
+    },
+    "original": {
+      "doc_rag": {
+        "n": 120,
+        "all_required": null,
+        "exact": null,
+        "precision": 0.0,
+        "avg_definitions": 3.0,
+        "questions_with_unneeded_definitions": 120,
+        "questions_missing_a_definition": 0,
+        "misses": {
+          "h_f01": {
+            "required": [],
+            "given": [
+              "hc_high_risk_patient",
+              "hc_senior_care_tier",
+              "hc_senior_patient"
+            ]
+          },
+          "h_f02": {
+            "required": [],
+            "given": [
+              "hc_cost_overrun",
+              "hc_high_cost_condition",
+              "hc_flagged_claim"
+            ]
+          },
+          "h_f03": {
+            "required": [],
+            "given": [
+              "hc_flagged_result",
+              "hc_formulary_drug",
+              "hc_chronic_condition"
+            ]
+          },
+          "h_f04": {
+            "required": [],
+            "given": [
+              "hc_cost_overrun",
+              "hc_senior_care_tier",
+              "hc_step_down_unit"
+            ]
+          },
+          "h_f05": {
+            "required": [],
+            "given": [
+              "hc_rare_blood_type",
+              "hc_government_payer",
+              "hc_senior_care_tier"
+            ]
+          },
+          "h_f06": {
+            "required": [],
+            "given": [
+              "hc_high_risk_patient",
+              "hc_senior_care_tier",
+              "hc_chronic_condition"
+            ]
+          },
+          "h_f07": {
+            "required": [],
+            "given": [
+              "hc_billable_days",
+              "hc_senior_care_tier",
+              "hc_short_stay"
+            ]
+          },
+          "h_f08": {
+            "required": [],
+            "given": [
+              "hc_premium_room",
+              "hc_icu_room",
+              "hc_senior_care_tier"
+            ]
+          },
+          "h_f09": {
+            "required": [],
+            "given": [
+              "hc_flagged_result",
+              "hc_premium_insurer",
+              "hc_flagged_claim"
+            ]
+          },
+          "h_f10": {
+            "required": [],
+            "given": [
+              "hc_unplanned_admission",
+              "hc_cost_overrun",
+              "hc_short_stay"
+            ]
+          },
+          "h_f11": {
+            "required": [],
+            "given": [
+              "hc_fiscal_year",
+              "hc_chronic_condition",
+              "hc_flu_season"
+            ]
+          },
+          "h_f12": {
+            "required": [],
+            "given": [
+              "hc_formulary_drug",
+              "hc_senior_care_tier",
+              "hc_unplanned_admission"
+            ]
+          },
+          "h_c01": {
+            "required": [],
+            "given": [
+              "hc_chronic_condition",
+              "hc_senior_care_tier",
+              "hc_young_adult"
+            ]
+          },
+          "h_c02": {
+            "required": [],
+            "given": [
+              "hc_unplanned_admission",
+              "hc_flu_season",
+              "hc_fiscal_year"
+            ]
+          },
+          "h_c03": {
+            "required": [],
+            "given": [
+              "hc_senior_patient",
+              "hc_senior_care_tier",
+              "hc_high_risk_patient"
+            ]
+          },
+          "h_c04": {
+            "required": [],
+            "given": [
+              "hc_premium_insurer",
+              "hc_senior_care_tier",
+              "hc_step_down_unit"
+            ]
+          },
+          "h_c05": {
+            "required": [],
+            "given": [
+              "hc_fiscal_year",
+              "hc_flu_season",
+              "hc_senior_care_tier"
+            ]
+          },
+          "h_c06": {
+            "required": [],
+            "given": [
+              "hc_high_cost_condition",
+              "hc_senior_care_tier",
+              "hc_high_cost"
+            ]
+          },
+          "h_c07": {
+            "required": [],
+            "given": [
+              "hc_rare_blood_type",
+              "hc_senior_care_tier",
+              "hc_unplanned_admission"
+            ]
+          },
+          "h_c08": {
+            "required": [],
+            "given": [
+              "hc_chronic_condition",
+              "hc_senior_care_tier",
+              "hc_icu_room"
+            ]
+          },
+          "h_c09": {
+            "required": [],
+            "given": [
+              "hc_flagged_result",
+              "hc_chronic_condition",
+              "hc_flagged_claim"
+            ]
+          },
+          "h_c10": {
+            "required": [],
+            "given": [
+              "hc_short_stay",
+              "hc_billable_days",
+              "hc_long_stay"
+            ]
+          },
+          "h_c11": {
+            "required": [],
+            "given": [
+              "hc_high_cost",
+              "hc_cost_overrun",
+              "hc_unplanned_admission"
+            ]
+          },
+          "h_c12": {
+            "required": [],
+            "given": [
+              "hc_young_adult",
+              "hc_senior_care_tier",
+              "hc_fiscal_year"
+            ]
+          },
+          "h_a01": {
+            "required": [],
+            "given": [
+              "hc_daily_rate",
+              "hc_cost_overrun",
+              "hc_high_cost_condition"
+            ]
+          },
+          "h_a02": {
+            "required": [],
+            "given": [
+              "hc_high_cost_condition",
+              "hc_daily_rate",
+              "hc_cost_overrun"
+            ]
+          },
+          "h_a03": {
+            "required": [],
+            "given": [
+              "hc_rare_blood_type",
+              "hc_young_adult",
+              "hc_senior_care_tier"
+            ]
+          },
+          "h_a04": {
+            "required": [],
+            "given": [
+              "hc_unplanned_admission",
+              "hc_billable_days",
+              "hc_flagged_claim"
+            ]
+          },
+          "h_a05": {
+            "required": [],
+            "given": [
+              "hc_high_cost_condition",
+              "hc_cost_overrun",
+              "hc_flagged_claim"
+            ]
+          },
+          "h_a06": {
+            "required": [],
+            "given": [
+              "hc_high_cost",
+              "hc_daily_rate",
+              "hc_high_cost_condition"
+            ]
+          },
+          "h_a07": {
+            "required": [],
+            "given": [
+              "hc_long_stay",
+              "hc_short_stay",
+              "hc_daily_rate"
+            ]
+          },
+          "h_a08": {
+            "required": [],
+            "given": [
+              "hc_high_risk_patient",
+              "hc_high_cost_condition",
+              "hc_young_adult"
+            ]
+          },
+          "h_a09": {
+            "required": [],
+            "given": [
+              "hc_cost_overrun",
+              "hc_daily_rate",
+              "hc_government_payer"
+            ]
+          },
+          "h_a10": {
+            "required": [],
+            "given": [
+              "hc_flagged_claim",
+              "hc_high_cost_condition",
+              "hc_cost_overrun"
+            ]
+          },
+          "h_a11": {
+            "required": [],
+            "given": [
+              "hc_senior_patient",
+              "hc_high_risk_patient",
+              "hc_premium_insurer"
+            ]
+          },
+          "h_a12": {
+            "required": [],
+            "given": [
+              "hc_daily_rate",
+              "hc_flagged_claim",
+              "hc_cost_overrun"
+            ]
+          },
+          "h_p01": {
+            "required": [],
+            "given": [
+              "hc_cost_overrun",
+              "hc_high_cost_condition",
+              "hc_daily_rate"
+            ]
+          },
+          "h_p02": {
+            "required": [],
+            "given": [
+              "hc_cost_overrun",
+              "hc_unplanned_admission",
+              "hc_high_cost_condition"
+            ]
+          },
+          "h_p03": {
+            "required": [],
+            "given": [
+              "hc_premium_insurer",
+              "hc_cost_overrun",
+              "hc_daily_rate"
+            ]
+          },
+          "h_p04": {
+            "required": [],
+            "given": [
+              "hc_chronic_condition",
+              "hc_high_risk_patient",
+              "hc_senior_care_tier"
+            ]
+          },
+          "h_p05": {
+            "required": [],
+            "given": [
+              "hc_formulary_drug",
+              "hc_young_adult",
+              "hc_senior_care_tier"
+            ]
+          },
+          "h_p06": {
+            "required": [],
+            "given": [
+              "hc_flagged_claim",
+              "hc_flagged_result",
+              "hc_high_cost_condition"
+            ]
+          },
+          "h_p07": {
+            "required": [],
+            "given": [
+              "hc_chronic_condition",
+              "hc_high_risk_patient",
+              "hc_senior_care_tier"
+            ]
+          },
+          "h_p08": {
+            "required": [],
+            "given": [
+              "hc_government_payer",
+              "hc_cost_overrun",
+              "hc_daily_rate"
+            ]
+          },
+          "h_p09": {
+            "required": [],
+            "given": [
+              "hc_senior_patient",
+              "hc_senior_care_tier",
+              "hc_high_risk_patient"
+            ]
+          },
+          "h_p10": {
+            "required": [],
+            "given": [
+              "hc_unplanned_admission",
+              "hc_fiscal_year",
+              "hc_flu_season"
+            ]
+          },
+          "h_p11": {
+            "required": [],
+            "given": [
+              "hc_rare_blood_type",
+              "hc_high_cost_condition",
+              "hc_daily_rate"
+            ]
+          },
+          "h_p12": {
+            "required": [],
+            "given": [
+              "hc_premium_room",
+              "hc_flagged_claim",
+              "hc_chronic_condition"
+            ]
+          },
+          "h_t01": {
+            "required": [],
+            "given": [
+              "hc_flu_season",
+              "hc_fiscal_year",
+              "hc_cost_overrun"
+            ]
+          },
+          "h_t02": {
+            "required": [],
+            "given": [
+              "hc_daily_rate",
+              "hc_cost_overrun",
+              "hc_high_cost_condition"
+            ]
+          },
+          "h_t03": {
+            "required": [],
+            "given": [
+              "hc_flu_season",
+              "hc_fiscal_year",
+              "hc_unplanned_admission"
+            ]
+          },
+          "h_t04": {
+            "required": [],
+            "given": [
+              "hc_daily_rate",
+              "hc_fiscal_quarter",
+              "hc_billing_quarter"
+            ]
+          },
+          "h_t05": {
+            "required": [],
+            "given": [
+              "hc_senior_care_tier",
+              "hc_fiscal_year",
+              "hc_senior_patient"
+            ]
+          },
+          "h_t06": {
+            "required": [],
+            "given": [
+              "hc_unplanned_admission",
+              "hc_flu_season",
+              "hc_cost_overrun"
+            ]
+          },
+          "h_t07": {
+            "required": [],
+            "given": [
+              "hc_cost_overrun",
+              "hc_fiscal_year",
+              "hc_high_cost_condition"
+            ]
+          },
+          "h_t08": {
+            "required": [],
+            "given": [
+              "hc_fiscal_year",
+              "hc_daily_rate",
+              "hc_billable_days"
+            ]
+          },
+          "h_t09": {
+            "required": [],
+            "given": [
+              "hc_flu_season",
+              "hc_fiscal_year",
+              "hc_long_stay"
+            ]
+          },
+          "h_t10": {
+            "required": [],
+            "given": [
+              "hc_long_stay",
+              "hc_short_stay",
+              "hc_flu_season"
+            ]
+          },
+          "h_t11": {
+            "required": [],
+            "given": [
+              "hc_fiscal_year",
+              "hc_government_payer",
+              "hc_senior_care_tier"
+            ]
+          },
+          "h_t12": {
+            "required": [],
+            "given": [
+              "hc_daily_rate",
+              "hc_cost_overrun",
+              "hc_flagged_claim"
+            ]
+          },
+          "r_f01": {
+            "required": [],
+            "given": [
+              "rt_deep_discount",
+              "rt_markdown",
+              "rt_omnichannel_customer"
+            ]
+          },
+          "r_f02": {
+            "required": [],
+            "given": [
+              "rt_return_rate",
+              "rt_csat",
+              "rt_detractor"
+            ]
+          },
+          "r_f03": {
+            "required": [],
+            "given": [
+              "rt_cash_equivalent",
+              "rt_core_market",
+              "rt_net_revenue"
+            ]
+          },
+          "r_f04": {
+            "required": [],
+            "given": [
+              "rt_return_rate",
+              "rt_net_revenue",
+              "rt_average_order_value"
+            ]
+          },
+          "r_f05": {
+            "required": [],
+            "given": [
+              "rt_net_revenue",
+              "rt_high_value_customer",
+              "rt_high_value_order"
+            ]
+          },
+          "r_f06": {
+            "required": [],
+            "given": [
+              "rt_returning_customer",
+              "rt_mature_shopper",
+              "rt_fiscal_year"
+            ]
+          },
+          "r_f07": {
+            "required": [],
+            "given": [
+              "rt_fiscal_year",
+              "rt_returning_customer",
+              "rt_holiday_season"
+            ]
+          },
+          "r_f08": {
+            "required": [],
+            "given": [
+              "rt_omnichannel_customer",
+              "rt_holiday_season",
+              "rt_returning_customer"
+            ]
+          },
+          "r_f09": {
+            "required": [],
+            "given": [
+              "rt_deep_discount",
+              "rt_markdown",
+              "rt_net_sales"
+            ]
+          },
+          "r_f10": {
+            "required": [],
+            "given": [
+              "rt_net_revenue",
+              "rt_bulk_buyer",
+              "rt_returning_customer"
+            ]
+          },
+          "r_f11": {
+            "required": [],
+            "given": [
+              "rt_average_order_value",
+              "rt_holiday_season",
+              "rt_net_revenue"
+            ]
+          },
+          "r_f12": {
+            "required": [],
+            "given": [
+              "rt_cash_equivalent",
+              "rt_high_value_order",
+              "rt_return_rate"
+            ]
+          },
+          "r_c01": {
+            "required": [],
+            "given": [
+              "rt_net_revenue",
+              "rt_return_rate",
+              "rt_returning_customer"
+            ]
+          },
+          "r_c02": {
+            "required": [],
+            "given": [
+              "rt_returning_customer",
+              "rt_omnichannel_customer",
+              "rt_holiday_season"
+            ]
+          },
+          "r_c03": {
+            "required": [],
+            "given": [
+              "rt_core_market",
+              "rt_cash_equivalent",
+              "rt_return_rate"
+            ]
+          },
+          "r_c04": {
+            "required": [],
+            "given": [
+              "rt_csat",
+              "rt_high_value_order",
+              "rt_bulk_buyer"
+            ]
+          },
+          "r_c05": {
+            "required": [],
+            "given": [
+              "rt_repeat_customer",
+              "rt_bulk_buyer",
+              "rt_csat"
+            ]
+          },
+          "r_c06": {
+            "required": [],
+            "given": [
+              "rt_net_revenue",
+              "rt_high_value_customer",
+              "rt_return_rate"
+            ]
+          },
+          "r_c07": {
+            "required": [],
+            "given": [
+              "rt_deep_discount",
+              "rt_net_sales",
+              "rt_gross_sales"
+            ]
+          },
+          "r_c08": {
+            "required": [],
+            "given": [
+              "rt_returning_customer",
+              "rt_holiday_season",
+              "rt_fiscal_year"
+            ]
+          },
+          "r_c09": {
+            "required": [],
+            "given": [
+              "rt_net_revenue",
+              "rt_b2b_order",
+              "rt_return_rate"
+            ]
+          },
+          "r_c10": {
+            "required": [],
+            "given": [
+              "rt_bulk_order",
+              "rt_premium_product_order",
+              "rt_csat"
+            ]
+          },
+          "r_c11": {
+            "required": [],
+            "given": [
+              "rt_hard_goods",
+              "rt_net_sales",
+              "rt_markdown"
+            ]
+          },
+          "r_c12": {
+            "required": [],
+            "given": [
+              "rt_mature_shopper",
+              "rt_repeat_customer",
+              "rt_bulk_buyer"
+            ]
+          },
+          "r_a01": {
+            "required": [],
+            "given": [
+              "rt_return_rate",
+              "rt_gross_sales",
+              "rt_markdown"
+            ]
+          },
+          "r_a02": {
+            "required": [],
+            "given": [
+              "rt_average_order_value",
+              "rt_csat",
+              "rt_premium_product_order"
+            ]
+          },
+          "r_a03": {
+            "required": [],
+            "given": [
+              "rt_average_order_value",
+              "rt_core_market",
+              "rt_return_rate"
+            ]
+          },
+          "r_a04": {
+            "required": [],
+            "given": [
+              "rt_bulk_buyer",
+              "rt_omnichannel_customer",
+              "rt_gross_sales"
+            ]
+          },
+          "r_a05": {
+            "required": [],
+            "given": [
+              "rt_high_value_order",
+              "rt_b2b_order",
+              "rt_high_value_customer"
+            ]
+          },
+          "r_a06": {
+            "required": [],
+            "given": [
+              "rt_deep_discount",
+              "rt_cash_equivalent",
+              "rt_average_order_value"
+            ]
+          },
+          "r_a07": {
+            "required": [],
+            "given": [
+              "rt_net_revenue",
+              "rt_return_rate",
+              "rt_bulk_buyer"
+            ]
+          },
+          "r_a08": {
+            "required": [],
+            "given": [
+              "rt_mature_shopper",
+              "rt_premium_customer",
+              "rt_average_order_value"
+            ]
+          },
+          "r_a09": {
+            "required": [],
+            "given": [
+              "rt_bulk_order",
+              "rt_return_rate",
+              "rt_bulk_buyer"
+            ]
+          },
+          "r_a10": {
+            "required": [],
+            "given": [
+              "rt_average_order_value",
+              "rt_premium_customer",
+              "rt_premium_product_order"
+            ]
+          },
+          "r_a11": {
+            "required": [],
+            "given": [
+              "rt_net_revenue",
+              "rt_return_rate",
+              "rt_average_order_value"
+            ]
+          },
+          "r_a12": {
+            "required": [],
+            "given": [
+              "rt_average_order_value",
+              "rt_premium_product_order",
+              "rt_high_value_order"
+            ]
+          },
+          "r_p01": {
+            "required": [],
+            "given": [
+              "rt_return_rate",
+              "rt_net_revenue",
+              "rt_bulk_buyer"
+            ]
+          },
+          "r_p02": {
+            "required": [],
+            "given": [
+              "rt_average_order_value",
+              "rt_premium_customer",
+              "rt_repeat_customer"
+            ]
+          },
+          "r_p03": {
+            "required": [],
+            "given": [
+              "rt_core_market",
+              "rt_net_revenue",
+              "rt_return_rate"
+            ]
+          },
+          "r_p04": {
+            "required": [],
+            "given": [
+              "rt_bulk_order",
+              "rt_premium_product_order",
+              "rt_deep_discount"
+            ]
+          },
+          "r_p05": {
+            "required": [],
+            "given": [
+              "rt_hard_goods",
+              "rt_csat",
+              "rt_average_order_value"
+            ]
+          },
+          "r_p06": {
+            "required": [],
+            "given": [
+              "rt_average_order_value",
+              "rt_return_rate",
+              "rt_net_revenue"
+            ]
+          },
+          "r_p07": {
+            "required": [],
+            "given": [
+              "rt_cash_equivalent",
+              "rt_return_rate",
+              "rt_average_order_value"
+            ]
+          },
+          "r_p08": {
+            "required": [],
+            "given": [
+              "rt_fiscal_year",
+              "rt_net_revenue",
+              "rt_gross_sales"
+            ]
+          },
+          "r_p09": {
+            "required": [],
+            "given": [
+              "rt_core_market",
+              "rt_deep_discount",
+              "rt_premium_customer"
+            ]
+          },
+          "r_p10": {
+            "required": [],
+            "given": [
+              "rt_average_order_value",
+              "rt_high_value_order",
+              "rt_return_rate"
+            ]
+          },
+          "r_p11": {
+            "required": [],
+            "given": [
+              "rt_high_value_order",
+              "rt_markdown",
+              "rt_high_value_customer"
+            ]
+          },
+          "r_p12": {
+            "required": [],
+            "given": [
+              "rt_cash_equivalent",
+              "rt_mature_shopper",
+              "rt_premium_customer"
+            ]
+          },
+          "r_t01": {
+            "required": [],
+            "given": [
+              "rt_fiscal_year",
+              "rt_net_revenue",
+              "rt_markdown"
+            ]
+          },
+          "r_t02": {
+            "required": [],
+            "given": [
+              "rt_returning_customer",
+              "rt_fiscal_year",
+              "rt_holiday_season"
+            ]
+          },
+          "r_t03": {
+            "required": [],
+            "given": [
+              "rt_return_rate",
+              "rt_net_revenue",
+              "rt_fiscal_year"
+            ]
+          },
+          "r_t04": {
+            "required": [],
+            "given": [
+              "rt_average_order_value",
+              "rt_csat",
+              "rt_fiscal_quarter"
+            ]
+          },
+          "r_t05": {
+            "required": [],
+            "given": [
+              "rt_returning_customer",
+              "rt_fiscal_year",
+              "rt_omnichannel_customer"
+            ]
+          },
+          "r_t06": {
+            "required": [],
+            "given": [
+              "rt_bulk_order",
+              "rt_hard_goods",
+              "rt_gross_sales"
+            ]
+          },
+          "r_t07": {
+            "required": [],
+            "given": [
+              "rt_returning_customer",
+              "rt_fiscal_year",
+              "rt_return_rate"
+            ]
+          },
+          "r_t08": {
+            "required": [],
+            "given": [
+              "rt_deep_discount",
+              "rt_average_order_value",
+              "rt_gross_sales"
+            ]
+          },
+          "r_t09": {
+            "required": [],
+            "given": [
+              "rt_fiscal_year",
+              "rt_markdown",
+              "rt_fiscal_quarter"
+            ]
+          },
+          "r_t10": {
+            "required": [],
+            "given": [
+              "rt_average_order_value",
+              "rt_fiscal_year",
+              "rt_high_value_order"
+            ]
+          },
+          "r_t11": {
+            "required": [],
+            "given": [
+              "rt_b2b_order",
+              "rt_fiscal_year",
+              "rt_holiday_season"
+            ]
+          },
+          "r_t12": {
+            "required": [],
+            "given": [
+              "rt_core_market",
+              "rt_fiscal_year",
+              "rt_markdown"
+            ]
+          }
+        }
+      },
+      "doc_rag_gated": {
+        "n": 120,
+        "all_required": null,
+        "exact": null,
+        "precision": null,
+        "avg_definitions": 0.0,
+        "questions_with_unneeded_definitions": 0,
+        "questions_missing_a_definition": 0,
+        "misses": {}
+      }
+    }
+  },
+  "gated_vs_ungated": {
+    "glossary": {
+      "gpt-oss-20b": {
+        "n": 60,
+        "both": 51,
+        "only_a": 1,
+        "only_b": 6,
+        "neither": 2,
+        "fixed": [
+          "hg_a05",
+          "hg_c03",
+          "hg_f02",
+          "hg_f03",
+          "rg_c06",
+          "rg_p03"
+        ],
+        "broken": [
+          "rg_t02"
+        ]
+      },
+      "gpt-oss-120b": {
+        "n": 60,
+        "both": 50,
+        "only_a": 3,
+        "only_b": 5,
+        "neither": 2,
+        "fixed": [
+          "hg_a05",
+          "hg_c03",
+          "hg_f02",
+          "hg_f03",
+          "rg_p02"
+        ],
+        "broken": [
+          "rg_f06",
+          "rg_t01",
+          "rg_t02"
+        ]
+      }
+    },
+    "original": {
+      "gpt-oss-20b": {
+        "n": 120,
+        "both": 113,
+        "only_a": 0,
+        "only_b": 5,
+        "neither": 2,
+        "fixed": [
+          "h_a07",
+          "h_c10",
+          "h_f07",
+          "r_a03",
+          "r_p10"
+        ],
+        "broken": []
+      },
+      "gpt-oss-120b": {
+        "n": 120,
+        "both": 113,
+        "only_a": 1,
+        "only_b": 6,
+        "neither": 0,
+        "fixed": [
+          "h_a07",
+          "h_f03",
+          "h_f07",
+          "r_p02",
+          "r_p10",
+          "r_t10"
+        ],
+        "broken": [
+          "h_p06"
+        ]
+      }
+    }
+  },
+  "small_vs_large": {
+    "glossary": {
+      "zero_shot": {
+        "n": 60,
+        "both": 4,
+        "only_a": 2,
+        "only_b": 2,
+        "neither": 52,
+        "fixed": [
+          "hg_c01",
+          "hg_t04"
+        ],
+        "broken": [
+          "hg_a01",
+          "hg_t03"
+        ]
+      },
+      "doc_rag": {
+        "n": 60,
+        "both": 49,
+        "only_a": 3,
+        "only_b": 4,
+        "neither": 4,
+        "fixed": [
+          "hg_t01",
+          "hg_t06",
+          "rg_c06",
+          "rg_p03"
+        ],
+        "broken": [
+          "rg_c04",
+          "rg_p02",
+          "rg_p04"
+        ]
+      },
+      "doc_rag_gated": {
+        "n": 60,
+        "both": 53,
+        "only_a": 4,
+        "only_b": 2,
+        "neither": 1,
+        "fixed": [
+          "hg_t01",
+          "hg_t06"
+        ],
+        "broken": [
+          "rg_c04",
+          "rg_f06",
+          "rg_p04",
+          "rg_t01"
+        ]
+      },
+      "oracle_doc": {
+        "n": 60,
+        "both": 55,
+        "only_a": 2,
+        "only_b": 2,
+        "neither": 1,
+        "fixed": [
+          "hg_t01",
+          "hg_t06"
+        ],
+        "broken": [
+          "rg_c04",
+          "rg_p04"
+        ]
+      }
+    },
+    "original": {
+      "zero_shot": {
+        "n": 120,
+        "both": 118,
+        "only_a": 0,
+        "only_b": 1,
+        "neither": 1,
+        "fixed": [
+          "r_p02"
+        ],
+        "broken": []
+      },
+      "doc_rag": {
+        "n": 120,
+        "both": 111,
+        "only_a": 2,
+        "only_b": 3,
+        "neither": 4,
+        "fixed": [
+          "h_c10",
+          "h_p06",
+          "r_a03"
+        ],
+        "broken": [
+          "h_f03",
+          "r_t10"
+        ]
+      },
+      "doc_rag_gated": {
+        "n": 120,
+        "both": 118,
+        "only_a": 0,
+        "only_b": 1,
+        "neither": 1,
+        "fixed": [
+          "r_p02"
+        ],
+        "broken": []
+      }
+    }
+  },
+  "zero_shot_naive": {
+    "glossary": {
+      "gpt-oss-20b": {
+        "wrong": 54,
+        "naive_match": 14
+      },
+      "gpt-oss-120b": {
+        "wrong": 54,
+        "naive_match": 19
+      }
+    }
+  },
+  "usage": {
+    "gpt-oss-20b": {
+      "n_calls": 430,
+      "n_with_client_latency": 430,
+      "latency_median_s": 0.3995,
+      "latency_p95_s": 1.0071999999999997,
+      "server_time_median_s": 0.15307896599999998,
+      "server_time_p95_s": 0.5738425682499991,
+      "avg_prompt_tokens": 731.0488372093023,
+      "avg_completion_tokens": 88.49767441860465,
+      "avg_reasoning_tokens": 40.65581395348837,
+      "avg_total_tokens": 819.546511627907,
+      "provider": "Groq",
+      "total_tokens": 352405,
+      "cached_prompt_tokens": 79104
+    },
+    "gpt-oss-120b": {
+      "n_calls": 430,
+      "n_with_client_latency": 430,
+      "latency_median_s": 0.321,
+      "latency_p95_s": 1.0190999999999963,
+      "server_time_median_s": 0.07264220714569092,
+      "server_time_p95_s": 0.5659810066223143,
+      "avg_prompt_tokens": 731.0488372093023,
+      "avg_completion_tokens": 98.41162790697675,
+      "avg_reasoning_tokens": 50.95348837209303,
+      "avg_total_tokens": 829.4604651162791,
+      "provider": "Cerebras",
+      "total_tokens": 356668,
+      "cached_prompt_tokens": 262144
+    }
+  },
+  "n_missing": 0,
+  "cerebras_cost_usd_estimate": 0.14044596897512016
+}

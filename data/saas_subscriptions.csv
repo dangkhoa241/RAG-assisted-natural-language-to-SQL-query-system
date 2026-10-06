@@ -1,0 +1,1201 @@
+Account ID,Company Name,Plan,Billing Cycle,Signup Date,Cancel Date,MRR,Seats,Seats Used,Region,Industry,Acquisition Channel,Last Login Date,Support Tickets,NPS
+AC-10001,Quartz Dynamics,Enterprise,Monthly,2021-01-02,,19379.31,420,64,North America,Software,Event,2024-10-08,7,7
+AC-10002,Coral Manufacturing,Starter,Monthly,2021-01-04,,48.0,4,2,North America,Nonprofit,Paid Search,2025-06-22,0,10
+AC-10003,Vertex Collective,Starter,Monthly,2021-01-07,,60.0,5,3,LATAM,Nonprofit,Organic Search,2025-06-30,0,9
+AC-10004,Oak Analytics,Starter,Monthly,2021-01-16,2022-02-19,60.0,5,3,North America,Manufacturing,Organic Search,2022-02-10,0,9
+AC-10005,Beacon Finance,Starter,Annual,2021-01-18,2023-05-13,20.4,2,2,APAC,Healthcare,Paid Search,2023-05-01,3,
+AC-10006,Willow Partners,Pro,Monthly,2021-01-19,2024-11-23,783.0,27,19,North America,Software,Outbound Sales,2024-11-18,5,
+AC-10007,Pine Finance,Enterprise,Annual,2021-01-20,2022-09-24,1535.04,40,1,North America,Software,Outbound Sales,2022-09-14,5,6
+AC-10008,Maple Systems,Starter,Monthly,2021-01-22,,24.0,2,1,EMEA,Healthcare,Event,2025-06-30,0,5
+AC-10009,Sage Media,Pro,Monthly,2021-01-24,2021-05-12,1131.0,39,14,North America,Nonprofit,Referral,2021-05-10,5,5
+AC-10010,Stone Academy,Starter,Monthly,2021-02-02,2021-03-25,12.0,1,0,North America,Software,Referral,2021-03-21,0,6
+AC-10011,Oak Freight,Starter,Annual,2021-02-02,2022-10-11,40.8,4,3,North America,Financial Services,Organic Search,2022-10-08,1,9
+AC-10012,Iron Group,Pro,Monthly,2021-02-03,2024-04-05,290.0,10,4,North America,Software,Partner,2024-03-23,5,
+AC-10013,River Software,Starter,Monthly,2021-02-04,2022-01-18,36.0,3,2,LATAM,Software,Partner,2022-01-15,0,10
+AC-10014,Oak Bio,Pro,Monthly,2021-02-13,2023-07-05,203.0,7,4,North America,Manufacturing,Paid Search,2023-07-04,4,8
+AC-10015,Granite Designs,Pro,Annual,2021-02-14,,640.9,26,19,EMEA,Healthcare,Event,2024-12-29,3,7
+AC-10016,Bright Dynamics,Starter,Monthly,2021-02-17,2021-02-23,72.0,6,6,North America,Financial Services,Paid Search,2021-02-18,0,
+AC-10017,Blue Partners,Pro,Annual,2021-02-17,,542.3,22,20,LATAM,Nonprofit,Partner,2025-06-28,2,7
+AC-10018,Iron Collective,Starter,Monthly,2021-02-20,2022-09-21,72.0,6,4,North America,Software,Partner,2022-09-14,2,8
+AC-10019,Willow Labs,Pro,Monthly,2021-02-20,2022-02-14,928.0,32,28,North America,Retail,Event,2022-02-08,1,9
+AC-10020,Amber Analytics,Starter,Monthly,2021-02-21,2021-03-07,48.0,4,2,North America,Education,Paid Search,2021-03-07,1,
+AC-10021,Cedar Works,Pro,Annual,2021-02-22,,591.6,24,23,North America,Retail,Event,2025-06-28,2,
+AC-10022,Iron Learning,Pro,Annual,2021-02-23,,271.15,11,1,North America,Financial Services,Partner,2025-06-30,0,
+AC-10023,Stone Finance,Pro,Annual,2021-02-23,,468.35,19,15,APAC,Software,Outbound Sales,2025-06-30,5,8
+AC-10024,North Studios,Starter,Annual,2021-03-01,,30.6,3,2,North America,Manufacturing,Paid Search,2025-06-25,1,7
+AC-10025,Bright Systems,Pro,Monthly,2021-03-01,2024-08-24,493.0,17,16,APAC,Media,Organic Search,2024-08-15,5,1
+AC-10026,Clear Software,Starter,Monthly,2021-03-07,2021-03-10,24.0,2,2,LATAM,Financial Services,Paid Search,2021-03-07,1,
+AC-10027,North Capital,Pro,Monthly,2021-03-08,2023-06-09,667.0,23,7,EMEA,Financial Services,Organic Search,2023-06-01,2,
+AC-10028,Apex Manufacturing,Starter,Monthly,2021-03-10,2024-11-06,72.0,6,6,North America,Healthcare,Referral,2024-10-26,0,4
+AC-10029,Crescent Networks,Starter,Monthly,2021-03-12,2022-04-24,24.0,2,2,North America,Manufacturing,Referral,2022-04-16,0,4
+AC-10030,Green Finance,Pro,Annual,2021-03-16,2025-04-11,369.75,15,14,EMEA,Education,Organic Search,2025-03-27,2,9
+AC-10031,Vertex Designs,Starter,Monthly,2021-03-17,2021-04-06,84.0,7,6,North America,Software,Paid Search,2021-03-17,1,5
+AC-10032,Crescent Designs,Pro,Monthly,2021-03-21,2022-10-29,870.0,30,23,North America,Manufacturing,Referral,2022-10-28,1,9
+AC-10033,Pine Partners,Starter,Monthly,2021-03-21,,36.0,3,1,North America,Nonprofit,Referral,2025-06-28,2,9
+AC-10034,Peak Labs,Pro,Monthly,2021-03-22,,696.0,24,15,North America,Financial Services,Paid Search,2025-06-18,7,10
+AC-10035,Atlas Manufacturing,Pro,Monthly,2021-03-22,,319.0,11,7,EMEA,Healthcare,Event,2025-06-26,3,10
+AC-10036,Red Group,Enterprise,Annual,2021-03-22,,1290.16,33,21,EMEA,Education,Outbound Sales,2025-06-29,12,0
+AC-10037,Willow Bio,Starter,Monthly,2021-03-23,,24.0,2,1,APAC,Manufacturing,Organic Search,2025-06-29,0,7
+AC-10038,Cedar Robotics,Starter,Monthly,2021-03-24,2023-05-29,36.0,3,2,EMEA,Software,Paid Search,2023-05-28,2,8
+AC-10039,Quartz Group,Enterprise,Annual,2021-03-27,,5078.08,140,43,North America,Financial Services,Event,2025-06-29,8,
+AC-10040,River Partners,Pro,Monthly,2021-03-28,2023-09-25,551.0,19,13,APAC,Retail,Organic Search,2023-09-13,3,
+AC-10041,Echo Works,Starter,Annual,2021-03-31,2021-10-17,20.4,2,2,APAC,Healthcare,Organic Search,2021-10-12,1,6
+AC-10042,Green Logistics,Pro,Monthly,2021-04-02,,290.0,10,3,APAC,Nonprofit,Referral,2025-06-05,0,0
+AC-10043,Delta Systems,Starter,Annual,2021-04-02,,30.6,3,1,North America,Healthcare,Organic Search,2025-06-26,3,
+AC-10044,Lumen Bio,Enterprise,Annual,2021-04-02,2021-04-25,3013.85,84,53,North America,Retail,Outbound Sales,2021-04-21,4,8
+AC-10045,River Solutions,Pro,Monthly,2021-04-02,2024-07-26,406.0,14,9,North America,Education,Paid Search,2024-07-16,2,1
+AC-10046,Blue Studios,Pro,Monthly,2021-04-04,2021-12-13,174.0,6,5,North America,Education,Paid Search,2021-12-13,8,0
+AC-10047,Cobalt Learning,Starter,Monthly,2021-04-06,,48.0,4,3,North America,Financial Services,Organic Search,2025-05-04,0,7
+AC-10048,Iron Solutions,Pro,Annual,2021-04-07,,936.7,38,22,APAC,Retail,Outbound Sales,2025-06-30,7,
+AC-10049,Horizon Group,Enterprise,Annual,2021-04-08,,4809.65,114,88,APAC,Media,Outbound Sales,2025-06-13,4,
+AC-10050,Falcon Capital,Pro,Annual,2021-04-09,2024-11-09,295.8,12,6,EMEA,Manufacturing,Partner,2024-11-07,2,10
+AC-10051,Bright Designs,Enterprise,Annual,2021-04-11,,10789.14,301,193,APAC,Healthcare,Outbound Sales,2025-06-28,5,
+AC-10052,Silver Health,Starter,Annual,2021-04-16,2022-03-08,30.6,3,2,EMEA,Retail,Organic Search,2022-02-26,0,4
+AC-10053,Red Networks,Pro,Monthly,2021-04-20,2024-07-06,261.0,9,7,North America,Media,Event,2024-07-05,4,
+AC-10054,Peak Dynamics,Enterprise,Annual,2021-04-24,2023-11-24,3180.99,69,51,North America,Retail,Outbound Sales,2023-11-10,4,8
+AC-10055,Silver Robotics,Starter,Monthly,2021-04-24,2024-03-14,48.0,4,2,EMEA,Software,Organic Search,2024-02-28,2,
+AC-10056,Falcon Dynamics,Starter,Monthly,2021-04-30,2025-05-03,48.0,4,3,North America,Financial Services,Organic Search,2025-05-03,0,7
+AC-10057,Cobalt Supply,Pro,Annual,2021-05-01,2025-02-21,295.8,12,5,EMEA,Retail,Paid Search,2025-02-17,3,5
+AC-10058,Sage Energy,Starter,Monthly,2021-05-02,2022-03-12,48.0,4,2,LATAM,Software,Organic Search,2022-03-09,2,6
+AC-10059,Crescent Labs,Starter,Annual,2021-05-03,2021-05-16,71.4,7,2,North America,Healthcare,Partner,2021-05-16,3,6
+AC-10060,Red Capital,Enterprise,Annual,2021-05-04,,1083.34,25,12,APAC,Manufacturing,Outbound Sales,2025-06-27,10,
+AC-10061,Maple Learning,Pro,Annual,2021-05-04,2021-10-23,147.9,6,6,APAC,Retail,Referral,2021-10-05,0,4
+AC-10062,Iron Designs,Pro,Monthly,2021-05-04,,145.0,5,2,North America,Nonprofit,Outbound Sales,2025-06-27,3,
+AC-10063,Coral Ventures,Pro,Monthly,2021-05-05,2022-07-24,464.0,16,11,North America,Software,Referral,2022-07-16,1,
+AC-10064,North Media,Pro,Annual,2021-05-09,,443.7,18,5,APAC,Financial Services,Organic Search,2025-06-29,6,
+AC-10065,Green Software,Starter,Annual,2021-05-13,,40.8,4,2,APAC,Healthcare,Paid Search,2025-06-19,2,10
+AC-10066,Orbit Designs,Starter,Annual,2021-05-14,,30.6,3,3,EMEA,Software,Referral,2025-06-28,2,9
+AC-10067,Lumen Ventures,Starter,Monthly,2021-05-16,2024-02-18,60.0,5,4,North America,Software,Referral,2024-02-03,3,
+AC-10068,Horizon Robotics,Pro,Monthly,2021-05-18,,348.0,12,11,North America,Software,Partner,2025-06-28,3,9
+AC-10069,Clear Works,Pro,Monthly,2021-05-19,,522.0,18,3,LATAM,Education,Partner,2024-10-06,3,9
+AC-10070,Meridian Energy,Starter,Annual,2021-05-25,2021-12-18,40.8,4,3,LATAM,Retail,Paid Search,2021-12-07,1,
+AC-10071,Beacon Health,Starter,Monthly,2021-05-28,,60.0,5,4,APAC,Software,Outbound Sales,2025-06-29,2,6
+AC-10072,Apex Works,Starter,Monthly,2021-06-01,2024-06-28,60.0,5,4,EMEA,Media,Partner,2024-06-17,1,8
+AC-10073,North Robotics,Starter,Annual,2021-06-03,2021-11-30,51.0,5,4,APAC,Manufacturing,Referral,2021-11-30,2,7
+AC-10074,Horizon Collective,Enterprise,Annual,2021-06-05,,5956.24,138,104,North America,Nonprofit,Paid Search,2025-06-29,4,
+AC-10075,Coral Designs,Starter,Monthly,2021-06-06,,48.0,4,2,North America,Software,Organic Search,2025-06-29,0,
+AC-10076,Sage Dynamics,Starter,Monthly,2021-06-06,,48.0,4,3,EMEA,Nonprofit,Referral,2025-05-12,2,8
+AC-10077,Harbor Works,Pro,Monthly,2021-06-12,2021-07-18,406.0,14,10,EMEA,Manufacturing,Partner,2021-07-14,0,
+AC-10078,Silver Learning,Starter,Monthly,2021-06-15,2021-08-23,60.0,5,3,North America,Healthcare,Organic Search,2021-08-11,3,9
+AC-10079,Crescent Learning,Starter,Annual,2021-06-15,,20.4,2,1,APAC,Healthcare,Referral,2025-06-30,3,6
+AC-10080,Crescent Clinics,Pro,Monthly,2021-06-15,2022-04-07,290.0,10,6,APAC,Nonprofit,Paid Search,2022-04-07,4,
+AC-10081,Harbor Clinics,Starter,Monthly,2021-06-17,2022-02-12,48.0,4,3,EMEA,Healthcare,Organic Search,2022-02-09,0,
+AC-10082,Cobalt Group,Enterprise,Monthly,2021-06-19,,5286.15,112,70,North America,Software,Outbound Sales,2025-06-27,10,
+AC-10083,Echo Partners,Pro,Monthly,2021-06-26,2021-11-15,464.0,16,13,North America,Software,Event,2021-11-01,1,8
+AC-10084,Quartz Academy,Starter,Monthly,2021-06-26,2022-01-25,60.0,5,3,North America,Healthcare,Paid Search,2022-01-18,1,7
+AC-10085,Willow Health,Enterprise,Annual,2021-06-27,,6684.76,160,132,North America,Financial Services,Outbound Sales,2025-06-18,2,
+AC-10086,Echo Bio,Starter,Monthly,2021-06-28,2023-07-20,24.0,2,1,EMEA,Software,Event,2023-07-04,0,7
+AC-10087,Cedar Health,Pro,Monthly,2021-06-29,2021-06-30,261.0,9,4,APAC,Nonprofit,Event,2021-06-29,8,
+AC-10088,Silver Networks,Starter,Annual,2021-06-29,,61.2,6,4,North America,Retail,Organic Search,2025-06-05,1,5
+AC-10089,Golden Freight,Starter,Annual,2021-06-29,,30.6,3,3,North America,Software,Organic Search,2024-12-02,0,
+AC-10090,Apex Analytics,Starter,Monthly,2021-07-01,2022-01-20,12.0,1,1,APAC,Software,Partner,2022-01-02,2,5
+AC-10091,Amber Freight,Starter,Monthly,2021-07-06,2023-09-28,36.0,3,3,North America,Education,Event,2023-09-23,0,1
+AC-10092,Sage Collective,Starter,Annual,2021-07-06,2023-12-21,20.4,2,1,North America,Software,Partner,2023-12-12,2,5
+AC-10093,Delta Works,Starter,Monthly,2021-07-08,,120.0,10,6,EMEA,Retail,Referral,2025-06-26,1,
+AC-10094,Iron Retail,Starter,Annual,2021-07-13,2022-06-03,51.0,5,1,APAC,Software,Paid Search,2022-05-20,1,8
+AC-10095,Cedar Logistics,Starter,Monthly,2021-07-15,2023-04-17,24.0,2,1,EMEA,Software,Partner,2023-04-11,2,7
+AC-10096,Willow Group,Pro,Monthly,2021-07-17,2024-01-29,290.0,10,7,EMEA,Education,Partner,2024-01-29,1,5
+AC-10097,North Foods,Starter,Monthly,2021-07-20,2021-07-25,24.0,2,1,EMEA,Software,Paid Search,2021-07-20,1,5
+AC-10098,Willow Networks,Starter,Monthly,2021-07-20,2021-10-27,36.0,3,2,North America,Software,Paid Search,2021-10-18,0,8
+AC-10099,Blue Ventures,Pro,Monthly,2021-07-26,2023-06-17,261.0,9,6,EMEA,Manufacturing,Organic Search,2023-06-10,2,5
+AC-10100,Pine Collective,Starter,Monthly,2021-07-26,2024-04-27,48.0,4,1,EMEA,Education,Paid Search,2024-04-21,0,9
+AC-10101,Red Collective,Pro,Monthly,2021-07-26,2025-02-26,435.0,15,10,EMEA,Software,Event,2025-02-14,1,6
+AC-10102,Swift Energy,Pro,Monthly,2021-07-28,,1363.0,47,12,North America,Healthcare,Partner,2025-06-30,2,
+AC-10103,Crescent Energy,Enterprise,Annual,2021-07-28,,5259.54,115,68,EMEA,Software,Referral,2025-06-29,12,
+AC-10104,Golden Robotics,Starter,Monthly,2021-07-28,2023-09-13,36.0,3,2,EMEA,Software,Referral,2023-09-13,1,
+AC-10105,Maple Collective,Enterprise,Annual,2021-08-02,,10381.83,265,249,LATAM,Software,Paid Search,2025-06-19,5,5
+AC-10106,Red Academy,Starter,Annual,2021-08-02,,40.8,4,3,EMEA,Education,Paid Search,2025-06-25,3,6
+AC-10107,Swift Studios,Starter,Monthly,2021-08-02,2022-03-25,96.0,8,7,North America,Financial Services,Paid Search,2022-03-23,0,
+AC-10108,Delta Freight,Pro,Monthly,2021-08-06,2021-08-12,377.0,13,9,EMEA,Retail,Paid Search,2021-08-06,0,2
+AC-10109,Green Energy,Starter,Monthly,2021-08-06,2022-08-18,60.0,5,3,EMEA,Software,Event,2022-08-12,1,
+AC-10110,Falcon Designs,Pro,Monthly,2021-08-07,,377.0,13,12,EMEA,Nonprofit,Partner,2025-06-30,6,
+AC-10111,Echo Solutions,Pro,Annual,2021-08-08,2022-08-22,591.6,24,13,North America,Software,Outbound Sales,2022-08-21,2,1
+AC-10112,Atlas Foods,Starter,Monthly,2021-08-13,2022-06-14,48.0,4,3,EMEA,Manufacturing,Paid Search,2022-05-28,1,
+AC-10113,Nova Bio,Pro,Annual,2021-08-14,2021-10-08,517.65,21,5,North America,Software,Partner,2021-09-20,5,
+AC-10114,Crescent Dynamics,Starter,Annual,2021-08-17,2024-02-20,51.0,5,4,North America,Nonprofit,Referral,2024-02-20,0,
+AC-10115,Cedar Solutions,Enterprise,Annual,2021-08-20,,13879.22,322,261,EMEA,Retail,Outbound Sales,2025-06-29,5,
+AC-10116,Maple Designs,Starter,Monthly,2021-08-20,2023-01-06,24.0,2,2,North America,Education,Outbound Sales,2022-12-31,3,
+AC-10117,River Labs,Starter,Monthly,2021-08-24,,72.0,6,5,EMEA,Nonprofit,Organic Search,2025-05-27,4,
+AC-10118,Cedar Group,Pro,Annual,2021-08-25,,665.55,27,20,LATAM,Nonprofit,Partner,2025-06-29,3,7
+AC-10119,Willow Ventures,Starter,Monthly,2021-08-26,2023-01-17,48.0,4,3,North America,Software,Organic Search,2023-01-15,3,9
+AC-10120,Green Designs,Starter,Monthly,2021-08-29,2021-09-04,24.0,2,1,North America,Software,Paid Search,2021-08-29,4,7
+AC-10121,Nova Learning,Enterprise,Annual,2021-08-29,,1534.12,43,10,LATAM,Financial Services,Partner,2025-06-26,14,8
+AC-10122,Willow Analytics,Starter,Monthly,2021-08-29,2022-01-02,24.0,2,2,North America,Retail,Organic Search,2021-12-30,3,7
+AC-10123,Iron Media,Starter,Monthly,2021-09-02,2025-02-14,60.0,5,4,North America,Media,Event,2025-02-09,0,10
+AC-10124,Vertex Solutions,Starter,Monthly,2021-09-03,2022-08-10,48.0,4,4,North America,Retail,Organic Search,2022-08-07,1,9
+AC-10125,Falcon Studios,Pro,Monthly,2021-09-06,,1102.0,38,32,EMEA,Software,Organic Search,2025-06-29,3,10
+AC-10126,Harbor Partners,Pro,Annual,2021-09-09,,468.35,19,17,North America,Education,Paid Search,2025-06-18,1,9
+AC-10127,Delta Group,Pro,Annual,2021-09-11,2022-09-03,345.1,14,10,EMEA,Nonprofit,Organic Search,2022-08-10,6,9
+AC-10128,Beacon Studios,Starter,Monthly,2021-09-16,,48.0,4,1,North America,Software,Partner,2025-06-30,3,10
+AC-10129,Nova Solutions,Starter,Annual,2021-09-19,,40.8,4,2,EMEA,Education,Referral,2025-06-25,2,10
+AC-10130,Atlas Capital,Starter,Annual,2021-09-21,2023-10-09,40.8,4,3,APAC,Healthcare,Paid Search,2023-09-22,2,7
+AC-10131,Peak Works,Starter,Monthly,2021-09-24,,84.0,7,6,North America,Retail,Organic Search,2025-06-29,0,10
+AC-10132,Silver Solutions,Starter,Monthly,2021-09-25,,36.0,3,2,North America,Education,Organic Search,2025-06-30,3,8
+AC-10133,Echo Logistics,Enterprise,Annual,2021-10-01,2025-06-08,11664.54,292,46,North America,Financial Services,Referral,2025-06-01,3,5
+AC-10134,Clear Solutions,Starter,Monthly,2021-10-03,2021-10-16,96.0,8,7,EMEA,Nonprofit,Organic Search,2021-10-16,1,
+AC-10135,Horizon Analytics,Starter,Monthly,2021-10-04,2024-03-16,60.0,5,3,EMEA,Software,Organic Search,2024-03-04,0,
+AC-10136,Lumen Partners,Pro,Monthly,2021-10-08,,290.0,10,9,North America,Software,Event,2025-06-29,4,
+AC-10137,Apex Systems,Starter,Monthly,2021-10-08,2022-02-16,36.0,3,2,North America,Media,Referral,2022-02-05,0,
+AC-10138,Maple Freight,Starter,Annual,2021-10-08,2021-11-25,20.4,2,1,EMEA,Nonprofit,Paid Search,2021-11-17,1,2
+AC-10139,Golden Retail,Enterprise,Annual,2021-10-14,,10778.6,238,79,North America,Education,Partner,2024-09-09,10,2
+AC-10140,Quartz Clinics,Enterprise,Annual,2021-10-15,,11252.45,289,243,EMEA,Manufacturing,Event,2025-06-30,9,
+AC-10141,Bright Robotics,Starter,Monthly,2021-10-17,2024-01-20,60.0,5,4,EMEA,Manufacturing,Paid Search,2024-01-19,0,7
+AC-10142,Falcon Supply,Pro,Monthly,2021-10-19,2021-11-30,203.0,7,6,EMEA,Education,Event,2021-11-29,6,
+AC-10143,Echo Systems,Starter,Monthly,2021-10-20,2022-08-09,24.0,2,1,North America,Education,Referral,2022-08-06,0,6
+AC-10144,Stone Logistics,Pro,Annual,2021-10-20,2023-02-15,591.6,24,6,North America,Financial Services,Referral,2023-02-08,2,6
+AC-10145,Lumen Collective,Pro,Monthly,2021-10-21,2022-11-26,203.0,7,4,LATAM,Financial Services,Partner,2022-11-20,4,
+AC-10146,Meridian Robotics,Pro,Annual,2021-10-23,,542.3,22,22,EMEA,Manufacturing,Paid Search,2024-10-26,2,9
+AC-10147,Granite Analytics,Starter,Annual,2021-10-25,2024-01-17,20.4,2,2,EMEA,Retail,Organic Search,2024-01-17,0,6
+AC-10148,Bright Manufacturing,Starter,Monthly,2021-10-25,2024-06-22,60.0,5,1,LATAM,Software,Organic Search,2024-06-22,0,8
+AC-10149,North Solutions,Pro,Monthly,2021-10-28,2022-01-08,493.0,17,11,North America,Manufacturing,Paid Search,2022-01-01,4,
+AC-10150,Clear Systems,Starter,Monthly,2021-10-31,,48.0,4,2,EMEA,Manufacturing,Organic Search,2025-06-15,0,
+AC-10151,Stone Media,Starter,Monthly,2021-11-02,2024-01-30,72.0,6,4,North America,Retail,Referral,2024-01-22,5,4
+AC-10152,Apex Media,Pro,Monthly,2021-11-04,,406.0,14,12,North America,Manufacturing,Referral,2025-06-11,4,8
+AC-10153,Falcon Clinics,Pro,Annual,2021-11-04,,271.15,11,10,EMEA,Education,Paid Search,2025-06-30,10,10
+AC-10154,Quartz Works,Enterprise,Annual,2021-11-04,2024-07-22,8558.14,211,140,EMEA,Financial Services,Partner,2024-07-03,5,
+AC-10155,Nova Analytics,Starter,Annual,2021-11-05,2021-11-13,10.2,1,1,EMEA,Financial Services,Paid Search,2021-11-11,0,
+AC-10156,Delta Partners,Pro,Annual,2021-11-05,2024-05-14,369.75,15,14,North America,Manufacturing,Paid Search,2024-04-28,6,8
+AC-10157,Echo Finance,Starter,Monthly,2021-11-07,2024-09-02,96.0,8,6,North America,Software,Event,2024-09-02,0,8
+AC-10158,Iron Systems,Starter,Monthly,2021-11-08,2023-04-26,24.0,2,1,EMEA,Education,Referral,2023-04-24,1,0
+AC-10159,Red Studios,Starter,Monthly,2021-11-11,2022-04-25,48.0,4,4,EMEA,Media,Partner,2022-04-23,2,
+AC-10160,Falcon Analytics,Starter,Monthly,2021-11-15,2022-07-17,60.0,5,4,EMEA,Software,Partner,2022-07-11,2,0
+AC-10161,Summit Partners,Starter,Annual,2021-11-16,2024-04-19,40.8,4,3,North America,Financial Services,Referral,2024-04-18,1,3
+AC-10162,Swift Analytics,Starter,Monthly,2021-11-16,2023-06-14,72.0,6,6,North America,Financial Services,Paid Search,2023-06-13,2,3
+AC-10163,Cobalt Studios,Enterprise,Annual,2021-11-17,,11219.01,254,118,North America,Software,Partner,2025-06-19,13,8
+AC-10164,Falcon Manufacturing,Starter,Monthly,2021-11-17,2022-03-11,84.0,7,2,APAC,Software,Referral,2022-03-11,0,
+AC-10165,Amber Bio,Starter,Annual,2021-11-17,2022-01-28,51.0,5,5,North America,Nonprofit,Paid Search,2022-01-24,0,9
+AC-10166,Falcon Foods,Enterprise,Annual,2021-11-19,,6782.9,171,147,North America,Financial Services,Outbound Sales,2025-06-29,3,
+AC-10167,Cobalt Finance,Pro,Monthly,2021-11-19,2021-12-27,261.0,9,3,North America,Healthcare,Paid Search,2021-12-22,1,8
+AC-10168,Harbor Networks,Pro,Annual,2021-11-21,2021-12-07,345.1,14,10,North America,Healthcare,Outbound Sales,2021-11-21,4,4
+AC-10169,Silver Bio,Enterprise,Annual,2021-11-23,,4026.75,107,84,APAC,Software,Partner,2025-06-23,11,6
+AC-10170,Cobalt Capital,Pro,Annual,2021-11-28,2023-01-11,246.5,10,6,EMEA,Healthcare,Referral,2022-12-30,2,
+AC-10171,Falcon Freight,Starter,Monthly,2021-11-28,2021-12-03,84.0,7,1,APAC,Software,Paid Search,2021-11-28,2,
+AC-10172,Oak Studios,Enterprise,Annual,2021-11-29,,4807.61,130,119,North America,Retail,Outbound Sales,2025-06-29,4,
+AC-10173,Coral Partners,Starter,Monthly,2021-12-01,,24.0,2,1,North America,Retail,Referral,2025-06-21,0,1
+AC-10174,Pine Freight,Enterprise,Annual,2021-12-02,,4070.19,88,71,North America,Healthcare,Partner,2025-06-29,11,10
+AC-10175,Pine Supply,Starter,Monthly,2021-12-03,2021-12-09,24.0,2,1,EMEA,Manufacturing,Paid Search,2021-12-08,1,6
+AC-10176,Harbor Finance,Starter,Monthly,2021-12-08,,60.0,5,3,North America,Retail,Organic Search,2025-06-23,0,8
+AC-10177,Bright Networks,Starter,Annual,2021-12-09,,40.8,4,3,EMEA,Retail,Paid Search,2025-05-07,2,
+AC-10178,Crescent Partners,Starter,Monthly,2021-12-09,2023-05-07,60.0,5,5,EMEA,Media,Referral,2023-05-04,1,10
+AC-10179,Coral Collective,Enterprise,Annual,2021-12-09,,12677.76,329,267,APAC,Retail,Outbound Sales,2025-06-30,9,9
+AC-10180,Lumen Media,Pro,Annual,2021-12-14,2024-10-31,147.9,6,2,EMEA,Financial Services,Organic Search,2024-10-29,1,3
+AC-10181,Peak Manufacturing,Pro,Monthly,2021-12-14,,145.0,5,4,North America,Retail,Referral,2025-06-30,2,7
+AC-10182,Bright Clinics,Starter,Monthly,2021-12-15,2022-10-11,72.0,6,3,LATAM,Software,Outbound Sales,2022-10-04,3,
+AC-10183,Quartz Supply,Starter,Monthly,2021-12-17,2022-07-27,36.0,3,2,EMEA,Retail,Paid Search,2022-07-15,3,
+AC-10184,Oak Robotics,Starter,Annual,2021-12-22,2025-03-01,10.2,1,1,North America,Education,Organic Search,2025-02-25,2,6
+AC-10185,Oak Capital,Pro,Annual,2021-12-22,,197.2,8,3,North America,Manufacturing,Referral,2025-06-27,5,6
+AC-10186,Silver Studios,Starter,Monthly,2021-12-22,2022-02-28,72.0,6,5,APAC,Financial Services,Paid Search,2022-02-13,0,6
+AC-10187,Granite Finance,Starter,Monthly,2021-12-23,2024-09-23,60.0,5,4,EMEA,Financial Services,Paid Search,2024-09-22,1,
+AC-10188,Coral Robotics,Starter,Monthly,2021-12-24,2024-12-07,84.0,7,5,North America,Software,Referral,2024-12-07,0,3
+AC-10189,Silver Labs,Enterprise,Annual,2021-12-25,,4915.37,138,113,APAC,Financial Services,Paid Search,2025-05-13,2,8
+AC-10190,Cedar Analytics,Enterprise,Annual,2021-12-31,,3294.72,90,61,LATAM,Healthcare,Event,2025-05-23,6,
+AC-10191,Green Studios,Starter,Monthly,2021-12-31,,36.0,3,1,EMEA,Nonprofit,Partner,2025-06-29,4,
+AC-10192,Cobalt Freight,Enterprise,Annual,2022-01-03,,2101.12,47,18,EMEA,Manufacturing,Partner,2025-05-03,4,6
+AC-10193,Blue Energy,Starter,Monthly,2022-01-04,2025-05-04,48.0,4,1,EMEA,Software,Organic Search,2025-04-25,0,7
+AC-10194,Meridian Analytics,Pro,Monthly,2022-01-06,,522.0,18,13,APAC,Software,Outbound Sales,2025-06-29,3,9
+AC-10195,Peak Networks,Starter,Monthly,2022-01-08,2022-06-30,24.0,2,1,North America,Retail,Organic Search,2022-06-26,2,9
+AC-10196,Vertex Learning,Starter,Monthly,2022-01-08,2024-02-21,72.0,6,5,North America,Nonprofit,Paid Search,2024-02-08,1,8
+AC-10197,Oak Collective,Pro,Monthly,2022-01-10,2022-04-03,145.0,5,3,North America,Healthcare,Partner,2022-03-12,4,
+AC-10198,Golden Media,Starter,Monthly,2022-01-11,2022-01-31,72.0,6,3,EMEA,Financial Services,Event,2022-01-25,0,6
+AC-10199,Lumen Freight,Starter,Monthly,2022-01-12,2022-05-08,36.0,3,3,EMEA,Healthcare,Organic Search,2022-04-20,1,8
+AC-10200,Falcon Software,Pro,Annual,2022-01-15,,271.15,11,9,EMEA,Manufacturing,Outbound Sales,2024-09-30,1,6
+AC-10201,River Dynamics,Pro,Monthly,2022-01-17,2022-06-20,493.0,17,11,North America,Retail,Partner,2022-06-11,3,6
+AC-10202,Crescent Software,Enterprise,Annual,2022-01-18,,5593.71,158,131,EMEA,Media,Organic Search,2025-06-25,11,5
+AC-10203,Coral Logistics,Starter,Monthly,2022-01-23,2022-02-05,24.0,2,2,North America,Financial Services,Outbound Sales,2022-02-04,2,1
+AC-10204,Falcon Academy,Starter,Monthly,2022-01-24,2022-03-22,36.0,3,2,EMEA,Media,Organic Search,2022-03-19,1,
+AC-10205,Apex Supply,Starter,Annual,2022-01-24,,20.4,2,1,North America,Education,Organic Search,2025-06-28,2,
+AC-10206,Coral Works,Starter,Annual,2022-01-25,2022-09-14,40.8,4,3,North America,Software,Organic Search,2022-08-10,4,6
+AC-10207,Lumen Capital,Starter,Annual,2022-01-25,2022-02-03,40.8,4,3,North America,Education,Organic Search,2022-02-02,0,4
+AC-10208,Red Learning,Starter,Monthly,2022-01-25,,96.0,8,6,North America,Media,Paid Search,2025-06-26,0,8
+AC-10209,Orbit Systems,Pro,Annual,2022-01-25,,665.55,27,19,APAC,Nonprofit,Paid Search,2025-06-24,4,
+AC-10210,Cobalt Bio,Starter,Monthly,2022-01-25,2024-05-23,60.0,5,3,North America,Manufacturing,Paid Search,2024-05-05,0,4
+AC-10211,Lumen Academy,Pro,Monthly,2022-01-25,,609.0,21,18,EMEA,Healthcare,Outbound Sales,2025-05-03,3,8
+AC-10212,Bright Works,Starter,Annual,2022-01-26,2022-01-31,20.4,2,1,North America,Retail,Paid Search,2022-01-29,1,7
+AC-10213,Golden Foods,Starter,Annual,2022-02-01,2024-11-30,40.8,4,3,North America,Media,Organic Search,2024-11-20,2,8
+AC-10214,Stone Retail,Starter,Monthly,2022-02-01,2022-05-27,36.0,3,3,North America,Media,Outbound Sales,2022-05-17,2,6
+AC-10215,Harbor Foods,Starter,Monthly,2022-02-01,2025-05-12,96.0,8,4,EMEA,Manufacturing,Paid Search,2025-05-02,0,
+AC-10216,Atlas Ventures,Starter,Monthly,2022-02-01,,12.0,1,1,EMEA,Manufacturing,Organic Search,2025-06-28,0,3
+AC-10217,Nova Freight,Starter,Annual,2022-02-03,2023-12-29,40.8,4,3,LATAM,Media,Paid Search,2023-12-27,0,
+AC-10218,Atlas Retail,Pro,Annual,2022-02-06,,246.5,10,9,EMEA,Media,Partner,2025-06-26,4,
+AC-10219,Oak Media,Enterprise,Annual,2022-02-08,,1707.71,37,22,North America,Financial Services,Event,2025-06-30,9,7
+AC-10220,Coral Health,Starter,Monthly,2022-02-10,2022-06-13,24.0,2,1,APAC,Software,Referral,2022-06-09,0,
+AC-10221,Lumen Health,Starter,Monthly,2022-02-12,2022-06-21,36.0,3,1,North America,Financial Services,Referral,2022-06-20,1,
+AC-10222,Golden Collective,Pro,Annual,2022-02-12,2022-03-18,517.65,21,7,North America,Software,Paid Search,2022-03-05,4,5
+AC-10223,Atlas Analytics,Starter,Monthly,2022-02-16,2023-11-09,36.0,3,1,North America,Education,Organic Search,2023-10-20,1,
+AC-10224,Oak Works,Starter,Monthly,2022-02-17,2022-04-01,60.0,5,4,North America,Software,Organic Search,2022-03-23,1,8
+AC-10225,Nova Studios,Enterprise,Annual,2022-02-18,,9210.18,229,35,APAC,Media,Partner,2025-06-29,6,10
+AC-10226,Cobalt Networks,Starter,Monthly,2022-02-18,,24.0,2,1,North America,Software,Paid Search,2025-06-24,3,9
+AC-10227,Willow Studios,Enterprise,Annual,2022-02-21,,3108.61,72,56,EMEA,Nonprofit,Outbound Sales,2024-12-08,13,
+AC-10228,Nova Partners,Pro,Monthly,2022-02-21,,928.0,32,31,North America,Nonprofit,Partner,2025-06-28,2,8
+AC-10229,Sage Group,Starter,Annual,2022-03-01,2024-08-15,30.6,3,2,APAC,Manufacturing,Event,2024-08-14,1,
+AC-10230,Beacon Partners,Starter,Annual,2022-03-07,,30.6,3,1,North America,Media,Organic Search,2025-06-21,1,9
+AC-10231,Summit Supply,Starter,Monthly,2022-03-08,2022-11-25,48.0,4,4,North America,Education,Paid Search,2022-11-07,1,
+AC-10232,Beacon Energy,Pro,Monthly,2022-03-10,,348.0,12,7,EMEA,Education,Paid Search,2025-06-27,4,8
+AC-10233,Beacon Manufacturing,Enterprise,Annual,2022-03-10,,4334.15,104,91,North America,Media,Partner,2025-02-07,3,
+AC-10234,Falcon Ventures,Starter,Annual,2022-03-11,,40.8,4,3,EMEA,Financial Services,Organic Search,2025-06-28,3,5
+AC-10235,Vertex Retail,Starter,Monthly,2022-03-13,2023-10-05,48.0,4,4,North America,Software,Paid Search,2023-10-02,4,7
+AC-10236,Meridian Retail,Starter,Monthly,2022-03-14,2022-03-31,48.0,4,1,APAC,Education,Partner,2022-03-14,0,
+AC-10237,Coral Retail,Starter,Monthly,2022-03-15,2023-03-16,60.0,5,1,EMEA,Education,Organic Search,2023-03-15,5,9
+AC-10238,Blue Health,Starter,Monthly,2022-03-17,2023-01-07,72.0,6,4,APAC,Software,Paid Search,2023-01-07,1,
+AC-10239,Amber Works,Enterprise,Annual,2022-03-22,,12161.84,331,257,North America,Media,Outbound Sales,2025-06-30,7,9
+AC-10240,River Media,Pro,Annual,2022-03-24,2025-05-27,419.05,17,13,APAC,Nonprofit,Referral,2025-05-25,6,6
+AC-10241,North Collective,Enterprise,Annual,2022-03-29,,5496.91,119,117,North America,Healthcare,Outbound Sales,2025-06-30,1,10
+AC-10242,Nova Group,Pro,Monthly,2022-03-30,,348.0,12,11,EMEA,Software,Paid Search,2025-06-23,2,9
+AC-10243,Lumen Robotics,Pro,Monthly,2022-04-02,,638.0,22,18,North America,Manufacturing,Paid Search,2025-06-30,1,
+AC-10244,Stone Partners,Pro,Annual,2022-04-09,,320.45,13,7,EMEA,Education,Partner,2025-03-08,0,10
+AC-10245,Cedar Software,Starter,Monthly,2022-04-10,2024-10-20,36.0,3,1,EMEA,Education,Paid Search,2024-10-14,1,
+AC-10246,Oak Logistics,Pro,Monthly,2022-04-13,2024-06-26,261.0,9,7,North America,Software,Paid Search,2024-06-17,4,6
+AC-10247,Apex Ventures,Starter,Annual,2022-04-15,,40.8,4,1,North America,Retail,Organic Search,2025-06-13,3,8
+AC-10248,River Studios,Starter,Monthly,2022-04-19,2023-05-18,36.0,3,2,APAC,Media,Organic Search,2023-05-14,2,
+AC-10249,Willow Works,Pro,Annual,2022-04-19,,616.25,25,19,EMEA,Manufacturing,Outbound Sales,2025-06-07,7,9
+AC-10250,Peak Learning,Starter,Monthly,2022-04-20,2022-07-22,48.0,4,4,North America,Healthcare,Organic Search,2022-07-18,2,
+AC-10251,Quartz Analytics,Starter,Monthly,2022-04-23,2023-02-12,12.0,1,1,LATAM,Nonprofit,Referral,2023-01-30,0,5
+AC-10252,Clear Capital,Enterprise,Annual,2022-04-23,,3969.19,105,64,EMEA,Financial Services,Outbound Sales,2025-06-11,2,6
+AC-10253,Maple Group,Starter,Monthly,2022-04-25,2022-05-08,36.0,3,2,North America,Software,Paid Search,2022-05-08,0,5
+AC-10254,River Supply,Starter,Monthly,2022-04-25,2022-12-09,84.0,7,6,APAC,Nonprofit,Organic Search,2022-12-08,1,4
+AC-10255,Echo Health,Starter,Monthly,2022-04-27,2022-06-04,48.0,4,3,APAC,Financial Services,Paid Search,2022-05-29,1,9
+AC-10256,Summit Studios,Starter,Monthly,2022-05-02,,36.0,3,2,EMEA,Software,Paid Search,2024-10-25,0,9
+AC-10257,Red Finance,Enterprise,Annual,2022-05-03,,3525.17,89,85,EMEA,Healthcare,Event,2025-06-29,3,8
+AC-10258,Lumen Designs,Starter,Monthly,2022-05-07,2022-05-11,48.0,4,3,EMEA,Nonprofit,Organic Search,2022-05-07,2,1
+AC-10259,Falcon Systems,Enterprise,Annual,2022-05-14,2023-03-10,6021.18,141,99,LATAM,Financial Services,Partner,2023-03-06,2,7
+AC-10260,Peak Partners,Starter,Monthly,2022-05-15,2023-06-30,60.0,5,4,North America,Software,Partner,2023-06-21,4,1
+AC-10261,Harbor Capital,Enterprise,Annual,2022-05-15,,2526.26,64,31,LATAM,Healthcare,Partner,2025-06-26,3,10
+AC-10262,Sage Capital,Enterprise,Annual,2022-05-18,,2363.84,54,8,EMEA,Manufacturing,Referral,2025-06-30,5,8
+AC-10263,Stone Designs,Pro,Annual,2022-05-19,2022-06-02,197.2,8,6,LATAM,Software,Organic Search,2022-06-02,3,1
+AC-10264,Granite Robotics,Pro,Annual,2022-05-21,,295.8,12,8,EMEA,Manufacturing,Outbound Sales,2025-06-29,2,8
+AC-10265,Pine Robotics,Starter,Monthly,2022-05-22,2022-05-27,84.0,7,5,APAC,Software,Organic Search,2022-05-25,0,6
+AC-10266,Granite Solutions,Starter,Monthly,2022-05-22,2022-11-01,60.0,5,4,North America,Healthcare,Organic Search,2022-10-17,3,7
+AC-10267,Swift Networks,Pro,Monthly,2022-05-23,2023-10-17,493.0,17,14,EMEA,Manufacturing,Event,2023-10-11,4,7
+AC-10268,Juniper Software,Starter,Monthly,2022-05-24,2022-05-30,36.0,3,2,North America,Manufacturing,Organic Search,2022-05-24,2,5
+AC-10269,Iron Logistics,Starter,Annual,2022-05-24,2024-03-20,51.0,5,3,North America,Education,Paid Search,2024-03-19,2,9
+AC-10270,Cedar Designs,Pro,Annual,2022-05-25,,443.7,18,13,EMEA,Software,Event,2025-06-30,4,0
+AC-10271,Oak Ventures,Pro,Monthly,2022-05-25,2023-08-12,841.0,29,6,EMEA,Healthcare,Event,2023-08-06,5,5
+AC-10272,Peak Media,Enterprise,Annual,2022-05-27,2022-12-05,3506.49,78,29,North America,Nonprofit,Event,2022-12-01,5,0
+AC-10273,Horizon Retail,Starter,Monthly,2022-05-29,2023-09-10,60.0,5,3,EMEA,Software,Partner,2023-09-08,1,
+AC-10274,Nova Ventures,Enterprise,Annual,2022-05-31,,4929.27,138,137,North America,Media,Outbound Sales,2025-06-29,3,10
+AC-10275,Delta Bio,Starter,Annual,2022-06-01,,51.0,5,2,North America,Retail,Organic Search,2025-06-19,0,
+AC-10276,River Energy,Pro,Monthly,2022-06-02,,783.0,27,1,North America,Education,Organic Search,2025-06-25,3,9
+AC-10277,North Labs,Starter,Monthly,2022-06-03,2023-09-21,60.0,5,4,EMEA,Software,Organic Search,2023-09-17,0,8
+AC-10278,Summit Logistics,Pro,Monthly,2022-06-05,,203.0,7,6,North America,Software,Organic Search,2025-05-25,1,7
+AC-10279,Harbor Ventures,Starter,Monthly,2022-06-09,2024-10-24,60.0,5,4,North America,Software,Organic Search,2024-10-22,2,6
+AC-10280,Vertex Freight,Starter,Annual,2022-06-13,2023-12-26,61.2,6,4,North America,Healthcare,Referral,2023-12-25,3,0
+AC-10281,North Group,Pro,Annual,2022-06-13,,320.45,13,8,APAC,Media,Referral,2025-06-26,0,
+AC-10282,Amber Supply,Pro,Monthly,2022-06-14,2024-02-20,377.0,13,10,EMEA,Nonprofit,Paid Search,2024-02-17,2,
+AC-10283,Maple Dynamics,Pro,Annual,2022-06-15,2023-03-05,1010.65,41,37,EMEA,Education,Paid Search,2023-02-26,4,8
+AC-10284,Juniper Logistics,Starter,Annual,2022-06-16,,61.2,6,2,EMEA,Education,Organic Search,2025-06-18,1,6
+AC-10285,Delta Health,Starter,Annual,2022-06-20,2022-07-27,20.4,2,0,APAC,Media,Referral,2022-07-25,0,
+AC-10286,North Retail,Pro,Monthly,2022-06-21,2024-10-28,464.0,16,12,APAC,Software,Organic Search,2024-10-28,2,9
+AC-10287,Iron Networks,Pro,Annual,2022-06-23,,295.8,12,8,EMEA,Software,Outbound Sales,2025-05-06,3,
+AC-10288,Oak Labs,Pro,Monthly,2022-06-23,2023-01-16,464.0,16,15,EMEA,Healthcare,Referral,2023-01-07,5,10
+AC-10289,Harbor Health,Pro,Monthly,2022-06-27,2025-05-10,348.0,12,10,North America,Financial Services,Organic Search,2025-05-02,2,
+AC-10290,Sage Freight,Pro,Annual,2022-06-28,,197.2,8,7,North America,Education,Organic Search,2025-06-26,9,
+AC-10291,Amber Academy,Starter,Monthly,2022-06-29,2022-07-13,24.0,2,2,North America,Retail,Referral,2022-07-09,2,9
+AC-10292,Delta Finance,Starter,Monthly,2022-06-30,2022-12-14,36.0,3,2,North America,Retail,Organic Search,2022-12-11,0,
+AC-10293,North Clinics,Starter,Monthly,2022-07-01,2022-09-18,36.0,3,3,LATAM,Retail,Event,2022-08-23,0,0
+AC-10294,Quartz Solutions,Pro,Annual,2022-07-01,2022-09-09,566.95,23,19,LATAM,Retail,Paid Search,2022-09-01,3,
+AC-10295,Clear Energy,Pro,Annual,2022-07-01,2023-04-22,394.4,16,10,North America,Financial Services,Outbound Sales,2023-04-18,9,3
+AC-10296,Willow Manufacturing,Pro,Annual,2022-07-05,2023-06-26,123.25,5,4,North America,Healthcare,Referral,2023-06-22,6,10
+AC-10297,Cobalt Ventures,Pro,Annual,2022-07-05,2023-01-19,246.5,10,9,LATAM,Software,Paid Search,2023-01-09,3,
+AC-10298,Coral Systems,Enterprise,Annual,2022-07-11,,2105.68,52,38,North America,Software,Partner,2025-06-27,9,9
+AC-10299,Beacon Works,Enterprise,Annual,2022-07-14,,3472.43,82,53,North America,Healthcare,Outbound Sales,2025-06-26,5,7
+AC-10300,Atlas Supply,Starter,Monthly,2022-07-14,2023-03-05,24.0,2,2,EMEA,Software,Referral,2023-03-02,1,3
+AC-10301,Nova Robotics,Pro,Annual,2022-07-15,2025-02-22,271.15,11,9,North America,Software,Referral,2025-02-16,3,
+AC-10302,Quartz Finance,Starter,Monthly,2022-07-16,2022-10-17,12.0,1,1,North America,Nonprofit,Organic Search,2022-10-17,0,6
+AC-10303,Willow Foods,Starter,Monthly,2022-07-17,2022-07-26,48.0,4,4,EMEA,Retail,Organic Search,2022-07-25,2,7
+AC-10304,Sage Supply,Starter,Monthly,2022-07-17,,48.0,4,4,LATAM,Healthcare,Organic Search,2025-06-18,0,
+AC-10305,Crescent Logistics,Pro,Monthly,2022-07-19,2022-08-31,899.0,31,17,North America,Manufacturing,Partner,2022-08-30,2,3
+AC-10306,Golden Logistics,Pro,Annual,2022-07-20,,123.25,5,4,North America,Financial Services,Paid Search,2025-06-29,0,
+AC-10307,River Works,Starter,Annual,2022-07-21,,30.6,3,3,North America,Nonprofit,Organic Search,2025-06-29,2,10
+AC-10308,Amber Retail,Starter,Monthly,2022-07-22,2022-07-26,48.0,4,2,North America,Software,Outbound Sales,2022-07-22,3,10
+AC-10309,Summit Works,Pro,Annual,2022-07-23,,542.3,22,10,North America,Financial Services,Referral,2025-05-25,4,
+AC-10310,Blue Labs,Enterprise,Annual,2022-07-23,,9807.37,240,36,North America,Healthcare,Outbound Sales,2025-05-13,7,8
+AC-10311,Juniper Health,Starter,Monthly,2022-07-27,,60.0,5,2,APAC,Software,Paid Search,2025-06-29,1,6
+AC-10312,Green Capital,Starter,Annual,2022-07-29,,20.4,2,1,North America,Manufacturing,Organic Search,2025-06-22,0,9
+AC-10313,Horizon Labs,Pro,Monthly,2022-07-31,,522.0,18,17,APAC,Software,Organic Search,2025-06-26,6,9
+AC-10314,Swift Freight,Pro,Monthly,2022-07-31,,464.0,16,13,North America,Retail,Outbound Sales,2025-06-30,6,
+AC-10315,Cobalt Clinics,Pro,Annual,2022-08-01,,419.05,17,12,EMEA,Retail,Referral,2025-06-30,3,6
+AC-10316,Crescent Analytics,Starter,Annual,2022-08-02,,30.6,3,2,APAC,Manufacturing,Organic Search,2025-05-09,2,
+AC-10317,Harbor Supply,Starter,Monthly,2022-08-04,2023-04-21,84.0,7,2,North America,Retail,Paid Search,2023-04-04,1,
+AC-10318,Meridian Logistics,Pro,Annual,2022-08-06,,197.2,8,8,EMEA,Nonprofit,Partner,2025-06-24,3,
+AC-10319,Maple Ventures,Starter,Monthly,2022-08-08,,48.0,4,3,North America,Nonprofit,Organic Search,2025-06-27,2,
+AC-10320,Quartz Freight,Starter,Annual,2022-08-09,,40.8,4,3,North America,Education,Organic Search,2024-10-01,1,
+AC-10321,Falcon Media,Starter,Monthly,2022-08-10,2022-08-12,60.0,5,4,North America,Retail,Referral,2022-08-10,0,8
+AC-10322,Clear Robotics,Pro,Monthly,2022-08-11,2025-02-02,232.0,8,1,EMEA,Software,Event,2025-01-07,3,10
+AC-10323,Juniper Capital,Starter,Annual,2022-08-13,2023-10-24,30.6,3,2,LATAM,Education,Outbound Sales,2023-10-16,1,
+AC-10324,Bright Foods,Starter,Monthly,2022-08-14,,48.0,4,3,North America,Media,Event,2025-05-15,3,
+AC-10325,Summit Freight,Pro,Annual,2022-08-17,,443.7,18,13,North America,Financial Services,Organic Search,2025-06-28,2,9
+AC-10326,Vertex Bio,Enterprise,Monthly,2022-08-17,2024-10-20,2663.62,56,46,EMEA,Education,Paid Search,2024-10-11,3,
+AC-10327,Amber Manufacturing,Enterprise,Annual,2022-08-18,,6111.14,146,103,North America,Healthcare,Partner,2025-05-03,2,9
+AC-10328,Red Dynamics,Starter,Monthly,2022-08-18,2023-02-01,60.0,5,1,EMEA,Nonprofit,Event,2023-01-15,1,5
+AC-10329,Echo Studios,Pro,Annual,2022-08-19,,394.4,16,11,North America,Manufacturing,Outbound Sales,2025-06-30,2,10
+AC-10330,Delta Collective,Starter,Monthly,2022-08-20,2023-07-24,24.0,2,2,LATAM,Software,Referral,2023-07-24,1,
+AC-10331,Stone Collective,Pro,Monthly,2022-08-20,,145.0,5,4,LATAM,Nonprofit,Outbound Sales,2025-06-16,6,10
+AC-10332,Echo Learning,Pro,Monthly,2022-08-21,,145.0,5,2,North America,Retail,Event,2025-06-19,6,
+AC-10333,Lumen Solutions,Pro,Annual,2022-08-22,,295.8,12,11,North America,Education,Outbound Sales,2025-05-23,5,
+AC-10334,Delta Logistics,Pro,Annual,2022-08-23,,320.45,13,10,North America,Nonprofit,Paid Search,2025-06-25,3,
+AC-10335,Juniper Designs,Pro,Monthly,2022-08-26,,1015.0,35,15,EMEA,Software,Organic Search,2025-06-29,2,4
+AC-10336,Blue Bio,Pro,Annual,2022-08-26,,517.65,21,18,North America,Media,Referral,2025-06-29,3,7
+AC-10337,Atlas Designs,Starter,Monthly,2022-08-28,2022-10-11,36.0,3,2,APAC,Software,Paid Search,2022-09-29,2,5
+AC-10338,North Manufacturing,Pro,Annual,2022-08-29,,714.85,29,24,North America,Media,Referral,2025-06-25,2,10
+AC-10339,Cedar Dynamics,Starter,Annual,2022-08-29,2024-09-05,20.4,2,2,EMEA,Retail,Paid Search,2024-08-30,4,4
+AC-10340,Willow Clinics,Pro,Monthly,2022-08-30,,464.0,16,5,EMEA,Financial Services,Partner,2025-06-27,1,8
+AC-10341,Maple Capital,Starter,Monthly,2022-09-02,,60.0,5,3,LATAM,Manufacturing,Organic Search,2025-06-24,0,8
+AC-10342,Echo Designs,Starter,Monthly,2022-09-03,,60.0,5,1,North America,Education,Paid Search,2025-06-18,1,5
+AC-10343,Delta Supply,Pro,Monthly,2022-09-05,2023-03-06,551.0,19,8,APAC,Software,Referral,2023-02-28,4,1
+AC-10344,Coral Media,Pro,Monthly,2022-09-07,,290.0,10,9,EMEA,Retail,Paid Search,2025-06-01,4,
+AC-10345,Red Bio,Pro,Monthly,2022-09-09,,174.0,6,4,EMEA,Software,Partner,2025-06-24,4,7
+AC-10346,Meridian Ventures,Starter,Monthly,2022-09-10,,60.0,5,4,APAC,Healthcare,Referral,2025-06-30,0,
+AC-10347,Vertex Supply,Pro,Annual,2022-09-10,,271.15,11,7,North America,Nonprofit,Organic Search,2025-05-03,2,9
+AC-10348,Red Retail,Pro,Annual,2022-09-13,2023-08-25,320.45,13,12,North America,Education,Paid Search,2023-08-22,2,
+AC-10349,Apex Robotics,Pro,Annual,2022-09-13,2023-12-10,295.8,12,7,APAC,Software,Partner,2023-12-10,4,
+AC-10350,Nova Clinics,Starter,Annual,2022-09-14,,30.6,3,1,LATAM,Nonprofit,Referral,2025-06-16,1,7
+AC-10351,Vertex Systems,Starter,Monthly,2022-09-16,2023-10-08,36.0,3,1,APAC,Manufacturing,Referral,2023-10-07,0,8
+AC-10352,Orbit Studios,Pro,Monthly,2022-09-20,,319.0,11,8,APAC,Financial Services,Referral,2025-06-25,1,
+AC-10353,Cobalt Dynamics,Starter,Monthly,2022-09-22,2024-12-06,60.0,5,3,LATAM,Healthcare,Paid Search,2024-12-01,1,
+AC-10354,Bright Logistics,Enterprise,Annual,2022-09-23,,7886.04,189,107,North America,Software,Referral,2025-05-23,12,8
+AC-10355,Nova Labs,Starter,Monthly,2022-09-27,2023-03-30,36.0,3,3,EMEA,Financial Services,Paid Search,2023-03-29,0,
+AC-10356,Harbor Analytics,Starter,Monthly,2022-09-28,,36.0,3,2,North America,Manufacturing,Organic Search,2025-06-28,4,7
+AC-10357,Willow Designs,Starter,Monthly,2022-09-29,2022-10-11,72.0,6,4,North America,Manufacturing,Event,2022-10-10,1,5
+AC-10358,Cobalt Academy,Starter,Monthly,2022-10-01,2022-10-08,48.0,4,3,North America,Media,Referral,2022-10-01,1,
+AC-10359,Maple Retail,Enterprise,Annual,2022-10-01,,8458.71,224,182,APAC,Financial Services,Event,2025-05-19,2,7
+AC-10360,Stone Analytics,Enterprise,Annual,2022-10-03,,17064.33,482,87,APAC,Manufacturing,Referral,2025-06-30,5,
+AC-10361,Summit Finance,Pro,Monthly,2022-10-03,,754.0,26,24,EMEA,Retail,Outbound Sales,2025-06-29,2,9
+AC-10362,Maple Studios,Pro,Annual,2022-10-03,,542.3,22,18,North America,Software,Organic Search,2024-10-23,2,
+AC-10363,Beacon Media,Enterprise,Monthly,2022-10-03,,5608.42,135,117,North America,Financial Services,Partner,2025-06-27,10,
+AC-10364,Blue Media,Starter,Monthly,2022-10-04,2025-04-10,96.0,8,1,EMEA,Healthcare,Paid Search,2025-04-09,3,2
+AC-10365,Coral Group,Starter,Monthly,2022-10-07,2025-05-28,12.0,1,1,North America,Retail,Organic Search,2025-05-18,2,
+AC-10366,Nova Academy,Starter,Monthly,2022-10-07,,24.0,2,2,North America,Education,Referral,2025-05-08,1,6
+AC-10367,Clear Clinics,Starter,Annual,2022-10-10,,40.8,4,3,LATAM,Education,Referral,2025-06-01,0,
+AC-10368,Oak Clinics,Enterprise,Annual,2022-10-12,,2841.55,67,57,LATAM,Media,Referral,2025-06-02,5,
+AC-10369,Swift Group,Pro,Monthly,2022-10-13,,145.0,5,4,North America,Healthcare,Referral,2025-06-29,1,8
+AC-10370,Sage Software,Pro,Monthly,2022-10-15,,145.0,5,4,North America,Manufacturing,Referral,2025-06-29,4,10
+AC-10371,Amber Networks,Pro,Annual,2022-10-17,,246.5,10,8,EMEA,Healthcare,Referral,2025-06-24,4,10
+AC-10372,Iron Manufacturing,Pro,Monthly,2022-10-19,,406.0,14,8,North America,Financial Services,Organic Search,2025-06-11,0,
+AC-10373,Red Designs,Pro,Monthly,2022-10-20,,203.0,7,5,North America,Nonprofit,Partner,2025-04-16,7,5
+AC-10374,Green Systems,Starter,Monthly,2022-10-22,2023-09-17,84.0,7,6,EMEA,Software,Paid Search,2023-09-08,0,
+AC-10375,Stone Learning,Pro,Monthly,2022-10-22,,145.0,5,3,North America,Nonprofit,Paid Search,2025-06-29,8,
+AC-10376,Harbor Designs,Starter,Monthly,2022-10-24,,60.0,5,3,APAC,Education,Organic Search,2025-06-29,1,9
+AC-10377,Summit Health,Starter,Monthly,2022-10-27,2023-01-21,36.0,3,2,LATAM,Manufacturing,Referral,2023-01-19,1,4
+AC-10378,Apex Studios,Pro,Annual,2022-10-29,2023-12-16,887.4,36,30,North America,Retail,Organic Search,2023-12-16,2,
+AC-10379,Silver Partners,Starter,Monthly,2022-11-03,2025-03-10,48.0,4,3,EMEA,Software,Event,2025-02-22,2,4
+AC-10380,Clear Foods,Starter,Monthly,2022-11-04,,60.0,5,4,EMEA,Retail,Event,2025-06-29,6,8
+AC-10381,Lumen Manufacturing,Pro,Monthly,2022-11-04,,464.0,16,7,North America,Financial Services,Referral,2025-06-23,6,9
+AC-10382,Falcon Partners,Starter,Monthly,2022-11-04,2025-01-22,36.0,3,2,EMEA,Financial Services,Referral,2025-01-14,0,9
+AC-10383,Silver Supply,Starter,Monthly,2022-11-05,2024-04-07,36.0,3,2,North America,Software,Organic Search,2024-04-07,1,3
+AC-10384,Amber Software,Pro,Monthly,2022-11-05,2025-01-24,493.0,17,11,North America,Nonprofit,Partner,2025-01-24,8,10
+AC-10385,Willow Energy,Starter,Monthly,2022-11-07,2022-11-17,36.0,3,2,EMEA,Nonprofit,Organic Search,2022-11-10,0,
+AC-10386,Quartz Manufacturing,Starter,Monthly,2022-11-08,2025-01-18,72.0,6,5,North America,Financial Services,Partner,2025-01-08,4,3
+AC-10387,Granite Labs,Enterprise,Monthly,2022-11-09,,9615.31,195,176,EMEA,Software,Referral,2025-05-23,2,9
+AC-10388,Meridian Learning,Starter,Monthly,2022-11-09,,48.0,4,3,North America,Healthcare,Paid Search,2025-06-16,4,
+AC-10389,Vertex Labs,Pro,Monthly,2022-11-10,2022-11-21,290.0,10,7,North America,Education,Paid Search,2022-11-17,2,5
+AC-10390,Meridian Bio,Pro,Annual,2022-11-11,2022-12-25,345.1,14,12,APAC,Retail,Organic Search,2022-12-14,4,
+AC-10391,Echo Energy,Starter,Monthly,2022-11-14,2022-11-28,48.0,4,1,LATAM,Healthcare,Organic Search,2022-11-14,3,
+AC-10392,Maple Clinics,Starter,Annual,2022-11-16,2022-11-28,61.2,6,5,EMEA,Financial Services,Paid Search,2022-11-21,3,
+AC-10393,North Systems,Enterprise,Annual,2022-11-18,,8920.23,202,159,LATAM,Software,Outbound Sales,2025-06-22,10,5
+AC-10394,Stone Labs,Starter,Monthly,2022-11-19,2023-10-25,72.0,6,5,North America,Nonprofit,Referral,2023-10-19,1,0
+AC-10395,Horizon Networks,Starter,Monthly,2022-11-21,2023-03-06,48.0,4,2,North America,Healthcare,Organic Search,2023-02-28,1,5
+AC-10396,Juniper Partners,Enterprise,Monthly,2022-11-21,,3902.98,85,55,APAC,Software,Partner,2025-06-28,1,9
+AC-10397,Red Partners,Starter,Monthly,2022-11-24,2023-02-28,12.0,1,1,North America,Software,Organic Search,2023-02-27,3,10
+AC-10398,Silver Software,Enterprise,Annual,2022-11-24,,2473.15,69,60,EMEA,Media,Partner,2025-06-22,8,8
+AC-10399,Sage Academy,Pro,Annual,2022-11-27,,640.9,26,21,APAC,Education,Paid Search,2025-06-28,2,10
+AC-10400,Summit Media,Pro,Monthly,2022-11-30,,522.0,18,12,North America,Financial Services,Partner,2025-05-27,1,
+AC-10401,Echo Academy,Starter,Monthly,2022-12-01,2024-03-24,36.0,3,3,North America,Healthcare,Paid Search,2024-03-21,2,2
+AC-10402,Summit Software,Pro,Monthly,2022-12-05,2023-10-15,1044.0,36,28,EMEA,Software,Event,2023-09-05,4,5
+AC-10403,Oak Retail,Pro,Annual,2022-12-06,,345.1,14,8,EMEA,Media,Paid Search,2025-06-26,2,
+AC-10404,Harbor Dynamics,Starter,Monthly,2022-12-06,,24.0,2,2,EMEA,Software,Referral,2025-06-04,0,9
+AC-10405,Horizon Learning,Starter,Annual,2022-12-07,,51.0,5,4,LATAM,Education,Partner,2025-04-29,0,
+AC-10406,Meridian Clinics,Starter,Monthly,2022-12-07,,36.0,3,3,APAC,Software,Paid Search,2025-05-09,0,8
+AC-10407,Sage Works,Starter,Monthly,2022-12-07,2023-03-07,60.0,5,3,EMEA,Nonprofit,Organic Search,2023-02-22,0,
+AC-10408,Pine Manufacturing,Starter,Monthly,2022-12-07,2023-08-22,96.0,8,7,North America,Nonprofit,Organic Search,2023-08-13,2,0
+AC-10409,Cedar Finance,Pro,Annual,2022-12-08,,739.5,30,24,North America,Manufacturing,Organic Search,2025-05-15,2,
+AC-10410,Red Analytics,Starter,Monthly,2022-12-08,2022-12-18,48.0,4,1,North America,Software,Paid Search,2022-12-12,0,8
+AC-10411,Granite Systems,Starter,Monthly,2022-12-11,,24.0,2,2,APAC,Retail,Organic Search,2024-12-04,1,10
+AC-10412,Willow Systems,Starter,Monthly,2022-12-11,2025-02-18,60.0,5,4,North America,Retail,Event,2025-02-05,2,
+AC-10413,Granite Academy,Starter,Annual,2022-12-14,2023-10-05,40.8,4,2,North America,Education,Organic Search,2023-08-25,1,8
+AC-10414,Delta Learning,Pro,Monthly,2022-12-14,,667.0,23,8,LATAM,Software,Event,2025-06-18,2,
+AC-10415,Iron Labs,Pro,Annual,2022-12-17,,345.1,14,9,APAC,Nonprofit,Paid Search,2024-09-17,3,9
+AC-10416,North Energy,Starter,Monthly,2022-12-20,2023-04-20,48.0,4,4,APAC,Manufacturing,Organic Search,2023-04-18,2,8
+AC-10417,Horizon Foods,Pro,Monthly,2022-12-20,,232.0,8,5,APAC,Software,Outbound Sales,2025-01-15,1,7
+AC-10418,Cedar Foods,Pro,Annual,2022-12-21,,616.25,25,18,APAC,Financial Services,Organic Search,2025-06-26,3,10
+AC-10419,Orbit Networks,Starter,Monthly,2022-12-21,2025-05-14,36.0,3,3,LATAM,Retail,Paid Search,2025-04-17,0,2
+AC-10420,Iron Robotics,Enterprise,Annual,2022-12-28,,5309.78,146,32,North America,Software,Outbound Sales,2025-06-27,9,
+AC-10421,Crescent Systems,Pro,Monthly,2022-12-29,,232.0,8,7,LATAM,Retail,Referral,2024-11-26,2,
+AC-10422,Golden Manufacturing,Starter,Monthly,2022-12-31,2023-05-19,72.0,6,4,North America,Nonprofit,Organic Search,2023-05-14,1,9
+AC-10423,Cedar Ventures,Enterprise,Monthly,2023-01-02,2024-08-09,12901.96,270,253,North America,Nonprofit,Outbound Sales,2024-08-02,7,
+AC-10424,Iron Health,Pro,Monthly,2023-01-03,,290.0,10,8,APAC,Financial Services,Outbound Sales,2025-06-29,5,9
+AC-10425,Oak Academy,Starter,Monthly,2023-01-04,2023-07-20,36.0,3,1,APAC,Retail,Organic Search,2023-06-25,1,7
+AC-10426,Golden Bio,Starter,Monthly,2023-01-05,,48.0,4,3,North America,Retail,Paid Search,2025-06-17,1,
+AC-10427,Echo Capital,Starter,Monthly,2023-01-07,,96.0,8,7,APAC,Software,Paid Search,2025-06-29,2,
+AC-10428,River Networks,Starter,Annual,2023-01-08,,51.0,5,2,LATAM,Media,Organic Search,2025-01-21,1,
+AC-10429,Delta Foods,Starter,Annual,2023-01-08,2024-09-04,61.2,6,6,EMEA,Education,Paid Search,2024-07-06,3,7
+AC-10430,Juniper Media,Starter,Monthly,2023-01-10,,36.0,3,2,APAC,Financial Services,Paid Search,2025-03-26,5,9
+AC-10431,Meridian Health,Enterprise,Monthly,2023-01-13,,6004.97,143,62,APAC,Software,Partner,2025-06-30,6,
+AC-10432,Vertex Studios,Pro,Annual,2023-01-13,,320.45,13,8,LATAM,Media,Partner,2025-06-10,2,3
+AC-10433,Cedar Labs,Starter,Monthly,2023-01-15,2023-08-11,48.0,4,3,LATAM,Financial Services,Organic Search,2023-08-10,0,7
+AC-10434,Oak Group,Starter,Monthly,2023-01-17,2024-06-26,48.0,4,4,North America,Software,Paid Search,2024-06-23,3,7
+AC-10435,Summit Ventures,Starter,Annual,2023-01-18,,81.6,8,6,LATAM,Software,Organic Search,2025-04-23,2,6
+AC-10436,Red Works,Starter,Annual,2023-01-18,,61.2,6,4,LATAM,Software,Referral,2025-05-28,0,10
+AC-10437,Delta Networks,Starter,Monthly,2023-01-19,2025-05-04,84.0,7,6,EMEA,Retail,Referral,2025-04-27,1,8
+AC-10438,Horizon Designs,Pro,Monthly,2023-01-21,,319.0,11,4,North America,Healthcare,Outbound Sales,2025-06-29,5,
+AC-10439,Atlas Freight,Enterprise,Monthly,2023-01-21,2025-01-11,3106.99,65,52,North America,Manufacturing,Outbound Sales,2024-12-29,3,5
+AC-10440,Pine Capital,Starter,Monthly,2023-01-23,,48.0,4,3,EMEA,Retail,Referral,2025-06-30,2,8
+AC-10441,Quartz Labs,Pro,Monthly,2023-01-25,2023-02-03,348.0,12,10,EMEA,Nonprofit,Organic Search,2023-01-31,4,6
+AC-10442,Pine Systems,Pro,Monthly,2023-01-25,2023-03-19,783.0,27,24,EMEA,Financial Services,Event,2023-03-13,7,6
+AC-10443,Juniper Works,Starter,Monthly,2023-01-27,2023-10-02,96.0,8,6,North America,Retail,Paid Search,2023-10-01,0,7
+AC-10444,Quartz Software,Pro,Annual,2023-01-28,2023-02-12,295.8,12,10,North America,Financial Services,Organic Search,2023-02-06,5,8
+AC-10445,Meridian Collective,Starter,Monthly,2023-01-28,2023-07-30,48.0,4,3,North America,Healthcare,Organic Search,2023-07-30,4,
+AC-10446,Granite Partners,Starter,Monthly,2023-01-28,2023-05-27,48.0,4,3,North America,Retail,Paid Search,2023-05-04,1,10
+AC-10447,Juniper Group,Starter,Monthly,2023-01-29,2023-07-28,48.0,4,3,North America,Software,Referral,2023-07-23,2,7
+AC-10448,Maple Manufacturing,Enterprise,Annual,2023-01-30,,3402.15,84,8,North America,Financial Services,Event,2025-06-20,2,8
+AC-10449,Atlas Clinics,Starter,Monthly,2023-02-01,2023-10-31,36.0,3,2,LATAM,Education,Referral,2023-10-12,0,3
+AC-10450,Beacon Clinics,Enterprise,Annual,2023-02-01,2023-08-06,5689.55,138,17,North America,Retail,Referral,2023-08-05,4,6
+AC-10451,Apex Dynamics,Starter,Monthly,2023-02-02,,60.0,5,1,EMEA,Software,Paid Search,2025-06-19,3,6
+AC-10452,Sage Studios,Starter,Monthly,2023-02-04,2025-02-17,60.0,5,3,EMEA,Retail,Paid Search,2025-02-13,2,7
+AC-10453,North Designs,Enterprise,Annual,2023-02-05,2024-02-03,14476.62,311,161,North America,Manufacturing,Outbound Sales,2024-01-31,8,10
+AC-10454,Cedar Bio,Pro,Monthly,2023-02-07,,261.0,9,8,EMEA,Retail,Partner,2025-06-29,10,
+AC-10455,Nova Networks,Starter,Annual,2023-02-07,,40.8,4,4,North America,Software,Paid Search,2025-05-11,0,6
+AC-10456,Sage Analytics,Pro,Annual,2023-02-08,,468.35,19,13,North America,Education,Paid Search,2025-06-30,8,7
+AC-10457,Silver Academy,Pro,Monthly,2023-02-08,,290.0,10,6,EMEA,Retail,Partner,2025-06-23,5,10
+AC-10458,Echo Dynamics,Starter,Monthly,2023-02-10,2024-07-12,24.0,2,1,APAC,Software,Paid Search,2024-07-11,3,10
+AC-10459,Amber Logistics,Pro,Monthly,2023-02-12,2023-04-06,928.0,32,21,LATAM,Financial Services,Outbound Sales,2023-04-02,0,8
+AC-10460,Red Supply,Pro,Monthly,2023-02-12,2023-12-20,667.0,23,2,EMEA,Software,Partner,2023-12-01,2,9
+AC-10461,Iron Ventures,Starter,Monthly,2023-02-13,,36.0,3,3,North America,Retail,Referral,2025-06-27,2,7
+AC-10462,Cobalt Energy,Pro,Annual,2023-02-14,,295.8,12,12,North America,Healthcare,Outbound Sales,2025-05-12,3,9
+AC-10463,Clear Health,Enterprise,Monthly,2023-02-14,,15549.26,298,254,North America,Healthcare,Referral,2025-06-02,6,9
+AC-10464,Meridian Systems,Pro,Monthly,2023-02-15,2024-09-01,580.0,20,5,North America,Retail,Organic Search,2024-08-28,4,0
+AC-10465,Pine Logistics,Pro,Monthly,2023-02-15,,261.0,9,9,APAC,Nonprofit,Organic Search,2025-02-10,0,7
+AC-10466,Cobalt Analytics,Enterprise,Annual,2023-02-21,,8369.88,234,218,EMEA,Retail,Event,2025-06-27,7,9
+AC-10467,Lumen Logistics,Pro,Annual,2023-02-23,,345.1,14,8,EMEA,Software,Paid Search,2025-06-27,7,6
+AC-10468,Apex Clinics,Starter,Monthly,2023-02-25,2025-02-01,36.0,3,1,North America,Healthcare,Organic Search,2025-01-25,2,10
+AC-10469,Atlas Group,Pro,Annual,2023-02-26,2023-07-02,443.7,18,11,North America,Software,Referral,2023-06-12,2,6
+AC-10470,Willow Media,Pro,Annual,2023-02-27,,443.7,18,15,North America,Nonprofit,Paid Search,2025-06-26,3,3
+AC-10471,Sage Clinics,Pro,Annual,2023-02-28,2024-03-13,517.65,21,15,North America,Financial Services,Referral,2024-03-11,1,
+AC-10472,Golden Academy,Starter,Monthly,2023-02-28,2023-05-05,60.0,5,5,APAC,Software,Referral,2023-04-10,1,
+AC-10473,Amber Finance,Starter,Monthly,2023-03-01,,48.0,4,2,LATAM,Manufacturing,Paid Search,2025-06-18,3,
+AC-10474,Peak Systems,Starter,Monthly,2023-03-01,,60.0,5,3,EMEA,Education,Partner,2025-04-23,0,10
+AC-10475,Echo Analytics,Pro,Monthly,2023-03-03,2023-04-24,319.0,11,9,North America,Financial Services,Outbound Sales,2023-04-02,2,8
+AC-10476,Clear Dynamics,Starter,Monthly,2023-03-04,2023-03-11,24.0,2,1,North America,Financial Services,Organic Search,2023-03-08,2,5
+AC-10477,Cobalt Health,Starter,Monthly,2023-03-05,2024-06-29,48.0,4,3,EMEA,Media,Paid Search,2024-06-27,2,8
+AC-10478,Silver Ventures,Pro,Annual,2023-03-10,,147.9,6,6,EMEA,Nonprofit,Paid Search,2025-06-30,1,
+AC-10479,Beacon Analytics,Starter,Monthly,2023-03-16,,36.0,3,1,North America,Software,Organic Search,2025-06-26,1,7
+AC-10480,Iron Capital,Starter,Monthly,2023-03-16,,24.0,2,1,EMEA,Software,Paid Search,2025-06-28,0,8
+AC-10481,Meridian Finance,Starter,Monthly,2023-03-19,2023-09-20,36.0,3,2,EMEA,Healthcare,Referral,2023-09-11,2,
+AC-10482,Apex Collective,Starter,Monthly,2023-03-19,2023-03-29,36.0,3,2,North America,Software,Paid Search,2023-03-19,3,
+AC-10483,Cedar Academy,Pro,Annual,2023-03-19,,345.1,14,3,North America,Healthcare,Outbound Sales,2025-06-29,0,9
+AC-10484,Peak Freight,Starter,Monthly,2023-03-20,2024-05-17,48.0,4,3,North America,Software,Organic Search,2024-05-15,1,3
+AC-10485,Echo Software,Starter,Monthly,2023-03-20,,48.0,4,3,North America,Media,Event,2025-06-28,3,9
+AC-10486,North Works,Starter,Monthly,2023-03-20,,48.0,4,3,EMEA,Software,Organic Search,2025-05-13,3,4
+AC-10487,Apex Health,Starter,Monthly,2023-03-21,2023-04-02,84.0,7,5,North America,Media,Organic Search,2023-03-21,1,9
+AC-10488,Summit Labs,Pro,Annual,2023-03-24,2023-05-02,616.25,25,12,APAC,Healthcare,Referral,2023-04-29,5,5
+AC-10489,Granite Logistics,Starter,Monthly,2023-03-24,,84.0,7,6,LATAM,Nonprofit,Organic Search,2025-05-12,0,8
+AC-10490,Peak Foods,Starter,Monthly,2023-03-26,,36.0,3,2,LATAM,Retail,Partner,2024-10-03,2,
+AC-10491,North Bio,Pro,Monthly,2023-03-26,2023-07-22,1334.0,46,44,North America,Nonprofit,Outbound Sales,2023-07-18,2,
+AC-10492,Beacon Software,Starter,Annual,2023-03-28,2024-04-13,40.8,4,3,EMEA,Software,Partner,2024-03-27,1,
+AC-10493,Lumen Energy,Pro,Monthly,2023-03-28,,377.0,13,9,EMEA,Retail,Organic Search,2025-01-02,1,10
+AC-10494,Vertex Ventures,Starter,Monthly,2023-03-29,,36.0,3,0,North America,Software,Paid Search,2025-05-08,2,
+AC-10495,Clear Designs,Pro,Monthly,2023-03-30,2023-04-10,638.0,22,1,North America,Retail,Organic Search,2023-04-01,3,7
+AC-10496,Amber Media,Starter,Monthly,2023-03-30,2023-08-15,60.0,5,5,EMEA,Financial Services,Organic Search,2023-08-14,1,
+AC-10497,Orbit Bio,Starter,Monthly,2023-04-01,2023-04-08,24.0,2,2,LATAM,Software,Partner,2023-04-05,3,6
+AC-10498,Orbit Health,Starter,Monthly,2023-04-02,,36.0,3,3,EMEA,Retail,Organic Search,2025-06-30,1,8
+AC-10499,Stone Studios,Starter,Annual,2023-04-03,2024-05-18,20.4,2,2,EMEA,Software,Organic Search,2024-04-27,0,7
+AC-10500,Lumen Systems,Pro,Annual,2023-04-03,,345.1,14,8,North America,Healthcare,Event,2025-06-24,4,10
+AC-10501,Swift Robotics,Pro,Monthly,2023-04-03,,261.0,9,8,EMEA,Healthcare,Organic Search,2025-06-19,6,5
+AC-10502,Summit Dynamics,Enterprise,Annual,2023-04-04,2023-07-14,2750.97,59,38,EMEA,Retail,Partner,2023-07-13,10,2
+AC-10503,Harbor Freight,Pro,Monthly,2023-04-05,2023-04-11,145.0,5,4,APAC,Software,Organic Search,2023-04-08,4,1
+AC-10504,Blue Foods,Pro,Annual,2023-04-05,,172.55,7,5,North America,Manufacturing,Paid Search,2025-06-29,9,
+AC-10505,Red Solutions,Pro,Annual,2023-04-05,,394.4,16,10,North America,Nonprofit,Organic Search,2025-06-26,5,7
+AC-10506,Green Clinics,Pro,Monthly,2023-04-06,,319.0,11,9,EMEA,Manufacturing,Referral,2025-06-27,3,3
+AC-10507,Bright Analytics,Pro,Monthly,2023-04-07,2023-04-17,435.0,15,6,North America,Nonprofit,Paid Search,2023-04-07,3,0
+AC-10508,Meridian Foods,Enterprise,Annual,2023-04-09,,4519.85,106,65,North America,Manufacturing,Partner,2025-06-26,10,9
+AC-10509,Golden Finance,Starter,Monthly,2023-04-12,,36.0,3,2,North America,Nonprofit,Organic Search,2025-06-30,1,9
+AC-10510,Juniper Dynamics,Starter,Monthly,2023-04-13,2023-04-23,36.0,3,3,EMEA,Healthcare,Referral,2023-04-13,0,8
+AC-10511,Cedar Partners,Pro,Annual,2023-04-14,,123.25,5,2,North America,Media,Partner,2025-06-28,0,10
+AC-10512,Iron Software,Starter,Monthly,2023-04-20,,72.0,6,3,EMEA,Media,Event,2025-06-28,2,10
+AC-10513,Cedar Supply,Starter,Monthly,2023-04-21,2024-08-04,48.0,4,3,EMEA,Manufacturing,Paid Search,2024-08-02,1,8
+AC-10514,Lumen Clinics,Enterprise,Annual,2023-04-22,,3880.06,110,69,North America,Healthcare,Event,2025-06-30,9,
+AC-10515,Coral Studios,Starter,Annual,2023-04-22,2023-04-25,30.6,3,2,North America,Manufacturing,Paid Search,2023-04-22,3,6
+AC-10516,Blue Academy,Enterprise,Annual,2023-04-24,,6672.45,173,105,APAC,Education,Outbound Sales,2025-06-28,8,
+AC-10517,Beacon Group,Enterprise,Annual,2023-04-24,,9492.16,229,39,EMEA,Manufacturing,Partner,2025-06-24,2,7
+AC-10518,Willow Retail,Starter,Annual,2023-04-25,,61.2,6,3,EMEA,Nonprofit,Paid Search,2025-05-07,2,10
+AC-10519,Juniper Collective,Pro,Annual,2023-04-25,2023-04-26,147.9,6,2,EMEA,Education,Referral,2023-04-25,2,6
+AC-10520,Granite Studios,Starter,Monthly,2023-04-26,2024-08-30,48.0,4,2,EMEA,Media,Organic Search,2024-08-30,0,4
+AC-10521,Juniper Analytics,Starter,Monthly,2023-04-28,,48.0,4,3,EMEA,Manufacturing,Paid Search,2025-06-06,4,
+AC-10522,Delta Solutions,Enterprise,Annual,2023-04-30,,3683.33,95,78,North America,Education,Outbound Sales,2025-06-29,10,
+AC-10523,Delta Manufacturing,Enterprise,Annual,2023-05-03,,8292.28,180,150,North America,Retail,Outbound Sales,2025-06-29,5,
+AC-10524,Swift Software,Pro,Monthly,2023-05-06,,986.0,34,21,EMEA,Healthcare,Referral,2025-06-29,4,
+AC-10525,Horizon Media,Starter,Monthly,2023-05-06,2025-04-11,60.0,5,4,North America,Financial Services,Paid Search,2025-04-07,0,8
+AC-10526,Orbit Software,Enterprise,Monthly,2023-05-07,,4740.8,92,59,APAC,Software,Paid Search,2025-06-01,8,
+AC-10527,Meridian Dynamics,Pro,Monthly,2023-05-08,,986.0,34,27,North America,Financial Services,Partner,2025-06-27,2,9
+AC-10528,Vertex Partners,Enterprise,Annual,2023-05-09,,3678.66,94,87,APAC,Nonprofit,Referral,2025-04-03,7,7
+AC-10529,Coral Dynamics,Pro,Monthly,2023-05-10,2024-09-13,261.0,9,7,North America,Manufacturing,Event,2024-09-07,1,7
+AC-10530,Orbit Finance,Starter,Monthly,2023-05-11,,60.0,5,4,EMEA,Financial Services,Paid Search,2025-05-25,3,5
+AC-10531,Bright Retail,Pro,Monthly,2023-05-11,,377.0,13,9,LATAM,Media,Organic Search,2025-05-13,3,10
+AC-10532,Peak Designs,Pro,Annual,2023-05-12,,123.25,5,4,North America,Financial Services,Organic Search,2024-10-04,4,
+AC-10533,Apex Labs,Enterprise,Annual,2023-05-13,2023-06-08,1773.98,42,20,APAC,Software,Event,2023-05-19,8,8
+AC-10534,Pine Networks,Pro,Monthly,2023-05-13,,609.0,21,16,EMEA,Retail,Outbound Sales,2025-06-03,2,8
+AC-10535,Harbor Learning,Starter,Annual,2023-05-14,,61.2,6,5,EMEA,Education,Organic Search,2025-06-29,1,
+AC-10536,Orbit Analytics,Enterprise,Annual,2023-05-15,,15480.62,392,51,APAC,Financial Services,Outbound Sales,2025-06-29,4,10
+AC-10537,North Supply,Starter,Monthly,2023-05-15,2023-09-30,48.0,4,1,EMEA,Software,Partner,2023-09-28,1,4
+AC-10538,Granite Ventures,Starter,Monthly,2023-05-18,2023-07-24,24.0,2,1,APAC,Education,Partner,2023-07-24,2,6
+AC-10539,Atlas Logistics,Starter,Monthly,2023-05-21,,60.0,5,3,APAC,Education,Organic Search,2025-06-27,1,8
+AC-10540,Blue Analytics,Starter,Monthly,2023-05-23,2023-06-20,24.0,2,1,EMEA,Manufacturing,Organic Search,2023-06-12,1,8
+AC-10541,Beacon Labs,Pro,Monthly,2023-05-29,2023-11-10,580.0,20,13,North America,Software,Organic Search,2023-11-07,3,9
+AC-10542,Orbit Dynamics,Starter,Monthly,2023-05-29,2023-06-05,48.0,4,2,North America,Manufacturing,Paid Search,2023-06-01,0,5
+AC-10543,Green Manufacturing,Enterprise,Annual,2023-05-29,,956.71,25,22,North America,Healthcare,Partner,2025-06-18,3,
+AC-10544,Oak Energy,Starter,Monthly,2023-05-30,,24.0,2,1,EMEA,Healthcare,Paid Search,2025-06-26,0,
+AC-10545,Bright Ventures,Pro,Monthly,2023-06-01,,1044.0,36,32,North America,Software,Partner,2025-05-15,0,
+AC-10546,Horizon Solutions,Starter,Monthly,2023-06-09,,108.0,9,7,North America,Financial Services,Referral,2025-04-12,1,
+AC-10547,Peak Supply,Pro,Monthly,2023-06-09,2023-06-28,522.0,18,11,EMEA,Software,Organic Search,2023-06-23,1,
+AC-10548,Meridian Partners,Starter,Monthly,2023-06-10,2023-07-23,84.0,7,5,APAC,Manufacturing,Organic Search,2023-07-18,0,7
+AC-10549,Willow Finance,Enterprise,Annual,2023-06-10,,10283.02,271,190,North America,Retail,Outbound Sales,2025-06-28,5,
+AC-10550,Green Robotics,Starter,Monthly,2023-06-10,2023-10-12,24.0,2,1,EMEA,Manufacturing,Referral,2023-10-10,1,
+AC-10551,Summit Solutions,Starter,Monthly,2023-06-10,,60.0,5,4,North America,Retail,Referral,2025-06-30,1,8
+AC-10552,Orbit Labs,Pro,Monthly,2023-06-11,,261.0,9,7,North America,Retail,Organic Search,2025-05-05,3,
+AC-10553,Apex Learning,Starter,Monthly,2023-06-11,2024-01-17,60.0,5,3,North America,Financial Services,Partner,2024-01-14,1,
+AC-10554,Horizon Partners,Starter,Annual,2023-06-11,,20.4,2,2,APAC,Media,Organic Search,2025-06-27,2,
+AC-10555,Peak Studios,Starter,Annual,2023-06-11,,51.0,5,3,EMEA,Retail,Organic Search,2025-06-29,1,
+AC-10556,Cedar Capital,Enterprise,Annual,2023-06-14,,2652.49,58,33,LATAM,Software,Outbound Sales,2024-09-27,18,6
+AC-10557,Swift Clinics,Starter,Monthly,2023-06-20,,48.0,4,3,EMEA,Software,Paid Search,2025-03-03,1,10
+AC-10558,Nova Designs,Starter,Annual,2023-06-21,,30.6,3,2,North America,Education,Paid Search,2025-05-18,0,8
+AC-10559,Lumen Dynamics,Enterprise,Annual,2023-06-21,2023-09-19,2796.37,61,6,North America,Healthcare,Outbound Sales,2023-09-03,14,4
+AC-10560,Crescent Retail,Enterprise,Annual,2023-06-22,,1824.6,51,46,APAC,Manufacturing,Outbound Sales,2025-06-27,9,8
+AC-10561,Apex Solutions,Pro,Annual,2023-06-24,,566.95,23,18,North America,Manufacturing,Partner,2025-06-30,7,8
+AC-10562,Apex Freight,Starter,Monthly,2023-06-29,2024-08-19,24.0,2,1,North America,Manufacturing,Event,2024-08-15,1,10
+AC-10563,Peak Energy,Enterprise,Annual,2023-06-29,,8615.4,201,166,APAC,Healthcare,Referral,2025-06-29,10,6
+AC-10564,Atlas Media,Starter,Monthly,2023-06-29,,60.0,5,3,North America,Media,Organic Search,2025-06-27,3,4
+AC-10565,Coral Bio,Starter,Monthly,2023-06-29,,24.0,2,1,EMEA,Software,Partner,2025-06-28,1,
+AC-10566,Echo Clinics,Starter,Monthly,2023-06-30,2025-03-26,60.0,5,1,North America,Education,Organic Search,2025-03-25,2,10
+AC-10567,Blue Solutions,Pro,Monthly,2023-06-30,,928.0,32,25,EMEA,Manufacturing,Partner,2025-06-28,1,8
+AC-10568,Swift Foods,Pro,Annual,2023-06-30,,616.25,25,19,APAC,Financial Services,Paid Search,2025-06-30,3,7
+AC-10569,Blue Systems,Enterprise,Annual,2023-06-30,,12673.69,322,221,APAC,Software,Outbound Sales,2025-06-22,3,
+AC-10570,Cedar Systems,Starter,Monthly,2023-07-01,2024-04-08,36.0,3,3,North America,Healthcare,Referral,2024-03-22,0,5
+AC-10571,Cedar Freight,Enterprise,Monthly,2023-07-04,,10130.27,209,168,North America,Education,Referral,2025-06-28,5,10
+AC-10572,Amber Learning,Pro,Annual,2023-07-05,,1010.65,41,3,APAC,Healthcare,Outbound Sales,2025-06-29,7,
+AC-10573,Juniper Finance,Pro,Annual,2023-07-05,,961.35,39,36,North America,Healthcare,Paid Search,2025-05-27,2,
+AC-10574,Quartz Designs,Starter,Monthly,2023-07-05,2025-01-21,108.0,9,9,EMEA,Financial Services,Organic Search,2025-01-20,2,
+AC-10575,Green Learning,Starter,Monthly,2023-07-07,,36.0,3,2,LATAM,Software,Organic Search,2025-06-28,3,9
+AC-10576,Amber Group,Starter,Monthly,2023-07-09,2023-07-21,60.0,5,5,North America,Media,Organic Search,2023-07-15,0,
+AC-10577,Falcon Finance,Starter,Monthly,2023-07-10,2023-12-25,48.0,4,3,North America,Software,Organic Search,2023-12-18,0,
+AC-10578,Stone Works,Starter,Monthly,2023-07-15,,48.0,4,3,APAC,Nonprofit,Event,2024-12-22,0,8
+AC-10579,Coral Academy,Pro,Monthly,2023-07-17,2023-11-02,348.0,12,8,APAC,Healthcare,Partner,2023-11-01,1,9
+AC-10580,Maple Foods,Pro,Annual,2023-07-18,,345.1,14,11,EMEA,Nonprofit,Event,2025-06-30,5,9
+AC-10581,Blue Capital,Starter,Monthly,2023-07-19,2023-07-30,36.0,3,2,North America,Retail,Organic Search,2023-07-28,2,9
+AC-10582,Cobalt Media,Starter,Annual,2023-07-20,,20.4,2,1,APAC,Nonprofit,Organic Search,2025-06-30,3,8
+AC-10583,Delta Clinics,Pro,Annual,2023-07-22,2024-11-13,123.25,5,4,APAC,Healthcare,Organic Search,2024-11-05,0,
+AC-10584,Swift Systems,Pro,Annual,2023-07-24,2024-02-09,172.55,7,7,APAC,Healthcare,Paid Search,2024-02-02,4,
+AC-10585,Juniper Energy,Pro,Annual,2023-07-26,,295.8,12,10,North America,Education,Paid Search,2025-06-15,1,9
+AC-10586,Vertex Clinics,Pro,Monthly,2023-07-26,,1044.0,36,30,EMEA,Software,Paid Search,2025-06-24,1,
+AC-10587,Golden Analytics,Pro,Annual,2023-07-28,2023-09-10,542.3,22,19,EMEA,Financial Services,Paid Search,2023-07-30,5,8
+AC-10588,Iron Clinics,Starter,Monthly,2023-07-28,2023-08-23,36.0,3,3,North America,Retail,Referral,2023-08-09,0,8
+AC-10589,Maple Networks,Pro,Annual,2023-07-29,,345.1,14,8,APAC,Financial Services,Partner,2025-06-30,2,
+AC-10590,Nova Supply,Pro,Annual,2023-07-31,,172.55,7,6,LATAM,Media,Event,2025-06-28,5,7
+AC-10591,Stone Freight,Pro,Annual,2023-08-01,2023-08-08,739.5,30,24,North America,Education,Organic Search,2023-08-01,2,8
+AC-10592,River Group,Starter,Monthly,2023-08-05,2023-09-08,72.0,6,3,EMEA,Retail,Referral,2023-09-06,3,4
+AC-10593,Quartz Learning,Starter,Monthly,2023-08-08,2023-08-26,48.0,4,3,North America,Financial Services,Organic Search,2023-08-26,0,
+AC-10594,Summit Systems,Starter,Monthly,2023-08-09,2024-08-22,48.0,4,2,EMEA,Media,Event,2024-08-19,1,
+AC-10595,Silver Analytics,Starter,Monthly,2023-08-09,,60.0,5,4,EMEA,Retail,Paid Search,2025-06-26,1,9
+AC-10596,Lumen Networks,Starter,Monthly,2023-08-10,2023-08-16,36.0,3,1,APAC,Retail,Paid Search,2023-08-10,0,5
+AC-10597,Nova Dynamics,Pro,Monthly,2023-08-11,2025-04-03,319.0,11,10,EMEA,Education,Event,2025-03-30,0,4
+AC-10598,Sage Solutions,Starter,Monthly,2023-08-13,2023-08-18,48.0,4,4,North America,Software,Referral,2023-08-13,2,
+AC-10599,Orbit Learning,Starter,Monthly,2023-08-14,,36.0,3,1,North America,Media,Paid Search,2025-06-30,0,7
+AC-10600,Vertex Networks,Starter,Monthly,2023-08-14,2024-01-24,48.0,4,4,North America,Nonprofit,Organic Search,2024-01-20,0,8
+AC-10601,North Freight,Starter,Monthly,2023-08-16,2023-08-20,24.0,2,1,North America,Education,Paid Search,2023-08-17,1,5
+AC-10602,Silver Foods,Pro,Monthly,2023-08-17,,725.0,25,19,North America,Manufacturing,Partner,2025-06-29,3,
+AC-10603,Delta Software,Starter,Monthly,2023-08-18,2024-07-02,48.0,4,2,LATAM,Manufacturing,Paid Search,2024-06-24,2,8
+AC-10604,Lumen Supply,Enterprise,Annual,2023-08-19,,5675.99,161,40,North America,Software,Paid Search,2025-06-26,7,
+AC-10605,Blue Clinics,Pro,Annual,2023-08-19,,665.55,27,20,APAC,Retail,Partner,2025-06-27,0,
+AC-10606,Falcon Robotics,Enterprise,Annual,2023-08-22,2024-02-19,2504.71,56,43,North America,Financial Services,Organic Search,2024-02-09,3,7
+AC-10607,Pine Media,Enterprise,Annual,2023-08-23,,8682.4,239,148,EMEA,Manufacturing,Partner,2025-06-23,5,5
+AC-10608,Orbit Supply,Starter,Monthly,2023-08-26,2024-01-22,48.0,4,1,North America,Media,Paid Search,2024-01-22,0,7
+AC-10609,Red Logistics,Starter,Monthly,2023-08-28,2023-11-30,96.0,8,4,North America,Healthcare,Organic Search,2023-11-27,0,10
+AC-10610,Maple Logistics,Starter,Annual,2023-08-29,2025-04-20,40.8,4,3,North America,Financial Services,Organic Search,2025-03-16,1,
+AC-10611,Swift Designs,Starter,Monthly,2023-08-30,2023-09-04,36.0,3,3,EMEA,Healthcare,Organic Search,2023-08-30,2,3
+AC-10612,Green Ventures,Pro,Monthly,2023-08-31,,1160.0,40,38,EMEA,Software,Paid Search,2025-05-22,0,6
+AC-10613,Meridian Freight,Starter,Monthly,2023-08-31,2023-12-17,48.0,4,3,North America,Manufacturing,Paid Search,2023-12-16,0,
+AC-10614,Willow Freight,Pro,Annual,2023-09-07,,862.75,35,29,North America,Retail,Paid Search,2025-06-23,3,
+AC-10615,Clear Learning,Starter,Annual,2023-09-11,2024-07-14,51.0,5,4,APAC,Software,Event,2024-07-01,4,
+AC-10616,Apex Retail,Starter,Monthly,2023-09-14,2025-03-31,48.0,4,1,EMEA,Software,Organic Search,2025-03-31,3,
+AC-10617,Bright Partners,Pro,Annual,2023-09-14,2025-02-12,172.55,7,0,EMEA,Retail,Paid Search,2025-02-11,2,7
+AC-10618,Green Collective,Starter,Annual,2023-09-16,,10.2,1,1,North America,Manufacturing,Paid Search,2025-06-24,1,
+AC-10619,Oak Systems,Starter,Monthly,2023-09-16,2023-09-21,48.0,4,1,EMEA,Nonprofit,Organic Search,2023-09-17,0,8
+AC-10620,Stone Dynamics,Starter,Monthly,2023-09-18,,36.0,3,3,APAC,Software,Organic Search,2025-06-27,0,6
+AC-10621,Beacon Foods,Enterprise,Annual,2023-09-20,,2957.64,75,59,EMEA,Nonprofit,Outbound Sales,2025-06-26,10,8
+AC-10622,Atlas Works,Pro,Monthly,2023-09-20,,580.0,20,15,EMEA,Nonprofit,Outbound Sales,2024-11-17,0,
+AC-10623,Peak Software,Starter,Monthly,2023-09-23,,12.0,1,1,North America,Manufacturing,Organic Search,2025-06-27,2,
+AC-10624,Coral Networks,Starter,Monthly,2023-09-26,2023-12-30,72.0,6,0,EMEA,Education,Paid Search,2023-12-20,1,
+AC-10625,Quartz Ventures,Starter,Annual,2023-09-29,,61.2,6,5,North America,Education,Referral,2025-06-28,3,10
+AC-10626,Orbit Ventures,Starter,Monthly,2023-10-01,,48.0,4,4,EMEA,Education,Organic Search,2025-06-18,0,10
+AC-10627,Bright Capital,Pro,Monthly,2023-10-02,2025-04-07,348.0,12,10,APAC,Software,Organic Search,2025-03-17,1,8
+AC-10628,Bright Studios,Starter,Monthly,2023-10-04,2023-10-21,24.0,2,2,North America,Media,Paid Search,2023-10-19,1,7
+AC-10629,Bright Labs,Pro,Monthly,2023-10-04,,609.0,21,17,North America,Software,Event,2025-06-28,4,
+AC-10630,North Learning,Enterprise,Monthly,2023-10-04,,2199.06,40,28,North America,Software,Outbound Sales,2025-06-28,11,8
+AC-10631,Harbor Manufacturing,Pro,Monthly,2023-10-05,,928.0,32,29,North America,Education,Event,2025-06-19,5,6
+AC-10632,Meridian Media,Starter,Monthly,2023-10-06,2024-01-30,36.0,3,1,North America,Financial Services,Referral,2024-01-25,4,
+AC-10633,Stone Capital,Pro,Monthly,2023-10-06,,783.0,27,14,North America,Software,Organic Search,2025-06-20,9,9
+AC-10634,Bright Learning,Starter,Monthly,2023-10-07,,60.0,5,3,APAC,Retail,Paid Search,2025-06-30,1,9
+AC-10635,Green Partners,Pro,Annual,2023-10-07,,246.5,10,9,EMEA,Software,Partner,2024-10-04,1,9
+AC-10636,Coral Freight,Enterprise,Annual,2023-10-11,2023-11-22,9515.38,260,208,APAC,Healthcare,Event,2023-11-22,8,
+AC-10637,Meridian Studios,Pro,Annual,2023-10-12,,295.8,12,1,North America,Nonprofit,Organic Search,2025-06-29,2,6
+AC-10638,Blue Networks,Starter,Annual,2023-10-12,,51.0,5,3,APAC,Software,Organic Search,2025-06-19,2,7
+AC-10639,Atlas Dynamics,Pro,Annual,2023-10-15,,419.05,17,8,APAC,Software,Outbound Sales,2025-06-29,4,8
+AC-10640,Cedar Retail,Pro,Annual,2023-10-15,,172.55,7,4,APAC,Financial Services,Paid Search,2025-06-19,2,
+AC-10641,Echo Collective,Starter,Monthly,2023-10-15,2024-10-15,72.0,6,3,North America,Nonprofit,Paid Search,2024-10-14,2,10
+AC-10642,Nova Finance,Pro,Annual,2023-10-17,,147.9,6,6,APAC,Software,Referral,2025-06-18,7,6
+AC-10643,Golden Labs,Starter,Annual,2023-10-18,2025-01-21,71.4,7,4,North America,Software,Organic Search,2025-01-01,0,
+AC-10644,Nova Energy,Pro,Monthly,2023-10-19,,290.0,10,10,APAC,Healthcare,Partner,2025-06-30,3,
+AC-10645,Harbor Systems,Pro,Annual,2023-10-23,,665.55,27,7,North America,Media,Outbound Sales,2025-06-07,7,8
+AC-10646,Maple Finance,Pro,Monthly,2023-10-24,2024-09-15,696.0,24,5,North America,Education,Paid Search,2024-09-13,2,
+AC-10647,Atlas Systems,Starter,Monthly,2023-10-24,,84.0,7,4,APAC,Retail,Paid Search,2025-06-29,2,
+AC-10648,Cobalt Software,Starter,Monthly,2023-10-28,,36.0,3,3,North America,Healthcare,Paid Search,2025-04-25,0,
+AC-10649,Silver Capital,Pro,Monthly,2023-10-28,2024-08-19,464.0,16,14,North America,Retail,Paid Search,2024-08-14,3,10
+AC-10650,Swift Solutions,Starter,Monthly,2023-10-29,,60.0,5,4,APAC,Education,Event,2025-05-17,1,6
+AC-10651,Atlas Labs,Starter,Monthly,2023-11-01,2024-03-06,60.0,5,4,EMEA,Media,Paid Search,2024-02-29,1,5
+AC-10652,Nova Media,Starter,Monthly,2023-11-02,2025-06-09,60.0,5,2,EMEA,Retail,Organic Search,2025-06-09,3,
+AC-10653,River Manufacturing,Pro,Annual,2023-11-09,2023-12-10,271.15,11,9,EMEA,Education,Partner,2023-11-22,4,
+AC-10654,Peak Analytics,Starter,Monthly,2023-11-10,2024-04-24,48.0,4,3,EMEA,Manufacturing,Referral,2024-03-10,1,
+AC-10655,Apex Networks,Pro,Monthly,2023-11-10,,522.0,18,14,EMEA,Software,Event,2025-06-29,0,
+AC-10656,Swift Works,Pro,Monthly,2023-11-11,2025-06-22,522.0,18,16,LATAM,Financial Services,Paid Search,2025-06-21,6,
+AC-10657,Clear Retail,Pro,Monthly,2023-11-12,2024-02-12,638.0,22,18,North America,Healthcare,Outbound Sales,2024-02-03,6,7
+AC-10658,Bright Collective,Enterprise,Annual,2023-11-14,,1743.35,47,25,North America,Financial Services,Outbound Sales,2025-06-27,10,6
+AC-10659,North Logistics,Starter,Annual,2023-11-14,,20.4,2,2,North America,Education,Organic Search,2024-11-12,0,7
+AC-10660,Meridian Labs,Pro,Monthly,2023-11-16,2025-02-27,319.0,11,10,APAC,Software,Organic Search,2025-02-20,5,7
+AC-10661,Willow Solutions,Starter,Monthly,2023-11-18,,132.0,11,10,North America,Nonprofit,Organic Search,2025-06-23,2,
+AC-10662,Horizon Academy,Starter,Monthly,2023-11-19,,60.0,5,4,EMEA,Healthcare,Referral,2025-05-19,1,
+AC-10663,Amber Clinics,Starter,Monthly,2023-11-21,,48.0,4,3,North America,Software,Organic Search,2025-06-10,3,
+AC-10664,Cobalt Works,Starter,Annual,2023-11-22,2025-02-12,61.2,6,4,APAC,Media,Organic Search,2025-02-09,1,8
+AC-10665,Crescent Collective,Pro,Monthly,2023-11-24,,406.0,14,4,LATAM,Manufacturing,Paid Search,2025-06-30,10,6
+AC-10666,Peak Clinics,Starter,Monthly,2023-11-24,,48.0,4,3,North America,Media,Organic Search,2025-06-22,5,
+AC-10667,Sage Robotics,Pro,Monthly,2023-11-25,,261.0,9,8,APAC,Education,Organic Search,2025-05-29,5,8
+AC-10668,Silver Clinics,Pro,Annual,2023-11-29,,1010.65,41,23,North America,Healthcare,Organic Search,2025-06-25,3,
+AC-10669,Bright Supply,Starter,Monthly,2023-11-29,,36.0,3,3,EMEA,Retail,Paid Search,2025-06-21,0,9
+AC-10670,Juniper Studios,Starter,Monthly,2023-11-30,2023-12-05,48.0,4,3,EMEA,Media,Organic Search,2023-12-03,1,9
+AC-10671,Golden Health,Starter,Monthly,2023-12-01,,36.0,3,2,North America,Software,Referral,2025-06-29,2,
+AC-10672,Atlas Solutions,Starter,Monthly,2023-12-02,2025-04-11,12.0,1,1,North America,Software,Organic Search,2025-03-18,1,9
+AC-10673,Sage Bio,Starter,Monthly,2023-12-02,2024-12-16,60.0,5,4,EMEA,Software,Paid Search,2024-12-13,0,
+AC-10674,Sage Retail,Pro,Annual,2023-12-03,,616.25,25,9,EMEA,Healthcare,Event,2025-06-06,2,10
+AC-10675,Crescent Health,Starter,Monthly,2023-12-04,,24.0,2,2,APAC,Retail,Paid Search,2025-06-20,0,9
+AC-10676,Apex Group,Enterprise,Monthly,2023-12-05,,2440.61,54,46,North America,Healthcare,Referral,2025-06-29,3,7
+AC-10677,River Logistics,Pro,Monthly,2023-12-05,2024-08-03,348.0,12,7,North America,Financial Services,Paid Search,2024-07-28,7,8
+AC-10678,Lumen Works,Pro,Monthly,2023-12-06,2023-12-31,145.0,5,3,EMEA,Software,Outbound Sales,2023-12-29,4,
+AC-10679,Atlas Health,Starter,Monthly,2023-12-06,2024-03-18,96.0,8,6,EMEA,Software,Organic Search,2024-03-14,2,6
+AC-10680,Lumen Labs,Starter,Monthly,2023-12-08,,48.0,4,3,North America,Nonprofit,Organic Search,2025-06-30,0,
+AC-10681,Silver Designs,Enterprise,Annual,2023-12-08,,7752.29,209,139,North America,Software,Partner,2025-06-29,9,8
+AC-10682,Green Labs,Pro,Monthly,2023-12-08,2024-01-20,348.0,12,8,North America,Nonprofit,Event,2024-01-10,4,3
+AC-10683,Green Academy,Enterprise,Annual,2023-12-14,,3241.0,71,44,LATAM,Software,Event,2025-06-30,4,7
+AC-10684,Falcon Health,Starter,Monthly,2023-12-15,,36.0,3,2,APAC,Nonprofit,Event,2025-05-06,0,
+AC-10685,Beacon Freight,Starter,Monthly,2023-12-16,2024-09-16,48.0,4,2,EMEA,Financial Services,Organic Search,2024-08-29,0,
+AC-10686,Sage Partners,Pro,Annual,2023-12-17,,197.2,8,7,EMEA,Healthcare,Event,2025-05-05,5,8
+AC-10687,Swift Media,Starter,Monthly,2023-12-17,,72.0,6,5,North America,Software,Referral,2025-06-29,1,9
+AC-10688,Coral Clinics,Starter,Annual,2023-12-18,,40.8,4,3,EMEA,Healthcare,Organic Search,2025-06-14,1,9
+AC-10689,Atlas Academy,Starter,Monthly,2023-12-19,2024-04-27,48.0,4,2,EMEA,Retail,Organic Search,2024-04-26,1,10
+AC-10690,Silver Freight,Pro,Monthly,2023-12-20,2024-01-29,232.0,8,7,EMEA,Financial Services,Organic Search,2024-01-24,3,6
+AC-10691,Cedar Media,Starter,Monthly,2023-12-22,2024-12-12,60.0,5,5,APAC,Healthcare,Referral,2024-12-01,1,
+AC-10692,River Capital,Pro,Annual,2023-12-22,,147.9,6,6,North America,Retail,Paid Search,2025-06-27,2,7
+AC-10693,Meridian Solutions,Starter,Monthly,2023-12-23,2024-07-12,72.0,6,5,North America,Manufacturing,Organic Search,2024-07-11,1,
+AC-10694,Maple Robotics,Starter,Monthly,2023-12-23,,48.0,4,2,North America,Software,Paid Search,2025-06-22,0,
+AC-10695,Granite Freight,Pro,Monthly,2023-12-26,,435.0,15,10,North America,Nonprofit,Organic Search,2025-06-18,3,7
+AC-10696,Nova Health,Pro,Annual,2023-12-26,,443.7,18,4,EMEA,Healthcare,Referral,2025-06-30,3,9
+AC-10697,Summit Group,Starter,Monthly,2023-12-26,2024-01-04,96.0,8,6,EMEA,Healthcare,Outbound Sales,2024-01-03,1,8
+AC-10698,Juniper Supply,Pro,Monthly,2023-12-29,,174.0,6,4,North America,Media,Partner,2025-06-30,4,10
+AC-10699,River Freight,Starter,Monthly,2023-12-29,,36.0,3,2,APAC,Manufacturing,Organic Search,2025-06-28,4,
+AC-10700,North Networks,Enterprise,Monthly,2024-01-02,,6845.62,148,80,North America,Software,Paid Search,2025-06-28,6,
+AC-10701,Meridian Group,Pro,Annual,2024-01-05,,246.5,10,3,APAC,Financial Services,Paid Search,2025-06-29,0,
+AC-10702,Harbor Robotics,Starter,Monthly,2024-01-05,2024-09-06,84.0,7,5,EMEA,Software,Organic Search,2024-08-26,1,3
+AC-10703,Horizon Supply,Starter,Monthly,2024-01-06,2025-03-05,60.0,5,4,North America,Media,Organic Search,2025-03-05,0,7
+AC-10704,Bright Software,Starter,Monthly,2024-01-06,2024-07-29,60.0,5,3,EMEA,Software,Paid Search,2024-07-27,0,2
+AC-10705,Red Labs,Starter,Annual,2024-01-07,2024-01-25,10.2,1,1,North America,Software,Organic Search,2024-01-23,1,8
+AC-10706,Summit Capital,Pro,Monthly,2024-01-07,,580.0,20,19,North America,Healthcare,Paid Search,2025-06-25,1,10
+AC-10707,Silver Collective,Pro,Monthly,2024-01-08,,870.0,30,29,North America,Software,Outbound Sales,2025-06-30,5,
+AC-10708,North Dynamics,Pro,Monthly,2024-01-10,,348.0,12,6,EMEA,Financial Services,Outbound Sales,2025-06-30,2,10
+AC-10709,Clear Networks,Starter,Annual,2024-01-10,2024-01-14,40.8,4,2,LATAM,Software,Referral,2024-01-10,0,
+AC-10710,Harbor Software,Pro,Monthly,2024-01-12,,580.0,20,4,North America,Healthcare,Organic Search,2025-06-09,1,1
+AC-10711,Stone Robotics,Pro,Monthly,2024-01-13,,261.0,9,7,APAC,Financial Services,Organic Search,2025-06-21,4,7
+AC-10712,Delta Studios,Starter,Annual,2024-01-15,,30.6,3,2,EMEA,Healthcare,Organic Search,2025-06-04,0,
+AC-10713,Orbit Solutions,Starter,Monthly,2024-01-16,2024-03-01,24.0,2,2,APAC,Education,Paid Search,2024-02-23,1,5
+AC-10714,Apex Academy,Starter,Annual,2024-01-16,2024-02-20,30.6,3,2,North America,Nonprofit,Organic Search,2024-02-18,3,0
+AC-10715,Sage Manufacturing,Pro,Monthly,2024-01-16,,464.0,16,15,North America,Software,Partner,2025-05-29,4,9
+AC-10716,Cobalt Manufacturing,Starter,Monthly,2024-01-16,,60.0,5,4,APAC,Manufacturing,Referral,2024-09-22,3,7
+AC-10717,Quartz Foods,Pro,Annual,2024-01-17,,616.25,25,22,LATAM,Retail,Paid Search,2025-06-25,3,
+AC-10718,Blue Robotics,Starter,Monthly,2024-01-18,2024-10-04,24.0,2,1,North America,Software,Organic Search,2024-09-28,1,8
+AC-10719,Iron Studios,Starter,Monthly,2024-01-18,2024-11-02,48.0,4,1,LATAM,Media,Referral,2024-11-01,0,8
+AC-10720,Nova Capital,Pro,Monthly,2024-01-20,2024-01-26,696.0,24,8,APAC,Nonprofit,Organic Search,2024-01-20,0,
+AC-10721,Delta Academy,Pro,Monthly,2024-01-22,,203.0,7,2,North America,Retail,Paid Search,2025-06-30,0,8
+AC-10722,Green Retail,Pro,Monthly,2024-01-23,,348.0,12,11,EMEA,Manufacturing,Referral,2025-06-28,4,7
+AC-10723,Granite Networks,Pro,Annual,2024-01-23,,123.25,5,4,APAC,Retail,Organic Search,2025-06-28,3,
+AC-10724,Maple Solutions,Starter,Monthly,2024-01-24,2024-04-29,12.0,1,1,North America,Financial Services,Paid Search,2024-04-07,3,9
+AC-10725,Oak Manufacturing,Enterprise,Monthly,2024-01-25,2025-04-20,9668.0,223,188,North America,Healthcare,Partner,2025-04-16,3,6
+AC-10726,Crescent Group,Pro,Monthly,2024-01-28,,377.0,13,10,EMEA,Software,Partner,2025-06-29,1,
+AC-10727,Summit Designs,Enterprise,Annual,2024-01-29,,27468.8,781,561,North America,Manufacturing,Outbound Sales,2025-06-20,10,
+AC-10728,Pine Studios,Enterprise,Annual,2024-01-30,2024-02-22,2081.53,55,21,North America,Nonprofit,Organic Search,2024-02-21,3,3
+AC-10729,Maple Analytics,Starter,Annual,2024-02-01,,10.2,1,1,EMEA,Media,Outbound Sales,2025-06-29,0,7
+AC-10730,Pine Ventures,Enterprise,Annual,2024-02-01,,2235.74,58,43,North America,Financial Services,Referral,2025-06-15,10,8
+AC-10731,Harbor Media,Starter,Annual,2024-02-02,2025-03-04,30.6,3,2,North America,Nonprofit,Organic Search,2025-03-02,0,3
+AC-10732,Harbor Bio,Pro,Annual,2024-02-03,2025-06-19,197.2,8,5,North America,Software,Organic Search,2025-06-09,1,5
+AC-10733,Sage Systems,Starter,Monthly,2024-02-04,2025-01-30,48.0,4,3,EMEA,Manufacturing,Event,2025-01-30,0,7
+AC-10734,Willow Learning,Starter,Monthly,2024-02-04,2024-02-18,60.0,5,4,APAC,Retail,Referral,2024-02-17,0,5
+AC-10735,Apex Energy,Pro,Monthly,2024-02-04,,435.0,15,6,North America,Software,Organic Search,2025-04-15,1,
+AC-10736,River Robotics,Starter,Annual,2024-02-05,2024-12-19,40.8,4,3,EMEA,Manufacturing,Paid Search,2024-12-18,0,7
+AC-10737,Amber Solutions,Pro,Annual,2024-02-06,,320.45,13,9,North America,Media,Organic Search,2025-06-27,3,
+AC-10738,Red Health,Starter,Annual,2024-02-07,2024-08-07,20.4,2,2,EMEA,Software,Organic Search,2024-08-04,2,6
+AC-10739,Horizon Systems,Starter,Monthly,2024-02-08,,48.0,4,3,North America,Manufacturing,Organic Search,2025-06-27,3,
+AC-10740,Blue Works,Starter,Annual,2024-02-08,,40.8,4,3,APAC,Financial Services,Referral,2025-06-26,1,
+AC-10741,Beacon Capital,Pro,Monthly,2024-02-12,2024-12-26,174.0,6,5,EMEA,Software,Organic Search,2024-12-23,5,10
+AC-10742,Orbit Retail,Pro,Annual,2024-02-12,,320.45,13,10,EMEA,Retail,Partner,2025-06-30,2,8
+AC-10743,Blue Learning,Pro,Annual,2024-02-13,,419.05,17,12,LATAM,Media,Paid Search,2024-11-02,5,
+AC-10744,Clear Logistics,Starter,Monthly,2024-02-13,,72.0,6,5,North America,Software,Referral,2025-06-21,1,7
+AC-10745,Meridian Capital,Enterprise,Annual,2024-02-13,,4155.04,107,81,EMEA,Media,Paid Search,2025-06-29,7,9
+AC-10746,Red Systems,Starter,Annual,2024-02-14,,40.8,4,4,North America,Healthcare,Paid Search,2025-06-26,1,4
+AC-10747,Beacon Learning,Enterprise,Annual,2024-02-18,2025-01-16,1511.54,40,29,EMEA,Software,Referral,2024-12-30,5,
+AC-10748,Lumen Foods,Pro,Annual,2024-02-18,,123.25,5,3,North America,Media,Partner,2024-09-30,2,8
+AC-10749,Swift Manufacturing,Starter,Monthly,2024-02-20,2025-01-29,36.0,3,2,North America,Media,Organic Search,2025-01-21,0,7
+AC-10750,Granite Manufacturing,Enterprise,Annual,2024-02-20,,5651.72,123,91,North America,Healthcare,Referral,2025-06-24,11,10
+AC-10751,Swift Ventures,Starter,Monthly,2024-02-21,,72.0,6,2,North America,Nonprofit,Organic Search,2025-06-30,2,8
+AC-10752,Iron Supply,Pro,Monthly,2024-02-21,,319.0,11,9,North America,Software,Paid Search,2025-05-03,3,
+AC-10753,Apex Logistics,Starter,Annual,2024-02-22,2024-12-01,40.8,4,4,EMEA,Healthcare,Organic Search,2024-11-24,1,9
+AC-10754,Golden Networks,Pro,Monthly,2024-02-24,,754.0,26,23,EMEA,Retail,Partner,2025-05-11,1,
+AC-10755,Sage Networks,Pro,Monthly,2024-02-24,,319.0,11,9,EMEA,Software,Partner,2025-05-16,6,8
+AC-10756,Beacon Dynamics,Starter,Monthly,2024-02-25,2024-02-27,60.0,5,3,North America,Retail,Paid Search,2024-02-25,2,
+AC-10757,Quartz Networks,Starter,Monthly,2024-02-27,,72.0,6,5,EMEA,Financial Services,Partner,2025-06-30,0,9
+AC-10758,Atlas Partners,Enterprise,Annual,2024-02-29,,13180.7,337,281,EMEA,Financial Services,Event,2025-06-27,3,6
+AC-10759,Quartz Bio,Starter,Monthly,2024-02-29,2024-03-06,48.0,4,1,LATAM,Media,Outbound Sales,2024-02-29,2,
+AC-10760,Coral Finance,Starter,Monthly,2024-03-01,,72.0,6,6,LATAM,Retail,Organic Search,2024-09-09,0,10
+AC-10761,Nova Systems,Starter,Annual,2024-03-02,2025-06-10,30.6,3,2,APAC,Education,Paid Search,2025-06-07,4,7
+AC-10762,Lumen Studios,Starter,Monthly,2024-03-05,,84.0,7,6,North America,Education,Paid Search,2025-06-17,1,8
+AC-10763,Vertex Academy,Starter,Monthly,2024-03-05,,60.0,5,1,APAC,Healthcare,Organic Search,2025-06-30,2,
+AC-10764,Sage Logistics,Starter,Monthly,2024-03-08,,60.0,5,1,EMEA,Financial Services,Organic Search,2025-05-16,1,
+AC-10765,Willow Logistics,Pro,Annual,2024-03-08,2024-03-18,147.9,6,6,North America,Software,Organic Search,2024-03-17,2,9
+AC-10766,Crescent Ventures,Starter,Monthly,2024-03-09,2024-04-06,48.0,4,3,North America,Software,Organic Search,2024-04-03,1,7
+AC-10767,Lumen Group,Starter,Monthly,2024-03-12,,36.0,3,1,EMEA,Financial Services,Organic Search,2025-06-30,1,8
+AC-10768,Lumen Retail,Starter,Annual,2024-03-12,,51.0,5,4,North America,Software,Event,2025-06-29,1,5
+AC-10769,Falcon Solutions,Starter,Monthly,2024-03-13,2024-03-28,36.0,3,2,North America,Software,Organic Search,2024-03-26,1,
+AC-10770,Clear Freight,Starter,Annual,2024-03-13,2024-07-01,61.2,6,4,EMEA,Manufacturing,Referral,2024-06-25,2,
+AC-10771,Delta Retail,Pro,Monthly,2024-03-14,2025-01-17,609.0,21,19,EMEA,Healthcare,Paid Search,2025-01-14,1,8
+AC-10772,Cedar Clinics,Pro,Annual,2024-03-15,,123.25,5,4,North America,Nonprofit,Organic Search,2025-06-29,2,8
+AC-10773,Harbor Academy,Pro,Monthly,2024-03-15,2024-03-16,348.0,12,6,North America,Nonprofit,Referral,2024-03-15,6,2
+AC-10774,Harbor Group,Pro,Monthly,2024-03-16,2024-03-19,464.0,16,12,North America,Healthcare,Partner,2024-03-16,3,
+AC-10775,Falcon Labs,Starter,Monthly,2024-03-17,,24.0,2,1,North America,Nonprofit,Referral,2025-06-22,2,7
+AC-10776,North Health,Pro,Annual,2024-03-17,,197.2,8,7,North America,Education,Organic Search,2025-06-29,3,8
+AC-10777,Maple Media,Pro,Annual,2024-03-20,,394.4,16,13,EMEA,Nonprofit,Paid Search,2025-06-26,4,
+AC-10778,Lumen Learning,Pro,Annual,2024-03-22,,566.95,23,14,APAC,Software,Referral,2025-06-27,7,8
+AC-10779,Atlas Studios,Starter,Monthly,2024-03-22,,72.0,6,4,APAC,Software,Partner,2025-05-02,1,9
+AC-10780,Juniper Solutions,Enterprise,Annual,2024-03-24,,2335.85,51,46,LATAM,Financial Services,Outbound Sales,2025-06-30,5,3
+AC-10781,Iron Works,Starter,Monthly,2024-03-26,,48.0,4,2,North America,Healthcare,Organic Search,2025-06-29,2,
+AC-10782,North Analytics,Pro,Annual,2024-03-27,,813.45,33,23,EMEA,Software,Paid Search,2025-06-27,6,
+AC-10783,Sage Foods,Pro,Annual,2024-03-28,,394.4,16,4,APAC,Financial Services,Event,2025-01-09,1,9
+AC-10784,Meridian Designs,Pro,Annual,2024-03-29,2024-09-15,690.2,28,20,North America,Healthcare,Referral,2024-09-12,3,4
+AC-10785,Amber Designs,Starter,Monthly,2024-03-29,2024-03-30,60.0,5,3,EMEA,Manufacturing,Referral,2024-03-29,0,3
+AC-10786,Granite Collective,Enterprise,Annual,2024-03-29,,33839.03,844,522,North America,Software,Outbound Sales,2025-06-30,13,4
+AC-10787,Willow Dynamics,Starter,Monthly,2024-03-30,,48.0,4,2,North America,Retail,Organic Search,2025-05-30,2,
+AC-10788,Vertex Software,Starter,Monthly,2024-03-31,,36.0,3,2,North America,Nonprofit,Paid Search,2025-06-18,2,9
+AC-10789,Green Bio,Pro,Annual,2024-04-01,2025-06-20,147.9,6,4,LATAM,Retail,Event,2025-06-16,4,
+AC-10790,Crescent Academy,Pro,Annual,2024-04-01,,468.35,19,15,EMEA,Manufacturing,Paid Search,2025-06-20,4,8
+AC-10791,Juniper Robotics,Starter,Monthly,2024-04-01,2024-05-10,48.0,4,3,EMEA,Media,Organic Search,2024-05-06,3,9
+AC-10792,Delta Capital,Starter,Monthly,2024-04-01,2025-01-21,36.0,3,1,APAC,Retail,Referral,2025-01-13,1,9
+AC-10793,Golden Ventures,Enterprise,Annual,2024-04-04,,9573.22,242,149,North America,Nonprofit,Outbound Sales,2025-06-28,0,9
+AC-10794,Golden Capital,Starter,Monthly,2024-04-04,2024-04-11,36.0,3,3,APAC,Software,Referral,2024-04-10,1,4
+AC-10795,Pine Labs,Starter,Monthly,2024-04-08,2024-11-17,48.0,4,1,North America,Financial Services,Organic Search,2024-11-16,0,8
+AC-10796,Horizon Logistics,Starter,Monthly,2024-04-09,2025-06-18,60.0,5,3,North America,Financial Services,Organic Search,2025-06-16,0,0
+AC-10797,Apex Bio,Pro,Annual,2024-04-10,,591.6,24,15,North America,Media,Event,2025-02-17,2,
+AC-10798,Peak Academy,Pro,Annual,2024-04-12,,443.7,18,16,North America,Software,Outbound Sales,2025-06-28,3,9
+AC-10799,Amber Health,Pro,Monthly,2024-04-14,,203.0,7,4,North America,Healthcare,Partner,2025-06-24,4,8
+AC-10800,Clear Academy,Starter,Monthly,2024-04-16,,84.0,7,7,North America,Manufacturing,Event,2025-05-16,0,
+AC-10801,Falcon Energy,Starter,Monthly,2024-04-17,,36.0,3,3,EMEA,Healthcare,Referral,2025-06-26,1,
+AC-10802,Nova Collective,Pro,Monthly,2024-04-18,2024-08-06,870.0,30,20,EMEA,Retail,Partner,2024-07-29,4,9
+AC-10803,Swift Dynamics,Enterprise,Annual,2024-04-20,,5913.01,132,100,EMEA,Nonprofit,Outbound Sales,2025-06-29,7,8
+AC-10804,Crescent Works,Pro,Monthly,2024-04-20,,580.0,20,14,APAC,Healthcare,Outbound Sales,2025-06-30,0,10
+AC-10805,Willow Academy,Starter,Monthly,2024-04-22,,36.0,3,1,North America,Education,Organic Search,2025-06-30,3,10
+AC-10806,Atlas Learning,Starter,Annual,2024-04-23,,40.8,4,4,EMEA,Software,Paid Search,2025-06-19,0,10
+AC-10807,Green Foods,Starter,Monthly,2024-04-26,,36.0,3,2,EMEA,Software,Referral,2024-11-02,1,
+AC-10808,Granite Capital,Pro,Annual,2024-04-26,2024-05-02,271.15,11,6,North America,Education,Organic Search,2024-04-26,0,7
+AC-10809,Nova Logistics,Starter,Annual,2024-04-28,,20.4,2,2,North America,Software,Paid Search,2025-06-27,0,10
+AC-10810,Green Supply,Pro,Annual,2024-04-29,2025-05-12,566.95,23,16,APAC,Software,Referral,2025-05-12,2,
+AC-10811,Beacon Designs,Starter,Annual,2024-05-01,,40.8,4,2,North America,Retail,Organic Search,2024-09-08,0,9
+AC-10812,Pine Bio,Starter,Annual,2024-05-05,,30.6,3,2,EMEA,Retail,Partner,2025-06-29,2,7
+AC-10813,Lumen Analytics,Pro,Monthly,2024-05-06,,609.0,21,14,APAC,Software,Organic Search,2025-06-26,6,3
+AC-10814,Blue Manufacturing,Pro,Annual,2024-05-07,,1010.65,41,7,North America,Financial Services,Partner,2025-06-29,7,9
+AC-10815,Harbor Labs,Starter,Monthly,2024-05-08,2024-06-17,48.0,4,3,APAC,Retail,Event,2024-05-27,1,5
+AC-10816,River Learning,Starter,Annual,2024-05-16,,51.0,5,1,EMEA,Software,Organic Search,2025-06-25,2,8
+AC-10817,Echo Supply,Starter,Annual,2024-05-17,2024-05-29,51.0,5,3,North America,Manufacturing,Referral,2024-05-23,3,6
+AC-10818,Atlas Robotics,Starter,Monthly,2024-05-17,,36.0,3,3,North America,Financial Services,Paid Search,2025-06-27,0,4
+AC-10819,Swift Collective,Pro,Monthly,2024-05-17,,493.0,17,11,EMEA,Software,Paid Search,2025-05-26,3,
+AC-10820,Nova Foods,Starter,Monthly,2024-05-18,,48.0,4,3,EMEA,Software,Paid Search,2025-06-29,0,
+AC-10821,Atlas Energy,Pro,Monthly,2024-05-21,,261.0,9,8,North America,Nonprofit,Paid Search,2025-05-31,8,
+AC-10822,Horizon Finance,Pro,Monthly,2024-05-21,,522.0,18,17,APAC,Software,Paid Search,2025-06-29,2,
+AC-10823,Beacon Supply,Pro,Annual,2024-05-21,,345.1,14,11,EMEA,Healthcare,Paid Search,2025-06-28,8,10
+AC-10824,Crescent Studios,Starter,Annual,2024-05-21,,61.2,6,5,APAC,Media,Paid Search,2025-05-12,2,
+AC-10825,Pine Solutions,Starter,Monthly,2024-05-21,2024-06-04,84.0,7,6,APAC,Retail,Partner,2024-06-02,2,4
+AC-10826,Golden Clinics,Pro,Monthly,2024-05-25,2024-08-11,522.0,18,15,APAC,Retail,Referral,2024-08-02,6,10
+AC-10827,Granite Bio,Starter,Monthly,2024-05-26,,36.0,3,2,APAC,Healthcare,Organic Search,2025-06-30,2,9
+AC-10828,Blue Software,Starter,Monthly,2024-05-26,,108.0,9,6,APAC,Education,Organic Search,2025-06-23,1,3
+AC-10829,Harbor Energy,Starter,Monthly,2024-05-28,,48.0,4,3,North America,Software,Paid Search,2025-06-23,3,
+AC-10830,Apex Foods,Pro,Monthly,2024-05-28,,406.0,14,11,LATAM,Retail,Partner,2025-06-30,2,8
+AC-10831,Iron Energy,Starter,Annual,2024-05-28,2024-11-01,40.8,4,4,EMEA,Manufacturing,Organic Search,2024-10-21,2,4
+AC-10832,River Finance,Pro,Monthly,2024-05-29,,174.0,6,5,APAC,Retail,Outbound Sales,2025-06-30,4,
+AC-10833,Orbit Foods,Starter,Monthly,2024-05-29,,36.0,3,2,EMEA,Software,Paid Search,2025-05-28,2,5
+AC-10834,Nova Retail,Starter,Monthly,2024-05-30,2025-06-05,72.0,6,4,EMEA,Education,Organic Search,2025-05-30,0,
+AC-10835,Orbit Freight,Enterprise,Annual,2024-05-30,,1493.74,33,23,APAC,Retail,Outbound Sales,2025-06-13,6,10
+AC-10836,Pine Software,Starter,Monthly,2024-05-31,2024-09-22,60.0,5,1,LATAM,Education,Outbound Sales,2024-09-20,0,
+AC-10837,Granite Energy,Starter,Monthly,2024-06-01,,36.0,3,2,North America,Nonprofit,Paid Search,2025-06-30,1,9
+AC-10838,Green Freight,Starter,Annual,2024-06-02,,30.6,3,1,EMEA,Financial Services,Organic Search,2025-06-29,0,
+AC-10839,Green Health,Pro,Monthly,2024-06-02,2024-11-01,522.0,18,13,North America,Healthcare,Organic Search,2024-10-28,1,9
+AC-10840,Horizon Manufacturing,Starter,Monthly,2024-06-02,2024-06-13,36.0,3,2,North America,Software,Paid Search,2024-06-02,2,7
+AC-10841,Maple Academy,Pro,Annual,2024-06-03,,493.0,20,1,North America,Software,Paid Search,2025-06-19,4,9
+AC-10842,Delta Energy,Starter,Monthly,2024-06-04,,96.0,8,4,APAC,Retail,Organic Search,2025-06-16,2,
+AC-10843,Silver Energy,Pro,Annual,2024-06-06,,591.6,24,8,North America,Education,Organic Search,2025-06-27,3,
+AC-10844,River Systems,Starter,Monthly,2024-06-07,,24.0,2,1,EMEA,Retail,Organic Search,2025-05-26,2,9
+AC-10845,Bright Energy,Starter,Monthly,2024-06-07,,48.0,4,3,North America,Software,Partner,2025-06-29,3,7
+AC-10846,Falcon Logistics,Starter,Monthly,2024-06-08,,48.0,4,3,APAC,Healthcare,Paid Search,2025-06-25,4,10
+AC-10847,Falcon Works,Starter,Annual,2024-06-08,,20.4,2,2,LATAM,Healthcare,Paid Search,2025-02-24,0,9
+AC-10848,Swift Learning,Pro,Monthly,2024-06-09,,406.0,14,10,APAC,Software,Outbound Sales,2025-06-24,8,7
+AC-10849,Sage Labs,Starter,Annual,2024-06-10,,40.8,4,2,EMEA,Software,Paid Search,2025-06-29,2,9
+AC-10850,Green Solutions,Pro,Monthly,2024-06-10,2024-07-12,870.0,30,17,APAC,Manufacturing,Outbound Sales,2024-07-04,3,7
+AC-10851,Falcon Group,Enterprise,Annual,2024-06-12,,19222.81,543,225,North America,Education,Referral,2025-02-28,4,10
+AC-10852,Stone Networks,Starter,Monthly,2024-06-13,2024-08-08,12.0,1,1,North America,Software,Paid Search,2024-08-04,0,
+AC-10853,Quartz Logistics,Pro,Monthly,2024-06-13,,493.0,17,12,North America,Education,Organic Search,2025-06-28,6,9
+AC-10854,Granite Group,Enterprise,Annual,2024-06-14,,11515.51,278,227,North America,Manufacturing,Paid Search,2025-06-28,7,
+AC-10855,Golden Partners,Starter,Monthly,2024-06-14,2025-06-07,24.0,2,1,North America,Retail,Paid Search,2025-05-31,2,
+AC-10856,Summit Academy,Starter,Monthly,2024-06-15,,48.0,4,0,North America,Software,Organic Search,2025-06-19,0,
+AC-10857,Beacon Systems,Starter,Monthly,2024-06-15,2025-04-13,48.0,4,3,North America,Media,Referral,2025-04-10,1,0
+AC-10858,Cobalt Foods,Pro,Annual,2024-06-16,,1010.65,41,38,APAC,Nonprofit,Outbound Sales,2025-06-16,5,
+AC-10859,Orbit Capital,Pro,Monthly,2024-06-20,2024-07-25,986.0,34,33,North America,Healthcare,Organic Search,2024-07-15,7,9
+AC-10860,Golden Energy,Pro,Monthly,2024-06-20,,145.0,5,1,APAC,Software,Referral,2024-10-19,1,
+AC-10861,Iron Analytics,Starter,Monthly,2024-06-22,2025-01-13,48.0,4,4,North America,Media,Paid Search,2025-01-12,1,
+AC-10862,Cobalt Solutions,Starter,Monthly,2024-06-22,,60.0,5,4,APAC,Financial Services,Event,2025-06-24,3,9
+AC-10863,Swift Bio,Starter,Annual,2024-06-24,,40.8,4,3,North America,Financial Services,Organic Search,2025-06-28,1,8
+AC-10864,Summit Bio,Starter,Monthly,2024-06-26,2024-08-09,96.0,8,5,North America,Retail,Paid Search,2024-08-08,2,5
+AC-10865,Blue Collective,Starter,Monthly,2024-06-28,,36.0,3,2,EMEA,Education,Referral,2025-06-24,1,7
+AC-10866,Peak Collective,Starter,Monthly,2024-06-28,,36.0,3,1,North America,Education,Referral,2025-06-08,1,5
+AC-10867,Cedar Networks,Enterprise,Annual,2024-07-03,,1090.77,25,15,LATAM,Healthcare,Referral,2025-05-31,7,
+AC-10868,Orbit Logistics,Starter,Monthly,2024-07-03,2024-12-14,36.0,3,2,North America,Software,Referral,2024-12-13,1,8
+AC-10869,Willow Software,Starter,Monthly,2024-07-05,,36.0,3,1,North America,Nonprofit,Paid Search,2025-06-30,0,
+AC-10870,Iron Bio,Pro,Annual,2024-07-05,,566.95,23,20,APAC,Nonprofit,Outbound Sales,2025-06-29,4,8
+AC-10871,Maple Partners,Starter,Monthly,2024-07-05,,120.0,10,7,North America,Media,Paid Search,2024-10-20,1,
+AC-10872,Cobalt Retail,Pro,Monthly,2024-07-07,2024-11-15,2320.0,80,16,APAC,Manufacturing,Partner,2024-10-31,4,4
+AC-10873,Silver Systems,Starter,Annual,2024-07-08,,61.2,6,3,North America,Financial Services,Outbound Sales,2025-06-22,1,
+AC-10874,Juniper Ventures,Starter,Monthly,2024-07-10,2024-08-20,36.0,3,2,APAC,Financial Services,Organic Search,2024-08-17,1,
+AC-10875,Beacon Collective,Pro,Monthly,2024-07-11,,203.0,7,4,EMEA,Healthcare,Paid Search,2025-06-30,10,8
+AC-10876,Oak Solutions,Pro,Monthly,2024-07-11,,319.0,11,9,APAC,Healthcare,Referral,2025-06-18,2,8
+AC-10877,Golden Learning,Enterprise,Annual,2024-07-13,,7159.53,194,24,North America,Software,Outbound Sales,2025-06-29,14,3
+AC-10878,Sage Learning,Starter,Monthly,2024-07-13,2025-05-30,72.0,6,4,EMEA,Nonprofit,Paid Search,2025-05-27,0,7
+AC-10879,Juniper Labs,Pro,Monthly,2024-07-14,,435.0,15,8,APAC,Education,Organic Search,2025-06-25,7,10
+AC-10880,Amber Energy,Starter,Annual,2024-07-15,2024-09-27,61.2,6,6,EMEA,Healthcare,Referral,2024-09-17,1,
+AC-10881,Coral Supply,Starter,Annual,2024-07-18,2025-03-13,40.8,4,4,North America,Software,Organic Search,2025-03-11,0,
+AC-10882,Summit Collective,Pro,Monthly,2024-07-18,2024-10-02,232.0,8,6,North America,Education,Organic Search,2024-09-24,4,
+AC-10883,Summit Retail,Starter,Monthly,2024-07-19,,36.0,3,1,LATAM,Nonprofit,Organic Search,2025-03-13,0,
+AC-10884,Iron Partners,Starter,Monthly,2024-07-20,,48.0,4,3,North America,Education,Event,2025-06-22,0,8
+AC-10885,Harbor Collective,Starter,Monthly,2024-07-23,,48.0,4,3,North America,Software,Outbound Sales,2025-06-29,1,
+AC-10886,Pine Clinics,Pro,Annual,2024-07-23,2024-08-05,493.0,20,11,EMEA,Education,Organic Search,2024-08-05,8,
+AC-10887,Peak Ventures,Starter,Monthly,2024-07-25,,72.0,6,3,North America,Software,Referral,2025-06-12,0,10
+AC-10888,Juniper Systems,Starter,Annual,2024-07-25,,10.2,1,1,North America,Manufacturing,Organic Search,2025-06-24,3,6
+AC-10889,Cobalt Partners,Starter,Annual,2024-07-25,2024-08-05,40.8,4,2,LATAM,Education,Organic Search,2024-07-25,2,4
+AC-10890,Juniper Clinics,Starter,Annual,2024-07-31,,71.4,7,7,North America,Media,Organic Search,2025-05-05,3,7
+AC-10891,Horizon Dynamics,Pro,Monthly,2024-07-31,2024-09-06,725.0,25,17,North America,Software,Organic Search,2024-08-27,2,7
+AC-10892,North Partners,Starter,Monthly,2024-07-31,2025-01-22,84.0,7,4,North America,Media,Organic Search,2025-01-22,2,7
+AC-10893,Clear Group,Pro,Annual,2024-08-01,,221.85,9,1,EMEA,Financial Services,Paid Search,2025-06-29,3,
+AC-10894,Red Media,Pro,Monthly,2024-08-02,,899.0,31,1,North America,Software,Organic Search,2025-06-27,4,8
+AC-10895,Delta Dynamics,Starter,Monthly,2024-08-04,,72.0,6,5,EMEA,Manufacturing,Organic Search,2025-05-27,4,
+AC-10896,Summit Energy,Starter,Monthly,2024-08-04,,24.0,2,1,APAC,Healthcare,Event,2025-04-26,3,9
+AC-10897,Delta Labs,Starter,Monthly,2024-08-05,,36.0,3,2,North America,Manufacturing,Organic Search,2025-06-26,3,
+AC-10898,Maple Health,Pro,Monthly,2024-08-07,,725.0,25,24,North America,Healthcare,Paid Search,2025-06-29,4,8
+AC-10899,Stone Clinics,Pro,Annual,2024-08-09,,172.55,7,6,LATAM,Healthcare,Organic Search,2025-06-27,3,8
+AC-10900,Horizon Health,Starter,Monthly,2024-08-09,,48.0,4,1,APAC,Education,Organic Search,2025-03-26,0,7
+AC-10901,Cobalt Systems,Starter,Monthly,2024-08-10,,72.0,6,1,LATAM,Software,Referral,2024-12-15,3,10
+AC-10902,Green Dynamics,Pro,Monthly,2024-08-12,,319.0,11,5,LATAM,Software,Event,2025-06-30,9,
+AC-10903,Clear Analytics,Pro,Monthly,2024-08-14,,232.0,8,6,EMEA,Nonprofit,Outbound Sales,2025-06-29,5,9
+AC-10904,Peak Retail,Pro,Annual,2024-08-16,2024-09-06,591.6,24,17,North America,Retail,Outbound Sales,2024-09-06,4,6
+AC-10905,Harbor Logistics,Starter,Monthly,2024-08-16,,84.0,7,4,North America,Retail,Paid Search,2025-06-25,0,8
+AC-10906,North Software,Enterprise,Annual,2024-08-18,2024-08-29,6595.03,182,180,APAC,Retail,Event,2024-08-29,7,7
+AC-10907,Vertex Health,Starter,Monthly,2024-08-18,2024-09-16,12.0,1,1,LATAM,Financial Services,Paid Search,2024-09-05,0,4
+AC-10908,Juniper Retail,Starter,Annual,2024-08-19,,20.4,2,1,EMEA,Healthcare,Paid Search,2025-05-18,0,10
+AC-10909,Swift Partners,Starter,Monthly,2024-08-20,2025-01-01,36.0,3,3,APAC,Nonprofit,Paid Search,2024-12-26,0,10
+AC-10910,Pine Analytics,Enterprise,Annual,2024-08-20,,6190.74,153,135,APAC,Retail,Outbound Sales,2025-06-24,11,6
+AC-10911,Bright Solutions,Pro,Annual,2024-08-20,,197.2,8,5,North America,Healthcare,Referral,2025-06-29,0,
+AC-10912,Nova Manufacturing,Pro,Annual,2024-08-21,,147.9,6,2,APAC,Financial Services,Outbound Sales,2025-06-26,3,9
+AC-10913,River Retail,Starter,Monthly,2024-08-22,,36.0,3,1,North America,Financial Services,Referral,2024-11-12,3,10
+AC-10914,Juniper Bio,Pro,Annual,2024-08-23,2024-08-27,542.3,22,19,North America,Financial Services,Paid Search,2024-08-26,0,7
+AC-10915,Oak Supply,Starter,Monthly,2024-08-25,,24.0,2,1,North America,Manufacturing,Organic Search,2024-11-20,0,7
+AC-10916,Horizon Bio,Starter,Monthly,2024-08-25,2025-04-15,48.0,4,3,EMEA,Media,Paid Search,2025-04-07,0,7
+AC-10917,Harbor Studios,Starter,Monthly,2024-08-25,,36.0,3,2,North America,Financial Services,Outbound Sales,2025-06-28,0,10
+AC-10918,Granite Foods,Pro,Monthly,2024-08-26,,290.0,10,8,LATAM,Education,Paid Search,2025-06-30,3,7
+AC-10919,Vertex Finance,Starter,Monthly,2024-08-26,2024-10-29,84.0,7,7,EMEA,Education,Referral,2024-10-14,3,5
+AC-10920,Stone Supply,Enterprise,Monthly,2024-08-29,,1811.61,43,30,North America,Education,Event,2025-06-23,12,6
+AC-10921,Oak Networks,Enterprise,Annual,2024-08-30,,4681.02,111,98,North America,Software,Outbound Sales,2025-06-22,2,8
+AC-10922,Atlas Software,Pro,Monthly,2024-08-30,,1334.0,46,20,LATAM,Education,Outbound Sales,2025-05-24,2,
+AC-10923,Silver Works,Starter,Monthly,2024-08-30,,48.0,4,1,EMEA,Software,Event,2025-06-27,0,10
+AC-10924,Stone Software,Starter,Monthly,2024-09-01,2024-09-19,48.0,4,1,APAC,Retail,Event,2024-09-10,0,
+AC-10925,Iron Foods,Starter,Monthly,2024-09-02,,60.0,5,4,APAC,Financial Services,Paid Search,2025-06-30,1,
+AC-10926,Echo Manufacturing,Pro,Monthly,2024-09-02,,435.0,15,14,North America,Retail,Event,2025-06-24,3,10
+AC-10927,Coral Foods,Starter,Monthly,2024-09-03,2024-10-06,36.0,3,2,EMEA,Software,Organic Search,2024-09-24,1,7
+AC-10928,Swift Health,Enterprise,Annual,2024-09-06,,6679.86,147,100,North America,Healthcare,Paid Search,2025-06-30,7,
+AC-10929,Clear Collective,Starter,Monthly,2024-09-08,,24.0,2,1,North America,Software,Paid Search,2025-06-16,2,1
+AC-10930,Swift Labs,Starter,Monthly,2024-09-08,,72.0,6,3,North America,Software,Referral,2025-06-29,4,
+AC-10931,Meridian Works,Pro,Annual,2024-09-10,,419.05,17,12,APAC,Media,Partner,2025-03-05,1,
+AC-10932,Green Media,Enterprise,Monthly,2024-09-10,,2822.78,55,15,North America,Media,Event,2025-06-27,9,
+AC-10933,Lumen Software,Pro,Annual,2024-09-11,2025-06-06,640.9,26,14,EMEA,Financial Services,Outbound Sales,2025-05-30,4,5
+AC-10934,Green Analytics,Starter,Monthly,2024-09-11,2024-12-18,48.0,4,2,EMEA,Software,Paid Search,2024-12-15,2,6
+AC-10935,River Foods,Starter,Monthly,2024-09-12,,36.0,3,2,North America,Software,Organic Search,2025-06-17,0,8
+AC-10936,Iron Dynamics,Pro,Monthly,2024-09-13,2024-09-25,319.0,11,4,LATAM,Retail,Partner,2024-09-17,2,
+AC-10937,Amber Capital,Pro,Annual,2024-09-13,2024-09-23,542.3,22,7,APAC,Nonprofit,Event,2024-09-13,2,
+AC-10938,Crescent Supply,Enterprise,Annual,2024-09-14,,2497.53,68,54,North America,Financial Services,Outbound Sales,2025-02-12,3,
+AC-10939,Apex Software,Pro,Annual,2024-09-14,,788.8,32,16,APAC,Manufacturing,Paid Search,2025-06-08,6,9
+AC-10940,Blue Supply,Pro,Annual,2024-09-16,,271.15,11,8,LATAM,Nonprofit,Outbound Sales,2025-06-30,2,7
+AC-10941,Vertex Dynamics,Pro,Monthly,2024-09-17,,406.0,14,12,EMEA,Media,Partner,2025-06-30,0,
+AC-10942,Echo Networks,Pro,Annual,2024-09-18,,147.9,6,3,EMEA,Healthcare,Event,2024-09-18,4,9
+AC-10943,Coral Learning,Pro,Monthly,2024-09-20,,261.0,9,8,North America,Financial Services,Referral,2025-06-27,2,8
+AC-10944,Atlas Collective,Starter,Monthly,2024-09-23,,48.0,4,1,EMEA,Nonprofit,Paid Search,2025-06-10,0,
+AC-10945,Vertex Foods,Starter,Monthly,2024-09-23,2024-10-04,72.0,6,5,EMEA,Healthcare,Organic Search,2024-10-01,0,6
+AC-10946,Crescent Media,Starter,Monthly,2024-09-24,,60.0,5,4,North America,Manufacturing,Organic Search,2025-06-25,3,10
+AC-10947,Falcon Collective,Starter,Monthly,2024-09-24,2024-10-08,36.0,3,1,North America,Software,Referral,2024-10-05,0,
+AC-10948,Beacon Logistics,Enterprise,Monthly,2024-09-25,,4092.67,80,41,LATAM,Manufacturing,Outbound Sales,2025-06-30,7,8
+AC-10949,Pine Academy,Pro,Annual,2024-09-28,2024-10-02,394.4,16,14,LATAM,Media,Paid Search,2024-09-28,4,
+AC-10950,Pine Group,Pro,Monthly,2024-10-03,,319.0,11,10,North America,Financial Services,Organic Search,2024-10-03,1,9
+AC-10951,Falcon Bio,Enterprise,Annual,2024-10-04,,2315.77,52,28,APAC,Software,Outbound Sales,2025-06-16,7,9
+AC-10952,Summit Networks,Starter,Monthly,2024-10-06,,60.0,5,4,North America,Financial Services,Referral,2025-06-26,0,9
+AC-10953,Summit Clinics,Enterprise,Annual,2024-10-08,,2000.82,55,50,EMEA,Education,Event,2025-06-30,6,
+AC-10954,River Bio,Enterprise,Annual,2024-10-09,,4792.26,135,124,EMEA,Nonprofit,Partner,2025-06-30,5,
+AC-10955,Quartz Media,Starter,Monthly,2024-10-10,,24.0,2,1,EMEA,Nonprofit,Paid Search,2025-06-16,2,5
+AC-10956,Apex Finance,Starter,Monthly,2024-10-12,,36.0,3,3,EMEA,Nonprofit,Paid Search,2025-06-12,2,
+AC-10957,Stone Ventures,Starter,Monthly,2024-10-13,,12.0,1,1,APAC,Nonprofit,Organic Search,2025-06-28,0,
+AC-10958,Beacon Retail,Starter,Monthly,2024-10-13,2024-11-24,60.0,5,4,EMEA,Software,Partner,2024-11-23,1,
+AC-10959,Orbit Group,Enterprise,Annual,2024-10-16,,1583.76,36,31,North America,Healthcare,Outbound Sales,2025-06-24,6,9
+AC-10960,Crescent Solutions,Starter,Annual,2024-10-16,,61.2,6,5,North America,Nonprofit,Outbound Sales,2025-05-15,2,
+AC-10961,Falcon Retail,Enterprise,Annual,2024-10-16,,3028.57,66,45,EMEA,Nonprofit,Paid Search,2025-06-30,6,8
+AC-10962,Clear Studios,Pro,Annual,2024-10-17,,493.0,20,15,APAC,Software,Referral,2024-11-12,4,
+AC-10963,Golden Works,Starter,Monthly,2024-10-18,,36.0,3,1,North America,Education,Paid Search,2025-05-14,2,10
+AC-10964,Echo Group,Starter,Annual,2024-10-20,2025-05-04,20.4,2,0,North America,Software,Organic Search,2025-05-01,0,7
+AC-10965,Vertex Capital,Pro,Monthly,2024-10-20,,580.0,20,15,EMEA,Retail,Organic Search,2025-05-13,3,
+AC-10966,Silver Manufacturing,Starter,Monthly,2024-10-22,,60.0,5,5,EMEA,Software,Organic Search,2025-05-09,3,
+AC-10967,Iron Freight,Starter,Monthly,2024-10-23,,36.0,3,3,North America,Software,Paid Search,2025-06-20,3,0
+AC-10968,Vertex Energy,Starter,Monthly,2024-10-27,2024-11-20,84.0,7,3,EMEA,Manufacturing,Paid Search,2024-11-15,2,8
+AC-10969,Beacon Networks,Starter,Monthly,2024-10-29,2024-10-31,48.0,4,3,North America,Financial Services,Paid Search,2024-10-31,2,10
+AC-10970,Granite Media,Enterprise,Annual,2024-10-30,,35472.35,835,705,EMEA,Healthcare,Event,2025-06-27,9,8
+AC-10971,Clear Labs,Starter,Monthly,2024-11-01,,72.0,6,5,APAC,Education,Organic Search,2025-06-28,0,7
+AC-10972,Stone Energy,Enterprise,Monthly,2024-11-01,,2822.84,68,51,North America,Retail,Partner,2025-06-28,4,6
+AC-10973,Stone Health,Pro,Monthly,2024-11-01,,174.0,6,1,EMEA,Nonprofit,Paid Search,2025-06-30,6,8
+AC-10974,River Ventures,Starter,Annual,2024-11-01,2024-11-15,40.8,4,2,EMEA,Healthcare,Referral,2024-11-11,0,8
+AC-10975,Beacon Ventures,Enterprise,Annual,2024-11-01,,1677.33,43,22,EMEA,Financial Services,Organic Search,2025-06-30,10,8
+AC-10976,Nova Works,Enterprise,Annual,2024-11-02,,3724.49,97,53,North America,Financial Services,Organic Search,2025-02-01,4,7
+AC-10977,Juniper Academy,Enterprise,Annual,2024-11-02,,3829.58,85,75,North America,Healthcare,Referral,2025-06-19,8,9
+AC-10978,Clear Media,Starter,Monthly,2024-11-02,,72.0,6,3,APAC,Education,Referral,2025-06-28,1,8
+AC-10979,Apex Capital,Starter,Monthly,2024-11-02,,48.0,4,3,North America,Healthcare,Organic Search,2025-06-26,2,9
+AC-10980,Coral Software,Pro,Monthly,2024-11-04,,348.0,12,7,EMEA,Nonprofit,Organic Search,2025-05-21,3,10
+AC-10981,Clear Finance,Enterprise,Monthly,2024-11-05,,6859.69,125,18,LATAM,Media,Partner,2025-06-30,6,
+AC-10982,Meridian Software,Starter,Annual,2024-11-06,,51.0,5,4,APAC,Manufacturing,Organic Search,2025-02-21,1,
+AC-10983,Silver Dynamics,Starter,Monthly,2024-11-06,2024-11-15,60.0,5,3,North America,Software,Organic Search,2024-11-10,1,5
+AC-10984,North Finance,Starter,Monthly,2024-11-06,,60.0,5,4,APAC,Financial Services,Organic Search,2025-06-27,2,7
+AC-10985,Red Software,Starter,Monthly,2024-11-08,,36.0,3,1,EMEA,Software,Organic Search,2025-06-28,3,9
+AC-10986,Juniper Learning,Pro,Annual,2024-11-08,2024-12-18,493.0,20,14,EMEA,Education,Referral,2024-12-13,7,5
+AC-10987,Green Works,Starter,Monthly,2024-11-09,,36.0,3,2,North America,Media,Paid Search,2025-06-22,0,9
+AC-10988,Iron Finance,Starter,Monthly,2024-11-09,2024-12-09,24.0,2,2,North America,Software,Organic Search,2024-12-07,4,6
+AC-10989,Maple Bio,Pro,Monthly,2024-11-10,,1711.0,59,25,APAC,Manufacturing,Paid Search,2025-06-30,3,
+AC-10990,Cobalt Collective,Pro,Monthly,2024-11-10,2024-12-04,377.0,13,9,EMEA,Software,Paid Search,2024-11-20,3,3
+AC-10991,Summit Learning,Pro,Monthly,2024-11-12,,783.0,27,18,North America,Manufacturing,Partner,2025-04-01,4,
+AC-10992,Pine Works,Starter,Annual,2024-11-13,2024-12-11,61.2,6,4,APAC,Retail,Organic Search,2024-12-07,3,5
+AC-10993,Blue Designs,Starter,Annual,2024-11-13,,30.6,3,2,EMEA,Manufacturing,Event,2025-05-10,2,2
+AC-10994,Amber Robotics,Starter,Monthly,2024-11-14,,72.0,6,3,EMEA,Education,Paid Search,2025-05-15,0,
+AC-10995,Crescent Robotics,Pro,Annual,2024-11-15,,665.55,27,22,EMEA,Financial Services,Event,2025-03-20,2,
+AC-10996,Amber Ventures,Pro,Annual,2024-11-16,2025-04-17,246.5,10,10,North America,Media,Referral,2025-04-12,1,3
+AC-10997,River Clinics,Starter,Monthly,2024-11-18,2025-04-19,36.0,3,1,EMEA,Manufacturing,Organic Search,2025-04-19,2,5
+AC-10998,Apex Designs,Pro,Monthly,2024-11-18,,261.0,9,9,EMEA,Financial Services,Referral,2025-06-29,3,
+AC-10999,Vertex Works,Pro,Monthly,2024-11-20,,290.0,10,9,North America,Software,Referral,2025-06-02,5,9
+AC-11000,Echo Foods,Pro,Monthly,2024-11-20,,435.0,15,6,North America,Retail,Partner,2025-06-18,2,8
+AC-11001,Horizon Energy,Starter,Monthly,2024-11-20,2024-12-17,12.0,1,1,EMEA,Media,Partner,2024-11-30,2,1
+AC-11002,Sage Health,Starter,Monthly,2024-11-23,2025-04-28,84.0,7,2,EMEA,Financial Services,Partner,2025-04-26,1,
+AC-11003,Maple Works,Pro,Monthly,2024-11-25,,609.0,21,17,EMEA,Software,Event,2025-06-23,6,
+AC-11004,Quartz Capital,Pro,Monthly,2024-11-25,,377.0,13,11,LATAM,Nonprofit,Partner,2025-06-30,8,
+AC-11005,Orbit Partners,Starter,Monthly,2024-11-28,,24.0,2,1,North America,Healthcare,Organic Search,2024-11-28,1,
+AC-11006,North Academy,Pro,Monthly,2024-11-29,,145.0,5,5,LATAM,Manufacturing,Organic Search,2025-06-30,4,
+AC-11007,Granite Learning,Pro,Annual,2024-11-30,,369.75,15,3,North America,Healthcare,Referral,2025-06-30,6,
+AC-11008,Bright Finance,Starter,Monthly,2024-12-03,2024-12-12,36.0,3,3,APAC,Financial Services,Organic Search,2024-12-03,4,
+AC-11009,Golden Dynamics,Enterprise,Annual,2024-12-03,,5347.62,127,77,EMEA,Healthcare,Outbound Sales,2025-06-29,1,
+AC-11010,Peak Finance,Starter,Monthly,2024-12-07,,36.0,3,2,APAC,Nonprofit,Organic Search,2025-06-24,0,9
+AC-11011,Cobalt Designs,Pro,Monthly,2024-12-11,,638.0,22,17,North America,Manufacturing,Partner,2025-06-28,0,7
+AC-11012,Coral Capital,Starter,Monthly,2024-12-11,,96.0,8,6,LATAM,Retail,Organic Search,2025-05-09,0,
+AC-11013,Coral Solutions,Pro,Annual,2024-12-14,,369.75,15,14,North America,Media,Organic Search,2025-06-24,2,9
+AC-11014,Summit Foods,Starter,Annual,2024-12-14,,40.8,4,4,North America,Healthcare,Organic Search,2025-06-30,2,9
+AC-11015,River Collective,Starter,Monthly,2024-12-14,,36.0,3,2,APAC,Software,Paid Search,2025-06-21,2,7
+AC-11016,Vertex Logistics,Starter,Monthly,2024-12-21,,24.0,2,2,EMEA,Financial Services,Referral,2025-06-06,4,
+AC-11017,Apex Partners,Starter,Annual,2024-12-21,,91.8,9,4,North America,Software,Event,2025-06-28,2,7
+AC-11018,Oak Partners,Pro,Monthly,2024-12-21,2025-03-02,348.0,12,10,North America,Retail,Paid Search,2025-02-28,3,
+AC-11019,Atlas Bio,Starter,Monthly,2024-12-24,2025-01-30,60.0,5,2,North America,Financial Services,Referral,2025-01-27,1,
+AC-11020,Amber Partners,Starter,Annual,2024-12-26,2025-03-07,61.2,6,3,North America,Software,Organic Search,2025-03-04,2,9
+AC-11021,Pine Health,Pro,Monthly,2024-12-26,,174.0,6,1,North America,Retail,Organic Search,2025-05-05,8,8
+AC-11022,Golden Supply,Starter,Annual,2024-12-28,,20.4,2,2,LATAM,Financial Services,Organic Search,2024-12-28,0,
+AC-11023,River Analytics,Starter,Monthly,2024-12-28,,36.0,3,2,EMEA,Manufacturing,Organic Search,2025-06-28,2,9
+AC-11024,Falcon Networks,Pro,Monthly,2024-12-29,,609.0,21,8,North America,Retail,Event,2024-12-29,4,9
+AC-11025,Crescent Foods,Pro,Annual,2024-12-30,,320.45,13,11,EMEA,Nonprofit,Event,2025-05-31,3,
+AC-11026,Quartz Robotics,Starter,Monthly,2024-12-31,,36.0,3,3,North America,Healthcare,Organic Search,2025-06-28,3,8
+AC-11027,Cobalt Robotics,Pro,Monthly,2024-12-31,,696.0,24,21,EMEA,Retail,Paid Search,2025-06-19,2,
+AC-11028,Echo Ventures,Enterprise,Annual,2024-12-31,,4209.79,113,75,EMEA,Manufacturing,Outbound Sales,2025-06-28,4,10
+AC-11029,Juniper Networks,Enterprise,Annual,2025-01-03,2025-01-16,8503.65,240,120,North America,Financial Services,Outbound Sales,2025-01-10,8,10
+AC-11030,Golden Studios,Pro,Monthly,2025-01-03,,493.0,17,2,North America,Healthcare,Organic Search,2025-06-25,5,
+AC-11031,Granite Supply,Enterprise,Annual,2025-01-03,,5443.12,140,97,EMEA,Software,Referral,2025-06-29,10,
+AC-11032,Crescent Bio,Enterprise,Annual,2025-01-05,2025-01-08,7026.18,151,126,APAC,Education,Partner,2025-01-05,3,8
+AC-11033,Golden Group,Pro,Monthly,2025-01-05,,1334.0,46,30,North America,Education,Referral,2025-06-16,2,
+AC-11034,Clear Partners,Starter,Annual,2025-01-05,2025-05-04,71.4,7,5,North America,Software,Organic Search,2025-04-30,3,6
+AC-11035,Granite Clinics,Pro,Monthly,2025-01-06,,464.0,16,11,APAC,Healthcare,Paid Search,2025-06-23,0,9
+AC-11036,Orbit Works,Pro,Monthly,2025-01-06,,696.0,24,17,EMEA,Healthcare,Outbound Sales,2025-05-19,4,
+AC-11037,Pine Designs,Pro,Monthly,2025-01-07,,493.0,17,10,North America,Nonprofit,Outbound Sales,2025-06-30,1,
+AC-11038,Meridian Academy,Starter,Monthly,2025-01-08,,72.0,6,5,North America,Education,Organic Search,2025-06-30,1,9
+AC-11039,Quartz Systems,Enterprise,Annual,2025-01-10,,3340.26,87,71,EMEA,Financial Services,Outbound Sales,2025-06-26,10,
+AC-11040,Falcon Learning,Starter,Monthly,2025-01-15,2025-05-21,24.0,2,2,North America,Nonprofit,Organic Search,2025-05-12,2,
+AC-11041,Oak Foods,Enterprise,Annual,2025-01-18,2025-02-27,3020.01,68,64,North America,Healthcare,Partner,2025-01-31,7,
+AC-11042,Harbor Retail,Starter,Annual,2025-01-18,,10.2,1,1,EMEA,Retail,Paid Search,2025-06-30,1,
+AC-11043,Red Foods,Starter,Monthly,2025-01-20,,48.0,4,2,APAC,Healthcare,Event,2025-06-23,0,9
+AC-11044,Summit Robotics,Pro,Annual,2025-01-21,,912.05,37,32,LATAM,Healthcare,Referral,2025-05-26,0,
+AC-11045,Atlas Networks,Starter,Monthly,2025-01-22,,48.0,4,4,EMEA,Nonprofit,Referral,2025-06-29,0,7
+AC-11046,Orbit Collective,Starter,Monthly,2025-01-23,,60.0,5,5,EMEA,Financial Services,Organic Search,2025-06-29,0,10
+AC-11047,Amber Collective,Pro,Monthly,2025-01-23,2025-04-17,261.0,9,7,North America,Media,Event,2025-04-05,2,
+AC-11048,Cedar Studios,Pro,Annual,2025-01-23,,295.8,12,9,North America,Manufacturing,Referral,2025-06-28,4,8
+AC-11049,Oak Learning,Enterprise,Annual,2025-01-24,,1857.47,48,35,EMEA,Software,Outbound Sales,2025-06-29,21,10
+AC-11050,Juniper Manufacturing,Pro,Monthly,2025-01-25,,551.0,19,18,EMEA,Media,Organic Search,2025-06-29,5,
+AC-11051,Vertex Group,Enterprise,Monthly,2025-01-25,,1838.03,39,29,APAC,Software,Referral,2025-06-29,7,
+AC-11052,Echo Retail,Starter,Monthly,2025-01-26,,12.0,1,1,North America,Manufacturing,Referral,2025-06-15,1,
+AC-11053,Blue Group,Pro,Annual,2025-01-28,,468.35,19,17,APAC,Software,Organic Search,2025-06-29,3,
+AC-11054,Golden Systems,Pro,Annual,2025-01-28,2025-03-16,616.25,25,13,North America,Education,Paid Search,2025-03-16,2,9
+AC-11055,Golden Software,Starter,Monthly,2025-01-28,,36.0,3,2,APAC,Software,Event,2025-01-28,3,9
+AC-11056,Peak Bio,Pro,Monthly,2025-01-29,,290.0,10,9,APAC,Nonprofit,Organic Search,2025-05-28,4,
+AC-11057,North Ventures,Pro,Annual,2025-01-29,,739.5,30,5,LATAM,Education,Referral,2025-05-19,6,6
+AC-11058,Echo Media,Pro,Annual,2025-02-01,,221.85,9,7,North America,Retail,Paid Search,2025-06-27,10,10
+AC-11059,Stone Group,Enterprise,Annual,2025-02-02,,4253.92,108,39,North America,Healthcare,Partner,2025-06-30,2,8
+AC-11060,Amber Labs,Pro,Annual,2025-02-02,,123.25,5,5,North America,Financial Services,Paid Search,2025-06-29,3,
+AC-11061,Vertex Analytics,Starter,Monthly,2025-02-03,,36.0,3,2,APAC,Financial Services,Organic Search,2025-06-30,2,9
+AC-11062,Orbit Academy,Pro,Annual,2025-02-04,,123.25,5,3,APAC,Healthcare,Referral,2025-06-14,4,
+AC-11063,Meridian Supply,Pro,Annual,2025-02-05,,443.7,18,11,EMEA,Financial Services,Referral,2025-06-24,2,9
+AC-11064,Atlas Finance,Pro,Annual,2025-02-05,,443.7,18,5,EMEA,Media,Organic Search,2025-06-21,3,7
+AC-11065,Clear Bio,Enterprise,Annual,2025-02-05,,14117.07,314,201,North America,Software,Referral,2025-06-30,8,9
+AC-11066,Stone Manufacturing,Pro,Monthly,2025-02-06,,1363.0,47,28,EMEA,Manufacturing,Event,2025-06-29,5,
+AC-11067,River Health,Pro,Monthly,2025-02-09,,522.0,18,6,APAC,Software,Paid Search,2025-06-30,8,5
+AC-11068,Coral Labs,Pro,Monthly,2025-02-09,2025-04-11,377.0,13,10,North America,Software,Paid Search,2025-03-30,4,
+AC-11069,Peak Capital,Starter,Monthly,2025-02-09,,72.0,6,3,North America,Nonprofit,Organic Search,2025-02-09,0,10
+AC-11070,Blue Freight,Starter,Monthly,2025-02-09,2025-02-20,24.0,2,1,LATAM,Healthcare,Paid Search,2025-02-19,0,
+AC-11071,Crescent Freight,Starter,Monthly,2025-02-11,2025-02-21,72.0,6,2,APAC,Retail,Outbound Sales,2025-02-21,0,7
+AC-11072,Red Clinics,Starter,Monthly,2025-02-12,,24.0,2,1,EMEA,Retail,Organic Search,2025-06-29,1,
+AC-11073,Cedar Manufacturing,Enterprise,Monthly,2025-02-12,2025-02-15,5172.05,112,54,EMEA,Financial Services,Referral,2025-02-12,10,7
+AC-11074,Amber Foods,Starter,Monthly,2025-02-13,,36.0,3,1,North America,Retail,Referral,2025-06-28,4,
+AC-11075,Cobalt Logistics,Enterprise,Annual,2025-02-14,,3282.27,89,41,North America,Retail,Outbound Sales,2025-06-23,8,9
+AC-11076,Blue Retail,Starter,Annual,2025-02-14,,61.2,6,4,North America,Manufacturing,Organic Search,2025-06-28,0,7
+AC-11077,Swift Logistics,Starter,Monthly,2025-02-16,,24.0,2,2,North America,Software,Paid Search,2025-05-25,1,8
+AC-11078,Summit Manufacturing,Starter,Monthly,2025-02-18,2025-02-20,72.0,6,2,EMEA,Software,Paid Search,2025-02-18,0,
+AC-11079,Stone Foods,Pro,Monthly,2025-02-18,,319.0,11,8,EMEA,Software,Organic Search,2025-06-26,1,
+AC-11080,Stone Systems,Enterprise,Annual,2025-02-19,,4231.43,93,64,EMEA,Financial Services,Outbound Sales,2025-04-07,9,
+AC-11081,Pine Learning,Pro,Annual,2025-02-20,,295.8,12,1,EMEA,Manufacturing,Organic Search,2025-06-28,2,9
+AC-11082,Swift Capital,Starter,Annual,2025-02-22,,20.4,2,0,EMEA,Manufacturing,Organic Search,2025-06-25,1,
+AC-11083,Summit Analytics,Pro,Annual,2025-02-22,,345.1,14,10,North America,Retail,Partner,2025-06-29,2,8
+AC-11084,Orbit Manufacturing,Starter,Monthly,2025-02-27,2025-03-08,24.0,2,1,North America,Financial Services,Paid Search,2025-02-27,1,
+AC-11085,Oak Designs,Starter,Monthly,2025-02-28,,24.0,2,2,EMEA,Software,Organic Search,2025-06-29,0,9
+AC-11086,Green Group,Pro,Monthly,2025-02-28,,232.0,8,4,EMEA,Manufacturing,Event,2025-06-29,3,8
+AC-11087,Delta Robotics,Starter,Monthly,2025-02-28,,60.0,5,2,North America,Education,Organic Search,2025-06-29,0,5
+AC-11088,Bright Health,Pro,Monthly,2025-03-01,,290.0,10,2,North America,Financial Services,Referral,2025-03-01,2,
+AC-11089,Beacon Robotics,Enterprise,Annual,2025-03-03,,3551.45,98,92,APAC,Software,Outbound Sales,2025-03-03,7,7
+AC-11090,Delta Designs,Starter,Monthly,2025-03-04,,72.0,6,5,EMEA,Software,Event,2025-05-14,1,7
+AC-11091,Peak Group,Pro,Monthly,2025-03-05,,348.0,12,9,EMEA,Healthcare,Organic Search,2025-05-17,4,5
+AC-11092,Delta Analytics,Starter,Monthly,2025-03-06,2025-06-03,48.0,4,3,North America,Manufacturing,Organic Search,2025-06-03,2,
+AC-11093,Silver Media,Starter,Monthly,2025-03-07,,24.0,2,1,LATAM,Software,Paid Search,2025-06-01,2,
+AC-11094,Red Freight,Starter,Monthly,2025-03-07,,36.0,3,2,North America,Healthcare,Organic Search,2025-06-30,6,
+AC-11095,Clear Ventures,Enterprise,Annual,2025-03-07,,3306.9,71,54,LATAM,Retail,Outbound Sales,2025-03-07,10,10
+AC-11096,Cobalt Labs,Starter,Annual,2025-03-08,,51.0,5,2,APAC,Financial Services,Organic Search,2025-05-06,1,
+AC-11097,Oak Software,Starter,Monthly,2025-03-08,,36.0,3,3,LATAM,Financial Services,Event,2025-06-26,1,10
+AC-11098,Peak Logistics,Starter,Monthly,2025-03-08,,24.0,2,2,EMEA,Nonprofit,Organic Search,2025-03-08,1,
+AC-11099,Swift Academy,Starter,Monthly,2025-03-11,,48.0,4,2,North America,Financial Services,Organic Search,2025-06-26,1,8
+AC-11100,Oak Finance,Enterprise,Annual,2025-03-12,,3031.51,66,48,EMEA,Manufacturing,Outbound Sales,2025-06-30,4,9
+AC-11101,Orbit Energy,Starter,Monthly,2025-03-12,,36.0,3,1,LATAM,Software,Organic Search,2025-06-08,0,9
+AC-11102,Sage Finance,Enterprise,Annual,2025-03-14,,3302.25,73,5,APAC,Manufacturing,Referral,2025-06-30,9,9
+AC-11103,Swift Retail,Pro,Annual,2025-03-14,2025-04-23,739.5,30,28,North America,Nonprofit,Organic Search,2025-04-11,5,7
+AC-11104,Orbit Media,Pro,Monthly,2025-03-15,,435.0,15,12,North America,Education,Outbound Sales,2025-06-25,5,9
+AC-11105,Pine Foods,Pro,Annual,2025-03-16,,419.05,17,16,APAC,Education,Event,2025-06-29,0,9
+AC-11106,Golden Solutions,Pro,Monthly,2025-03-16,,319.0,11,5,North America,Software,Event,2025-06-29,5,
+AC-11107,River Designs,Pro,Monthly,2025-03-16,,551.0,19,13,EMEA,Manufacturing,Outbound Sales,2025-06-30,5,
+AC-11108,Willow Supply,Enterprise,Annual,2025-03-17,,6575.4,173,128,North America,Financial Services,Referral,2025-06-13,6,6
+AC-11109,Horizon Ventures,Starter,Monthly,2025-03-18,,60.0,5,4,North America,Software,Organic Search,2025-06-29,0,
+AC-11110,Silver Logistics,Starter,Monthly,2025-03-19,2025-05-19,36.0,3,3,EMEA,Manufacturing,Event,2025-05-15,1,8
+AC-11111,Green Networks,Starter,Monthly,2025-03-19,2025-03-23,84.0,7,3,APAC,Software,Organic Search,2025-03-21,1,
+AC-11112,Silver Finance,Starter,Monthly,2025-03-20,,48.0,4,2,North America,Media,Paid Search,2025-06-30,3,8
+AC-11113,Vertex Robotics,Pro,Annual,2025-03-22,2025-05-03,764.15,31,25,APAC,Software,Organic Search,2025-05-03,2,
+AC-11114,Amber Dynamics,Enterprise,Annual,2025-03-22,,14876.08,343,307,APAC,Software,Outbound Sales,2025-06-22,9,9
+AC-11115,Juniper Freight,Pro,Annual,2025-03-23,2025-06-28,345.1,14,11,North America,Retail,Event,2025-06-27,3,
+AC-11116,Sage Ventures,Starter,Monthly,2025-03-23,,96.0,8,5,North America,Software,Organic Search,2025-06-19,1,5
+AC-11117,Granite Software,Starter,Monthly,2025-03-25,,24.0,2,2,North America,Software,Event,2025-06-18,1,
+AC-11118,Maple Software,Pro,Monthly,2025-03-26,,580.0,20,4,North America,Financial Services,Outbound Sales,2025-06-01,4,7
+AC-11119,Orbit Clinics,Pro,Annual,2025-03-26,,788.8,32,23,North America,Retail,Organic Search,2025-06-30,1,8
+AC-11120,Maple Supply,Pro,Annual,2025-03-26,,443.7,18,7,North America,Healthcare,Paid Search,2025-06-24,2,10
+AC-11121,Cedar Learning,Pro,Monthly,2025-03-29,,203.0,7,6,APAC,Financial Services,Organic Search,2025-05-16,1,7
+AC-11122,Crescent Manufacturing,Starter,Monthly,2025-03-31,,84.0,7,2,APAC,Nonprofit,Organic Search,2025-06-18,1,
+AC-11123,Vertex Manufacturing,Enterprise,Annual,2025-04-02,,9231.34,240,218,EMEA,Nonprofit,Outbound Sales,2025-06-21,10,
+AC-11124,Cedar Collective,Pro,Annual,2025-04-06,,1010.65,41,26,APAC,Financial Services,Paid Search,2025-06-30,10,
+AC-11125,Quartz Studios,Pro,Monthly,2025-04-06,,580.0,20,16,North America,Retail,Organic Search,2025-06-26,7,8
+AC-11126,Maple Energy,Starter,Monthly,2025-04-07,,24.0,2,2,LATAM,Financial Services,Paid Search,2025-06-30,0,
+AC-11127,Oak Dynamics,Starter,Monthly,2025-04-08,,36.0,3,3,North America,Software,Organic Search,2025-06-30,1,6
+AC-11128,Granite Health,Starter,Monthly,2025-04-09,,60.0,5,3,EMEA,Nonprofit,Partner,2025-06-24,0,
+AC-11129,Echo Robotics,Starter,Monthly,2025-04-09,,36.0,3,1,EMEA,Nonprofit,Paid Search,2025-06-20,0,
+AC-11130,Cedar Energy,Starter,Annual,2025-04-11,,81.6,8,5,APAC,Software,Paid Search,2025-06-28,1,8
+AC-11131,Quartz Collective,Pro,Annual,2025-04-14,2025-05-19,419.05,17,13,North America,Healthcare,Organic Search,2025-05-13,2,2
+AC-11132,Pine Energy,Starter,Monthly,2025-04-14,2025-04-23,60.0,5,4,EMEA,Nonprofit,Organic Search,2025-04-21,1,7
+AC-11133,Coral Analytics,Pro,Annual,2025-04-16,,172.55,7,6,North America,Retail,Partner,2025-06-27,12,7
+AC-11134,Peak Robotics,Starter,Monthly,2025-04-17,,36.0,3,2,North America,Media,Partner,2025-06-28,0,5
+AC-11135,Red Energy,Starter,Monthly,2025-04-17,,12.0,1,1,North America,Media,Paid Search,2025-06-24,1,6
+AC-11136,Delta Media,Enterprise,Annual,2025-04-17,,23312.87,636,478,North America,Financial Services,Outbound Sales,2025-06-26,10,
+AC-11137,Silver Group,Pro,Monthly,2025-04-19,,406.0,14,10,APAC,Retail,Referral,2025-06-30,3,8
+AC-11138,Echo Freight,Starter,Monthly,2025-04-19,2025-04-26,36.0,3,1,North America,Financial Services,Organic Search,2025-04-23,0,5
+AC-11139,Crescent Capital,Starter,Monthly,2025-04-20,,36.0,3,2,North America,Education,Paid Search,2025-06-28,0,9
+AC-11140,Juniper Foods,Starter,Annual,2025-04-23,2025-05-07,20.4,2,0,EMEA,Software,Paid Search,2025-04-26,1,
+AC-11141,Swift Supply,Pro,Annual,2025-04-23,,714.85,29,28,APAC,Software,Outbound Sales,2025-05-06,4,
+AC-11142,Granite Dynamics,Pro,Monthly,2025-04-23,,348.0,12,7,EMEA,Retail,Paid Search,2025-06-25,3,9
+AC-11143,Clear Supply,Starter,Monthly,2025-04-23,,24.0,2,2,North America,Financial Services,Organic Search,2025-06-12,2,9
+AC-11144,Horizon Capital,Starter,Monthly,2025-04-24,,24.0,2,1,APAC,Financial Services,Event,2025-06-29,1,8
+AC-11145,Granite Works,Starter,Monthly,2025-04-24,,84.0,7,6,EMEA,Manufacturing,Organic Search,2025-06-30,1,8
+AC-11146,Meridian Networks,Pro,Monthly,2025-04-25,,986.0,34,29,EMEA,Healthcare,Referral,2025-06-13,2,8
+AC-11147,Harbor Solutions,Starter,Annual,2025-04-26,,30.6,3,2,EMEA,Healthcare,Organic Search,2025-06-28,0,9
+AC-11148,Oak Health,Enterprise,Annual,2025-04-27,,15678.22,426,284,North America,Retail,Referral,2025-04-27,8,0
+AC-11149,Bright Academy,Pro,Monthly,2025-04-27,,638.0,22,16,APAC,Software,Outbound Sales,2025-06-25,2,
+AC-11150,Red Robotics,Starter,Annual,2025-04-28,,40.8,4,3,LATAM,Manufacturing,Organic Search,2025-04-28,2,
+AC-11151,Pine Dynamics,Starter,Annual,2025-04-29,,30.6,3,2,EMEA,Software,Referral,2025-06-28,1,8
+AC-11152,Beacon Solutions,Starter,Monthly,2025-04-29,2025-04-30,24.0,2,1,EMEA,Healthcare,Organic Search,2025-04-29,0,10
+AC-11153,Vertex Media,Enterprise,Annual,2025-04-30,,9338.16,235,112,North America,Healthcare,Referral,2025-05-27,13,8
+AC-11154,Horizon Studios,Starter,Annual,2025-05-01,,20.4,2,1,North America,Media,Paid Search,2025-06-14,0,7
+AC-11155,Delta Ventures,Starter,Monthly,2025-05-03,2025-05-06,72.0,6,6,North America,Media,Partner,2025-05-04,1,
+AC-11156,Red Ventures,Starter,Monthly,2025-05-08,2025-05-15,48.0,4,4,EMEA,Nonprofit,Organic Search,2025-05-09,2,8
+AC-11157,Peak Solutions,Pro,Monthly,2025-05-09,,290.0,10,8,APAC,Retail,Paid Search,2025-05-09,3,
+AC-11158,Willow Collective,Enterprise,Annual,2025-05-10,,2786.66,74,58,EMEA,Media,Referral,2025-06-23,11,9
+AC-11159,River Academy,Pro,Monthly,2025-05-12,,203.0,7,4,North America,Software,Paid Search,2025-06-03,2,10
+AC-11160,Meridian Manufacturing,Starter,Monthly,2025-05-12,,36.0,3,2,North America,Retail,Referral,2025-06-01,1,
+AC-11161,Bright Media,Enterprise,Annual,2025-05-12,,1537.05,43,12,EMEA,Nonprofit,Outbound Sales,2025-06-27,4,7
+AC-11162,Coral Energy,Pro,Annual,2025-05-14,,345.1,14,12,EMEA,Healthcare,Outbound Sales,2025-06-28,3,6
+AC-11163,Bright Freight,Enterprise,Annual,2025-05-17,,24754.19,645,320,North America,Media,Event,2025-06-29,1,9
+AC-11164,Horizon Works,Starter,Monthly,2025-05-17,,84.0,7,6,EMEA,Media,Event,2025-06-26,1,
+AC-11165,Echo Labs,Starter,Monthly,2025-05-19,,12.0,1,1,APAC,Financial Services,Organic Search,2025-06-29,2,10
+AC-11166,Willow Capital,Starter,Monthly,2025-05-20,,36.0,3,2,APAC,Retail,Partner,2025-06-30,0,7
+AC-11167,Bright Group,Starter,Monthly,2025-05-24,,48.0,4,3,North America,Nonprofit,Referral,2025-05-24,5,
+AC-11168,Amber Systems,Starter,Monthly,2025-05-24,,48.0,4,2,North America,Retail,Event,2025-05-24,1,
+AC-11169,Blue Dynamics,Pro,Annual,2025-05-24,,838.1,34,24,North America,Healthcare,Event,2025-06-30,7,9
+AC-11170,Beacon Bio,Starter,Monthly,2025-05-25,,48.0,4,2,North America,Manufacturing,Organic Search,2025-06-28,1,9
+AC-11171,Silver Retail,Starter,Monthly,2025-05-25,,36.0,3,2,EMEA,Education,Organic Search,2025-06-02,2,8
+AC-11172,Quartz Energy,Enterprise,Annual,2025-05-28,,13806.32,383,269,North America,Media,Outbound Sales,2025-06-15,11,8
+AC-11173,Swift Finance,Pro,Monthly,2025-05-28,,754.0,26,14,North America,Manufacturing,Paid Search,2025-05-28,4,
+AC-11174,Stone Bio,Pro,Annual,2025-05-29,,616.25,25,8,North America,Media,Outbound Sales,2025-06-22,6,7
+AC-11175,Granite Retail,Pro,Monthly,2025-05-30,,464.0,16,1,North America,Healthcare,Event,2025-06-30,2,7
+AC-11176,Red Manufacturing,Pro,Annual,2025-05-31,,123.25,5,1,EMEA,Nonprofit,Partner,2025-06-22,2,9
+AC-11177,Peak Health,Starter,Monthly,2025-06-01,,60.0,5,4,APAC,Nonprofit,Paid Search,2025-06-30,1,10
+AC-11178,Blue Logistics,Enterprise,Annual,2025-06-02,,1087.43,31,29,North America,Healthcare,Referral,2025-06-04,15,0
+AC-11179,Pine Retail,Starter,Monthly,2025-06-04,,48.0,4,4,EMEA,Nonprofit,Organic Search,2025-06-04,1,9
+AC-11180,Crescent Finance,Starter,Monthly,2025-06-05,,72.0,6,4,North America,Healthcare,Organic Search,2025-06-09,2,
+AC-11181,Maple Labs,Pro,Annual,2025-06-06,,739.5,30,15,LATAM,Nonprofit,Organic Search,2025-06-15,1,10
+AC-11182,Sage Designs,Pro,Annual,2025-06-07,,369.75,15,11,EMEA,Nonprofit,Outbound Sales,2025-06-23,3,
+AC-11183,Stone Solutions,Starter,Annual,2025-06-07,,30.6,3,2,North America,Education,Organic Search,2025-06-30,3,
+AC-11184,Bright Bio,Pro,Monthly,2025-06-08,,812.0,28,17,APAC,Media,Paid Search,2025-06-30,3,
+AC-11185,Amber Studios,Starter,Monthly,2025-06-08,,60.0,5,4,North America,Financial Services,Organic Search,2025-06-08,2,9
+AC-11186,Iron Academy,Starter,Annual,2025-06-08,,30.6,3,3,EMEA,Financial Services,Organic Search,2025-06-24,1,9
+AC-11187,Quartz Retail,Enterprise,Annual,2025-06-08,,3182.72,88,82,North America,Software,Partner,2025-06-29,11,9
+AC-11188,Nova Software,Enterprise,Annual,2025-06-09,,8445.97,186,147,North America,Media,Outbound Sales,2025-06-29,3,3
+AC-11189,Horizon Software,Pro,Annual,2025-06-15,2025-06-25,295.8,12,5,EMEA,Retail,Event,2025-06-15,4,8
+AC-11190,Blue Finance,Pro,Monthly,2025-06-16,,725.0,25,8,EMEA,Education,Paid Search,2025-06-16,0,9
+AC-11191,Quartz Health,Pro,Monthly,2025-06-18,,348.0,12,7,EMEA,Retail,Paid Search,2025-06-18,0,8
+AC-11192,Beacon Academy,Starter,Monthly,2025-06-18,,48.0,4,2,LATAM,Media,Organic Search,2025-06-24,3,7
+AC-11193,Willow Robotics,Enterprise,Annual,2025-06-20,,2164.47,49,29,APAC,Retail,Event,2025-06-23,8,8
+AC-11194,Golden Designs,Pro,Annual,2025-06-21,,345.1,14,10,APAC,Manufacturing,Event,2025-06-30,5,8
+AC-11195,Clear Manufacturing,Pro,Monthly,2025-06-25,,435.0,15,10,North America,Manufacturing,Outbound Sales,2025-06-28,5,8
+AC-11196,Lumen Finance,Enterprise,Monthly,2025-06-26,,40514.92,764,177,APAC,Software,Referral,2025-06-27,5,7
+AC-11197,Horizon Clinics,Pro,Annual,2025-06-26,,320.45,13,12,North America,Software,Paid Search,2025-06-26,6,7
+AC-11198,Horizon Freight,Starter,Monthly,2025-06-26,,48.0,4,4,EMEA,Nonprofit,Paid Search,2025-06-26,0,
+AC-11199,Quartz Partners,Starter,Monthly,2025-06-29,,24.0,2,1,North America,Healthcare,Paid Search,2025-06-29,1,9
+AC-11200,Orbit Robotics,Pro,Monthly,2025-06-29,,348.0,12,6,North America,Software,Organic Search,2025-06-29,1,

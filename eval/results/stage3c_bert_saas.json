@@ -1,0 +1,326 @@
+{
+  "saas": {
+    "n": 60,
+    "accuracy": 0.75,
+    "by_set": {
+      "glossary": 0.75,
+      "plain": 0.75
+    },
+    "by_intent": {
+      "filter": 0.9166666666666666,
+      "count": 1.0,
+      "aggregate": 0.9166666666666666,
+      "compare": 0.75,
+      "trend": 0.16666666666666666
+    },
+    "confusions": {
+      "filter -> count": 1,
+      "aggregate -> count": 1,
+      "compare -> aggregate": 1,
+      "compare -> count": 2,
+      "trend -> count": 4,
+      "trend -> aggregate": 6
+    },
+    "errors": [
+      {
+        "id": "sg_f01",
+        "set": "glossary",
+        "question": "list the strategic accounts in EMEA",
+        "intent": "filter",
+        "pred": "count"
+      },
+      {
+        "id": "sg_a01",
+        "set": "glossary",
+        "question": "what is our ARR?",
+        "intent": "aggregate",
+        "pred": "count"
+      },
+      {
+        "id": "sg_p02",
+        "set": "glossary",
+        "question": "high-touch vs self-serve accounts: average MRR",
+        "intent": "compare",
+        "pred": "aggregate"
+      },
+      {
+        "id": "sg_p06",
+        "set": "glossary",
+        "question": "Starter vs Pro: how many expansion-ready accounts does each have?",
+        "intent": "compare",
+        "pred": "count"
+      },
+      {
+        "id": "sg_t02",
+        "set": "glossary",
+        "question": "number of signups per fiscal year",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "sg_t03",
+        "set": "glossary",
+        "question": "monthly number of churned accounts in 2024",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "sg_t04",
+        "set": "glossary",
+        "question": "ARR by signup year",
+        "intent": "trend",
+        "pred": "aggregate"
+      },
+      {
+        "id": "sg_t05",
+        "set": "glossary",
+        "question": "logo churn rate by signup year",
+        "intent": "trend",
+        "pred": "aggregate"
+      },
+      {
+        "id": "sg_t06",
+        "set": "glossary",
+        "question": "average tenure by signup year",
+        "intent": "trend",
+        "pred": "aggregate"
+      },
+      {
+        "id": "sg_t07",
+        "set": "glossary",
+        "question": "how has the net promoter score changed by signup year?",
+        "intent": "trend",
+        "pred": "aggregate"
+      },
+      {
+        "id": "sp_p02",
+        "set": "plain",
+        "question": "EMEA vs APAC: number of accounts",
+        "intent": "compare",
+        "pred": "count"
+      },
+      {
+        "id": "sp_t01",
+        "set": "plain",
+        "question": "number of signups per month in 2024",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "sp_t02",
+        "set": "plain",
+        "question": "number of cancellations per year",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "sp_t03",
+        "set": "plain",
+        "question": "total MRR by signup year",
+        "intent": "trend",
+        "pred": "aggregate"
+      },
+      {
+        "id": "sp_t04",
+        "set": "plain",
+        "question": "average seats per account by signup year",
+        "intent": "trend",
+        "pred": "aggregate"
+      }
+    ]
+  },
+  "dev": {
+    "n": 180,
+    "accuracy": 0.8666666666666667,
+    "by_set": {
+      "dev": 0.8666666666666667
+    },
+    "by_intent": {
+      "filter": 0.9166666666666666,
+      "count": 1.0,
+      "aggregate": 0.9722222222222222,
+      "compare": 0.9166666666666666,
+      "trend": 0.5277777777777778
+    },
+    "confusions": {
+      "filter -> aggregate": 1,
+      "filter -> compare": 1,
+      "trend -> count": 10,
+      "trend -> aggregate": 7,
+      "compare -> aggregate": 1,
+      "aggregate -> compare": 1,
+      "compare -> filter": 2,
+      "filter -> trend": 1
+    },
+    "errors": [
+      {
+        "id": "hg_f04",
+        "set": "dev",
+        "question": "show the cost overruns among cancer patients",
+        "intent": "filter",
+        "pred": "aggregate"
+      },
+      {
+        "id": "hg_f05",
+        "set": "dev",
+        "question": "list short stays in the step-down unit",
+        "intent": "filter",
+        "pred": "compare"
+      },
+      {
+        "id": "hg_t01",
+        "set": "dev",
+        "question": "number of admissions per fiscal year",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "hg_t03",
+        "set": "dev",
+        "question": "monthly number of unplanned admissions in 2022",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "hg_t04",
+        "set": "dev",
+        "question": "average daily rate by year",
+        "intent": "trend",
+        "pred": "aggregate"
+      },
+      {
+        "id": "hg_t05",
+        "set": "dev",
+        "question": "number of long-stay admissions per year",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "rg_p03",
+        "set": "dev",
+        "question": "hard goods vs soft goods: average revenue per order",
+        "intent": "compare",
+        "pred": "aggregate"
+      },
+      {
+        "id": "rg_t02",
+        "set": "dev",
+        "question": "net revenue per fiscal year",
+        "intent": "trend",
+        "pred": "aggregate"
+      },
+      {
+        "id": "rg_t03",
+        "set": "dev",
+        "question": "monthly number of deep-discount orders in 2024",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "rg_t06",
+        "set": "dev",
+        "question": "number of premium-product orders per month in 2023",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "h_a06",
+        "set": "dev",
+        "question": "lowest billing amount by medication",
+        "intent": "aggregate",
+        "pred": "compare"
+      },
+      {
+        "id": "h_p09",
+        "set": "dev",
+        "question": "are men or women older on average",
+        "intent": "compare",
+        "pred": "filter"
+      },
+      {
+        "id": "h_t01",
+        "set": "dev",
+        "question": "number of admissions per year",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "h_t02",
+        "set": "dev",
+        "question": "average billing amount by year",
+        "intent": "trend",
+        "pred": "aggregate"
+      },
+      {
+        "id": "h_t06",
+        "set": "dev",
+        "question": "yearly count of emergency admissions",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "h_t07",
+        "set": "dev",
+        "question": "monthly average billing for cancer patients in 2021",
+        "intent": "trend",
+        "pred": "aggregate"
+      },
+      {
+        "id": "h_t08",
+        "set": "dev",
+        "question": "number of discharges per year",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "h_t10",
+        "set": "dev",
+        "question": "average length of stay by year of admission",
+        "intent": "trend",
+        "pred": "aggregate"
+      },
+      {
+        "id": "h_t12",
+        "set": "dev",
+        "question": "total billing per year for elective admissions",
+        "intent": "trend",
+        "pred": "aggregate"
+      },
+      {
+        "id": "r_f07",
+        "set": "dev",
+        "question": "beauty orders from January 2023",
+        "intent": "filter",
+        "pred": "trend"
+      },
+      {
+        "id": "r_p06",
+        "set": "dev",
+        "question": "are returned orders rated lower than non-returned ones on average",
+        "intent": "compare",
+        "pred": "filter"
+      },
+      {
+        "id": "r_t02",
+        "set": "dev",
+        "question": "number of orders per month in 2023",
+        "intent": "trend",
+        "pred": "count"
+      },
+      {
+        "id": "r_t04",
+        "set": "dev",
+        "question": "average rating by month for 2024",
+        "intent": "trend",
+        "pred": "aggregate"
+      },
+      {
+        "id": "r_t07",
+        "set": "dev",
+        "question": "monthly number of returns in 2024",
+        "intent": "trend",
+        "pred": "count"
+      }
+    ]
+  }
+}

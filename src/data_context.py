@@ -40,7 +40,9 @@ def _detect_date_columns(df: pd.DataFrame) -> set:
             if pd.to_datetime(sample, errors="coerce").notna().mean() < 0.8:
                 continue
             parsed = pd.to_datetime(df[c], errors="coerce")
-        if parsed.notna().mean() < 0.5:
+        # Judge parse success on non-empty cells, so a mostly-empty date column (e.g. a cancel date that is
+        # blank for active accounts) is still a date column.
+        if parsed.notna().sum() < 0.5 * df[c].notna().sum() or parsed.notna().sum() == 0:
             continue
         df[c] = parsed.dt.strftime("%Y-%m-%d")
         date_cols.add(c)
