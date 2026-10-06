@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { api, ApiError } from "./api/client";
+import { api, ApiError, withWakeRetry } from "./api/client";
 import type { AppConfig, DatasetInfo, Mode, QueryResult } from "./api/types";
 import { DatasetPicker } from "./components/DatasetPicker";
 import { HowItWorks } from "./components/HowItWorks";
@@ -9,7 +9,7 @@ import { ResultChart } from "./components/ResultChart";
 import { ResultTable } from "./components/ResultTable";
 import { SchemaPreview } from "./components/SchemaPreview";
 import { SqlBlock } from "./components/SqlBlock";
-import { EmptyState, ErrorAlert, ResultsSkeleton } from "./components/StateViews";
+import { EmptyState, ErrorAlert, ResultsSkeleton, WakingNotice } from "./components/StateViews";
 import { useTheme } from "./hooks/useTheme";
 
 const FALLBACK_CONFIG: AppConfig = {
@@ -44,12 +44,13 @@ export default function App() {
   const [resultKey, setResultKey] = useState(0);
   const [busy, setBusy] = useState(false);
   const [failure, setFailure] = useState<Failure | null>(null);
+  const [waking, setWaking] = useState(false);   // the free-tier backend is asleep and starting up
   const lastAsked = useRef<string>("");
 
   const loadStartup = useCallback(() => {
     setLoadingSamples(true);
     setStartupError(null);
-    Promise.all([api.config(), api.samples()])
+    withWakeRetry(() => Promise.all([api.config(), api.samples()]), setWaking)
       .then(([cfg, list]) => {
         setConfig(cfg);
         setMode(cfg.default_mode);
@@ -73,7 +74,7 @@ export default function App() {
     setUploading(true);
     setUploadError(null);
     try {
-      const info = await api.upload(file);
+      const info = await withWakeRetry(() => api.upload(file), setWaking);
       setUploaded(info);
       selectDataset(info);
     } catch (e) {
@@ -91,9 +92,10 @@ export default function App() {
     setBusy(true);
     setFailure(null);
     try {
-      const res = await api.query({
+      const body = {
         dataset_id: dataset.dataset_id, question: text, mode, use_glossary: useGlossary && dataset.has_glossary,
-      });
+      };
+      const res = await withWakeRetry(() => api.query(body), setWaking);
       setResult(res);
       setResultKey((k) => k + 1);
     } catch (e) {
@@ -128,6 +130,7 @@ export default function App() {
 
       <main className="mx-auto grid max-w-7xl gap-4 px-4 py-4 sm:px-6 sm:py-6 lg:grid-cols-[20rem_minmax(0,1fr)] lg:grid-rows-[auto_1fr] lg:items-start lg:gap-6">
         <aside className="panel flex flex-col gap-5 lg:col-start-1 lg:row-start-1">
+          {waking && loadingSamples && <WakingNotice />}
           {startupError ? (
             <ErrorAlert message={startupError} onRetry={loadStartup} />
           ) : (
@@ -164,7 +167,10 @@ export default function App() {
           {failure && <ErrorAlert message={failure.message} retryAfter={failure.retryAfter} onRetry={() => ask(lastAsked.current)} />}
 
           {busy ? (
-            <ResultsSkeleton />
+            <>
+              {waking && <WakingNotice />}
+              <ResultsSkeleton />
+            </>
           ) : !dataset ? (
             <EmptyState title="Pick a dataset to start" icon="▤">
               Choose one of the sample datasets, or upload your own CSV.

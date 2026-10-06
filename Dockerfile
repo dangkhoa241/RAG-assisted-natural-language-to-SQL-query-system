@@ -3,9 +3,11 @@
 #   docker build -t nl2sql .
 #   docker run -p 7860:7860 -e GROQ_API_KEY=... -e INTENT_MODEL_PATH=user/intent-model nl2sql
 #
-# Stage 1 builds the frontend with Node; stage 2 is a slim Python image with the runtime requirements only
-# (CPU-only torch, no sentence-transformers/FAISS). API keys are never baked in: they come from the
-# environment at run time (Space secrets).
+# Stage 1 builds the frontend with Node; stage 2 is a slim Python image with the runtime requirements only:
+# the intent model runs on onnxruntime (int8 ONNX export), so there is no torch, transformers,
+# sentence-transformers or FAISS. API keys are never baked in: they come from the environment at run time.
+# (The Render deployment doesn't use this file: it runs the backend natively, see render.yaml. This image is
+# for a Hugging Face Docker Space or any container host.)
 
 # --- 1. Frontend build -------------------------------------------------------------------------------
 FROM node:22-slim AS frontend
@@ -24,8 +26,6 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1
 
-# CPU-only torch first, from PyTorch's index, so pip never pulls the multi-GB CUDA build.
-RUN pip install --index-url https://download.pytorch.org/whl/cpu torch
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
@@ -43,7 +43,7 @@ WORKDIR /home/user/app
 # (or uses keyword intents if INTENT_MODEL_PATH isn't set at all).
 ARG INTENT_MODEL_PATH=""
 RUN if [ -n "$INTENT_MODEL_PATH" ]; then \
-      python -c "import os; from huggingface_hub import snapshot_download; snapshot_download(os.environ['INTENT_MODEL_PATH'])" \
+      python -c "import os; from huggingface_hub import snapshot_download; snapshot_download(os.environ['INTENT_MODEL_PATH'], allow_patterns=['onnx/*'])" \
       || echo "intent model prefetch skipped; it will load at startup"; \
     fi
 

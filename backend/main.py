@@ -1,6 +1,8 @@
 """FastAPI app: datasets (samples + CSV uploads) and natural-language queries over them.
 
-Run from the repo root:  uvicorn backend.main:create_app --factory --port 8000
+Run from the repo root:  uvicorn backend.main:app --port 8000
+(`app` is built on first access, so importing this module, e.g. in tests, doesn't load models or data;
+`uvicorn backend.main:create_app --factory` works too.)
 """
 import logging
 import os
@@ -120,12 +122,14 @@ def _quiet_library_logs():
 
 
 def _load_intent_classifier():
-    """The only heavy import at startup: transformers + torch for the BERT intent model."""
+    """The BERT intent model: onnxruntime + the int8 ONNX export by default (INTENT_RUNTIME=torch uses the
+    transformers pipeline instead, if requirements-eval.txt is installed)."""
     from intent import load_intent_classifier
 
+    os.environ.setdefault("HF_HUB_DISABLE_PROGRESS_BARS", "1")   # download bars don't belong in a server log
     try:
-        from transformers.utils import logging as hf_logging
-        hf_logging.disable_progress_bar()   # the loaders' progress bars don't belong in a server log
+        from transformers.utils import logging as hf_logging   # only present with the torch runtime
+        hf_logging.disable_progress_bar()
     except ImportError:
         pass
     return load_intent_classifier()
@@ -289,3 +293,17 @@ def create_app(settings: Settings = None, intent_classifier=_DEFAULT) -> FastAPI
         _mount_frontend(app, settings.frontend_dist)
     return app
 
+
+
+_app = None
+
+
+def __getattr__(name):
+    """`backend.main:app` for `uvicorn backend.main:app`: created on first access (PEP 562), from the
+    environment, so a plain import stays cheap."""
+    global _app
+    if name == "app":
+        if _app is None:
+            _app = create_app()
+        return _app
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

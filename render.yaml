@@ -1,0 +1,54 @@
+# Render Blueprint: the FastAPI backend as a native Python web service on the free plan.
+# The React frontend is deployed separately on Vercel (frontend/vercel.json). See "Deployment" in README.md.
+#
+# Secrets are never in this file: entries with `sync: false` are asked for in the Render dashboard when the
+# Blueprint is created (GROQ_API_KEY, and FRONTEND_ORIGINS once the Vercel URL is known).
+services:
+  - type: web
+    name: nl2sql-api
+    runtime: python
+    plan: free
+    region: oregon
+    branch: main
+    autoDeploy: true
+    # The intent model is downloaded during the build into HF_HOME, inside the project folder, so a cold
+    # start (the free plan sleeps after 15 idle minutes) doesn't download 105 MB again.
+    buildCommand: pip install -r requirements.txt && python scripts/prefetch_intent_model.py
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT --workers 1 --no-server-header
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      # --- secrets: set in the dashboard, never committed ---
+      - key: GROQ_API_KEY
+        sync: false
+      - key: FRONTEND_ORIGINS          # CORS: the Vercel production URL only, e.g. https://nl2sql.vercel.app
+        sync: false
+      # --- intent model: int8 ONNX from the Hub (onnxruntime; no torch) ---
+      - key: INTENT_MODEL_PATH
+        value: dangkhoa241/nl2sql-intent-model
+      - key: INTENT_RUNTIME
+        value: onnx
+      - key: HF_HOME
+        value: /opt/render/project/src/.hf-cache
+      - key: HF_HUB_DISABLE_PROGRESS_BARS
+        value: "1"
+      # --- LLM: gpt-oss-120b on Groq, falling back to gpt-oss-20b, then rule-based ---
+      - key: LLM_PROVIDER
+        value: groq
+      - key: LLM_MODEL
+        value: openai/gpt-oss-120b
+      - key: LLM_FALLBACK_MODELS
+        value: openai/gpt-oss-20b
+      - key: LLM_RATE_LIMIT_PER_MIN    # per client IP
+        value: "10"
+      - key: LLM_DAILY_BUDGET          # whole server, per UTC day
+        value: "500"
+      # --- fitting in 512 MB: measured peak 391 MB with five near-cap uploads held at once ---
+      - key: MAX_UPLOAD_MB
+        value: "5"
+      - key: MAX_SESSIONS
+        value: "5"
+      # --- the client IP comes from the entry Render's proxy appends to X-Forwarded-For ---
+      - key: TRUSTED_PROXY_HOPS
+        value: "1"

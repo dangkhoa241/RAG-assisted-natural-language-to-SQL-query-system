@@ -31,11 +31,32 @@ def intent_quantization() -> str:
     return mode
 
 
+RUNTIME_CHOICES = ("onnx", "torch")
+
+
+def intent_runtime() -> str:
+    """INTENT_RUNTIME=onnx (default): the int8 ONNX export via onnxruntime, the only runtime the app installs.
+    INTENT_RUNTIME=torch: the original transformers pipeline (needs requirements-eval.txt), with INTENT_QUANTIZE."""
+    runtime = os.environ.get("INTENT_RUNTIME", "onnx").strip().lower() or "onnx"
+    if runtime not in RUNTIME_CHOICES:
+        raise ValueError(f"INTENT_RUNTIME must be one of {RUNTIME_CHOICES}, got {runtime!r}")
+    return runtime
+
+
 @lru_cache(maxsize=1)
 def load_intent_classifier():
     """Loaded once per process; None if the model can't be loaded (callers then use keywords).
-    transformers (and torch) are imported here, so the keyword path never pays for them."""
+    The runtime's libraries are imported here, so the keyword path never pays for them."""
     path = os.environ.get("INTENT_MODEL_PATH", DEFAULT_INTENT_MODEL_PATH)
+    if intent_runtime() == "onnx":
+        try:
+            from intent_onnx import OnnxIntentClassifier
+
+            return OnnxIntentClassifier(path)
+        except Exception:
+            import logging
+            logging.getLogger(__name__).exception("intent model %r failed to load; using keyword intents", path)
+            return None
     quantize = intent_quantization()
     try:
         from transformers import pipeline

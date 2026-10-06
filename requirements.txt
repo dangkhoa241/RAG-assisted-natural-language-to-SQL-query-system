@@ -1,9 +1,7 @@
 # Runtime dependencies of the app: the FastAPI backend (backend/) and the src/ modules it uses.
-# Benchmarks, tests, retrieval experiments and training need requirements-eval.txt as well.
-
-# CPU-only torch wheel: much smaller and faster to install than the default CUDA build,
-# and the app never uses a GPU.
---extra-index-url https://download.pytorch.org/whl/cpu
+# The intent model runs as an int8 ONNX export (onnxruntime + tokenizers), so the app needs neither torch
+# nor transformers: that is what lets it fit in 512 MB. Benchmarks, tests, training and the ONNX export
+# need requirements-eval.txt as well.
 
 # --- Web API ---
 fastapi
@@ -14,10 +12,10 @@ python-multipart
 pandas
 numpy
 
-# --- Intent classifier (BERT) ---
-torch
-transformers
-huggingface-hub
+# --- Intent classifier (BERT, int8 ONNX) ---
+onnxruntime
+tokenizers
+huggingface-hub   # downloads the model from the Hub
 
 # --- LLM providers ---
 groq

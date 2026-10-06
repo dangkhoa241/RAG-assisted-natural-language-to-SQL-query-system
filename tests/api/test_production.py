@@ -61,3 +61,35 @@ def test_serves_the_built_frontend_and_keeps_api_errors_as_json(make_client, dis
 
 def test_api_only_when_no_frontend_build(client):
     assert client.get("/").status_code == 404
+
+
+def test_cors_allows_only_the_configured_frontend(make_client):
+    client = make_client(frontend_origins=("https://nl2sql.vercel.app",))
+    ok = client.get("/api/health", headers={"Origin": "https://nl2sql.vercel.app"})
+    assert ok.headers["access-control-allow-origin"] == "https://nl2sql.vercel.app"
+    other = client.get("/api/health", headers={"Origin": "https://evil.example"})
+    assert "access-control-allow-origin" not in other.headers
+    preflight = client.options("/api/query", headers={
+        "Origin": "https://nl2sql.vercel.app", "Access-Control-Request-Method": "POST",
+        "Access-Control-Request-Headers": "content-type"})
+    assert preflight.status_code == 200 and "POST" in preflight.headers["access-control-allow-methods"]
+
+
+def test_health_is_cheap(client, llm):
+    import time
+
+    start = time.perf_counter()
+    for _ in range(50):
+        assert client.get("/api/health").json()["status"] == "ok"
+    assert llm.calls == [] and (time.perf_counter() - start) / 50 < 0.05   # no model or LLM work
+
+
+def test_module_level_app_is_built_on_first_access(monkeypatch):
+    import backend.main as main
+
+    built = []
+    monkeypatch.setattr(main, "_app", None)
+    monkeypatch.setattr(main, "create_app", lambda: built.append(1) or "the app")
+    assert built == []                      # importing the module built nothing
+    assert main.app == "the app" and main.app == "the app"
+    assert built == [1]                     # built once, then reused

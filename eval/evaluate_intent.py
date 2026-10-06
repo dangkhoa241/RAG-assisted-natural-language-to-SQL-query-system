@@ -6,6 +6,8 @@ Models:
   bert     - the fine-tuned model in intent_model/ (CPU, batched inference)
   bert_int8 - the same model with dynamic int8 quantization of its Linear layers (INTENT_QUANTIZE=int8 in the app);
              run this on Linux, where the quantized kernels match the deployed image
+  bert_onnx_int8 - the ONNX export with int8 weights (scripts/export_intent_onnx.py), run with onnxruntime
+             as the app runs it (src/intent_onnx.py); needs intent_model/onnx/
 
 Test sets:
   val            - the notebook's 50% stratified val split (same seed/test_size/stratify)
@@ -76,6 +78,13 @@ def predict_bert(texts, int8=False):
     return preds
 
 
+def predict_onnx(texts):
+    from intent_onnx import OnnxIntentClassifier
+
+    clf = OnnxIntentClassifier(str(MODEL_DIR))
+    return [label for i in range(0, len(texts), BATCH_SIZE) for label in clf.predict(texts[i:i + BATCH_SIZE])]
+
+
 def score(y_true, y_pred, labels):
     return {
         "n": len(y_true),
@@ -134,6 +143,7 @@ def main():
         "tfidf_lr": lambda texts: list(tfidf_lr.predict(texts)),
         "bert": predict_bert,
         "bert_int8": lambda texts: predict_bert(texts, int8=True),
+        "bert_onnx_int8": predict_onnx,
     }
     model_names = list(models)
 

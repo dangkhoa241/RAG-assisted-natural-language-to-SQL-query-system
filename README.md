@@ -11,11 +11,13 @@ the rule-based v1 generator answers if the LLM is unavailable or its SQL is reje
 
 ## 🌐 Live demo
 
-**https://huggingface.co/spaces/YOUR-USERNAME/nl2sql-assistant** *(placeholder until the Space is created)*
+**https://YOUR-APP.vercel.app** *(placeholder until the deployment is live)*
 
-It runs on a free Hugging Face Space, which sleeps when nobody has used it for a while, so the first
-visit may take about a minute to wake up. Try the sample datasets, or upload a CSV of your own (up to
-10 MB). Uploads stay in the server's memory for 30 idle minutes and are never written to disk.
+The React frontend is on Vercel and the API runs on Render's free plan, which sleeps after 15 idle
+minutes. An uptime monitor normally keeps it awake. If it was asleep, the first visit can take about a
+minute: the page says "Waking up the server…" and retries on its own. Try the sample datasets, or upload a
+CSV of your own (up to 5 MB). Uploads stay in the server's memory for 30 idle minutes and are never written
+to disk.
 
 <table>
   <tr>
@@ -152,7 +154,8 @@ eval/
 
 src/
   data_context.py            # CSV loading, type inference, SQLite table setup
-  intent.py                   # BERT intent classifier + keyword-based fallback
+  intent.py                   # Intent classifier (ONNX by default, or torch) + keyword-based fallback
+  intent_onnx.py              # BERT inference with onnxruntime + tokenizers only
   sql_builder.py               # Schema-aware, rule-based NL -> SQL generation
   rag_sql.py                   # Retrieval-augmented NL -> SQL (Groq or Cerebras LLM + FAISS retrieval)
   doc_retrieval.py             # Business-glossary retrieval (dense, BM25, hybrid) and term gating
@@ -169,14 +172,18 @@ frontend/                   # Vite + React + TypeScript + Tailwind + Recharts UI
 
 tests/                      # pytest: SQL safety, result comparison, LLM retries, and the API (tests/api/)
 logs/                       # Training logs
-requirements.txt           # App runtime: FastAPI, pandas, torch (CPU) + transformers, Groq/OpenAI clients
-requirements-eval.txt      # Benchmarks, tests and training: retrieval (sentence-transformers, FAISS, BM25), pytest, notebooks
+requirements.txt           # App runtime: FastAPI, pandas, onnxruntime + tokenizers (no torch), Groq/OpenAI clients
+requirements-eval.txt      # Benchmarks, tests, training, ONNX export: torch, transformers, retrieval (sentence-transformers, FAISS, BM25), pytest
+render.yaml                # Render Blueprint: the backend as a native Python web service (free plan)
+frontend/vercel.json       # Vercel: Vite build, SPA routing, cached assets
 .env.example               # Template for .env (API keys, optional provider / model / fallback settings)
 Dockerfile                 # One image: Node builds the frontend, Python serves it + the API (see "Deployment")
 .dockerignore              # Allowlist of what the image may contain
 space/README.md            # The Hugging Face Space's README (sdk: docker, app_port: 7860)
 scripts/
   upload_intent_model.py    # intent_model/ -> a Hugging Face model repo
+  export_intent_onnx.py     # BERT -> ONNX int8, checked against torch, uploaded to the repo's onnx/ folder
+  prefetch_intent_model.py  # Downloads the ONNX intent model at build time (Render) to speed up cold starts
   deploy_space.py           # Uploads the app to a Hugging Face Docker Space
 ```
 
@@ -308,18 +315,18 @@ Per-class F1 on the hard set:
 ### A smaller intent model for a 512 MB host
 
 The free hosting tier the app targets has 512 MB of RAM. The fp32 BERT model and torch don't fit in that.
+All variants below were measured in Docker on Linux, with one inference thread, using
+`eval/evaluate_intent.py` (accuracy) and `eval/benchmark_intent_quantization.py` (memory, latency):
 
-**Int8 quantization in torch** (`INTENT_QUANTIZE=int8`, which still works for local use) applies dynamic
-int8 quantization to every `Linear` layer when the model loads. It was measured in the Docker image (Linux)
-with `eval/evaluate_intent.py` (row `bert_int8`) and `eval/benchmark_intent_quantization.py`:
+| Variant | Hard set (n=150) | Val (n=1,000) | Weights | Process memory after 155 queries (heap + file) | Load | Latency median / p95 |
+|---|---|---|---|---|---|---|
+| fp32 (torch) | 0.847 | 1.000 | 418 MB | 303 + 451 MB | 4.7 s | 61 / 76 ms |
+| int8 (torch, dynamic) | 0.833 | 1.000 | 173 MB | 413 + 456 MB | 7.6 s | 19 / 26 ms |
+| **int8 ONNX (onnxruntime)**, the deployed one | **0.840** | **1.000** | **105 MB** | **194 + 49 MB** | **1.4 s** | **13 / 16 ms** |
 
-| Variant | Hard set (n=150) | Val (n=1,000) | Weights | Process memory after 155 queries (heap + mapped file) | Latency median / p95 |
-|---|---|---|---|---|---|
-| fp32 (torch) | 0.847 | 1.000 | 418 MB | 303 + 453 MB | 59 / 77 ms |
-| int8 (torch, dynamic) | 0.833 | 1.000 | 173 MB | 413 + 456 MB | 19 / 25 ms |
-
-Int8 cost 1.4 points on the hard set (two questions) and made inference 3× faster, but **it didn't reduce
-memory**:
+**Int8 quantization in torch** (`INTENT_RUNTIME=torch INTENT_QUANTIZE=int8`, which still works for local
+use) applies dynamic int8 quantization to every `Linear` layer when the model loads. It cost 1.4 points on
+the hard set (two questions) and made inference 3× faster, but **it didn't reduce memory**:
 
 * Transformers memory-maps the fp32 safetensors file, and the embeddings keep reading from that mapping, so
   the whole 418 MB file stays mapped.
@@ -330,6 +337,22 @@ memory**:
 
 The whole app container with int8 peaked at 1.08 GB and was OOM-killed at startup under
 `docker run --memory=512m --cpus=0.1`.
+
+**ONNX Runtime** is what the app runs:
+
+* `scripts/export_intent_onnx.py` exports the fine-tuned model to ONNX and quantizes its weights to int8
+  with `onnxruntime.quantization`. It then checks the result against torch on the 1,000 validation
+  questions:
+  * the fp32 export matches torch to 7×10⁻⁶ in the logits, with identical predictions;
+  * the int8 export agrees with torch on every validation question.
+* It uploads the files (`model_int8.onnx`, `tokenizer.json`, labels) to the model repo's `onnx/` folder.
+* The app needs only `onnxruntime` and `tokenizers` for this (`src/intent_onnx.py`), so torch and
+  transformers left the runtime requirements. Training, the evaluations and `INTENT_RUNTIME=torch` still use
+  them, from `requirements-eval.txt`.
+
+The result is 0.7 points lower on the hard set (one question), inside the 2-point budget set for this. It
+uses about a third of fp32's memory, is 4× faster, and loads in 1.4 s. The Docker image shrank from 1.88 GB
+to 626 MB.
 
 ---
 
@@ -904,12 +927,15 @@ works: auto mode answers with the rule-based generator.
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-uvicorn backend.main:create_app --factory --port 8000
+uvicorn backend.main:app --port 8000
 ```
 
 Startup takes a few seconds (it loads the intent model and parses the glossaries once). Check it with
-`curl http://127.0.0.1:8000/api/health`. If `intent_model/` lives elsewhere, set
-`INTENT_MODEL_PATH` in `.env` (a local path or a Hugging Face Hub repo id).
+`curl http://127.0.0.1:8000/api/health`. The intent model runs on ONNX Runtime and looks for an `onnx/`
+folder under `INTENT_MODEL_PATH`:
+* the default is `intent_model/`, after `python scripts/export_intent_onnx.py`;
+* set `INTENT_MODEL_PATH=dangkhoa241/nl2sql-intent-model` in `.env` to download it from the Hub;
+* without either, the app logs why and uses keyword-based intents.
 
 **Frontend** (a second terminal):
 
@@ -986,7 +1012,8 @@ requests/minute).
 - `MAX_UPLOAD_MB` [10], `MAX_ROWS` [200000], `MAX_COLUMNS` [100]
 - `MAX_SESSIONS` (uploads kept in memory) [20], `SESSION_TTL_MIN` [30]
 - `MAX_ROWS_RETURNED` [500], `FRONTEND_ORIGINS` (CORS) [http://localhost:5173]
-- `FRONTEND_DIST`: a built frontend to serve at `/` [frontend/dist, if it exists], `TRUSTED_PROXY_HOPS` [0; the Docker image sets 1]
+- `FRONTEND_DIST`: a built frontend to serve at `/` [frontend/dist, if it exists], `TRUSTED_PROXY_HOPS` [0; Render and the Docker image use 1]
+- `INTENT_MODEL_PATH` [intent_model], `INTENT_RUNTIME` [onnx, or torch with requirements-eval.txt], `INTENT_QUANTIZE` for the torch runtime [none, or int8]
 
 When the daily budget is used up, `auto` answers with the rule-based generator (`fallback_reason: "daily_budget"`) and `llm` returns 429.
 
@@ -1033,10 +1060,10 @@ The schema starts collapsed so the question box stays near the top.
 - **Rate limits:**
   - LLM queries are limited per IP (sliding window), with a global daily budget on top.
   - Both live in memory, so they reset on restart and are per process (the Docker image runs one worker).
-  - Behind a reverse proxy, set `TRUSTED_PROXY_HOPS` to the number of proxies (the Docker image sets 1). The client IP is then taken that many entries from the right of `X-Forwarded-For`, the entries the proxies themselves appended. Entries a client adds on its own end up further left and are ignored, so forging the header doesn't escape the limit (tested in `tests/api/test_production.py`). With the default of 0 the header is ignored and the socket address is used.
+  - Behind a reverse proxy, set `TRUSTED_PROXY_HOPS` to the number of proxies (Render and the Docker image use 1). The client IP is then taken that many entries from the right of `X-Forwarded-For`, the entries the proxies themselves appended. Entries a client adds on its own end up further left and are ignored, so forging the header doesn't escape the limit (tested in `tests/api/test_production.py`). With the default of 0 the header is ignored and the socket address is used.
 - **Other protections:**
   - Errors: one JSON shape, a generic message for unexpected errors (details stay in the server log), and provider errors are never forwarded.
-  - CORS: only `FRONTEND_ORIGINS`, `GET`/`POST`, and no credentials.
+  - CORS: only `FRONTEND_ORIGINS` (in production, the Vercel production URL and nothing else), `GET`/`POST`, and no credentials.
   - Request bodies other than uploads are capped at 16 KB.
   - API keys stay server-side: in `.env` locally, and only in the environment (Space secrets) in the Docker image, which never contains a `.env`.
 
@@ -1054,54 +1081,93 @@ jupyter notebook src/model_training.ipynb
 
 ## ☁️ Deployment
 
-The app deploys as **one Docker container** that serves both the React build and the API on one port, so
-the browser talks to a single origin and production needs no CORS. It targets a Hugging Face Docker Space.
+The app deploys as a **split**: the FastAPI backend runs as a native Python web service on **Render's free
+plan**, and the React frontend runs on **Vercel**. The browser calls the API cross-origin, so CORS allows
+only the Vercel production domain.
 
-**The image** (`Dockerfile`, multi-stage):
-
-1. `node:22-slim` runs `npm ci && npm run build` (type check + Vite build).
-2. `python:3.11-slim` installs the runtime requirements only: CPU-only torch from PyTorch's index, and no
-   sentence-transformers or FAISS, since the app's glossary gate is text matching. It copies `backend/`,
-   `src/`, `config/`, the glossaries, the three sample CSVs and the built frontend, and runs uvicorn on
-   port 7860 as uid 1000 (what Spaces expect), with one worker.
-
-`.dockerignore` is an allowlist, so `.env`, `intent_model/`, `eval/` (with its LLM caches) and the tests
-never reach the build. Local build and smoke test:
-
-```bash
-docker build -t nl2sql .
-docker run -p 7860:7860 -e GROQ_API_KEY=... -e INTENT_MODEL_PATH=your-username/nl2sql-intent-model nl2sql
-# open http://localhost:7860
+```text
+browser ──► https://YOUR-APP.vercel.app        (Vercel: static Vite build, SPA routing)
+        └─► https://nl2sql-api.onrender.com/api (Render free: uvicorn backend.main:app, 512 MB, 0.1 CPU)
+                └─► Groq (gpt-oss-120b, then gpt-oss-20b)    Hugging Face Hub (intent model, at build time)
 ```
 
-Measured locally (Docker Desktop on Windows):
-* **Image size:** 1.88 GB, mostly CPU torch.
-* **Startup:** about 6 s to a healthy `/api/health` with the intent model loaded from a local folder.
-  Downloading it from the Hub on a cold start adds the time to fetch ~440 MB, unless the build prefetched
-  it (see below).
-* **Memory:** about 330 MB idle.
-* **A real query:** "what is our ARR?" on the SaaS sample took 1.7 s end to end, with gpt-oss-120b on Groq
-  and the *ARR* definition matched.
+### Backend on Render (`render.yaml`)
 
-**The intent model** is too large for git (`intent_model/` is gitignored, ~440 MB).
-`scripts/upload_intent_model.py --repo-id your-username/nl2sql-intent-model` uploads the files inference
-needs, with a model card, to a Hub model repo. The app loads it from `INTENT_MODEL_PATH`. On Spaces, that
-variable is also passed to the build, so the Dockerfile downloads the model into the image and a cold
-start doesn't wait for it. Without it, the app uses keyword-based intents.
+* **Native Python service, no Docker.**
+  * Build: `pip install -r requirements.txt && python scripts/prefetch_intent_model.py`. The prefetch
+    downloads the ONNX intent model into `HF_HOME` inside the project folder, so a cold start doesn't
+    download it again.
+  * Start: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT --workers 1`.
+  * Health check: `/api/health`.
+* **Secrets are set in the dashboard, never committed.** `GROQ_API_KEY` and `FRONTEND_ORIGINS` are
+  `sync: false` in the Blueprint, so Render asks for them.
+* **Memory (512 MB).** Measured with the same code in Docker, under `--memory=512m --cpus=0.1`:
 
-**Deploying:** `scripts/deploy_space.py --space-id your-username/nl2sql-assistant` creates the Space if
-needed and uploads the files the Dockerfile uses, with `space/README.md` as the Space's README (its header
-sets `sdk: docker` and `app_port: 7860`). Hugging Face then builds the image. A plain `git push` to the
-Space would be rejected, because this repo's history contains binary screenshots that aren't in Git LFS.
+  | Moment | Container memory (cgroup) |
+  |---|---|
+  | After startup | 224 MB |
+  | After 10 real queries across the three samples | 235 MB (peak 239 MB) |
+  | One 9.6 MB, 160,000-row upload, then 2 queries on it | peak **355 MB** |
+  | Five 4.9 MB uploads held at once (`MAX_UPLOAD_MB=5`, `MAX_SESSIONS=5`), plus a sixth that evicts the oldest | peak **391 MB** |
 
-**Production settings** (in the image, or as Space variables):
+  There were no OOM kills. Each large upload keeps about 40–80 MB resident, so the Render defaults lower
+  the upload cap to 5 MB and the number of held uploads to 5. The same build and start commands, run in a
+  clean `python:3.11-slim` container, install no torch, and the uvicorn process peaked at 278 MB RSS.
+* **Speed at 0.1 CPU.**
+  * Startup takes about 50 s, mostly importing pandas and FastAPI on a tenth of a core.
+  * Intent prediction takes about 10 ms, and a query takes 0.4–2.6 s, mostly the Groq call.
 
-| Setting | In production |
+### Frontend on Vercel (`frontend/vercel.json`)
+
+* **Root directory `frontend/`.** It runs the Vite build and rewrites every path to `index.html` (SPA
+  routing). Hashed assets are cached for good.
+* **`VITE_API_BASE_URL`** is the Render URL, set in Vercel's project settings and read at build time. In
+  development it's unset, and Vite proxies `/api` to the local backend.
+
+### Cold starts
+
+The free Render service sleeps after 15 minutes without traffic.
+
+* **Keep it awake with UptimeRobot** (free). Add an HTTP(s) monitor on
+  `https://nl2sql-api.onrender.com/api/health` every 5 minutes.
+  * `/api/health` is cheap: it returns a fixed dictionary and does no model or LLM work (tested).
+  * One service running all month is about 730 hours, which fits in Render's 750 free instance hours.
+* **If it's asleep anyway, the frontend handles it:**
+  * The page pings `/api/health` as soon as it loads, so the backend starts booting before the user does
+    anything.
+  * A network error, a bare 502/503 from Render's router, or a first response slower than 2.5 s shows
+    *"Waking up the server, this can take up to a minute…"* instead of an error.
+  * It then retries with backoff (1, 2, 4, 8, then every 10 s) for up to two minutes.
+  * JSON errors from the backend itself, such as rate limits, are never retried.
+
+### Production settings (Render environment)
+
+| Setting | Value |
 |---|---|
-| `GROQ_API_KEY` (and optional `CEREBRAS_API_KEY`) | Space **secrets** only; never in the image or the repo |
-| `INTENT_MODEL_PATH` | Space variable: the Hub model repo |
-| `TRUSTED_PROXY_HOPS` | 1 (set in the image): the client IP comes from the proxy's `X-Forwarded-For` entry |
-| `LLM_RATE_LIMIT_PER_MIN`, `LLM_DAILY_BUDGET` | 10 per IP per minute, 500 per UTC day, as locally; raise or lower as Space variables |
-| `MAX_UPLOAD_MB`, `MAX_ROWS`, `MAX_COLUMNS` | 10 MB, 200,000 rows, 100 columns |
+| `GROQ_API_KEY` | secret, set in the dashboard |
+| `FRONTEND_ORIGINS` | the Vercel production URL only, e.g. `https://nl2sql.vercel.app` (set in the dashboard) |
+| `INTENT_MODEL_PATH`, `INTENT_RUNTIME` | `dangkhoa241/nl2sql-intent-model`, `onnx` |
+| `LLM_MODEL`, `LLM_FALLBACK_MODELS` | `openai/gpt-oss-120b`, `openai/gpt-oss-20b` (Groq) |
+| `LLM_RATE_LIMIT_PER_MIN`, `LLM_DAILY_BUDGET` | 10 per IP per minute, 500 per UTC day |
+| `MAX_UPLOAD_MB`, `MAX_SESSIONS` | 5, 5 (to stay well inside 512 MB) |
+| `TRUSTED_PROXY_HOPS` | 1: the client IP is the entry Render's proxy appends to `X-Forwarded-For` |
 
-Errors keep the one JSON shape with no stack traces, and the server header is off.
+If Render's proxy chain turns out to append more than one entry, every client would share one rate-limit
+bucket. That is stricter rather than spoofable, and setting `TRUSTED_PROXY_HOPS` to the real number of
+proxies fixes it.
+
+### Docker image and Hugging Face Space (kept for later)
+
+Hugging Face now requires a PRO account for Docker Spaces, so they aren't used right now. The files stay
+in place for that option:
+
+* **`Dockerfile`:** one container serving the built frontend and the API on port 7860.
+  * Multi-stage build: Node builds the frontend, then a slim Python image holds the runtime requirements.
+  * It now has no torch, so the image is 626 MB instead of 1.88 GB.
+  * Healthy in about 6 s at full CPU.
+* **`.dockerignore`:** an allowlist, so `.env`, `intent_model/` and the eval caches never get in.
+* **`space/README.md`:** the Space card (`sdk: docker`, `app_port: 7860`).
+* **`scripts/deploy_space.py`:** uploads exactly what the Dockerfile needs. A plain `git push` to a Space is
+  rejected, because this repo's history has binary screenshots outside Git LFS.
+
+With PRO, the Space would be one origin, so it needs no CORS and no Vercel.

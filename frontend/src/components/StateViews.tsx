@@ -1,5 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 
+import { WAKING_MESSAGE } from "../api/client";
+
 export function Spinner({ label = "Loading" }: { label?: string }) {
   return (
     <span role="status" aria-label={label} className="inline-block size-4 animate-spin rounded-full border-2 border-current border-r-transparent motion-reduce:animate-none" />
@@ -50,6 +52,16 @@ export function ErrorAlert({ message, retryAfter, onRetry }: { message: string; 
           {left > 0 ? `Retry in ${left} s` : "Retry"}
         </button>
       )}
+    </div>
+  );
+}
+
+/** Shown instead of an error while a sleeping free-tier backend starts (requests are retried meanwhile). */
+export function WakingNotice() {
+  return (
+    <div role="status" className="flex items-center gap-3 rounded-[var(--radius-ctl)] border border-border bg-accent-soft px-4 py-3 text-sm text-ink">
+      <Spinner label="Waking up the server" />
+      <p>{WAKING_MESSAGE}</p>
     </div>
   );
 }

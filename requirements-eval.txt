@@ -1,6 +1,14 @@
-# Everything beyond the app runtime: the benchmarks (eval/), the tests (tests/), and training the
-# intent classifier (src/model_training.ipynb).
+# Everything beyond the app runtime: the benchmarks (eval/), the tests (tests/), training the intent
+# classifier (src/model_training.ipynb), and exporting it to ONNX (scripts/export_intent_onnx.py).
 -r requirements.txt
+
+# CPU-only torch wheel: much smaller and faster to install than the default CUDA build.
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+# --- The intent model in torch: training, evaluation, INTENT_RUNTIME=torch, and the ONNX export ---
+torch
+transformers
+onnx
 
 # --- Retrieval: the Stage 2/3 benchmarks, and the app's optional LLM_STRATEGY=example_rag ---
 sentence-transformers

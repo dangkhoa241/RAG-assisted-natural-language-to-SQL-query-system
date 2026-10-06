@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import App from "../App";
+import { WAKING_MESSAGE, wakePolicy } from "../api/client";
 import { makeResult, SAMPLE } from "./fixtures";
 
 const CONFIG = {
@@ -30,11 +31,16 @@ function lastQueryBody() {
   return JSON.parse(call[1]!.body as string);
 }
 
+const DEFAULT_POLICY = { ...wakePolicy };
+
 beforeEach(() => {
   queryResponse = () => json(makeResult());
   fetchMock.mockClear();
   vi.stubGlobal("fetch", fetchMock);
+  // Retry fast in tests; "slow" only after 5 s, so normal responses never look like a cold start.
+  Object.assign(wakePolicy, { slowMs: 5000, delaysMs: [20], maxWaitMs: 300 });
 });
+afterEach(() => Object.assign(wakePolicy, DEFAULT_POLICY));
 afterEach(() => vi.unstubAllGlobals());
 
 describe("App", () => {
@@ -90,17 +96,50 @@ describe("App", () => {
     expect(await screen.findByTestId("chart-bar")).toBeInTheDocument();
   });
 
-  it("explains when the backend is unreachable", async () => {
-    fetchMock.mockImplementationOnce(() => Promise.reject(new TypeError("Failed to fetch")));
+  it("says the server is waking up instead of failing, and carries on once it answers", async () => {
+    fetchMock.mockImplementationOnce(() => Promise.reject(new TypeError("Failed to fetch")));   // asleep
     render(<App />);
-    expect(await screen.findByText(/Can't reach the API server/)).toBeInTheDocument();
+    expect(await screen.findByText(WAKING_MESSAGE)).toBeInTheDocument();
+    expect(await screen.findByRole("radio", { name: /Retail orders/ })).toBeInTheDocument();
+    expect(screen.queryByText(WAKING_MESSAGE)).not.toBeInTheDocument();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+    expect(fetchMock.mock.calls.filter(([u]) => u === "/api/config")).toHaveLength(2);
   });
 
-  it("explains a bare proxy 502 (backend down behind Vite) the same way", async () => {
+  it("retries a bare proxy 502 the same way, and explains once it gives up", async () => {
     const proxy502 = () => Promise.resolve(new Response("", { status: 502 }));
-    fetchMock.mockImplementationOnce(proxy502).mockImplementationOnce(proxy502); // /api/config + /api/samples
+    const realImpl = fetchMock.getMockImplementation()!;
+    fetchMock.mockImplementation((url: string, init?: RequestInit) => (url === "/api/config" ? proxy502() : realImpl(url, init)));
     render(<App />);
+    expect(await screen.findByText(WAKING_MESSAGE)).toBeInTheDocument();
     expect(await screen.findByText(/Can't reach the API server\. Is the backend running on port 8000\?/)).toBeInTheDocument();
+    expect(screen.queryByText(WAKING_MESSAGE)).not.toBeInTheDocument();
+    fetchMock.mockImplementation(realImpl);
+  });
+
+  it("treats a slow first response as a cold start", async () => {
+    Object.assign(wakePolicy, { slowMs: 10 });
+    let release!: () => void;
+    const gate = new Promise<void>((r) => (release = r));
+    const realImpl = fetchMock.getMockImplementation()!;
+    fetchMock.mockImplementationOnce((url: string, init?: RequestInit) => gate.then(() => realImpl(url, init)));
+    render(<App />);
+    expect(await screen.findByText(WAKING_MESSAGE)).toBeInTheDocument();
+    release();
+    expect(await screen.findByRole("radio", { name: /Retail orders/ })).toBeInTheDocument();
+    expect(screen.queryByText(WAKING_MESSAGE)).not.toBeInTheDocument();
+  });
+
+  it("retries a question that reaches a sleeping backend", async () => {
+    const user = userEvent.setup();
+    let calls = 0;
+    queryResponse = () => (calls++ === 0 ? Promise.reject(new TypeError("Failed to fetch")) : json(makeResult()));
+    render(<App />);
+    await user.click(await screen.findByRole("radio", { name: /Retail orders/ }));
+    await user.click(screen.getByRole("button", { name: "total revenue by region" }));
+    expect(await screen.findByTestId("chart-bar")).toBeInTheDocument();
+    expect(calls).toBe(2);
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
 
   it("still shows the backend's own JSON 502 message", async () => {
