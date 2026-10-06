@@ -1,0 +1,4 @@
+# The Docker build runs on Linux: keep these LF even in a Windows checkout.
+Dockerfile text eol=lf
+.dockerignore text eol=lf
+*.sh text eol=lf

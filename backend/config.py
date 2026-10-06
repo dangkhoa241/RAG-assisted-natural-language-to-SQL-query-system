@@ -22,12 +22,17 @@ Every variable is optional:
   SESSION_TTL_MIN           idle minutes before an upload is dropped    (30)
   MAX_ROWS_RETURNED         result rows sent to the client              (500)
   FRONTEND_ORIGINS          comma-separated CORS origins                (http://localhost:5173)
+  FRONTEND_DIST             built frontend to serve at /, same origin as the API
+                                                                        (frontend/dist, if it exists)
+  TRUSTED_PROXY_HOPS        reverse proxies in front of the app; the client IP is that many entries from
+                            the right of X-Forwarded-For. 0 ignores the header (0; the Docker image sets 1)
   PRELOAD_MODELS            load the intent model (and, for example_rag, the embedding model) at startup (true)
 
 The provider's API key comes from GROQ_API_KEY or CEREBRAS_API_KEY.
 """
 import os
 from dataclasses import dataclass
+from pathlib import Path
 
 from dotenv import load_dotenv
 from rag_sql import PROVIDER_API_KEYS
@@ -63,6 +68,12 @@ def _choice(name: str, default: str, allowed: tuple) -> str:
     return value
 
 
+def _frontend_dist():
+    raw = os.environ.get("FRONTEND_DIST", "").strip()
+    path = Path(raw) if raw else ROOT_DIR / "frontend" / "dist"
+    return path if (path / "index.html").is_file() else None
+
+
 def _models(name: str, default: tuple) -> tuple:
     """A comma-separated list; set but empty (or "none") means no fallback."""
     raw = os.environ.get(name)
@@ -93,6 +104,8 @@ class Settings:
     max_rows_returned: int = 500
     frontend_origins: tuple = ("http://localhost:5173",)
     preload_models: bool = True
+    frontend_dist: Path = None   # serve this built frontend at / (None: API only)
+    trusted_proxy_hops: int = 0
     llm_enabled: bool = True     # False when the provider's API key isn't set: auto mode then always uses rule_based
 
     @classmethod
@@ -118,5 +131,7 @@ class Settings:
             max_rows_returned=_int("MAX_ROWS_RETURNED", 500),
             frontend_origins=tuple(o.strip() for o in origins.split(",") if o.strip()),
             preload_models=_bool("PRELOAD_MODELS", True),
+            frontend_dist=_frontend_dist(),
+            trusted_proxy_hops=_int("TRUSTED_PROXY_HOPS", 0),
             llm_enabled=bool(os.environ.get(PROVIDER_API_KEYS[provider])),
         )

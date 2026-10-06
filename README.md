@@ -9,6 +9,14 @@ the rule-based v1 generator answers if the LLM is unavailable or its SQL is reje
 **Pipeline:** question → intent (BERT) → glossary terms matched in the question → LLM SQL (rule-based fallback)
 → safety checks → table + chart, with every step shown in the "How it works" panel.
 
+## 🌐 Live demo
+
+**https://huggingface.co/spaces/YOUR-USERNAME/nl2sql-assistant** *(placeholder until the Space is created)*
+
+It runs on a free Hugging Face Space, which sleeps when nobody has used it for a while, so the first
+visit may take about a minute to wake up. Try the sample datasets, or upload a CSV of your own (up to
+10 MB). Uploads stay in the server's memory for 30 idle minutes and are never written to disk.
+
 <table>
   <tr>
     <td><img src="docs/screenshots/desktop-saas-light.png" alt="Light mode, SaaS dataset: logo churn rate by plan as a bar chart. How it works shows the matched glossary term Logo churn rate and the definition sent to the LLM" /></td>
@@ -164,6 +172,12 @@ logs/                       # Training logs
 requirements.txt           # App runtime: FastAPI, pandas, torch (CPU) + transformers, Groq/OpenAI clients
 requirements-eval.txt      # Benchmarks, tests and training: retrieval (sentence-transformers, FAISS, BM25), pytest, notebooks
 .env.example               # Template for .env (API keys, optional provider / model / fallback settings)
+Dockerfile                 # One image: Node builds the frontend, Python serves it + the API (see "Deployment")
+.dockerignore              # Allowlist of what the image may contain
+space/README.md            # The Hugging Face Space's README (sdk: docker, app_port: 7860)
+scripts/
+  upload_intent_model.py    # intent_model/ -> a Hugging Face model repo
+  deploy_space.py           # Uploads the app to a Hugging Face Docker Space
 ```
 
 ---
@@ -946,6 +960,7 @@ requests/minute).
 - `MAX_UPLOAD_MB` [10], `MAX_ROWS` [200000], `MAX_COLUMNS` [100]
 - `MAX_SESSIONS` (uploads kept in memory) [20], `SESSION_TTL_MIN` [30]
 - `MAX_ROWS_RETURNED` [500], `FRONTEND_ORIGINS` (CORS) [http://localhost:5173]
+- `FRONTEND_DIST`: a built frontend to serve at `/` [frontend/dist, if it exists], `TRUSTED_PROXY_HOPS` [0; the Docker image sets 1]
 
 When the daily budget is used up, `auto` answers with the rule-based generator (`fallback_reason: "daily_budget"`) and `llm` returns 429.
 
@@ -991,12 +1006,13 @@ The schema starts collapsed so the question box stays near the top.
   - What injection *can* still do is make the LLM write a wrong but harmless `SELECT`. The "How it works" panel shows the SQL that ran, so you can check it.
 - **Rate limits:**
   - LLM queries are limited per IP (sliding window), with a global daily budget on top.
-  - Both live in memory, so they reset on restart and are per process. Behind a reverse proxy, run uvicorn with `--proxy-headers --forwarded-allow-ips=<proxy>`; otherwise every client shares the proxy's IP.
+  - Both live in memory, so they reset on restart and are per process (the Docker image runs one worker).
+  - Behind a reverse proxy, set `TRUSTED_PROXY_HOPS` to the number of proxies (the Docker image sets 1). The client IP is then taken that many entries from the right of `X-Forwarded-For`, the entries the proxies themselves appended. Entries a client adds on its own end up further left and are ignored, so forging the header doesn't escape the limit (tested in `tests/api/test_production.py`). With the default of 0 the header is ignored and the socket address is used.
 - **Other protections:**
   - Errors: one JSON shape, a generic message for unexpected errors (details stay in the server log), and provider errors are never forwarded.
   - CORS: only `FRONTEND_ORIGINS`, `GET`/`POST`, and no credentials.
   - Request bodies other than uploads are capped at 16 KB.
-  - API keys stay server-side in `.env`.
+  - API keys stay server-side: in `.env` locally, and only in the environment (Space secrets) in the Docker image, which never contains a `.env`.
 
 ### Training the intent classifier
 
@@ -1012,11 +1028,54 @@ jupyter notebook src/model_training.ipynb
 
 ## ☁️ Deployment
 
-The backend is a standard ASGI app (`uvicorn backend.main:create_app --factory`), and `npm run build` in
-`frontend/` produces static files for any static host. Set `FRONTEND_ORIGINS` to the frontend's URL, and
-behind a reverse proxy run uvicorn with `--proxy-headers` (see "Security").
+The app deploys as **one Docker container** that serves both the React build and the API on one port, so
+the browser talks to a single origin and production needs no CORS. It targets a Hugging Face Docker Space.
 
-`intent_model/` is gitignored (it's a ~400 MB trained model). To use it on a server, push the folder to
-a model repo on the [Hugging Face Hub](https://huggingface.co/new) and set
-`INTENT_MODEL_PATH=your-username/intent-model`; `src/intent.py` then loads it from the Hub. Without it,
-the app uses the keyword-based intent fallback.
+**The image** (`Dockerfile`, multi-stage):
+
+1. `node:22-slim` runs `npm ci && npm run build` (type check + Vite build).
+2. `python:3.11-slim` installs the runtime requirements only: CPU-only torch from PyTorch's index, and no
+   sentence-transformers or FAISS, since the app's glossary gate is text matching. It copies `backend/`,
+   `src/`, `config/`, the glossaries, the three sample CSVs and the built frontend, and runs uvicorn on
+   port 7860 as uid 1000 (what Spaces expect), with one worker.
+
+`.dockerignore` is an allowlist, so `.env`, `intent_model/`, `eval/` (with its LLM caches) and the tests
+never reach the build. Local build and smoke test:
+
+```bash
+docker build -t nl2sql .
+docker run -p 7860:7860 -e GROQ_API_KEY=... -e INTENT_MODEL_PATH=your-username/nl2sql-intent-model nl2sql
+# open http://localhost:7860
+```
+
+Measured locally (Docker Desktop on Windows):
+* **Image size:** 1.88 GB, mostly CPU torch.
+* **Startup:** about 6 s to a healthy `/api/health` with the intent model loaded from a local folder.
+  Downloading it from the Hub on a cold start adds the time to fetch ~440 MB, unless the build prefetched
+  it (see below).
+* **Memory:** about 330 MB idle.
+* **A real query:** "what is our ARR?" on the SaaS sample took 1.7 s end to end, with gpt-oss-120b on Groq
+  and the *ARR* definition matched.
+
+**The intent model** is too large for git (`intent_model/` is gitignored, ~440 MB).
+`scripts/upload_intent_model.py --repo-id your-username/nl2sql-intent-model` uploads the files inference
+needs, with a model card, to a Hub model repo. The app loads it from `INTENT_MODEL_PATH`. On Spaces, that
+variable is also passed to the build, so the Dockerfile downloads the model into the image and a cold
+start doesn't wait for it. Without it, the app uses keyword-based intents.
+
+**Deploying:** `scripts/deploy_space.py --space-id your-username/nl2sql-assistant` creates the Space if
+needed and uploads the files the Dockerfile uses, with `space/README.md` as the Space's README (its header
+sets `sdk: docker` and `app_port: 7860`). Hugging Face then builds the image. A plain `git push` to the
+Space would be rejected, because this repo's history contains binary screenshots that aren't in Git LFS.
+
+**Production settings** (in the image, or as Space variables):
+
+| Setting | In production |
+|---|---|
+| `GROQ_API_KEY` (and optional `CEREBRAS_API_KEY`) | Space **secrets** only; never in the image or the repo |
+| `INTENT_MODEL_PATH` | Space variable: the Hub model repo |
+| `TRUSTED_PROXY_HOPS` | 1 (set in the image): the client IP comes from the proxy's `X-Forwarded-For` entry |
+| `LLM_RATE_LIMIT_PER_MIN`, `LLM_DAILY_BUDGET` | 10 per IP per minute, 500 per UTC day, as locally; raise or lower as Space variables |
+| `MAX_UPLOAD_MB`, `MAX_ROWS`, `MAX_COLUMNS` | 10 MB, 200,000 rows, 100 columns |
+
+Errors keep the one JSON shape with no stack traces, and the server header is off.

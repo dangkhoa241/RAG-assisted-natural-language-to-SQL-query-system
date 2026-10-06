@@ -8,7 +8,8 @@ import os
 from fastapi import FastAPI, File, Request, UploadFile
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
@@ -83,8 +84,33 @@ class BodySizeLimit:
             await _error(413, "too_large", message)(scope, receive, send)
 
 
-def _client_ip(request: Request) -> str:
-    return request.client.host if request.client else "unknown"
+def client_ip(request: Request, trusted_hops: int) -> str:
+    """The address rate limits are keyed on. Behind `trusted_hops` reverse proxies, each proxy appends the
+    address it received the request from to X-Forwarded-For, so the client is `trusted_hops` entries from the
+    right. Entries further left were written by the client and could be anything, so they are never used; a
+    header shorter than the proxy chain means it wasn't set by the proxies, so the socket peer is used."""
+    peer = request.client.host if request.client else "unknown"
+    if trusted_hops <= 0:
+        return peer
+    chain = [part.strip() for part in request.headers.get("x-forwarded-for", "").split(",") if part.strip()]
+    if len(chain) < trusted_hops:
+        return peer
+    return chain[-trusted_hops][:64]
+
+
+def _mount_frontend(app: FastAPI, dist):
+    """Serves the built React app from the API's origin: hashed assets under /assets (cacheable), the few
+    top-level files (index.html, favicon), and index.html for any other non-API path."""
+    index = dist / "index.html"
+    top_level = {p.name for p in dist.iterdir() if p.is_file()}
+    if (dist / "assets").is_dir():
+        app.mount("/assets", StaticFiles(directory=dist / "assets"), name="assets")
+
+    @app.get("/{path:path}", include_in_schema=False)
+    def frontend(path: str):
+        if path == "api" or path.startswith("api/"):
+            raise StarletteHTTPException(404, "Not Found")
+        return FileResponse(dist / path if path in top_level else index)
 
 
 def _quiet_library_logs():
@@ -164,7 +190,9 @@ def create_app(settings: Settings = None, intent_classifier=_DEFAULT) -> FastAPI
         response = await call_next(request)
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["Referrer-Policy"] = "no-referrer"
-        response.headers["Cache-Control"] = "no-store"
+        # Vite's hashed asset names change with their content, so they can be cached for good.
+        immutable = request.url.path.startswith("/assets/") and response.status_code == 200
+        response.headers["Cache-Control"] = "public, max-age=31536000, immutable" if immutable else "no-store"
         return response
 
     # --- errors: one JSON shape, never a stack trace -----------------------------------------
@@ -221,7 +249,7 @@ def create_app(settings: Settings = None, intent_classifier=_DEFAULT) -> FastAPI
 
     @app.post("/api/datasets", status_code=201)
     async def upload_dataset(request: Request, file: UploadFile = File(...)):
-        allowed, retry_after = upload_limiter.hit(_client_ip(request))
+        allowed, retry_after = upload_limiter.hit(client_ip(request, settings.trusted_proxy_hops))
         if not allowed:
             raise ApiError(429, "rate_limited", f"Too many uploads. Try again in {retry_after} s.",
                            {"Retry-After": str(retry_after)})
@@ -254,7 +282,10 @@ def create_app(settings: Settings = None, intent_classifier=_DEFAULT) -> FastAPI
             use_glossary = settings.glossary_default and session.glossary is not None
         else:
             use_glossary = body.use_glossary
-        return service.run(session, body.question, mode, use_glossary, _client_ip(request))
+        return service.run(session, body.question, mode, use_glossary,
+                           client_ip(request, settings.trusted_proxy_hops))
 
+    if settings.frontend_dist is not None:   # registered last, so every /api route matches first
+        _mount_frontend(app, settings.frontend_dist)
     return app
 

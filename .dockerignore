@@ -1,0 +1,20 @@
+# Allowlist: the image needs only what the app runs. Notably excluded: .env (keys come from the
+# environment), intent_model/ (loaded from the Hugging Face Hub), eval/ and its LLM caches, tests, .venv.
+*
+!requirements.txt
+!backend/
+!src/
+!config/
+!docs/glossary/
+!data/healthcare_dataset.csv
+!data/retail_sales.csv
+!data/saas_subscriptions.csv
+!frontend/
+
+**/__pycache__
+src/model_training.ipynb
+frontend/node_modules
+frontend/dist
+frontend/test-results
+frontend/playwright-report
+frontend/tsconfig.tsbuildinfo
