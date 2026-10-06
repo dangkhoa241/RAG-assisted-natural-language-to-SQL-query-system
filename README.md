@@ -608,7 +608,8 @@ top 3.
   much about hardware as model size. Median client latency was 0.32 s for the 120b on Cerebras and
   0.40 s for the 20b on Groq.
 * The 120b's 516 calls used 457K tokens. Cerebras served 324K of them from its prompt cache, so only
-  133K uncached tokens counted against the daily limit.
+  133K uncached tokens counted against the daily limit. The full run cost $0.18 in Cerebras
+  credits, about $0.00035 per query.
 * The 20b's 516 calls used 452K tokens on Groq. Once the free tier's daily token cap was reached,
   the run slowed to about one call every 5–7 minutes.
 
