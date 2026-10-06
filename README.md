@@ -626,6 +626,164 @@ top 3.
 **Next stage:** integrate into the app with `zero_shot` as the default generator and glossary
 retrieval behind a relevance gate, using the 20b if latency or cost matters.
 
+### Held-out domain (SaaS)
+
+Stage 3B left two problems:
+
+1. Definitions a question doesn't need still cost about 4 points.
+2. Retrieval sometimes returned a near-miss distractor instead of the needed definition.
+
+Stage 3C fixes both with **term gating**: a definition is sent only if its term, or one of its listed
+aliases, appears in the question. The fix was tuned on healthcare and retail only, then tested once on
+a third domain that played no part in any decision.
+
+#### Method
+
+* **Held-out data.** A seeded SaaS subscriptions table (`data/saas_subscriptions.csv`: 1,200
+  accounts, 487 of them cancelled) and a 29-term glossary (`docs/glossary/saas.md`).
+  * The glossary fixes a reporting as-of date of 2025-06-30, so terms like *active account* and
+    *recently churned* give a deterministic answer.
+  * Its rules are non-obvious. For example, *churned* means cancelled more than 14 days after
+    signup; earlier cancellations are *trial drop-offs*. *ARR* counts only annual-billing accounts.
+  * 5 terms are near-miss distractors: ACV vs. ARR, dormant vs. active, recent signup vs. new logo,
+    enterprise-scale vs. strategic, and passive vs. detractor.
+  * The glossary and its aliases were written before any question.
+* **60 held-out questions** (`eval/sql_benchmark/saas_questions.jsonl`):
+  * 40 need a definition (8 per intent). Each has gold SQL and a naive everyday reading that gives a
+    different answer.
+  * 20 plain questions need none. Several sit next to a glossary term ("average MRR by plan",
+    "number of cancellations per year") to test whether unneeded definitions get applied.
+  * 15 are written out for review in `REVIEW_SAAS.md`.
+* **Tuning on the dev set only.**
+  * Aliases were added to the healthcare and retail glossaries without changing any definition
+    text, so every Stage 3B prompt stayed byte-identical and cached.
+  * On dev, gating sent exactly the required definitions for all 60 glossary questions and none for
+    the 120 original questions. That is optimistic by construction, because I wrote those aliases
+    while looking at the dev questions.
+  * Because gating missed nothing on dev, no retrieval fallback was added.
+  * The settings were frozen in `eval/stage3c_config.json` before any SaaS call
+    (`eval/evaluate_stage3c.py`).
+* **Same setup as Stage 3B:** gpt-oss-20b on Groq, gpt-oss-120b on Cerebras, temperature 0, low
+  reasoning effort.
+
+#### Results
+
+Dev set (tuning data):
+
+| System | Glossary 20b | Glossary 120b | Original 20b | Original 120b |
+|---|---|---|---|---|
+| doc_rag (ungated top-3) | 86.7% | 88.3% | 94.2% | 95.0% |
+| **doc_rag_gated** | **95.0%** | **91.7%** | **98.3%** | **99.2%** |
+| oracle_doc / zero_shot | 95.0% (oracle) | 95.0% (oracle) | 98.3% (zero-shot) | 99.2% (zero-shot) |
+
+**Held-out SaaS set** (frozen settings, run once):
+
+| System | Glossary (40): 20b | Glossary (40): 120b | Plain (20): 20b | Plain (20): 120b | All 60: 20b | All 60: 120b |
+|---|---|---|---|---|---|---|
+| zero_shot | 0.0% | 0.0% | 95.0% | 100.0% | 31.7% | 33.3% |
+| doc_rag (ungated top-3) | 67.5% | 77.5% | 100.0% | 100.0% | 78.3% | 85.0% |
+| **doc_rag_gated** | **80.0%** | **95.0%** | **95.0%** | **100.0%** | **85.0%** | **96.7%** |
+| oracle_doc | 85.0% | 97.5% | n/a | n/a | n/a | n/a |
+
+Which definitions reached the prompt (this doesn't depend on the model):
+
+| SaaS set | System | Has every needed definition | Exact set | Precision | Questions given an unneeded definition |
+|---|---|---|---|---|---|
+| glossary (40) | doc_rag | 75.0% | 0% | 31.7% | 40 |
+| glossary (40) | doc_rag_gated | **97.5%** | **95.0%** | **98.0%** | 1 |
+| plain (20) | doc_rag | n/a | n/a | 0% | 20 |
+| plain (20) | doc_rag_gated | n/a | n/a | n/a | **0** |
+
+Small vs. large on the SaaS glossary set, question by question:
+
+| System | Both right | Only 20b | Only 120b | Both wrong |
+|---|---|---|---|---|
+| zero_shot | 0 | 0 | 0 | 40 |
+| doc_rag | 25 | 2 | 6 | 7 |
+| doc_rag_gated | 31 | 1 | 7 | 1 |
+| oracle_doc | 33 | 1 | 6 | 0 |
+
+Full results are in `eval/results/stage3c_saas_results.md` / `.json`, and every wrong answer is in
+`stage3c_saas_failures.csv`.
+
+#### What this shows
+
+**Gating held up on the unseen domain.**
+* For the 120b, it raised the glossary set from 77.5% (ungated) to 95.0%, within one question of
+  the oracle (97.5%). The 20b went from 67.5% to 80.0%.
+* On the plain questions, gating sent no definitions at all, so those prompts were exactly the
+  zero-shot ones.
+* Ungated `doc_rag` gave every question three definitions. On the glossary set, only 31.7% of those
+  were ones the question needed, and a quarter of the questions were missing a needed one.
+* Overall, gating scored 85.0% (20b) and 96.7% (120b) on all 60 questions, against 78.3% and 85.0%
+  ungated. **All of that gain came from the glossary questions.**
+
+**The "unneeded definitions" problem didn't reproduce on SaaS.** On dev, sending definitions to
+questions that didn't need them cost about 4 points. On the SaaS plain questions, ungated `doc_rag`
+scored 100% for both models, even with three irrelevant definitions in every prompt. The SaaS
+definitions mostly name distinct concepts and don't redefine plain words; the dev case was *billable
+days* being applied to "length of stay". So gating made no difference on the plain set. For the
+20b it was one question worse: sp_p03 is a miss that zero-shot makes too, and the extra context
+happened to fix it. The protection gating gave on dev's original set is real, but on this held-out
+domain it was never needed.
+
+**Without definitions, both models scored 0 of 40.** That's lower than the dev domains (10%),
+because the SaaS rules are less guessable. Typical wrong answers:
+* "active accounts" became `Cancel Date IS NULL`, ignoring the 30-day login rule;
+* "churned in fiscal year 2024" became calendar 2024 and included trial drop-offs;
+* "enterprise-scale" became `Plan = 'Enterprise'`.
+
+**Unlike on dev, the larger model now leads clearly.** Both models got exactly the same definitions,
+yet the 120b scored 95.0% gated and 97.5% with the oracle definitions, against 80.0% and 85.0% for
+the 20b. Under gating, 7 questions were right only for the 120b and 1 only for the 20b. Most of the
+20b's extra misses are SQL mistakes rather than misreadings of a definition: SQLite integer division
+and missed filters (see below). The SaaS definitions involve more arithmetic (ratios, percentages,
+date differences) than the dev ones.
+
+**The one gating miss was an alias gap, not a matching bug.** In "list **over-provisioned Pro
+accounts** in APAC", the plan name sits inside the term "over-provisioned account", and the
+single-word alias was spelled "overprovisioned". Neither matched, so both models guessed. The
+120b's guess, `Seats Used > Seats`, is the opposite of the definition.
+
+*Post-hoc, not part of the frozen result:* with "over-provisioned" added as an alias, that question
+gets exactly the oracle prompt, which both models already answer correctly. Gated accuracy would
+then be 82.5% (20b) and 97.5% (120b). The frozen numbers above stay the reported ones.
+
+**Notable failures:**
+
+| Question | System | What went wrong |
+|---|---|---|
+| seat utilization by region | 20b gated + oracle | `SUM(Seats Used) / SUM(Seats) * 100` in SQLite is integer division, so every region gets 0 |
+| net promoter score by industry / by signup year | 20b gated + oracle | The same integer division in `SUM(...) / COUNT(NPS)`. The definition was applied correctly |
+| do paid-acquisition accounts have a higher logo churn rate? | 20b gated | It filtered to cancelled accounts first, so both groups show a 100% churn rate |
+| compare the number of detractors and passives | 120b, all three systems with definitions | `CASE` without an `ELSE` leaves promoters (9–10) as a third, unlabeled `NULL` group |
+| compare ARR between EMEA and North America | 20b gated + oracle | ARR was right, but it returned all four regions |
+| total MRR of at-risk accounts by plan | 120b doc_rag | *At-risk* wasn't retrieved, so the model used **cancelled** accounts: the opposite of the definition |
+| count the detractors in EMEA | 120b doc_rag | Only the *passive* distractor was retrieved, and the model fell back to the textbook detractor rule (≤ 6) |
+| trial drop-offs per fiscal year | 20b gated + oracle | The fiscal-year label mixes text and integers again (as in Stage 3B), splitting groups |
+
+**BERT intent accuracy on SaaS** (a domain the classifier never saw) was **75.0%**, against 86.7%
+on dev. Trend questions phrased "X by signup year" are mostly read as aggregate or count (16.7%
+correct). This doesn't affect the LLM systems above, which don't use the predicted intent for
+glossary retrieval.
+
+**Cost.**
+* The 120b's 165 calls on Cerebras used 137K tokens, of which 94K were served from the prompt cache.
+  That's about **$0.05** at Stage 3B's observed rate.
+* The 20b's 165 calls used 138K tokens on Groq, and the run was again paced by the free tier's daily
+  token cap.
+
+**Caveats:**
+
+* The held-out set is small: 40 glossary questions plus 20 plain ones, so one question is 2.5
+  points on the glossary set.
+* One author wrote the SaaS data, glossary, aliases, questions and gold SQL. The aliases were fixed
+  before the questions were written, but my phrasing habits still carry over to both.
+* Gating can only send what the alias lists cover. A real glossary would need curated aliases, or a
+  retrieval fallback for questions that match nothing.
+* Each system was run once, at temperature 0. The model comparison is confounded with the provider,
+  as in Stage 3B.
+
 ---
 
 ## 🔍 What Makes This Project Unique

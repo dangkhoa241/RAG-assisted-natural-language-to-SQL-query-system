@@ -1,0 +1,1962 @@
+{
+  "part": "saas",
+  "config": {
+    "description": "Stage 3C frozen settings, chosen on the dev set only (healthcare + retail). Part B runs the held-out SaaS set once with exactly these settings; anything changed after seeing SaaS results is reported separately as post-hoc.",
+    "frozen": true,
+    "doc_rag": {
+      "description": "Ungated baseline, unchanged from Stage 3B: always the top-k glossary chunks.",
+      "retriever": "hybrid",
+      "k": 3,
+      "index_aliases": false
+    },
+    "doc_rag_gated": {
+      "description": "Send a definition only if its term or one of its listed aliases appears in the question; no definitions means the prompt is identical to zero_shot.",
+      "doc_method": "gated",
+      "matching": "whole-word phrase, case-insensitive, hyphens as spaces, plural -s ignored, FY<year> matches FY; a match inside a longer match for another chunk is dropped",
+      "max_chunks": null,
+      "retrieval_fallback": null,
+      "retrieval_fallback_reason": "Term matching found every required chunk on all 60 dev glossary questions and gave no definitions to any of the 120 original questions, so no fallback was added."
+    },
+    "oracle_doc": "exactly the question's required_chunks, in the order listed",
+    "llm": {
+      "gpt-oss-20b": {
+        "provider": "groq",
+        "model_id": "openai/gpt-oss-20b"
+      },
+      "gpt-oss-120b": {
+        "provider": "cerebras",
+        "model_id": "gpt-oss-120b"
+      },
+      "temperature": 0,
+      "reasoning_effort": "low",
+      "max_completion_tokens": 1024
+    },
+    "glossaries": "docs/glossary/{healthcare,retail,saas}.md as committed with this file (aliases included)"
+  },
+  "n_questions": {
+    "saas_glossary": 40,
+    "saas_plain": 20
+  },
+  "accuracy": {
+    "saas_glossary": {
+      "zero_shot": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 40,
+            "n_missing": 0,
+            "n_correct": 0,
+            "accuracy": 0.0,
+            "n_errors": 1,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 0,
+              "accuracy": 0.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 0,
+              "accuracy": 0.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 0,
+              "accuracy": 0.0,
+              "n_errors": 1,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 0,
+              "accuracy": 0.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 0,
+              "accuracy": 0.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 40,
+            "n_missing": 0,
+            "n_correct": 0,
+            "accuracy": 0.0,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 0,
+              "accuracy": 0.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 0,
+              "accuracy": 0.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 0,
+              "accuracy": 0.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 0,
+              "accuracy": 0.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 0,
+              "accuracy": 0.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      },
+      "doc_rag": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 40,
+            "n_missing": 0,
+            "n_correct": 27,
+            "accuracy": 0.675,
+            "n_errors": 1,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.5,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 5,
+              "accuracy": 0.625,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.5,
+              "n_errors": 1,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 6,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 40,
+            "n_missing": 0,
+            "n_correct": 31,
+            "accuracy": 0.775,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 5,
+              "accuracy": 0.625,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 5,
+              "accuracy": 0.625,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 5,
+              "accuracy": 0.625,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      },
+      "doc_rag_gated": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 40,
+            "n_missing": 0,
+            "n_correct": 32,
+            "accuracy": 0.8,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 6,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 6,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 6,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 6,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 40,
+            "n_missing": 0,
+            "n_correct": 38,
+            "accuracy": 0.95,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 7,
+              "accuracy": 0.875,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 7,
+              "accuracy": 0.875,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      },
+      "oracle_doc": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 40,
+            "n_missing": 0,
+            "n_correct": 34,
+            "accuracy": 0.85,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 6,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 6,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 6,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 40,
+            "n_missing": 0,
+            "n_correct": 39,
+            "accuracy": 0.975,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 7,
+              "accuracy": 0.875,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 8,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      }
+    },
+    "saas_plain": {
+      "zero_shot": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 20,
+            "n_missing": 0,
+            "n_correct": 19,
+            "accuracy": 0.95,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 3,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 20,
+            "n_missing": 0,
+            "n_correct": 20,
+            "accuracy": 1.0,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      },
+      "doc_rag": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 20,
+            "n_missing": 0,
+            "n_correct": 20,
+            "accuracy": 1.0,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 20,
+            "n_missing": 0,
+            "n_correct": 20,
+            "accuracy": 1.0,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      },
+      "doc_rag_gated": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 20,
+            "n_missing": 0,
+            "n_correct": 19,
+            "accuracy": 0.95,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 3,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 20,
+            "n_missing": 0,
+            "n_correct": 20,
+            "accuracy": 1.0,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 4,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      }
+    },
+    "saas_all": {
+      "zero_shot": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 19,
+            "accuracy": 0.31666666666666665,
+            "n_errors": 1,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.3333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.3333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.3333333333333333,
+              "n_errors": 1,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 3,
+              "accuracy": 0.25,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.3333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 20,
+            "accuracy": 0.3333333333333333,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.3333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.3333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.3333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.3333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 4,
+              "accuracy": 0.3333333333333333,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      },
+      "doc_rag": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 47,
+            "accuracy": 0.7833333333333333,
+            "n_errors": 1,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 0.6666666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 9,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 8,
+              "accuracy": 0.6666666666666666,
+              "n_errors": 1,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 51,
+            "accuracy": 0.85,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 9,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 9,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 9,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      },
+      "doc_rag_gated": {
+        "gpt-oss-20b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 51,
+            "accuracy": 0.85,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 9,
+              "accuracy": 0.75,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 10,
+              "accuracy": 0.8333333333333334,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        },
+        "gpt-oss-120b": {
+          "overall": {
+            "n": 60,
+            "n_missing": 0,
+            "n_correct": 58,
+            "accuracy": 0.9666666666666667,
+            "n_errors": 0,
+            "n_fallback": 0
+          },
+          "by_intent": {
+            "filter": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "count": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "aggregate": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "compare": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 11,
+              "accuracy": 0.9166666666666666,
+              "n_errors": 0,
+              "n_fallback": 0
+            },
+            "trend": {
+              "n": 12,
+              "n_missing": 0,
+              "n_correct": 12,
+              "accuracy": 1.0,
+              "n_errors": 0,
+              "n_fallback": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "gating": {
+    "saas_glossary": {
+      "doc_rag": {
+        "n": 40,
+        "all_required": 0.75,
+        "exact": 0.0,
+        "precision": 0.31666666666666665,
+        "avg_definitions": 3.0,
+        "questions_with_unneeded_definitions": 40,
+        "questions_missing_a_definition": 10,
+        "misses": {
+          "sg_f01": {
+            "required": [
+              "ss_strategic_account"
+            ],
+            "given": [
+              "ss_strategic_account",
+              "ss_enterprise_scale",
+              "ss_seat_utilization"
+            ]
+          },
+          "sg_f02": {
+            "required": [
+              "ss_at_risk"
+            ],
+            "given": [
+              "ss_strategic_account",
+              "ss_at_risk",
+              "ss_smb_account"
+            ]
+          },
+          "sg_f03": {
+            "required": [
+              "ss_recently_churned"
+            ],
+            "given": [
+              "ss_recently_churned",
+              "ss_churned",
+              "ss_logo_churn_rate"
+            ]
+          },
+          "sg_f04": {
+            "required": [
+              "ss_overprovisioned"
+            ],
+            "given": [
+              "ss_overprovisioned",
+              "ss_expansion_ready",
+              "ss_smb_account"
+            ]
+          },
+          "sg_f05": {
+            "required": [
+              "ss_expansion_ready"
+            ],
+            "given": [
+              "ss_expansion_ready",
+              "ss_active_account",
+              "ss_strategic_account"
+            ]
+          },
+          "sg_f06": {
+            "required": [
+              "ss_dormant_account"
+            ],
+            "given": [
+              "ss_dormant_account",
+              "ss_arr",
+              "ss_active_account"
+            ]
+          },
+          "sg_f07": {
+            "required": [
+              "ss_new_logo",
+              "ss_regulated_industry"
+            ],
+            "given": [
+              "ss_regulated_industry",
+              "ss_recent_signup",
+              "ss_new_logo"
+            ]
+          },
+          "sg_f08": {
+            "required": [
+              "ss_support_heavy",
+              "ss_smb_account"
+            ],
+            "given": [
+              "ss_smb_account",
+              "ss_support_heavy",
+              "ss_at_risk"
+            ]
+          },
+          "sg_c01": {
+            "required": [
+              "ss_active_account"
+            ],
+            "given": [
+              "ss_active_account",
+              "ss_dormant_account",
+              "ss_enterprise_scale"
+            ]
+          },
+          "sg_c02": {
+            "required": [
+              "ss_trial_dropoff"
+            ],
+            "given": [
+              "ss_paid_acquisition",
+              "ss_self_serve",
+              "ss_trial_dropoff"
+            ]
+          },
+          "sg_c03": {
+            "required": [
+              "ss_churned",
+              "ss_fiscal_year"
+            ],
+            "given": [
+              "ss_recently_churned",
+              "ss_churned",
+              "ss_logo_churn_rate"
+            ]
+          },
+          "sg_c04": {
+            "required": [
+              "ss_high_touch"
+            ],
+            "given": [
+              "ss_strategic_account",
+              "ss_expansion_ready",
+              "ss_enterprise_scale"
+            ]
+          },
+          "sg_c05": {
+            "required": [
+              "ss_detractor"
+            ],
+            "given": [
+              "ss_seat_utilization",
+              "ss_arpa",
+              "ss_passive"
+            ]
+          },
+          "sg_c06": {
+            "required": [
+              "ss_enterprise_scale"
+            ],
+            "given": [
+              "ss_enterprise_scale",
+              "ss_expansion_ready",
+              "ss_strategic_account"
+            ]
+          },
+          "sg_c07": {
+            "required": [
+              "ss_recent_signup"
+            ],
+            "given": [
+              "ss_active_account",
+              "ss_recent_signup",
+              "ss_dormant_account"
+            ]
+          },
+          "sg_c08": {
+            "required": [
+              "ss_smb_account"
+            ],
+            "given": [
+              "ss_smb_account",
+              "ss_strategic_account",
+              "ss_expansion_ready"
+            ]
+          },
+          "sg_a01": {
+            "required": [
+              "ss_arr"
+            ],
+            "given": [
+              "ss_arr",
+              "ss_acv",
+              "ss_high_touch"
+            ]
+          },
+          "sg_a02": {
+            "required": [
+              "ss_arpa"
+            ],
+            "given": [
+              "ss_arpa",
+              "ss_strategic_account",
+              "ss_smb_account"
+            ]
+          },
+          "sg_a03": {
+            "required": [
+              "ss_seat_utilization"
+            ],
+            "given": [
+              "ss_seat_utilization",
+              "ss_expansion_ready",
+              "ss_arpa"
+            ]
+          },
+          "sg_a04": {
+            "required": [
+              "ss_tenure",
+              "ss_churned"
+            ],
+            "given": [
+              "ss_recently_churned",
+              "ss_logo_churn_rate",
+              "ss_enterprise_scale"
+            ]
+          },
+          "sg_a05": {
+            "required": [
+              "ss_acv",
+              "ss_strategic_account"
+            ],
+            "given": [
+              "ss_strategic_account",
+              "ss_arpa",
+              "ss_enterprise_scale"
+            ]
+          },
+          "sg_a06": {
+            "required": [
+              "ss_net_promoter_score"
+            ],
+            "given": [
+              "ss_net_promoter_score",
+              "ss_passive",
+              "ss_regulated_industry"
+            ]
+          },
+          "sg_a07": {
+            "required": [
+              "ss_at_risk"
+            ],
+            "given": [
+              "ss_strategic_account",
+              "ss_arpa",
+              "ss_enterprise_scale"
+            ]
+          },
+          "sg_a08": {
+            "required": [
+              "ss_self_serve"
+            ],
+            "given": [
+              "ss_smb_account",
+              "ss_seat_utilization",
+              "ss_enterprise_scale"
+            ]
+          },
+          "sg_p01": {
+            "required": [
+              "ss_logo_churn_rate"
+            ],
+            "given": [
+              "ss_logo_churn_rate",
+              "ss_arr",
+              "ss_acv"
+            ]
+          },
+          "sg_p02": {
+            "required": [
+              "ss_high_touch",
+              "ss_self_serve"
+            ],
+            "given": [
+              "ss_arpa",
+              "ss_enterprise_scale",
+              "ss_strategic_account"
+            ]
+          },
+          "sg_p03": {
+            "required": [
+              "ss_regulated_industry",
+              "ss_seat_utilization"
+            ],
+            "given": [
+              "ss_regulated_industry",
+              "ss_seat_utilization",
+              "ss_smb_account"
+            ]
+          },
+          "sg_p04": {
+            "required": [
+              "ss_arr"
+            ],
+            "given": [
+              "ss_acv",
+              "ss_arr",
+              "ss_arpa"
+            ]
+          },
+          "sg_p05": {
+            "required": [
+              "ss_paid_acquisition",
+              "ss_logo_churn_rate"
+            ],
+            "given": [
+              "ss_logo_churn_rate",
+              "ss_paid_acquisition",
+              "ss_new_logo"
+            ]
+          },
+          "sg_p06": {
+            "required": [
+              "ss_expansion_ready"
+            ],
+            "given": [
+              "ss_expansion_ready",
+              "ss_smb_account",
+              "ss_enterprise_scale"
+            ]
+          },
+          "sg_p07": {
+            "required": [
+              "ss_detractor",
+              "ss_passive"
+            ],
+            "given": [
+              "ss_passive",
+              "ss_arpa",
+              "ss_acv"
+            ]
+          },
+          "sg_p08": {
+            "required": [
+              "ss_smb_account"
+            ],
+            "given": [
+              "ss_smb_account",
+              "ss_support_heavy",
+              "ss_enterprise_scale"
+            ]
+          },
+          "sg_t01": {
+            "required": [
+              "ss_new_logo"
+            ],
+            "given": [
+              "ss_recent_signup",
+              "ss_logo_churn_rate",
+              "ss_new_logo"
+            ]
+          },
+          "sg_t02": {
+            "required": [
+              "ss_fiscal_year"
+            ],
+            "given": [
+              "ss_fiscal_year",
+              "ss_tenure",
+              "ss_arpa"
+            ]
+          },
+          "sg_t03": {
+            "required": [
+              "ss_churned"
+            ],
+            "given": [
+              "ss_logo_churn_rate",
+              "ss_recently_churned",
+              "ss_arr"
+            ]
+          },
+          "sg_t04": {
+            "required": [
+              "ss_arr"
+            ],
+            "given": [
+              "ss_arr",
+              "ss_acv",
+              "ss_recent_signup"
+            ]
+          },
+          "sg_t05": {
+            "required": [
+              "ss_logo_churn_rate"
+            ],
+            "given": [
+              "ss_logo_churn_rate",
+              "ss_new_logo",
+              "ss_recent_signup"
+            ]
+          },
+          "sg_t06": {
+            "required": [
+              "ss_tenure"
+            ],
+            "given": [
+              "ss_tenure",
+              "ss_recent_signup",
+              "ss_logo_churn_rate"
+            ]
+          },
+          "sg_t07": {
+            "required": [
+              "ss_net_promoter_score"
+            ],
+            "given": [
+              "ss_net_promoter_score",
+              "ss_passive",
+              "ss_recent_signup"
+            ]
+          },
+          "sg_t08": {
+            "required": [
+              "ss_trial_dropoff",
+              "ss_fiscal_year"
+            ],
+            "given": [
+              "ss_fiscal_year",
+              "ss_trial_dropoff",
+              "ss_recent_signup"
+            ]
+          }
+        }
+      },
+      "doc_rag_gated": {
+        "n": 40,
+        "all_required": 0.975,
+        "exact": 0.95,
+        "precision": 0.98,
+        "avg_definitions": 1.25,
+        "questions_with_unneeded_definitions": 1,
+        "questions_missing_a_definition": 1,
+        "misses": {
+          "sg_f03": {
+            "required": [
+              "ss_recently_churned"
+            ],
+            "given": [
+              "ss_churned",
+              "ss_recently_churned"
+            ]
+          },
+          "sg_f04": {
+            "required": [
+              "ss_overprovisioned"
+            ],
+            "given": []
+          }
+        }
+      }
+    },
+    "saas_plain": {
+      "doc_rag": {
+        "n": 20,
+        "all_required": null,
+        "exact": null,
+        "precision": 0.0,
+        "avg_definitions": 3.0,
+        "questions_with_unneeded_definitions": 20,
+        "questions_missing_a_definition": 0,
+        "misses": {
+          "sp_f01": {
+            "required": [],
+            "given": [
+              "ss_enterprise_scale",
+              "ss_expansion_ready",
+              "ss_strategic_account"
+            ]
+          },
+          "sp_f02": {
+            "required": [],
+            "given": [
+              "ss_support_heavy",
+              "ss_overprovisioned",
+              "ss_smb_account"
+            ]
+          },
+          "sp_f03": {
+            "required": [],
+            "given": [
+              "ss_active_account",
+              "ss_new_logo",
+              "ss_dormant_account"
+            ]
+          },
+          "sp_f04": {
+            "required": [],
+            "given": [
+              "ss_passive",
+              "ss_net_promoter_score",
+              "ss_detractor"
+            ]
+          },
+          "sp_c01": {
+            "required": [],
+            "given": [
+              "ss_active_account",
+              "ss_new_logo",
+              "ss_dormant_account"
+            ]
+          },
+          "sp_c02": {
+            "required": [],
+            "given": [
+              "ss_tenure",
+              "ss_active_account",
+              "ss_arr"
+            ]
+          },
+          "sp_c03": {
+            "required": [],
+            "given": [
+              "ss_arr",
+              "ss_arpa",
+              "ss_net_promoter_score"
+            ]
+          },
+          "sp_c04": {
+            "required": [],
+            "given": [
+              "ss_net_promoter_score",
+              "ss_detractor",
+              "ss_passive"
+            ]
+          },
+          "sp_a01": {
+            "required": [],
+            "given": [
+              "ss_strategic_account",
+              "ss_arpa",
+              "ss_enterprise_scale"
+            ]
+          },
+          "sp_a02": {
+            "required": [],
+            "given": [
+              "ss_overprovisioned",
+              "ss_expansion_ready",
+              "ss_seat_utilization"
+            ]
+          },
+          "sp_a03": {
+            "required": [],
+            "given": [
+              "ss_support_heavy",
+              "ss_seat_utilization",
+              "ss_at_risk"
+            ]
+          },
+          "sp_a04": {
+            "required": [],
+            "given": [
+              "ss_arr",
+              "ss_acv",
+              "ss_arpa"
+            ]
+          },
+          "sp_p01": {
+            "required": [],
+            "given": [
+              "ss_arr",
+              "ss_acv",
+              "ss_arpa"
+            ]
+          },
+          "sp_p02": {
+            "required": [],
+            "given": [
+              "ss_arpa",
+              "ss_enterprise_scale",
+              "ss_expansion_ready"
+            ]
+          },
+          "sp_p03": {
+            "required": [],
+            "given": [
+              "ss_expansion_ready",
+              "ss_support_heavy",
+              "ss_enterprise_scale"
+            ]
+          },
+          "sp_p04": {
+            "required": [],
+            "given": [
+              "ss_arpa",
+              "ss_net_promoter_score",
+              "ss_passive"
+            ]
+          },
+          "sp_t01": {
+            "required": [],
+            "given": [
+              "ss_tenure",
+              "ss_logo_churn_rate",
+              "ss_active_account"
+            ]
+          },
+          "sp_t02": {
+            "required": [],
+            "given": [
+              "ss_arpa",
+              "ss_churned",
+              "ss_tenure"
+            ]
+          },
+          "sp_t03": {
+            "required": [],
+            "given": [
+              "ss_arpa",
+              "ss_strategic_account",
+              "ss_recent_signup"
+            ]
+          },
+          "sp_t04": {
+            "required": [],
+            "given": [
+              "ss_seat_utilization",
+              "ss_support_heavy",
+              "ss_arpa"
+            ]
+          }
+        }
+      },
+      "doc_rag_gated": {
+        "n": 20,
+        "all_required": null,
+        "exact": null,
+        "precision": null,
+        "avg_definitions": 0.0,
+        "questions_with_unneeded_definitions": 0,
+        "questions_missing_a_definition": 0,
+        "misses": {}
+      }
+    }
+  },
+  "gated_vs_ungated": {
+    "saas_glossary": {
+      "gpt-oss-20b": {
+        "n": 40,
+        "both": 22,
+        "only_a": 5,
+        "only_b": 10,
+        "neither": 3,
+        "fixed": [
+          "sg_a07",
+          "sg_a08",
+          "sg_c02",
+          "sg_c03",
+          "sg_c04",
+          "sg_c05",
+          "sg_p01",
+          "sg_p02",
+          "sg_t02",
+          "sg_t06"
+        ],
+        "broken": [
+          "sg_a06",
+          "sg_f04",
+          "sg_f08",
+          "sg_t07",
+          "sg_t08"
+        ]
+      },
+      "gpt-oss-120b": {
+        "n": 40,
+        "both": 30,
+        "only_a": 1,
+        "only_b": 8,
+        "neither": 1,
+        "fixed": [
+          "sg_a05",
+          "sg_a07",
+          "sg_a08",
+          "sg_c03",
+          "sg_c04",
+          "sg_c05",
+          "sg_p02",
+          "sg_p04"
+        ],
+        "broken": [
+          "sg_f04"
+        ]
+      }
+    },
+    "saas_plain": {
+      "gpt-oss-20b": {
+        "n": 20,
+        "both": 19,
+        "only_a": 1,
+        "only_b": 0,
+        "neither": 0,
+        "fixed": [],
+        "broken": [
+          "sp_p03"
+        ]
+      },
+      "gpt-oss-120b": {
+        "n": 20,
+        "both": 20,
+        "only_a": 0,
+        "only_b": 0,
+        "neither": 0,
+        "fixed": [],
+        "broken": []
+      }
+    }
+  },
+  "small_vs_large": {
+    "saas_glossary": {
+      "zero_shot": {
+        "n": 40,
+        "both": 0,
+        "only_a": 0,
+        "only_b": 0,
+        "neither": 40,
+        "fixed": [],
+        "broken": []
+      },
+      "doc_rag": {
+        "n": 40,
+        "both": 25,
+        "only_a": 2,
+        "only_b": 6,
+        "neither": 7,
+        "fixed": [
+          "sg_a03",
+          "sg_c02",
+          "sg_p01",
+          "sg_p05",
+          "sg_t02",
+          "sg_t06"
+        ],
+        "broken": [
+          "sg_a05",
+          "sg_p07"
+        ]
+      },
+      "doc_rag_gated": {
+        "n": 40,
+        "both": 31,
+        "only_a": 1,
+        "only_b": 7,
+        "neither": 1,
+        "fixed": [
+          "sg_a03",
+          "sg_a06",
+          "sg_f08",
+          "sg_p04",
+          "sg_p05",
+          "sg_t07",
+          "sg_t08"
+        ],
+        "broken": [
+          "sg_p07"
+        ]
+      },
+      "oracle_doc": {
+        "n": 40,
+        "both": 33,
+        "only_a": 1,
+        "only_b": 6,
+        "neither": 0,
+        "fixed": [
+          "sg_a03",
+          "sg_a06",
+          "sg_p04",
+          "sg_p05",
+          "sg_t07",
+          "sg_t08"
+        ],
+        "broken": [
+          "sg_p07"
+        ]
+      }
+    },
+    "saas_plain": {
+      "zero_shot": {
+        "n": 20,
+        "both": 19,
+        "only_a": 0,
+        "only_b": 1,
+        "neither": 0,
+        "fixed": [
+          "sp_p03"
+        ],
+        "broken": []
+      },
+      "doc_rag": {
+        "n": 20,
+        "both": 20,
+        "only_a": 0,
+        "only_b": 0,
+        "neither": 0,
+        "fixed": [],
+        "broken": []
+      },
+      "doc_rag_gated": {
+        "n": 20,
+        "both": 19,
+        "only_a": 0,
+        "only_b": 1,
+        "neither": 0,
+        "fixed": [
+          "sp_p03"
+        ],
+        "broken": []
+      }
+    }
+  },
+  "zero_shot_naive": {
+    "saas_glossary": {
+      "gpt-oss-20b": {
+        "wrong": 40,
+        "naive_match": 12
+      },
+      "gpt-oss-120b": {
+        "wrong": 40,
+        "naive_match": 10
+      }
+    }
+  },
+  "usage": {
+    "gpt-oss-20b": {
+      "n_calls": 165,
+      "n_with_client_latency": 165,
+      "latency_median_s": 0.441,
+      "latency_p95_s": 0.8887999999999989,
+      "server_time_median_s": 0.158688542,
+      "server_time_p95_s": 0.38378005439999985,
+      "avg_prompt_tokens": 722.4909090909091,
+      "avg_completion_tokens": 112.7090909090909,
+      "avg_reasoning_tokens": 59.03030303030303,
+      "avg_total_tokens": 835.2,
+      "provider": "Groq",
+      "total_tokens": 137808,
+      "cached_prompt_tokens": 13312
+    },
+    "gpt-oss-120b": {
+      "n_calls": 165,
+      "n_with_client_latency": 165,
+      "latency_median_s": 0.301,
+      "latency_p95_s": 0.7811999999999981,
+      "server_time_median_s": 0.0664360523223877,
+      "server_time_p95_s": 0.2346597671508787,
+      "avg_prompt_tokens": 722.4909090909091,
+      "avg_completion_tokens": 106.87272727272727,
+      "avg_reasoning_tokens": 53.484848484848484,
+      "avg_total_tokens": 829.3636363636364,
+      "provider": "Cerebras",
+      "total_tokens": 136845,
+      "cached_prompt_tokens": 94464
+    }
+  },
+  "n_missing": 0,
+  "cerebras_cost_usd_estimate": 0.053885766663676914
+}
