@@ -229,16 +229,6 @@ def create_app(settings: Settings = None, intent_classifier=_DEFAULT) -> FastAPI
         return _error(500, "internal_error", "Something went wrong on the server.")
 
     # --- endpoints ---------------------------------------------------------------------------
-    @app.get("/api/_debug/client", include_in_schema=False)
-    def debug_client(request: Request):
-        # TEMPORARY: shows the caller only their own request's forwarding chain, to set TRUSTED_PROXY_HOPS.
-        chain = [p.strip() for p in request.headers.get("x-forwarded-for", "").split(",") if p.strip()]
-        return {"trusted_proxy_hops": settings.trusted_proxy_hops, "xff": chain,
-                "cf_connecting_ip": request.headers.get("cf-connecting-ip"),
-                "true_client_ip": request.headers.get("true-client-ip"),
-                "peer": request.client.host if request.client else None,
-                "keyed_on": client_ip(request, settings.trusted_proxy_hops)}
-
     @app.get("/api/health")
     def health():
         return {"status": "ok", "intent_model": "bert" if service.intent_classifier else "keywords",

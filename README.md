@@ -11,13 +11,15 @@ the rule-based v1 generator answers if the LLM is unavailable or its SQL is reje
 
 ## 🌐 Live demo
 
-**https://YOUR-APP.vercel.app** *(placeholder until the deployment is live)*
+**https://nl2sql-assistant.vercel.app**
 
 The React frontend is on Vercel and the API runs on Render's free plan, which sleeps after 15 idle
-minutes. An uptime monitor normally keeps it awake. If it was asleep, the first visit can take about a
-minute: the page says "Waking up the server…" and retries on its own. Try the sample datasets, or upload a
-CSV of your own (up to 5 MB). Uploads stay in the server's memory for 30 idle minutes and are never written
-to disk.
+minutes. **The first request after a quiet spell can take about a minute** while the server starts. The
+page says "Waking up the server…" and retries on its own, so just wait for it. After that, answers take
+about 1–3 seconds.
+
+Try the sample datasets, or upload a CSV of your own (up to 5 MB). Uploads stay in the server's memory for
+30 idle minutes and are never written to disk.
 
 <table>
   <tr>
@@ -1012,7 +1014,7 @@ requests/minute).
 - `MAX_UPLOAD_MB` [10], `MAX_ROWS` [200000], `MAX_COLUMNS` [100]
 - `MAX_SESSIONS` (uploads kept in memory) [20], `SESSION_TTL_MIN` [30]
 - `MAX_ROWS_RETURNED` [500], `FRONTEND_ORIGINS` (CORS) [http://localhost:5173]
-- `FRONTEND_DIST`: a built frontend to serve at `/` [frontend/dist, if it exists], `TRUSTED_PROXY_HOPS` [0; Render and the Docker image use 1]
+- `FRONTEND_DIST`: a built frontend to serve at `/` [frontend/dist, if it exists], `TRUSTED_PROXY_HOPS` [0; Render uses 3, the Docker image 1]
 - `INTENT_MODEL_PATH` [intent_model], `INTENT_RUNTIME` [onnx, or torch with requirements-eval.txt], `INTENT_QUANTIZE` for the torch runtime [none, or int8]
 
 When the daily budget is used up, `auto` answers with the rule-based generator (`fallback_reason: "daily_budget"`) and `llm` returns 429.
@@ -1060,7 +1062,7 @@ The schema starts collapsed so the question box stays near the top.
 - **Rate limits:**
   - LLM queries are limited per IP (sliding window), with a global daily budget on top.
   - Both live in memory, so they reset on restart and are per process (the Docker image runs one worker).
-  - Behind a reverse proxy, set `TRUSTED_PROXY_HOPS` to the number of proxies (Render and the Docker image use 1). The client IP is then taken that many entries from the right of `X-Forwarded-For`, the entries the proxies themselves appended. Entries a client adds on its own end up further left and are ignored, so forging the header doesn't escape the limit (tested in `tests/api/test_production.py`). With the default of 0 the header is ignored and the socket address is used.
+  - Behind a reverse proxy, set `TRUSTED_PROXY_HOPS` to the number of proxies that append to the header (Render, behind Cloudflare and its load balancer, uses 3; the Docker image defaults to 1). The client IP is then taken that many entries from the right of `X-Forwarded-For`, the entries the proxies themselves appended. Entries a client adds on its own end up further left and are ignored, so forging the header doesn't escape the limit (tested in `tests/api/test_production.py`). With the default of 0 the header is ignored and the socket address is used.
 - **Other protections:**
   - Errors: one JSON shape, a generic message for unexpected errors (details stay in the server log), and provider errors are never forwarded.
   - CORS: only `FRONTEND_ORIGINS` (in production, the Vercel production URL and nothing else), `GET`/`POST`, and no credentials.
@@ -1086,8 +1088,8 @@ plan**, and the React frontend runs on **Vercel**. The browser calls the API cro
 only the Vercel production domain.
 
 ```text
-browser ──► https://YOUR-APP.vercel.app        (Vercel: static Vite build, SPA routing)
-        └─► https://nl2sql-api.onrender.com/api (Render free: uvicorn backend.main:app, 512 MB, 0.1 CPU)
+browser ──► https://nl2sql-assistant.vercel.app      (Vercel: static Vite build, SPA routing)
+        └─► https://nl2sql-api-llrx.onrender.com/api (Render free: uvicorn backend.main:app, 512 MB, 0.1 CPU)
                 └─► Groq (gpt-oss-120b, then gpt-oss-20b)    Hugging Face Hub (intent model, at build time)
 ```
 
@@ -1097,7 +1099,9 @@ browser ──► https://YOUR-APP.vercel.app        (Vercel: static Vite build,
   * Build: `pip install -r requirements.txt && python scripts/prefetch_intent_model.py`. The prefetch
     downloads the ONNX intent model into `HF_HOME` inside the project folder, so a cold start doesn't
     download it again.
-  * Start: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT --workers 1`.
+  * Start: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT --workers 1 --no-proxy-headers`. The app
+    reads the client IP itself (see `TRUSTED_PROXY_HOPS` below), so uvicorn's own proxy-header handling is
+    off; it would otherwise trust a forged header.
   * Health check: `/api/health`.
 * **Secrets are set in the dashboard, never committed.** `GROQ_API_KEY` and `FRONTEND_ORIGINS` are
   `sync: false` in the Blueprint, so Render asks for them.
@@ -1126,48 +1130,56 @@ browser ──► https://YOUR-APP.vercel.app        (Vercel: static Vite build,
 
 ### Cold starts
 
-The free Render service sleeps after 15 minutes without traffic.
+The free Render service sleeps after 15 minutes without traffic, and the deployed demo is left to sleep.
+Waking takes about a minute: roughly 50 s of startup on 0.1 CPU, plus Render's own spin-up.
 
-* **Keep it awake with UptimeRobot** (free). Add an HTTP(s) monitor on
-  `https://nl2sql-api.onrender.com/api/health` every 5 minutes.
-  * `/api/health` is cheap: it returns a fixed dictionary and does no model or LLM work (tested).
-  * One service running all month is about 730 hours, which fits in Render's 750 free instance hours.
-* **If it's asleep anyway, the frontend handles it:**
+* **The frontend handles a sleeping backend:**
   * The page pings `/api/health` as soon as it loads, so the backend starts booting before the user does
     anything.
   * A network error, a bare 502/503 from Render's router, or a first response slower than 2.5 s shows
     *"Waking up the server, this can take up to a minute…"* instead of an error.
   * It then retries with backoff (1, 2, 4, 8, then every 10 s) for up to two minutes.
   * JSON errors from the backend itself, such as rate limits, are never retried.
+* **Keeping it awake is optional, and not done here.** An uptime monitor (e.g. UptimeRobot) could request
+  `https://nl2sql-api-llrx.onrender.com/api/health` every 5 minutes. `/api/health` is cheap enough for that:
+  it returns a fixed dictionary and does no model or LLM work (tested). The cost is Render's free instance
+  hours: 750 a month, **shared by every free service in the workspace**. One service kept awake all month
+  uses about 730 of them, leaving almost nothing for anything else, so a one-minute wake-up is the better
+  trade for a demo.
 
 ### Production settings (Render environment)
 
 | Setting | Value |
 |---|---|
 | `GROQ_API_KEY` | secret, set in the dashboard |
-| `FRONTEND_ORIGINS` | the Vercel production URL only, e.g. `https://nl2sql.vercel.app` (set in the dashboard) |
+| `FRONTEND_ORIGINS` | the Vercel production URL only: `https://nl2sql-assistant.vercel.app` (set in the dashboard) |
 | `INTENT_MODEL_PATH`, `INTENT_RUNTIME` | `dangkhoa241/nl2sql-intent-model`, `onnx` |
 | `LLM_MODEL`, `LLM_FALLBACK_MODELS` | `openai/gpt-oss-120b`, `openai/gpt-oss-20b` (Groq) |
 | `LLM_RATE_LIMIT_PER_MIN`, `LLM_DAILY_BUDGET` | 10 per IP per minute, 500 per UTC day |
 | `MAX_UPLOAD_MB`, `MAX_SESSIONS` | 5, 5 (to stay well inside 512 MB) |
-| `TRUSTED_PROXY_HOPS` | 1: the client IP is the entry Render's proxy appends to `X-Forwarded-For` |
+| `TRUSTED_PROXY_HOPS` | 3: the client is 3 entries from the right of `X-Forwarded-For` (measured, see below) |
 
-If Render's proxy chain turns out to append more than one entry, every client would share one rate-limit
-bucket. That is stricter rather than spoofable, and setting `TRUSTED_PROXY_HOPS` to the real number of
-proxies fixes it.
+**Why 3, measured on the live service.** A temporary diagnostic endpoint showed each caller its own
+forwarding chain. On Render a request arrives with:
 
-### Docker image and Hugging Face Space (kept for later)
+```text
+X-Forwarded-For: <client>, <Cloudflare edge>, <Render load balancer>
+```
 
-Hugging Face now requires a PRO account for Docker Spaces, so they aren't used right now. The files stay
-in place for that option:
+Cloudflare appends the visitor, and Render's load balancer appends the Cloudflare edge it came through.
+Each setting was then checked with 14 uploads from one IP within a few seconds (limit: 10 per minute), plus
+3 more carrying a forged `X-Forwarded-For`:
 
-* **`Dockerfile`:** one container serving the built frontend and the API on port 7860.
-  * Multi-stage build: Node builds the frontend, then a slim Python image holds the runtime requirements.
-  * It now has no torch, so the image is 626 MB instead of 1.88 GB.
-  * Healthy in about 6 s at full CPU.
-* **`.dockerignore`:** an allowlist, so `.env`, `intent_model/` and the eval caches never get in.
-* **`space/README.md`:** the Space card (`sdk: docker`, `app_port: 7860`).
-* **`scripts/deploy_space.py`:** uploads exactly what the Dockerfile needs. A plain `git push` to a Space is
-  rejected, because this repo's history has binary screenshots outside Git LFS.
+| `TRUSTED_PROXY_HOPS` | Limits keyed on | 14 uploads | 3 forged |
+|---|---|---|---|
+| 1 | Render's load balancer, whose internal address also varies | all accepted (the 18th refused) | accepted |
+| 2 | the Cloudflare edge, which changes between requests | all accepted | accepted |
+| **3** | **the client** | **10 accepted, then 429** | **429** |
 
-With PRO, the Space would be one origin, so it needs no CORS and no Vercel.
+* A forged header can't escape the limit: the client's own entries sit further left (`1.2.3.4, <client>,
+  <edge>, <LB>`), and 3 from the right is still the real client. The parsing is unit-tested in
+  `tests/api/test_production.py`.
+* uvicorn's proxy-header handling is turned off (`--no-proxy-headers`). With it on, `request.client` became
+  the forged address.
+* The diagnostic endpoint was removed after the measurement.
+
