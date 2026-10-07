@@ -31,12 +31,12 @@ Try the sample datasets, or upload a CSV of your own (up to 5 MB). Uploads stay 
     <td align="center"><sub>Dark: "what is our ARR?", glossary term matched</sub></td>
   </tr>
   <tr>
-    <td><img src="docs/screenshots/desktop-light.png" alt="Light mode, healthcare dataset: average billing amount by insurance provider as a bar chart. No glossary term matched, so the prompt was zero-shot" /></td>
-    <td><img src="docs/screenshots/desktop-dark.png" alt="Dark mode, retail dataset: how many repeat customers, answered with the Repeat customer definition and shown as a number card" /></td>
+    <td><img src="docs/screenshots/desktop-light.png" alt="Light mode, healthcare dataset: how many admissions by admission type, automatically shown as a pie chart (Elective 320, Emergency 346, Urgent 333). No glossary term matched, so the prompt was zero-shot" /></td>
+    <td><img src="docs/screenshots/desktop-dark.png" alt="Dark mode, retail dataset: net revenue per month in 2024, automatically shown as a line chart with a November peak. How it works shows the matched term Net revenue and its definition (non-returned orders only)" /></td>
   </tr>
   <tr>
-    <td align="center"><sub>Light: no glossary term, zero-shot prompt</sub></td>
-    <td align="center"><sub>Dark: "repeat customers", glossary term matched</sub></td>
+    <td align="center"><sub>Light: "how many admissions by admission type", no glossary term (zero-shot), pie chart</sub></td>
+    <td align="center"><sub>Dark: "net revenue per month in 2024", glossary term matched, line chart</sub></td>
   </tr>
 </table>
 
