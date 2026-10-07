@@ -22,7 +22,7 @@ services:
       # --- secrets: set in the dashboard, never committed ---
       - key: GROQ_API_KEY
         sync: false
-      - key: FRONTEND_ORIGINS          # CORS: the Vercel production URL only, e.g. https://nl2sql.vercel.app
+      - key: FRONTEND_ORIGINS          # CORS: the Vercel production URL only (https://nl2sql-assistant.vercel.app)
         sync: false
       # --- intent model: int8 ONNX from the Hub (onnxruntime; no torch) ---
       - key: INTENT_MODEL_PATH
@@ -49,6 +49,8 @@ services:
         value: "5"
       - key: MAX_SESSIONS
         value: "5"
-      # --- the client IP comes from the entry Render's proxy appends to X-Forwarded-For ---
+      # --- the client IP: Render sits behind Cloudflare, and both append to X-Forwarded-For, so a request
+      #     arrives with "<client>, <Cloudflare edge>". With 1 hop the rate limits keyed on the edge address,
+      #     which varies; measured on the live service, see "Production settings" in README.md ---
       - key: TRUSTED_PROXY_HOPS
-        value: "1"
+        value: "2"
