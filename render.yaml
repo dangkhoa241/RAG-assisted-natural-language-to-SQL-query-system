@@ -14,7 +14,7 @@ services:
     # The intent model is downloaded during the build into HF_HOME, inside the project folder, so a cold
     # start (the free plan sleeps after 15 idle minutes) doesn't download 105 MB again.
     buildCommand: pip install -r requirements.txt && python scripts/prefetch_intent_model.py
-    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT --workers 1 --no-server-header
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT --workers 1 --no-server-header --no-proxy-headers
     healthCheckPath: /api/health
     envVars:
       - key: PYTHON_VERSION
@@ -49,8 +49,8 @@ services:
         value: "5"
       - key: MAX_SESSIONS
         value: "5"
-      # --- the client IP: Render sits behind Cloudflare, and both append to X-Forwarded-For, so a request
-      #     arrives with "<client>, <Cloudflare edge>". With 1 hop the rate limits keyed on the edge address,
-      #     which varies; measured on the live service, see "Production settings" in README.md ---
+      # --- the client IP. Measured on the live service: a request arrives with
+      #     X-Forwarded-For: <client>, <Cloudflare edge>, <Render load balancer>, so the client is 3 entries
+      #     from the right; anything a client forges sits further left. See "Production settings" in README.md ---
       - key: TRUSTED_PROXY_HOPS
-        value: "2"
+        value: "3"
